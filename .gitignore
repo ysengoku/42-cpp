@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Readme
+README.md
