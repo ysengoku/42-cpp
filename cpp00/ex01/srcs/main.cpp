@@ -10,22 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 	
 int	main(void)
 {
 	PhoneBook	phonebook;
-	std::string	command;
-	
-	std::cout << "Enter command >>>";
-	std::cin >> command;
-	std::cout << "Command received: " << command << std::endl;
-	if (std::string(command) == "ADD")
-	{
-		std::cout << "First name: ";
-		//std::cin >> 
-	}
+	std::string	input;
 
+	while (std::string(input) != "EXIT")
+	{
+		std::cout << CYAN << "Enter command " << "▶︎▶︎▶︎ " << RESET;
+		std::cin >> input;
+	
+		if (std::string(input) == "ADD")
+			phonebook.addContact();
+		else if (std::string(input) == "SEARCH")
+			phonebook.displayContact();
+		else if (std::string(input) == "EXIT")
+			std::cout << RED << "Deleting phonebook data..." << RESET << std::endl;
+		else
+			std::cout << RED << "[Error] " << RESET << "Invalid command" << std::endl;
+	}
 	return 0;
 }

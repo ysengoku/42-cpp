@@ -10,14 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = awesome_phonebook
+NAME = miniPhoneBook
 
+vpath %.cpp srcs
 SRCS = main.cpp \
-		phonebook.cpp
+		PhoneBook.cpp \
+		Contact.cpp
 
 INCLUDE = includes/
-HEADER_FILEES = PhoneBook.class.hpp \
-			Contact.class.hpp
+HEADER_FILEES = PhoneBook.hpp \
+				Contact.hpp
 HEADERS = $(addprefix $(INCLUDE), $(HEADER_FILES))
 
 OBJS_DIR = .objs/
