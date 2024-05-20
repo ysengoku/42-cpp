@@ -27,11 +27,11 @@ class	Contact
 		void		setNickname( void );
 		void		setPhone( void );
 		void		setDarkestSecret( void );
-		std::string getFirstName( void );
-		std::string	getLastName( void );
-		std::string	getNickname( void );
-		std::string	getPhone( void );
-		std::string	getSecret( void );
+		std::string getFirstName( void ) const;
+		std::string	getLastName( void ) const;
+		std::string	getNickname( void ) const;
+		std::string	getPhone( void ) const;
+		std::string	getSecret( void ) const;
 
 	private:
 		std::string	_firstname;
@@ -40,14 +40,20 @@ class	Contact
 		std::string	_phone;
 		std::string	_secret;
 
-		std::string	_getInput( std::string prompt );
-		bool		_isNum( std::string input );
+		std::string	_getInput( std::string prompt );	
+		bool		_isNum( std::string input ) const;
 };
 
 # define RESET		"\033[0m"
+# define WHITE 		"\033[1;37m"
+# define BLACK		"\033[1;30m"
+# define BLUE		"\033[1;34m"
+# define YELLOW		"\033[1;33m"
 # define GREEN		"\033[1;32m"
 # define RED		"\033[1;31m"
 # define MAGENTA	"\033[1;35m"
 # define CYAN		"\033[1;36m"
+# define BGCYAN		"\033[46m"
+# define BGWHITE	"\033[47m"
 
 #endif

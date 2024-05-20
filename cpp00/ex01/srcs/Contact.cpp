@@ -3,21 +3,13 @@
 
 /*===== Constructor & Destructor =============================================*/
 
-Contact::Contact( void )
+Contact::Contact( void ) : _firstname(""), 	_lastname(""), _nickname(""), _phone(""), _secret("")
 {
-//	std::cout << "Constructor called" << std::endl;
-	this->_firstname = "";
-	this->_lastname = "";
-	this->_nickname = "";
-	this->_phone = "";
-	this->_secret = "";
-//	this->empty = true;
 	return;
 }
 
 Contact::~Contact( void )
 {	
-//	std::cout << "Destructor called" << std::endl;
 	return;
 }
 
@@ -31,7 +23,7 @@ void	Contact::setFirstName( void )
 	{
 		this->_firstname = this->_getInput("Enter first name");
 		if (this->_firstname.empty())
-			std::cout << "Invalid input" << std::endl;
+			std::cout << YELLOW << "Invalid input" << RESET << std::endl;
 		else
 			success = true;
 	}
@@ -73,7 +65,7 @@ void	Contact::setPhone( void )
 	{
 		this->_phone = this->_getInput("Enter phone number");
 		if (this->_phone.empty() || this->_isNum(this->_phone) == false)
-			std::cout << "Invalid input" << std::endl;
+			std::cout << "Invalid input. Phone number field only accepts numerical values." << std::endl;
 		else
 			success = true;
 	}
@@ -91,29 +83,30 @@ void	Contact::setDarkestSecret( void )
 		else
 			success = true;
 	}
+	std::cout << BLUE << "Your new contact has been successfully saved." << RESET << std::endl << std::endl;
 }
 
-std::string	Contact::getFirstName( void )
+std::string	Contact::getFirstName( void ) const
 {
 	return (this->_firstname);
 }
 
-std::string	Contact::getLastName( void )
+std::string	Contact::getLastName( void ) const
 {
 	return (this->_lastname);
 }
 
-std::string Contact::getNickname( void )
+std::string Contact::getNickname( void ) const
 {
 	return (this->_nickname);
 }
 
-std::string Contact::getPhone( void )
+std::string Contact::getPhone( void ) const
 {
 	return (this->_phone);
 }
 
-std::string Contact::getSecret( void )
+std::string Contact::getSecret( void ) const
 {
 	return (this->_secret);
 }
@@ -124,12 +117,17 @@ std::string	Contact::_getInput( std::string prompt )
 {
 	std::string	input;
 
-	std::cout << prompt << ": ";
-	std::cin >> input;
+	while (true)
+	{
+		std::cout << prompt << ": ";
+		std::cin >> input;
+		if (!input.empty())
+			break ;
+	}
 	return (input);
 }
 
-bool	Contact::_isNum( std::string input )
+bool	Contact::_isNum( std::string input ) const
 {
 	for (size_t i = 0; i < input.length(); i++)
 	{
