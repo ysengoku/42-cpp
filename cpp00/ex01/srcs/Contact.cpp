@@ -83,7 +83,7 @@ void	Contact::setDarkestSecret( void )
 		else
 			success = true;
 	}
-	std::cout << BLUE << "Your new contact has been successfully saved." << RESET << std::endl << std::endl;
+	std::cout << MAGENTA << "Your new contact has been successfully saved." << RESET << std::endl << std::endl;
 }
 
 std::string	Contact::getFirstName( void ) const

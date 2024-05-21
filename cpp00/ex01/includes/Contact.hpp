@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.class.hpp                                  :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:08:18 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/16 15:41:28 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 08:10:37 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,32 @@
 # include <iostream>
 # include <string>
 
-class	Contact
-{	
-	public:
-		Contact ( void );
-		~Contact ( void );
+class	Contact {
+	
+public:
+	Contact ( void );
+	~Contact ( void );
 
-		void		setFirstName( void );
-		void		setLastName( void );
-		void		setNickname( void );
-		void		setPhone( void );
-		void		setDarkestSecret( void );
-		std::string getFirstName( void ) const;
-		std::string	getLastName( void ) const;
-		std::string	getNickname( void ) const;
-		std::string	getPhone( void ) const;
-		std::string	getSecret( void ) const;
+	void		setFirstName( void );
+	void		setLastName( void );
+	void		setNickname( void );
+	void		setPhone( void );
+	void		setDarkestSecret( void );
+	std::string getFirstName( void ) const;
+	std::string	getLastName( void ) const;
+	std::string	getNickname( void ) const;
+	std::string	getPhone( void ) const;
+	std::string	getSecret( void ) const;
 
-	private:
-		std::string	_firstname;
-		std::string	_lastname;
-		std::string	_nickname;
-		std::string	_phone;
-		std::string	_secret;
+private:
+	std::string	_firstname;
+	std::string	_lastname;
+	std::string	_nickname;
+	std::string	_phone;
+	std::string	_secret;
 
-		std::string	_getInput( std::string prompt );	
-		bool		_isNum( std::string input ) const;
+	std::string	_getInput( std::string prompt );	
+	bool		_isNum( std::string input ) const;
 };
 
 # define RESET		"\033[0m"

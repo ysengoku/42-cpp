@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:58:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/16 15:40:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 08:58:22 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ PhoneBook::PhoneBook( void ) : _count(0)
 
 PhoneBook::~PhoneBook( void )
 {	
-	std::cout << "Thank you for using Mini Phone Book. See you soon 👋🏻" << std::endl;
+	std::cout << "Thank you for using Mini Phone Book. See you soon ✋" << std::endl;
 	return;
 }
 
@@ -32,7 +32,7 @@ void	PhoneBook::addContact( void )
 {
 	int i = 0;
 
-	std::cout << std::endl << BLUE << "▶︎▶︎▶︎ Adding new contact" << RESET << std::endl;
+	std::cout << std::endl << MAGENTA << "▶︎▶︎▶︎ Adding new contact" << RESET << std::endl;
 	if (this->_count == 8)
 		i = this->_replaceContact();
 	else
@@ -49,10 +49,13 @@ void	PhoneBook::addContact( void )
 void	PhoneBook::displayContact( void )
 {
 	if (this->_count == 0)
-		std::cout << "You have no contacts yet." << std::endl << "To add a contact, type " << GREEN << "ADD" << RESET << std::endl << std::endl;
+	{
+		std::cout << "You have no contacts yet." << std::endl;
+		std::cout << "To add a contact, type " << GREEN << "ADD" << RESET << std::endl << std::endl;
+	}
 	else
 	{
-		std::cout << std::endl << BLUE << "▶︎▶︎▶︎ Displaying your contact list" << RESET << std::endl;
+		std::cout << std::endl << MAGENTA << "▶︎▶︎▶︎ Displaying your contact list" << RESET << std::endl;
 		this->_displayContactTable();
 		this->_displayContactDetail();
 	}
@@ -72,6 +75,7 @@ void	PhoneBook::_printMenu( void ) const
 
 int	PhoneBook::_replaceContact( void )
 {
+	std::cout << YELLOW << "The oldest contact will be replaced by new one." << RESET << std::endl;
 	for (int i = 0; i < 7; i++)
 		this->_contacts[i] = this->_contacts[i + 1];
 	return (7);
