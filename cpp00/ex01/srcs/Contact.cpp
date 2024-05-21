@@ -17,71 +17,65 @@ Contact::~Contact( void )
 
 void	Contact::setFirstName( void )
 {
-	bool	success = false;
-
-	while(!success)
+	while(true)
 	{
 		this->_firstname = this->_getInput("Enter first name");
-		if (this->_firstname.empty())
-			std::cout << YELLOW << "Invalid input" << RESET << std::endl;
+		if (this->_firstname.empty() || !this->_isValidChar(this->_firstname))
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			<< RESET << std::endl;
 		else
-			success = true;
+			return ;
 	}
 }
 
 void	Contact::setLastName( void )
 {
-	bool	success = false;
-
-	while(!success)
+	while(true)
 	{
 		this->_lastname = this->_getInput("Enter last name");
-		if (this->_lastname.empty())
-			std::cout << "Invalid input" << std::endl;
+		if (this->_lastname.empty() || !this->_isValidChar(this->_lastname))
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			<< RESET << std::endl;
 		else
-			success = true;
+			return ;
 	}
 }
 
 void	Contact::setNickname( void )
 {
-	bool	success = false;
-
-	while(!success)
+	while(true)
 	{
 		this->_nickname = this->_getInput("Enter nickname");
-		if (this->_nickname.empty())
-			std::cout << "Invalid input" << std::endl;
+		if (this->_nickname.empty() || !this->_isValidChar(this->_nickname))
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			<< RESET << std::endl;
 		else
-			success = true;
+			return ;
 	}
 }
 
 void	Contact::setPhone( void )
 {
-	bool	success = false;
-
-	while(!success)
+	while(true)
 	{
 		this->_phone = this->_getInput("Enter phone number");
 		if (this->_phone.empty() || this->_isNum(this->_phone) == false)
-			std::cout << "Invalid input. Phone number field only accepts numerical values." << std::endl;
+			std::cout << YELLOW << "Invalid input. Phone number field only accepts numerical values." << RESET << std::endl;
 		else
-			success = true;
+			return ;
 	}
 }
 
 void	Contact::setDarkestSecret( void )
 {
-	bool	success = false;
-
-	while(!success)
+	while(true)
 	{
 		this->_secret = this->_getInput("Enter darkest secret");
-		if (this->_nickname.empty())
-			std::cout << "Invalid input" << std::endl;
+		if (this->_nickname.empty() || !this->_isValidChar(this->_secret))
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			<< RESET << std::endl;
 		else
-			success = true;
+			break ;
 	}
 	std::cout << MAGENTA << "Your new contact has been successfully saved." << RESET << std::endl << std::endl;
 }
@@ -120,7 +114,7 @@ std::string	Contact::_getInput( std::string prompt )
 	while (true)
 	{
 		std::cout << prompt << ": ";
-		std::cin >> input;
+		std::getline(std::cin, input);
 		if (!input.empty())
 			break ;
 	}
@@ -132,6 +126,16 @@ bool	Contact::_isNum( std::string input ) const
 	for (size_t i = 0; i < input.length(); i++)
 	{
 		if (!isdigit(input[i]))
+			return (false);
+	}
+	return (true);
+}
+
+bool	Contact::_isValidChar(std::string input ) const
+{
+	for (size_t i = 0; i < input.length(); i++)
+	{
+		if (!(isalnum(input[i]) || input[i] == '-' || std::isspace(input[i])))
 			return (false);
 	}
 	return (true);
