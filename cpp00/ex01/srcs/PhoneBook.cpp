@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:58:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/21 11:12:23 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:10:48 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ PhoneBook::PhoneBook( void ) : _count(0)
 
 PhoneBook::~PhoneBook( void )
 {	
-	std::cout << "Thank you for using Mini Phone Book. See you soon ✋" << std::endl;
+	std::cout << "Thank you for using Mini PhoneBook. See you soon ✋" << std::endl;
 	return;
 }
 
