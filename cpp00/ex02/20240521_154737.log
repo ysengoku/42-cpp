@@ -58,4 +58,4 @@
 [20240521_154737] index:6;amount:106;closed
 [20240521_154737] index:7;amount:8942;closed
 
-diff <(sed 's/\[[^]]*\]//g' myTest.log) <(sed 's/\[[^]]*\]//g' 19920104_091532.log)
+diff <(sed 's/\[[^]]*\]//g' 20240521_154737.log) <(sed 's/\[[^]]*\]//g' 19920104_091532.log)
