@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:07:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/16 15:40:40 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 08:09:09 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@
 
 class PhoneBook {
 
-	public:
-		PhoneBook( void );
-		~PhoneBook( void );
+public:
+	PhoneBook( void );
+	~PhoneBook( void );
 
-		void	addContact( void );
-		void	displayContact( void );
+	void	addContact( void );
+	void	displayContact( void );
 
-	private:
-		Contact _contacts[8];
-		int		_count;
+private:
+	Contact _contacts[8];
+	int		_count;
 
-		void	_printMenu( void ) const;
-		int		_replaceContact( void );
-		void	_displayContactTable( void );
-		void	_printTableElement( std::string element );
-		void	_displayContactDetail( void );
+	void	_printMenu( void ) const;
+	int		_replaceContact( void );
+	void	_displayContactTable( void );
+	void	_printTableElement( std::string element );
+	void	_displayContactDetail( void );
 };
 
 #endif
