@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:58:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/21 08:58:22 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:12:23 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,10 @@ void	PhoneBook::_displayContactDetail( void )
 	while (true)
 	{
 		std::cout << "Choose index >> ";
-		std::cin >> input;
-		if (input.empty() || input.length() > 1 || input[0] < '0' || input[0] > '7')
+		std::getline(std::cin, input);
+		if (input.empty())
+			continue ;
+		if (input.length() > 1 || input[0] < '0' || input[0] > '7')
 			std::cout << YELLOW << "Invalid index. Please retry." << RESET << std::endl;
 		else
 		{

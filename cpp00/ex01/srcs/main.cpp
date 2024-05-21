@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:12:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/16 15:40:49 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:13:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main(void)
 	while (true)
 	{
 		std::cout << CYAN << "Enter command " << "▶︎▶︎▶︎ " << RESET;
-//		std::getline(std::cin, input);
-		std::cin >> input;
+		std::getline(std::cin, input);
 		if (input.empty())
 			continue;
 		if (input == "ADD")

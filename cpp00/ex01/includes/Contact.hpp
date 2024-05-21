@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:08:18 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/21 08:10:37 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:26:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ private:
 
 	std::string	_getInput( std::string prompt );	
 	bool		_isNum( std::string input ) const;
+	bool		_isValidChar( std::string input ) const;
 };
 
 # define RESET		"\033[0m"
