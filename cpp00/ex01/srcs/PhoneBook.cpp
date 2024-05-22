@@ -6,15 +6,18 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:58:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/21 16:10:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:06:04 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-/*===== Constructor & Destructor =============================================*/
+/*============================================================================*/
+/*       Constructor & Destructor                                             */
+/*============================================================================*/
 
-PhoneBook::PhoneBook( void ) : _count(0)
+PhoneBook::PhoneBook( void ) 
+	: _count(0)
 {	
 	PhoneBook::_printMenu();
 	return;
@@ -22,11 +25,12 @@ PhoneBook::PhoneBook( void ) : _count(0)
 
 PhoneBook::~PhoneBook( void )
 {	
-	std::cout << "Thank you for using Mini PhoneBook. See you soon ✋" << std::endl;
 	return;
 }
 
-/*===== Public functions =====================================================*/
+/*============================================================================*/
+/*       Public functions                                                     */
+/*============================================================================*/
 
 void	PhoneBook::addContact( void )
 {
@@ -61,7 +65,9 @@ void	PhoneBook::displayContact( void )
 	}
 }
 
-/*===== Private functions ====================================================*/
+/*============================================================================*/
+/*       Private functions                                                    */
+/*============================================================================*/
 
 void	PhoneBook::_printMenu( void ) const
 {
@@ -118,6 +124,12 @@ void	PhoneBook::_displayContactDetail( void )
 	{
 		std::cout << "Choose index >> ";
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cout << std::endl << YELLOW << "Reached the end of file. Exiting the program..." \
+			<< RESET << std::endl;
+			std::exit(1);
+		}		
 		if (input.empty())
 			continue ;
 		if (input.length() > 1 || input[0] < '0' || input[0] > '7')
