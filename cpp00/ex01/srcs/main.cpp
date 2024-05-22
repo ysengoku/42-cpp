@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:12:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/22 12:06:12 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:18:33 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	main(void)
 		std::getline(std::cin, input);
 		if (std::cin.eof())
 		{
-			std::cout << std::endl << YELLOW << "Reached the end of file. Exiting the program..." \
+			std::cout << std::endl << YELLOW << "Reached the End-of-File. Exiting the program..." \
 			<< RESET << std::endl;
-			// std::exit(0);
 			return (0);
 		}
 		if (input.empty())
