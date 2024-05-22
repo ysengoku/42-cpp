@@ -21,7 +21,7 @@ void	Contact::setFirstName( void )
 	{
 		this->_firstname = this->_getInput("Enter first name");
 		if (this->_firstname.empty() || !this->_isValidChar(this->_firstname))
-			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers or hyphens('-')." \
 			<< RESET << std::endl;
 		else
 			return ;
@@ -34,7 +34,7 @@ void	Contact::setLastName( void )
 	{
 		this->_lastname = this->_getInput("Enter last name");
 		if (this->_lastname.empty() || !this->_isValidChar(this->_lastname))
-			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers or hyphens('-')." \
 			<< RESET << std::endl;
 		else
 			return ;
@@ -47,7 +47,7 @@ void	Contact::setNickname( void )
 	{
 		this->_nickname = this->_getInput("Enter nickname");
 		if (this->_nickname.empty() || !this->_isValidChar(this->_nickname))
-			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers or hyphens('-')." \
 			<< RESET << std::endl;
 		else
 			return ;
@@ -60,7 +60,8 @@ void	Contact::setPhone( void )
 	{
 		this->_phone = this->_getInput("Enter phone number");
 		if (this->_phone.empty() || this->_isNum(this->_phone) == false)
-			std::cout << YELLOW << "Invalid input. Phone number field only accepts numerical values." << RESET << std::endl;
+			std::cout << YELLOW << "Invalid input. Phone number field only accepts numerical values." \
+			<< RESET << std::endl;
 		else
 			return ;
 	}
@@ -72,7 +73,7 @@ void	Contact::setDarkestSecret( void )
 	{
 		this->_secret = this->_getInput("Enter darkest secret");
 		if (this->_nickname.empty() || !this->_isValidChar(this->_secret))
-			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers, spaces or hyphens('-')." \
+			std::cout << YELLOW << "Invalid input. Enter only alphabetic characters, numbers or hyphens('-')." \
 			<< RESET << std::endl;
 		else
 			break ;
@@ -135,7 +136,7 @@ bool	Contact::_isValidChar(std::string input ) const
 {
 	for (size_t i = 0; i < input.length(); i++)
 	{
-		if (!(isalnum(input[i]) || input[i] == '-' || std::isspace(input[i])))
+		if (!(isalnum(input[i]) || input[i] == '-'))
 			return (false);
 	}
 	return (true);
