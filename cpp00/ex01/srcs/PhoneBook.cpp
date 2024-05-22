@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:58:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/22 12:06:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:43:29 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	PhoneBook::_replaceContact( void )
 void	PhoneBook::_displayContactTable( void )
 {
 	std::cout << std::endl;
-	std::cout << BGWHITE << BLACK <<"     Index|First name| Last name|  Nickname" << RESET << std::endl;
+	std::cout << BGWHITE << BLACK <<"     Index|First name| Last name|  Nickname " << RESET << std::endl;
 	for (int i = 0; i < this->_count; i++)
 	{
 		std::cout << "         " << i << "|";
@@ -99,6 +99,7 @@ void	PhoneBook::_displayContactTable( void )
 		this->_printTableElement(this->_contacts[i].getLastName());
 		std::cout << "|";
 		this->_printTableElement(this->_contacts[i].getNickname());
+		std::cout << "|";
 		std::cout << std::endl << "----------+----------+----------+----------" <<std::endl;
 	}
 }
@@ -126,7 +127,7 @@ void	PhoneBook::_displayContactDetail( void )
 		std::getline(std::cin, input);
 		if (std::cin.eof())
 		{
-			std::cout << std::endl << YELLOW << "Reached the end of file. Exiting the program..." \
+			std::cout << std::endl << YELLOW << "Reached the End-of-File. Exiting the program..." \
 			<< RESET << std::endl;
 			std::exit(1);
 		}		
