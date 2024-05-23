@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:42:08 by yusengok          #+#    #+#             */
-/*   Updated: 2024/05/22 14:40:13 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:17:35 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ std::string	Contact::_getInput( std::string prompt )
 {
 	std::string	input;
 
-	// std::cin.clear();
 	while (true)
 	{
 		std::cout << prompt << ": ";
