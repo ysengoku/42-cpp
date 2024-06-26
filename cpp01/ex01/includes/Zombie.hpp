@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 13:58:16 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 15:13:56 by yusengok         ###   ########.fr       */
+/*   Created: 2024/06/26 14:07:16 by yusengok          #+#    #+#             */
+/*   Updated: 2024/06/26 15:13:50 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ class Zombie
 		~Zombie( void );
 	
 		/* Member functions */
-		void			announce( void );
-		static Zombie*	newZombie( std::string name );
-		static void		randomChump( std::string name );
-//		Zombie*	zombieHorde( int N, std::string name );
-		
+		void	announce( void );
+		static Zombie*	zombieHorde( int N, std::string name );
+	
 	private:
 		std::string	_name;
 };

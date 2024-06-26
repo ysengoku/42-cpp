@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 13:41:10 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 14:22:16 by yusengok         ###   ########.fr       */
+/*   Created: 2024/06/26 14:09:18 by yusengok          #+#    #+#             */
+/*   Updated: 2024/06/26 15:23:18 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 Zombie::Zombie ( void )
 {
-	std::cout << "\033[33m" << " A zombie appeared." << "\033[0m" << std::endl;
+	std::cout << "\033[33m" << "A zombie appeared." << "\033[0m" << std::endl;
 	return ;
 }
 
@@ -44,3 +44,16 @@ void	Zombie::announce( void )
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 	return ;
 }
+
+// Zombie*	Zombie::newZombie( std::string name )
+// {
+// 	return ( new Zombie( name ));
+// }
+
+// void	Zombie::randomChump( std::string name )
+// {
+// 	Zombie* zombie = newZombie(name);
+// 	zombie->announce();
+// 	delete zombie;
+// 	return ;
+// }
