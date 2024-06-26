@@ -10,3 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "HumanB.hpp"
+
+/*============================================================================*/
+/*       Constructor & Destructor                                             */
+/*============================================================================*/
+
+HumanB::HumanB( std::string name )
+	: _name(name), _weapon(0)
+{
+	std::cout << "\033[34m" << this->_name << " entered." << "\033[0m" << std::endl;
+	return ;
+}
+
+HumanB::~HumanB( void )
+{
+	std::cout << "\033[34m" << this->_name << " has left." << "\033[0m" << std::endl;
+	return ;
+}
+
+/*============================================================================*/
+/*       Public functions                                                     */
+/*============================================================================*/
+
+void	HumanB::setWeapon( Weapon &weapon )
+{
+	this->_weapon = &weapon;
+}
+
+void	HumanB::attack( void )
+{
+	if (this->_weapon == NULL)
+		std::cout << this->_name << " tries to attack but he has no weapon." << std::endl;
+	else
+		std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
+	return ;
+}
