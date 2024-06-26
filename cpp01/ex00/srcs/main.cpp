@@ -15,16 +15,16 @@
 void	test1( void )
 {
 	std::cout << std::endl;
-	std::cout << "\033[36m===== Test 1: newZombie =====\033[0m" << std::endl;	
-	Zombie* zombie = Zombie::newZombie( "Eddie" );
+	std::cout << "\033[36m===== Test 1: newZombie (heap) =====\033[0m" << std::endl;	
+	Zombie* zombie = newZombie( "Eddie" );
 	delete zombie;
 }
 
 void	test2( void )
 {
 	std::cout << std::endl;
-	std::cout << "\033[36m===== Test 2: newZombie & announce =====\033[0m" << std::endl;	
-	Zombie* zombie = Zombie::newZombie( "Sophia" );
+	std::cout << "\033[36m===== Test 2: newZombie & announce (heap) =====\033[0m" << std::endl;	
+	Zombie* zombie = newZombie( "Sophia" );
 	zombie->announce();
 	delete zombie;
 }
@@ -32,8 +32,8 @@ void	test2( void )
 void	test3( void )
 {
 	std::cout << std::endl;
-	std::cout << "\033[36m===== Test 3: randomChump =====\033[0m" << std::endl;	
-	Zombie::randomChump( "Shaun" );
+	std::cout << "\033[36m===== Test 3: randomChump (stack) =====\033[0m" << std::endl;	
+	randomChump( "Shaun" );
 }
 
 int	main( void )
