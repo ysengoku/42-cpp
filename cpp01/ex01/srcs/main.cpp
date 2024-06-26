@@ -20,7 +20,7 @@ int main( int argc, char **argv )
 		return (1);
 	}
 	int N = std::atoi(argv[1]);
-	Zombie *horde = Zombie::zombieHorde( N, argv[2] );
+	Zombie *horde = zombieHorde( N, argv[2] );
 	for (int i = 0; i < N; i++)
 		horde[i].announce();
 	delete [] horde;
