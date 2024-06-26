@@ -6,11 +6,11 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 13:38:32 by yusengok          #+#    #+#              #
-#    Updated: 2024/06/25 13:48:35 by yusengok         ###   ########.fr        #
+#    Updated: 2024/06/26 11:49:57 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = Zombie
 
 vpath %.cpp srcs
 SRCS = main.cpp \

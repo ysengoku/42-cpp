@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:58:16 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/25 15:49:08 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:01:49 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@ class Zombie
 {	
 	public:
 		/* Constractor */
-		Zombie( void );
-		/* Destractor */
+		Zombie( std::string _name );
+		/* Destructor */
 		~Zombie( void );
 	
 		/* Member functions */
-
+		void			announce( void );
+		static Zombie*	newZombie( std::string name );
+		static void		randomChump( std::string name );
 	
 	private:
 		std::string	_name;
-
-		/* Member functions */
-		void	announce( void );
-	
 };
 
 #endif
