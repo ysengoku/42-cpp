@@ -28,10 +28,12 @@ class Zombie
 	
 		/* Member functions */
 		void	announce( void );
-		static Zombie*	zombieHorde( int N, std::string name );
+		void	setName( std::string name );
 	
 	private:
 		std::string	_name;
 };
+
+Zombie*	zombieHorde( int N, std::string name );
 
 #endif
