@@ -15,5 +15,22 @@
 
 # include <iostream>
 # include <string>
+# include "Weapon.hpp"
+
+class	HumanB
+{
+	public:
+		/* Constructor */
+		HumanB( std::string name);
+		/* Destructor */
+		~HumanB( void );
+		/* Member functions */
+		void	setWeapon( Weapon &weapon );
+		void	attack( void );
+	
+	private:
+		std::string	_name;
+		Weapon*		_weapon;
+};
 
 #endif

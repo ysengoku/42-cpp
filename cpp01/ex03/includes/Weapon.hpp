@@ -20,12 +20,12 @@ class Weapon
 {
 	public:
 		/* Constructor */
-		Weapon( void );
+		Weapon( std::string weaponType );
 		/* Destructor */
 		~Weapon( void );
 		/* Accesors */
-		std::string getType( void );
-		void		setType( std::string newType );
+		std::string const&	getType( void );
+		void				setType( std::string weaponType );
 		
 	private:
 		std::string	_type;		
