@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:41:10 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/25 15:48:46 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:01:35 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 /*       Constructor & Destructor                                             */
 /*============================================================================*/
 
-Zombie::Zombie( void )
-	: _name("")
+Zombie::Zombie ( std::string name )
+	: _name(name)
 {
+	std::cout << "\033[33m" << this->_name << " appeared." << "\033[0m" << std::endl;
 	return ;
 }
 
 Zombie::~Zombie( void )
 {
+	std::cout << "\033[33m" << this->_name << " vanished." << "\033[0m" << std::endl;
 	return ;
 }
 
@@ -31,13 +33,8 @@ Zombie::~Zombie( void )
 /*       Public functions                                                     */
 /*============================================================================*/
 
-
-/*============================================================================*/
-/*       Private functions                                                    */
-/*============================================================================*/
-
 void	Zombie::announce( void )
 {
-	std::cout << this->_name;
-	std::cout << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	return ;
 }
