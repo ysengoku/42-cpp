@@ -6,12 +6,12 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:01:08 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 16:05:43 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:10:12 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_H
-# define HUMANA_H
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
 # include <iostream>
 # include <string>

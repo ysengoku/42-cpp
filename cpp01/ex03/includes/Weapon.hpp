@@ -6,12 +6,12 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:00:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 16:13:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:09:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_H
-# define WEAPON_H
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
 # include <iostream>
 # include <string>
