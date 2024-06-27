@@ -36,4 +36,5 @@ miniPhoneBook
 README.md
 
 # .vscode
-*.json
+setting.json
+c_cpp_properties.json
