@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:01:47 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 16:01:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:22:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 HumanA::HumanA( std::string name, Weapon& weapon )
 	: _name(name), _weapon(weapon)
 {
-	std::cout << "\033[34m" << this->_name << " entered." << "\033[0m" << std::endl;
+	std::cout << "\033[33m" << this->_name << " entered." << "\033[0m" << std::endl;
 	return ;
 }
 
 HumanA::~HumanA( void )
 {
-	std::cout << "\033[34m" << this->_name << " has left." << "\033[0m" << std::endl;
+	std::cout << "\033[33m" << this->_name << " has left." << "\033[0m" << std::endl;
 	return ;
 }
 
