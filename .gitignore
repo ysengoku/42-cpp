@@ -34,3 +34,6 @@ miniPhoneBook
 
 # Readme
 README.md
+
+# .vscode
+*.json
