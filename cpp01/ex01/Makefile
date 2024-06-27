@@ -6,23 +6,24 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 14:05:27 by yusengok          #+#    #+#              #
-#    Updated: 2024/06/26 15:21:41 by yusengok         ###   ########.fr        #
+#    Updated: 2024/06/27 08:35:29 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = zombieHorde
 
 vpath %.cpp srcs
-SRCS = main.cpp \
-		Zombie.cpp \
-		zombieHorde.cpp
+FILES = main \
+		Zombie \
+		zombieHorde
+SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = Zombie.hpp
-HEADERS = $(addprefix $(INCLUDE), $(HEADER_FILES))
+HEADER_FILEES = Zombie
+HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
 
 OBJS_DIR = .objs/
-OBJS = $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
+OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 DEPS = $(OBJS:.o=.d)
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(INCLUDE)
