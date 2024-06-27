@@ -39,14 +39,12 @@ bool	StringReplacer::replaceString( std::string& line )
 	size_t	position;
 	char	nextChar;
 
-	std::cout << "line: " << line << std::endl;
 	position = line.find(this->_searchedStr);
 	while (position != std::string::npos)
 	{
 		if (position + this->_searchedStrLength < line.length())
 		{
 			nextChar = line[position + this->_searchedStrLength];
-			// std::cout << "nextChar: " << nextChar << std::endl;
 			if (!std::isalnum(nextChar))
 			{
 				line.erase(position, this->_searchedStrLength);
