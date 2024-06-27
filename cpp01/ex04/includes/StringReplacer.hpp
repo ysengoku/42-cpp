@@ -27,9 +27,9 @@ class StringReplacer
 		bool	replaceString( std::string& line );
 
 	private:
-		std::string&	_searchedStr;
-		std::string&	_replacingStr;
-		size_t			_searchedStrLength;
+		const std::string	_searchedStr;
+		const std::string	_replacingStr;
+		const size_t		_searchedStrLength;
 };
 
 # endif

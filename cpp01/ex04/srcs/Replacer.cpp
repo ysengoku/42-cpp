@@ -34,12 +34,12 @@ Replacer::~Replacer( void )
 /*       Member functions                                                     */
 /*============================================================================*/
 
-int	Replacer::process( void )
+int	Replacer::replaceText( void )
 {
 	if (this->_fileHandler.openInfile() == false || this->_fileHandler.openOutfile() == false)
 		return (1);
 	this->replaceStrings();
-	this->printResultat();
+	this->printStatus();
 	return (0);
 }
 
@@ -57,7 +57,7 @@ void	Replacer::replaceStrings( void )
 	}
 }
 
-void	Replacer::printResultat( void )
+void	Replacer::printStatus( void )
 {
 	if (this->_replaced)
 		std::cout << "'" << this->_searchedStr << "' was successfully replaced by '" << this->_replacingStr << "'" << std::endl;

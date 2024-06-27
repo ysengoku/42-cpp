@@ -30,7 +30,7 @@ int	main( int argc, char **argv )
 	std::string const s1 = argv[2];
 	std::string const s2 = argv[3];
 	Replacer replacer(filename, s1, s2);
-	if (replacer.process() == 1)
+	if (replacer.replaceText() == 1)
 		return (1);
 	return (0);
 }

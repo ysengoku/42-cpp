@@ -30,8 +30,8 @@ class	FileHandler
 		void				closeFiles( void );
 		std::ifstream&		getInputFile( void );
 		std::ofstream&		getOutputFile( void );
-		std::string const	getInfileName( void );
-		std::string const	getOutfileName( void );
+		const std::string	getInfileName( void );
+		const std::string	getOutfileName( void );
 		
 	private:
 		std::string		_infileName;

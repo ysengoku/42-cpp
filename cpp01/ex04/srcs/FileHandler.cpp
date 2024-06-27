@@ -80,12 +80,12 @@ std::ofstream&	FileHandler::getOutputFile( void )
 	return (this->_outputFile);
 }
 
-std::string const	FileHandler::getInfileName( void )
+const std::string	FileHandler::getInfileName( void )
 {
 	return (this->_infileName);
 }
 
-std::string const	FileHandler::getOutfileName( void )
+const std::string	FileHandler::getOutfileName( void )
 {
 	return (this->_outfileName);
 }

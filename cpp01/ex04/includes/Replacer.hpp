@@ -24,21 +24,19 @@ class Replacer
 		~Replacer( void );
 
 		/* Member functions */
-		int	process( void );
+		int	replaceText( void );
 		
 	private:
-		std::string const	_infileName;
-		std::string const	_searchedStr;
-		std::string const	_replacingStr;
+		const std::string	_infileName;
+		const std::string	_searchedStr;
+		const std::string	_replacingStr;
 		bool				_replaced;
 		FileHandler			_fileHandler;
 		StringReplacer		_stringReplacer;
 
 		/* Member functions */
 		void	replaceStrings( void );
-		void	printResultat( void );
+		void	printStatus( void );
 };
-
-
 
 #endif
