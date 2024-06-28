@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:53:29 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 17:00:36 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/28 09:58:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ class	FileHandler
 	private:
 		std::string		_infileName;
 		std::string		_outfileName;
-		std::ifstream	_inputFile;
-		std::ofstream	_outputFile;
+		std::ifstream	_ifs;
+		std::ofstream	_ofs;
 };
 
 #endif

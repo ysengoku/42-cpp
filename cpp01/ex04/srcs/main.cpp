@@ -6,18 +6,12 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:39:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 16:47:47 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:04:19 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Replacer.hpp"
 
-// test1
-// ./Replace ./files/test1 world universe
-// test2
-// ./Replace ./files/test2 fox cat
-// test3
-// ./Replace ./files/test3 be exist
 
 int	main( int argc, char **argv )
 {
@@ -35,6 +29,10 @@ int	main( int argc, char **argv )
 	return (0);
 }
 
+// test1 ---> s1: world, s2: universe
+// test2 ---> s1: fox, s2: cat
+// test3 ---> s1: be, s2: exist
+
 // int	main( int argc, char **argv )
 // {
 // 	std::string line;
@@ -51,8 +49,6 @@ int	main( int argc, char **argv )
 // 	std::string const s1 = argv[2];
 // 	std::string const s2 = argv[3];
 // 	std::string const replacedFile = filename + ".replace";
-
-// 	//===============================================================================
 // 	std::ifstream inputFile(filename.c_str(), std::ifstream::in);
 // 	if (!inputFile.is_open())
 // 	{
@@ -74,11 +70,8 @@ int	main( int argc, char **argv )
 // 		inputFile.close();
 //     	return (1);
 // 	}
-// 	//===============================================================================
-	
 // 	while (std::getline(inputFile, line))
 // 	{
-// 		//==================================================
 // 		position = line.find(s1);
 // 		while (position != std::string::npos)
 // 		{
@@ -94,7 +87,6 @@ int	main( int argc, char **argv )
 // 				position = line.find(s1, position + 1);
 // 			}
 // 		}
-// 		//===================================================
 // 		outputFile << line + '\n';
 // 	}
 // 	inputFile.close();

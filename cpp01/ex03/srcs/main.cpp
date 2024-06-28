@@ -4,12 +4,12 @@
 
 void	test1( void )
 {
+	std::cout << "\033[36m===== Test 1: Both Humans have weapon =====\033[0m" << std::endl;
 	{
-		std::cout << "\033[36m===== Test 1: Both Humans have weapon =====\033[0m" << std::endl;
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
 		bob.attack();
-		club.setType("fry pan");
+		club.setType("warhammer club");
 		bob.attack();
 	}
 	{
@@ -17,19 +17,19 @@ void	test1( void )
 		HumanB jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();
-		club.setType("fry pan");
+		club.setType("studded club");
 		jim.attack();
 	}
 }
 
 void	test2( void )
 {
+	std::cout << "\033[36m===== Test 2: HumanB has no weapon =====\033[0m" << std::endl;
 	{
-		std::cout << "\033[36m===== Test 2: HumanB has no weapon =====\033[0m" << std::endl;
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
 		bob.attack();
-		club.setType("fry pan");
+		club.setType("flanged mace");
 		bob.attack();
 	}
 	{
