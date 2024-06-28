@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:05:41 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 16:55:02 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/28 09:58:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ FileHandler::~FileHandler( void )
 
 bool	FileHandler::openInfile( void )
 {
-	this->_inputFile.open(this->_infileName.c_str(), std::ifstream::in);
-	if (!this->_inputFile.is_open())
+	this->_ifs.open(this->_infileName.c_str(), std::ifstream::in);
+	if (!this->_ifs.is_open())
 	{
     	std::cerr << "Failed to open the file: " << this->_infileName << std::endl;
     	return (false);
@@ -46,19 +46,19 @@ bool	FileHandler::openInfile( void )
 
 bool	FileHandler::openOutfile( void )
 {
-	this->_outputFile.open(this->_outfileName.c_str(), std::ofstream::out | std::ofstream::trunc);
-	if (!this->_outputFile.is_open())
+	this->_ofs.open(this->_outfileName.c_str(), std::ofstream::out | std::ofstream::trunc);
+	if (!this->_ofs.is_open())
 	{
     	std::cerr << "Failed to open the output file: " << this->_outfileName << std::endl;
-		this->_inputFile.close();
+		this->_ifs.close();
     	return (false);
 	}
-	this->_outputFile.close();
-	this->_outputFile.open(this->_outfileName.c_str(), std::ofstream::app);
-	if (!this->_outputFile.is_open())
+	this->_ofs.close();
+	this->_ofs.open(this->_outfileName.c_str(), std::ofstream::app);
+	if (!this->_ofs.is_open())
 	{
     	std::cerr << "Failed to open the output file: " << this->_outfileName << std::endl;
-		this->_inputFile.close();
+		this->_ifs.close();
     	return (false);
 	}
 	return (true);
@@ -66,18 +66,18 @@ bool	FileHandler::openOutfile( void )
 
 void	FileHandler::closeFiles( void )
 {
-	this->_inputFile.close();
-	this->_outputFile.close();
+	this->_ifs.close();
+	this->_ofs.close();
 }
 
 std::ifstream&	FileHandler::getInputFile( void )
 {
-	return (this->_inputFile);
+	return (this->_ifs);
 }
 
 std::ofstream&	FileHandler::getOutputFile( void )
 {
-	return (this->_outputFile);
+	return (this->_ofs);
 }
 
 const std::string	FileHandler::getInfileName( void )

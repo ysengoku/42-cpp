@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 07:50:38 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/28 07:50:43 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:09:18 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class	Harl
 		void	complain( std::string level );
 
 	private:
+		/* Member functions */
 		void	debug( void );
 		void	info( void );
 		void	warning( void );

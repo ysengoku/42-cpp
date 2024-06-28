@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:20:41 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 15:09:55 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/28 09:38:36 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main( int argc, char **argv )
 {
 	if (argc != 3)
 	{
-		std::cout << "Usage: ./Zombie (number of zombies) (name)" << std::endl;
+		std::cout << "Usage: ./zombieHorde (number of zombies) (name)" << std::endl;
 		return (1);
 	}
 	int N = std::atoi(argv[1]);

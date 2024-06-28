@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:07:25 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 17:10:03 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:06:44 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Replacer::~Replacer( void )
 }
 
 /*============================================================================*/
-/*       Member functions                                                     */
+/*       Public member functions                                              */
 /*============================================================================*/
 
 int	Replacer::replaceText( void )
@@ -43,24 +43,30 @@ int	Replacer::replaceText( void )
 	return (0);
 }
 
+/*============================================================================*/
+/*       Private Member functions                                             */
+/*============================================================================*/
+
 void	Replacer::replaceStrings( void )
 {
 	std::string		line;
-	std::ifstream&	inputFile = this->_fileHandler.getInputFile();
-	std::ofstream&	outputFile = this->_fileHandler.getOutputFile();
+	std::ifstream&	ifs = this->_fileHandler.getInputFile();
+	std::ofstream&	ouf = this->_fileHandler.getOutputFile();
 	
-	while(std::getline(inputFile, line))
+	while(std::getline(ifs, line))
 	{
 		if (this->_stringReplacer.replaceString(line) == true)
 			this->_replaced = true;
-		outputFile << line + '\n';
+		ouf << line + '\n';
 	}
 }
 
 void	Replacer::printStatus( void )
 {
 	if (this->_replaced)
-		std::cout << "'" << this->_searchedStr << "' was successfully replaced by '" << this->_replacingStr << "'" << std::endl;
+		std::cout << "'" << this->_searchedStr << "' was successfully replaced by '" \
+		<< this->_replacingStr << "'" << std::endl;
 	else
-		std::cout << "'" << this->_searchedStr << "' was not found in the file '" << this->_infileName << "'" << std::endl;
+		std::cout << "'" << this->_searchedStr << "' was not found in the file '" \
+		<< this->_infileName << "'" << std::endl;
 }
