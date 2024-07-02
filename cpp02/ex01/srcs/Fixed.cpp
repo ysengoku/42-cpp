@@ -1,4 +1,4 @@
-#include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
 
 /*============================================================================*/
 /*       Constructor & destructor                                             */
@@ -8,6 +8,19 @@ Fixed::Fixed( void )
 	: _num(0)
 {
 	std::cout << "\033[33m" << "Default constructor called" << "\033[0m" << std::endl;
+	return ;
+}
+
+Fixed::Fixed( const int n )
+	: _num(n)
+{
+	std::cout << "\033[33m" << "Int constructor called" << "\033[0m" << std::endl;
+	return ;
+}
+Fixed::Fixed( const float n )
+{
+	std::cout << "\033[33m" << "Float constructor called" << "\033[0m" << std::endl;
+	// Add code
 	return ;
 }
 
@@ -36,6 +49,12 @@ Fixed &Fixed::operator=( const Fixed& rhs )
 	return (*this);
 }
 
+std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
+{
+	os << fixed.toFloat();
+	return (os);
+}
+
 /*============================================================================*/
 /*       Public member functions                                              */
 /*============================================================================*/
@@ -51,4 +70,20 @@ void	Fixed::setRawBits( int const raw )
 	std::cout << "\033[33m" << "setRawBits member function called"  << "\033[0m" << std::endl;
 	this->_num = raw;
 	return ;
+}
+
+float	Fixed::toFloat( void ) const
+{
+	float n;
+	std::cout << "\033[33m" << "toFloat member function called"  << "\033[0m" << std::endl;
+	// Add code
+	return (n);
+}
+
+int		Fixed::toInt( void ) const
+{
+	int	n;
+	std::cout << "\033[33m" << "toInt member function called"  << "\033[0m" << std::endl;
+	// Add code
+	return (n);
 }
