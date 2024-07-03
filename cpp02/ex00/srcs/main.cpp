@@ -1,5 +1,8 @@
 #include "Fixed.hpp"
 
+#define CYAN "\033[36m"
+#define RESET "\033[0m"
+
 void	test(int raw)
 {
 	Fixed a;
@@ -15,7 +18,7 @@ void	test(int raw)
 
 int main( void )
 {
-	std::cout << "\033[36m======= Test mentionned in the subject  =======\033[0m" << std::endl;
+	std::cout << CYAN << "======= Test mentionned in the subject  =======" << RESET << std::endl;
 	Fixed a;
 	Fixed b( a );
 	Fixed c;
@@ -24,7 +27,7 @@ int main( void )
 	std::cout << b.getRawBits() << std::endl;
 	std::cout << c.getRawBits() << std::endl;
 
-	std::cout << "\033[36m======= My own tests  =======\033[0m" << std::endl;
+	std::cout << CYAN << "======= My own tests  =======" << RESET << std::endl;
 	std::cout << "TEST raw = 42" << std::endl;
 	test(42);
 	std::cout << std::endl << "TEST raw = -5" << std::endl;

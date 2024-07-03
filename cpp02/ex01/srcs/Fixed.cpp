@@ -60,13 +60,11 @@ std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << YELLOW << "getRawBits member function called" << RESET << std::endl;
 	return (this->_rawBits);
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	std::cout << YELLOW << "setRawBits member function called" << RESET << std::endl;
 	this->_rawBits = raw;
 }
 
