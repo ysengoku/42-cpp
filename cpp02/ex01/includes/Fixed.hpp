@@ -9,15 +9,19 @@ class	Fixed
 	public:
 		/* Default constructor */
 		Fixed( void );
+
 		/* Copy constructor */
 		Fixed( const Fixed& src );
+
+		/* Copy assignment operator */	
+		Fixed& operator=( const Fixed& rhs ); 
+
+		/* Destructor */
+		~Fixed( void );
+
 		/* Parameterized Constructor */
 		Fixed( const int n );
 		Fixed( const float n );
-		/* Copy assignment operator */	
-		Fixed& operator=( const Fixed& rhs ); 
-		/* Destructor */
-		~Fixed( void );
 
 		/* Member functions */
 		int		getRawBits( void ) const;
@@ -26,8 +30,8 @@ class	Fixed
 		int		toInt( void ) const;
 
 	private:
-		int					_num;
-		static const int	_bits = 8; 
+		int					_rawBits;
+		static const int	_fractionalBits = 8; 
 		
 };
 

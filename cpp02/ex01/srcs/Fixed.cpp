@@ -1,40 +1,39 @@
 #include "../includes/Fixed.hpp"
 
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
+
 /*============================================================================*/
 /*       Constructor & destructor                                             */
 /*============================================================================*/
 
 Fixed::Fixed( void )
-	: _num(0)
+	: _rawBits(0)
 {
-	std::cout << "\033[33m" << "Default constructor called" << "\033[0m" << std::endl;
-	return ;
-}
-
-Fixed::Fixed( const int n )
-	: _num(n)
-{
-	std::cout << "\033[33m" << "Int constructor called" << "\033[0m" << std::endl;
-	return ;
-}
-Fixed::Fixed( const float n )
-{
-	std::cout << "\033[33m" << "Float constructor called" << "\033[0m" << std::endl;
-	// Add code
-	return ;
+	std::cout << YELLOW << "Default constructor called" << RESET << std::endl;
 }
 
 Fixed::Fixed( const Fixed& src )
-	: _num(src._num)
 {
-	std::cout << "\033[33m" << "Copy constructor called" << "\033[0m" << std::endl;
-	return ;
+	std::cout << YELLOW << "Copy constructor called" << RESET << std::endl;
+	*this = src;
 }
 
 Fixed::~Fixed( void )
 {
-	std::cout << "\033[33m" << "Destructor called" << "\033[0m" << std::endl;
-	return ;
+	std::cout << YELLOW << "Destructor called" << RESET << std::endl;
+}
+
+Fixed::Fixed( const int n )
+	: _rawBits(n << Fixed::_fractionalBits)
+{
+	std::cout << YELLOW << "Int constructor called" << RESET << std::endl;
+}
+
+Fixed::Fixed( const float n )
+	: _rawBits(roundf(n * (1 << Fixed::_fractionalBits)))
+{
+	std::cout << YELLOW << "Float constructor called" << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -43,9 +42,9 @@ Fixed::~Fixed( void )
 
 Fixed &Fixed::operator=( const Fixed& rhs )
 {
-	std::cout << "\033[33m" << "Copy assignment operator called" << "\033[0m" << std::endl;
+	std::cout << YELLOW << "Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
-		this->_num = rhs._num;
+		this->_rawBits = rhs._rawBits;
 	return (*this);
 }
 
@@ -61,29 +60,22 @@ std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "\033[33m" << "getRawBits member function called"  << "\033[0m" << std::endl;
-	return (this->_num);
+	std::cout << YELLOW << "getRawBits member function called" << RESET << std::endl;
+	return (this->_rawBits);
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	std::cout << "\033[33m" << "setRawBits member function called"  << "\033[0m" << std::endl;
-	this->_num = raw;
-	return ;
+	std::cout << YELLOW << "setRawBits member function called" << RESET << std::endl;
+	this->_rawBits = raw;
 }
 
 float	Fixed::toFloat( void ) const
 {
-	float n;
-	std::cout << "\033[33m" << "toFloat member function called"  << "\033[0m" << std::endl;
-	// Add code
-	return (n);
+	return (static_cast<float>(_rawBits) / (1 << Fixed::_fractionalBits));
 }
 
 int		Fixed::toInt( void ) const
 {
-	int	n;
-	std::cout << "\033[33m" << "toInt member function called"  << "\033[0m" << std::endl;
-	// Add code
-	return (n);
+	return (this->_rawBits >> Fixed::_fractionalBits);
 }
