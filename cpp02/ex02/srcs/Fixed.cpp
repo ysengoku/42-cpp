@@ -114,14 +114,40 @@ Fixed	Fixed::operator/( const Fixed& rhs ) const
 {
 	Fixed	result;
 
-	result.setRawBits(this->getRawBits() / rhs.getRawBits());
+	result.setRawBits((this->getRawBits() << Fixed::_fractionalBits) / rhs.getRawBits());
 	return (result);
 }
 
-std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
+/*============================================================================*/
+/*       Increment/Decrement Operator overload                                */
+/*============================================================================*/
+
+Fixed&	Fixed::operator++( void )
 {
-	os << fixed.toFloat();
-	return (os);
+	++this->_rawBits;
+	return (*this);
+}
+
+Fixed	Fixed::operator++( int )
+{
+	Fixed	tmp(*this);
+
+	this->_rawBits++;
+	return (tmp);
+}
+
+Fixed&	Fixed::operator--( void )
+{
+	--this->_rawBits;
+	return (*this);
+}
+
+Fixed	Fixed::operator--( int )
+{
+	Fixed	tmp(*this);
+
+	this->_rawBits--;
+	return (tmp);
 }
 
 /*============================================================================*/
@@ -178,4 +204,14 @@ const Fixed&	Fixed::max( const Fixed& lhs, const Fixed& rhs )
 	if (lhs > rhs)
 		return(lhs);
 	return (rhs);
+}
+
+/*============================================================================*/
+/*       Stream Insertion Operator Overload                                   */
+/*============================================================================*/
+
+std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
+{
+	os << fixed.toFloat();
+	return (os);
 }

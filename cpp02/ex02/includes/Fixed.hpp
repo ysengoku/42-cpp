@@ -44,7 +44,10 @@ class	Fixed
 		Fixed	operator/( const Fixed& rhs ) const;
 
 		/* Increment/Decrement Operator overload */
-		// The 4 increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators, that will increase or decrease the fixed-point value from the smallest representable ϵ such as 1 + ϵ > 1.
+		Fixed&	operator++( void );
+		Fixed	operator++( int );
+		Fixed&	operator--( void );
+		Fixed	operator--( int );
 
 		/* Overloaded member functions */
 		static Fixed&		min( Fixed& lhs, Fixed& rhs );
