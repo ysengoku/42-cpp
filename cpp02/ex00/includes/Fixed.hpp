@@ -8,10 +8,13 @@ class	Fixed
 	public:
 		/* Default constructor */
 		Fixed( void );
+
 		/* Copy constructor */
 		Fixed( const Fixed& src );
+
 		/* Copy assignment operator */	
 		Fixed& operator=( const Fixed& rhs ); 
+
 		/* Destructor */
 		~Fixed( void );
 
@@ -20,8 +23,8 @@ class	Fixed
 		void	setRawBits( int const raw );
 
 	private:
-		int					_num;
-		static const int	_bits = 8; 
+		int					_rawBits;
+		static const int	_fractionalBits = 8; 
 };
 
 #endif
