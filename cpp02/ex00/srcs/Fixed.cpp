@@ -1,5 +1,8 @@
 #include "Fixed.hpp"
 
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
+
 /*============================================================================*/
 /*       Constructor & destructor                                             */
 /*============================================================================*/
@@ -7,18 +10,18 @@
 Fixed::Fixed( void )
 	: _rawBits(0)
 {
-	std::cout << "\033[33m" << "Default constructor called" << "\033[0m" << std::endl;
+	std::cout << YELLOW << "Default constructor called" << RESET << std::endl;
 }
 
 Fixed::Fixed( const Fixed& src )
 {
-	std::cout << "\033[33m" << "Copy constructor called" << "\033[0m" << std::endl;
+	std::cout << YELLOW << "Copy constructor called" << RESET << std::endl;
 	*this = src;
 }
 
 Fixed::~Fixed( void )
 {
-	std::cout << "\033[33m" << "Destructor called" << "\033[0m" << std::endl;
+	std::cout << YELLOW << "Destructor called" << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -27,7 +30,7 @@ Fixed::~Fixed( void )
 
 Fixed &Fixed::operator=( const Fixed& rhs )
 {
-	std::cout << "\033[33m" << "Copy assignment operator called" << "\033[0m" << std::endl;
+	std::cout << YELLOW << "Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 		this->_rawBits = rhs._rawBits;
 	return (*this);
@@ -39,12 +42,12 @@ Fixed &Fixed::operator=( const Fixed& rhs )
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "\033[33m" << "getRawBits member function called"  << "\033[0m" << std::endl;
+	std::cout << YELLOW << "getRawBits member function called"  << RESET << std::endl;
 	return (this->_rawBits);
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	std::cout << "\033[33m" << "setRawBits member function called"  << "\033[0m" << std::endl;
+	std::cout << YELLOW << "setRawBits member function called"  << RESET << std::endl;
 	this->_rawBits = raw;
 }
