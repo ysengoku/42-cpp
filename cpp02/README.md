@@ -75,7 +75,7 @@ Example:
 `n << 8` shifts n left by 8 bits. (multiplying n by 2^8)  
 
 ```
-Example with int 5
+== Example with int 5 ==
 1. In binary, 5 is represented as 101.
 2. Shifting 101 left by 8 positions results in 10100000000.
 3. Converting 10100000000 from binary to decimal gives 1280.
@@ -103,6 +103,50 @@ The expression `roundf(n * (1 << Fixed::_fractionalBits))` performs the followin
 
 3. Rounding (roundf()):  
   roundf() rounds the result of `n * (1 << Fixed::_fractionalBits)` to the nearest integer value.   Rounding is crucial to ensure accurate representation of the floating-point value n within the fixed-point format.
+
+```
+== Example with float 5.25 ==
+1. Scaling Factor: 256 (1 << 8)
+2. Scaled Value: 5.25 * 256 = 1344.0
+3. Rounded Value: roundf(1344.0) = 1344
+```
+
+#### Member function to convert fixed-point values back to int
+The fixed-point value is stored in `_rawBits` with the number of fractional bits `_fractionalBits`.  
+To retrieve the integer part from `_rawBits`, we right shift it by `_fractionalBits`. This operation removes the fractional part, converting the fixed-point value back to an integer.  
+```c
+int	Fixed::toInt( void ) const
+{
+	return (this->_rawBits >> Fixed::_fractionalBits);
+}
+```
+
+#### Member function to convert fixed-point values back to float
+As we cannot do direct bit shifting with floats, we divide `_rawBits` by the scaling factor `1 << Fixed::_fractionalBits` to convert the fixed-point value back to a float  
+```c
+float	Fixed::toFloat( void ) const
+{
+	return (static_cast<float>(_rawBits) / (1 << Fixed::_fractionalBits));
+}
+```
+
+#### Overload of the insertion («) operator 
+The insertion operator `<<` is used to send output to streams like `std::cout`. 
+By overloading this operator, we make it convenient to output Fixed objects directly, converting them to their floating-point representation before printing.
+```c
+std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
+// Parameters:
+// std::ostream& os: The output stream where the data will be sent.
+// const Fixed& fixed: The Fixed object to be outputted.
+{
+	// Convert the Fixed object's value to a float and sends it to the output stream.
+	os << fixed.toFloat();
+
+	// Return the same std::ostream object, allowing further insertion operations on the same stream in a single statement.
+	// This enables expressions like std::cout << obj1 << obj2; to work seamlessly by chaining multiple insertion operations.
+	return (os);
+}
+```
 
 ## ex02: Operator overload
 
