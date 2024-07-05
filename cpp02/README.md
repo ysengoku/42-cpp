@@ -22,7 +22,7 @@ Assigns the contents of one object to another existing object of the same class.
 Cleans up resources allocated by the object when it is destroyed.  
 
 Example:
-```c
+```cpp
 class	Fixed
 {
 	public:
@@ -60,7 +60,7 @@ The fractional bits is set to 8 for consistent precision.
 
 ### :small_orange_diamond: Constructor that converts integers to fixed-point values
 This constructor initializes a Fixed object using an integer n, shifting n left by _fractionalBits to represent it as a fixed-point number.
-```c
+```cpp
 Fixed::Fixed( const int n )
 	: _rawBits(n << Fixed::_fractionalBits)
 {
@@ -88,7 +88,7 @@ Example:
 
 ### :small_orange_diamond: Constructor that converts floats to fixed-point values
 This constructor initializes a Fixed object using a floating-point number `n`, converting it into a fixed-point representation stored in _rawBits.  
-```c
+```cpp
 Fixed::Fixed( const float n )
 	: _rawBits(roundf(n * (1 << Fixed::_fractionalBits)))
 {
@@ -118,7 +118,7 @@ The expression `roundf(n * (1 << Fixed::_fractionalBits))` performs the followin
 #### :small_orange_diamond: Member function to convert fixed-point values back to int
 The fixed-point value is stored in `_rawBits` with the number of fractional bits `_fractionalBits`.  
 To retrieve the integer part from `_rawBits`, we right shift it by `_fractionalBits`. This operation removes the fractional part, converting the fixed-point value back to an integer.  
-```c
+```cpp
 int	Fixed::toInt( void ) const
 {
 	return (this->_rawBits >> Fixed::_fractionalBits);
@@ -127,7 +127,7 @@ int	Fixed::toInt( void ) const
 
 #### :small_orange_diamond: Member function to convert fixed-point values back to float
 As we cannot do direct bit shifting with floats, we divide `_rawBits` by the scaling factor `1 << Fixed::_fractionalBits` to convert the fixed-point value back to a float  
-```c
+```cpp
 float	Fixed::toFloat( void ) const
 {
 	return (static_cast<float>(_rawBits) / (1 << Fixed::_fractionalBits));
@@ -137,7 +137,7 @@ float	Fixed::toFloat( void ) const
 #### :small_orange_diamond: Overload of the insertion («) operator 
 The insertion operator `<<` is used to send output to streams like `std::cout`. 
 By overloading this operator, we make it convenient to output Fixed objects directly, converting them to their floating-point representation before printing.
-```c
+```cpp
 std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
 // Parameters:
 // std::ostream& os: The output stream where the data will be sent.
@@ -164,7 +164,7 @@ Add following public overload member functions to the class `Fixed`:
   	- `max` that returns a reference to the largest of two constant fixed-point number references.	
 
 ### :small_orange_diamond: Comaprison operators
-```c
+```cpp
 bool	operator>( const Fixed& rhs ) const;
 bool	operator<( const Fixed& rhs ) const;
 bool	operator>=( const Fixed& rhs ) const;
@@ -175,7 +175,7 @@ bool	operator!=( const Fixed& rhs ) const;
 Comaprison operators are quite simple. They compare the fixed-point values `_rawBits` of the left-hand side `this`and the right-hand side `rhs`, then return the result (true or false).
 
 ### :small_orange_diamond: Arithmetic operators
-```c
+```cpp
 Fixed	operator+( const Fixed& rhs ) const;
 Fixed	operator-( const Fixed& rhs ) const;
 Fixed	operator*( const Fixed& rhs ) const;
@@ -186,7 +186,7 @@ Fixed	operator/( const Fixed& rhs ) const;
 The addition and subtraction operators simply compute the sum or difference of two fixed-point values `_rawBits` from the left-hand side (`this`) and the right-hand side (`rhs`).
 
 #### :point_right: Multiplication operator
-```c
+```cpp
 Fixed	Fixed::operator*( const Fixed& rhs ) const
 {
 	Fixed	result;
@@ -212,7 +212,7 @@ Convert 768 to float:
 ```
 
 #### :point_right: Division operator
-```c
+```cpp
 Fixed	Fixed::operator/( const Fixed& rhs ) const
 {
 	Fixed	result;
@@ -238,13 +238,66 @@ Convert 192 to float:
 ```
 
 ### :small_orange_diamond: Increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
-```c
+```cpp
 Fixed&	operator++( void );
 Fixed	operator++( int );
 Fixed&	operator--( void );
 Fixed	operator--( int );
 ```
+> [!TIP]
+> :abacus: Pre-increment, pre-decrement `++a / --a`  
+> Return the object after incrementing/decrementing the value.
+> This is more efficient than post-increment and post-decrement because it doesn`t create a copy of object.
+>
+> :abacus: Post-increment, post-decrement `a++ / a--`  
+> Return the object before incrementing/decrementing the value
+> Slight overhead because it creates a temporay copy of the object.
 
+#### :point_right: Pre-increment / pre-decrement operators
+Pre-increment and pre-decrement operators increase/decrease `_rawBits` by 1 so that the operators will increase/decrease the fixed-point value by the smallest representable ε, ensuring that 1 + ε > 1.
+Then it returns a reference to the object.
+
+```cpp
+Fixed&	Fixed::operator++( void )
+{
+	// Increase _rawBits value of the object by 1
+	++this->_rawBits;
+
+	// Return a reference to the object
+	return (*this);
+}
+
+Fixed&	Fixed::operator--( void )
+{
+	--this->_rawBits;
+	return (*this);
+}
+```
+
+#### :point_right: Post-increment / post-decrement operators
+Post-increment and post-decrement operators increase/decrease `_rawBits` by 1, returning the value before the operation (1 + ε > 1). They return a copy of the object (`tmp`).
+
+```cpp
+Fixed	Fixed::operator++( int )
+{
+	// Create a copy of the object
+	Fixed	tmp(*this);
+
+	// Increase _rawBits value of the object by 1
+	this->_rawBits++;
+
+	// Return the copy
+	return (tmp);
+}
+
+Fixed	Fixed::operator--( int )
+{
+	Fixed	tmp(*this);
+
+	this->_rawBits--;
+	return (tmp);
+}
+```
 
 ### :small_orange_diamond: Static member function (min/max)
 ```c
@@ -253,6 +306,15 @@ static const Fixed&	min( const Fixed& lhs, const Fixed& rhs );
 static Fixed&		max( Fixed& lhs, Fixed& rhs );
 static const Fixed&	max( const Fixed& lhs, const Fixed& rhs );
 ```
+Implement Fixed-Point `min` and `max` Function both in non-const reference version and const reference version.   
+
+#### :small_orange_diamond: Non-const reference version  
+This version takes the non-const references to 2 Fixed objects as parameters and returns a non-const reference to the smaller/grater of the two Fixed objects.  
+It allows modification of the returned Fixed object since it returns a non-const reference. It can be used when you need to work with and potentially modify the smaller/grater Fixed object directly.  
+
+#### :small_orange_diamond: Const reference version
+This version takes the const reference to 2 Fixed objects and returns a const reference to the smaller/grater of the two Fixed objects.
+It prevents modification of the returned Fixed object since it returns a const reference.  
 
 ## ex03: BSP
 
