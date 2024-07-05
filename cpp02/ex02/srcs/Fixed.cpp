@@ -54,32 +54,32 @@ Fixed &Fixed::operator=( const Fixed& rhs )
 
 bool	Fixed::operator>( const Fixed& rhs ) const
 {
-	return (this->_rawBits > rhs.getRawBits());
+	return (this->_rawBits > rhs._rawBits);
 }
 
 bool	Fixed::operator<( const Fixed& rhs ) const
 {
-	return (this->_rawBits < rhs.getRawBits());
+	return (this->_rawBits < rhs._rawBits);
 }
 
 bool	Fixed::operator>=( const Fixed& rhs ) const
 {
-	return (this->_rawBits >= rhs.getRawBits());
+	return (this->_rawBits >= rhs._rawBits);
 }
 
 bool	Fixed::operator<=( const Fixed& rhs ) const
 {
-	return (this->_rawBits <= rhs.getRawBits());
+	return (this->_rawBits <= rhs._rawBits);
 }
 
 bool	Fixed::operator==( const Fixed& rhs ) const
 {
-	return (this->_rawBits == rhs.getRawBits());
+	return (this->_rawBits == rhs._rawBits);
 }
 
 bool	Fixed::operator!=( const Fixed& rhs ) const
 {
-	return (this->_rawBits != rhs.getRawBits());
+	return (this->_rawBits != rhs._rawBits);
 }
 
 /*============================================================================*/
@@ -90,7 +90,7 @@ Fixed	Fixed::operator+( const Fixed& rhs ) const
 {
 	Fixed	result;
 	
-	result.setRawBits(this->getRawBits() + rhs.getRawBits());
+	result.setRawBits(this->_rawBits + rhs._rawBits);
 	return (result);
 }
 
@@ -98,7 +98,7 @@ Fixed	Fixed::operator-( const Fixed& rhs ) const
 {
 	Fixed	result;
 
-	result.setRawBits(this->getRawBits() - rhs.getRawBits());
+	result.setRawBits(this->_rawBits - rhs._rawBits);
 	return (result);
 }
 
@@ -106,7 +106,7 @@ Fixed	Fixed::operator*( const Fixed& rhs ) const
 {
 	Fixed	result;
 
-	result.setRawBits((this->getRawBits() * rhs.getRawBits()) >> Fixed::_fractionalBits);
+	result.setRawBits((this->_rawBits * rhs._rawBits) >> Fixed::_fractionalBits);
 	return (result);
 }
 
@@ -114,7 +114,7 @@ Fixed	Fixed::operator/( const Fixed& rhs ) const
 {
 	Fixed	result;
 
-	result.setRawBits((this->getRawBits() << Fixed::_fractionalBits) / rhs.getRawBits());
+	result.setRawBits((this->_rawBits << Fixed::_fractionalBits) / rhs._rawBits);
 	return (result);
 }
 
