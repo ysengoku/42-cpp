@@ -84,6 +84,7 @@ Example:
 3. Converting 10100000000 from binary to decimal gives 1280.
 4. Therefore, 5 << 8 equals 1280.
 ```
+<img width="70%" alt="bit_shift" src="https://github.com/ysengoku/42-cpp/assets/130462445/d02e6793-f5c9-469d-b130-1087aec12b27">
 
 ### :small_orange_diamond: Constructor that converts floats to fixed-point values
 This constructor initializes a Fixed object using a floating-point number `n`, converting it into a fixed-point representation stored in _rawBits.  
@@ -180,7 +181,61 @@ Fixed	operator-( const Fixed& rhs ) const;
 Fixed	operator*( const Fixed& rhs ) const;
 Fixed	operator/( const Fixed& rhs ) const;
 ```
+
+#### :point_right: Addition and subtraction operators
 The addition and subtraction operators simply compute the sum or difference of two fixed-point values `_rawBits` from the left-hand side (`this`) and the right-hand side (`rhs`).
+
+#### :point_right: Multiplication operator
+```c
+Fixed	Fixed::operator*( const Fixed& rhs ) const
+{
+	Fixed	result;
+
+	result.setRawBits((this->_rawBits * rhs._rawBits) >> Fixed::_fractionalBits);
+	return (result);
+}
+```
+Multiplies the two raw integer values (`this->_rawBits` and `rhs._rawBits`), then adjust for Fractional Bits in shifting the result right by the number of fractional bits (`Fixed::_fractionalBits`).  
+```
+== Example ==
+a: 1.5 in fixed-point (represented as 1.5 * 2^8(= 256) = 384 in _rawBits)
+b: 2.0 in fixed-point (represented as 2.0 * 2^8 = 512 in _rawBits)
+
+Perform multiplication:
+a * b = 384 * 512 = 196608
+
+Adjust for fractional bits:
+196608 >> 8 (196608 / 2^8) = 768
+
+Convert 768 to float:
+768 >> 8 (768 / 2^8) = 3.0
+```
+
+#### :point_right: Division operator
+```c
+Fixed	Fixed::operator/( const Fixed& rhs ) const
+{
+	Fixed	result;
+
+	result.setRawBits((this->_rawBits << Fixed::_fractionalBits) / rhs._rawBits);
+	return (result);
+}
+```
+Adjust the left-hand side `this->_rawBits` in shifting left by the number of fractional bits (`Fixed::_fractionalBits`), then divide the left-hand side `this->_rawBits` by the right-hand side `rhs._rawBits`. 
+```
+== Example ==
+a: 1.5 in fixed-point (represented as 1.5 * 2^8 = 384 in _rawBits)
+b: 2.0 in fixed-point (represented as 2.0 * 2^8 = 512 in _rawBits)
+
+Adjust for fractional bits:
+384 << 8 (384 * 2^8) = 98304
+
+Perform division:
+98304 / 512 = 192
+
+Convert 192 to float:
+192 >> 8 (192 / 2^8) = 0.75
+```
 
 ### :small_orange_diamond: Increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
 ```c
