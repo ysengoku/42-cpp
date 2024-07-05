@@ -1,12 +1,12 @@
 # CPP Module02 
 
-## ex00
+## ex00: Orthodox Canonical Form
 
-## ex01
+## ex01: Fixed-point number class
 
-## ex02
+## ex02: Operator overload
 
-## ex03 BSP
+## ex03: BSP
 
 Implement a function which indicates whether a point is inside of a triangle or not.
 
