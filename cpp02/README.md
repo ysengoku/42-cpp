@@ -152,6 +152,52 @@ std::ostream &operator<<(std::ostream& os, const Fixed& fixed)
 ```
 
 ## ex02: Operator overload
+Add following public overload member functions to the class `Fixed`:
+- 6 comparison operators: >, <, >=, <=, == and !=.
+- 4 arithmetic operators: +, -, *, and /.
+- 4 increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
+- 4 static member function (min/max)
+	- `min` that returns a reference to the smallest of two fixed-point number references
+ 	- `min` that returns a reference to the smallest of two constant fixed-point number references
+  	- `max` that returns a reference to the largest of two fixed-point number references
+  	- `max` that returns a reference to the largest of two constant fixed-point number references.	
+
+### :small_orange_diamond: Comaprison operators
+```c
+bool	operator>( const Fixed& rhs ) const;
+bool	operator<( const Fixed& rhs ) const;
+bool	operator>=( const Fixed& rhs ) const;
+bool	operator<=( const Fixed& rhs ) const;
+bool	operator==( const Fixed& rhs ) const;
+bool	operator!=( const Fixed& rhs ) const;
+```
+Comaprison operators are quite simple. They compare the fixed-point values `_rawBits` of the left-hand side `this`and the right-hand side `rhs`, then return the result (true or false).
+
+### :small_orange_diamond: Arithmetic operators
+```c
+Fixed	operator+( const Fixed& rhs ) const;
+Fixed	operator-( const Fixed& rhs ) const;
+Fixed	operator*( const Fixed& rhs ) const;
+Fixed	operator/( const Fixed& rhs ) const;
+```
+The addition and subtraction operators simply compute the sum or difference of two fixed-point values `_rawBits` from the left-hand side (`this`) and the right-hand side (`rhs`).
+
+### :small_orange_diamond: Increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
+```c
+Fixed&	operator++( void );
+Fixed	operator++( int );
+Fixed&	operator--( void );
+Fixed	operator--( int );
+```
+
+
+### :small_orange_diamond: Static member function (min/max)
+```c
+static Fixed&		min( Fixed& lhs, Fixed& rhs );
+static const Fixed&	min( const Fixed& lhs, const Fixed& rhs );
+static Fixed&		max( Fixed& lhs, Fixed& rhs );
+static const Fixed&	max( const Fixed& lhs, const Fixed& rhs );
+```
 
 ## ex03: BSP
 
