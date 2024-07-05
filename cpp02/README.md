@@ -9,14 +9,17 @@ In C++ class design, the Orthodox Canonical Form refers to a set of guidelines a
 - A destructor
 
 
-### A default constructor
-Initializes an object with default values or initializes all member variables appropriately when no arguments are provided.
-### A copy constructor
-Constructs a new object as a copy of an existing object of the same class
-### A copy assignment operator overload
-Assigns the contents of one object to another existing object of the same class. It should properly handle self-assignment and release any resources held by the target object before copying.
-### A destructor 
-Cleans up resources allocated by the object when it is destroyed.
+:small_orange_diamond: Default constructor  
+Initializes an object with default values or initializes all member variables appropriately when no arguments are provided.  
+  
+:small_orange_diamond: Copy constructor  
+Constructs a new object as a copy of an existing object of the same class  
+  
+:small_orange_diamond: Copy assignment operator overload  
+Assigns the contents of one object to another existing object of the same class. It should properly handle self-assignment and release any resources held by the target object before copying.  
+  
+:small_orange_diamond: Destructor   
+Cleans up resources allocated by the object when it is destroyed.  
 
 Example:
 ```c
@@ -55,7 +58,7 @@ We'll impliment a functional Fixed-Point class in adding:
 
 The fractional bits is set to 8 for consistent precision.  
 
-### Constructor that converts integers to fixed-point values
+### :small_orange_diamond: Constructor that converts integers to fixed-point values
 This constructor initializes a Fixed object using an integer n, shifting n left by _fractionalBits to represent it as a fixed-point number.
 ```c
 Fixed::Fixed( const int n )
@@ -65,7 +68,7 @@ Fixed::Fixed( const int n )
 }
 ```
 
-#### Left Bit Shifting (<<)
+#### :point_right: Left Bit Shifting (<<)
 This operator shifts the bits of a number `n` to the left by a specified number `_fractionalBits` of positions.  
 In binary arithmetic, left shifting a number is equivalent to multiplying it by 2 raised to the power of the number of positions shifted.  
 
@@ -82,7 +85,7 @@ Example:
 4. Therefore, 5 << 8 equals 1280.
 ```
 
-### Constructor that converts floats to fixed-point values
+### :small_orange_diamond: Constructor that converts floats to fixed-point values
 This constructor initializes a Fixed object using a floating-point number `n`, converting it into a fixed-point representation stored in _rawBits.  
 ```c
 Fixed::Fixed( const float n )
@@ -92,7 +95,7 @@ Fixed::Fixed( const float n )
 }
 ```
 
-#### Round and Scale Operation
+#### :point_right: Round and Scale Operation
 The expression `roundf(n * (1 << Fixed::_fractionalBits))` performs the following operations:  
 
 1. Calculate scaling factor for Left Bit Shifting (<<):  
@@ -111,7 +114,7 @@ The expression `roundf(n * (1 << Fixed::_fractionalBits))` performs the followin
 3. Rounded Value: roundf(1344.0) = 1344
 ```
 
-#### Member function to convert fixed-point values back to int
+#### :small_orange_diamond: Member function to convert fixed-point values back to int
 The fixed-point value is stored in `_rawBits` with the number of fractional bits `_fractionalBits`.  
 To retrieve the integer part from `_rawBits`, we right shift it by `_fractionalBits`. This operation removes the fractional part, converting the fixed-point value back to an integer.  
 ```c
@@ -121,7 +124,7 @@ int	Fixed::toInt( void ) const
 }
 ```
 
-#### Member function to convert fixed-point values back to float
+#### :small_orange_diamond: Member function to convert fixed-point values back to float
 As we cannot do direct bit shifting with floats, we divide `_rawBits` by the scaling factor `1 << Fixed::_fractionalBits` to convert the fixed-point value back to a float  
 ```c
 float	Fixed::toFloat( void ) const
@@ -130,7 +133,7 @@ float	Fixed::toFloat( void ) const
 }
 ```
 
-#### Overload of the insertion («) operator 
+#### :small_orange_diamond: Overload of the insertion («) operator 
 The insertion operator `<<` is used to send output to streams like `std::cout`. 
 By overloading this operator, we make it convenient to output Fixed objects directly, converting them to their floating-point representation before printing.
 ```c
