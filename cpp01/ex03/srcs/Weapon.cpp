@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:06:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 08:38:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:08:55 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Weapon::Weapon( void )
 
 Weapon::Weapon( std::string weaponType )
 {
-	this->setType(weaponType);
+	this->_type = weaponType;
 	return ;
 }
 

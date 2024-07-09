@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:41:07 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/26 13:54:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:09:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	randomChump( std::string name )
 {
-	Zombie	zombie = Zombie(name);
+	Zombie	zombie(name);
 	zombie.announce();
 	return ;
 }
