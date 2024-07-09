@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:05:41 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/28 09:58:39 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:14:50 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ FileHandler::~FileHandler( void )
 
 bool	FileHandler::openInfile( void )
 {
-	this->_ifs.open(this->_infileName.c_str(), std::ifstream::in);
+	this->_ifs.open(this->_infileName.c_str(), std::ios::in);
 	if (!this->_ifs.is_open())
 	{
     	std::cerr << "Failed to open the file: " << this->_infileName << std::endl;
@@ -46,7 +46,7 @@ bool	FileHandler::openInfile( void )
 
 bool	FileHandler::openOutfile( void )
 {
-	this->_ofs.open(this->_outfileName.c_str(), std::ofstream::out | std::ofstream::trunc);
+	this->_ofs.open(this->_outfileName.c_str(), std::ios::out | std::ios::trunc);
 	if (!this->_ofs.is_open())
 	{
     	std::cerr << "Failed to open the output file: " << this->_outfileName << std::endl;
@@ -54,7 +54,7 @@ bool	FileHandler::openOutfile( void )
     	return (false);
 	}
 	this->_ofs.close();
-	this->_ofs.open(this->_outfileName.c_str(), std::ofstream::app);
+	this->_ofs.open(this->_outfileName.c_str(), std::ios::app);
 	if (!this->_ofs.is_open())
 	{
     	std::cerr << "Failed to open the output file: " << this->_outfileName << std::endl;
