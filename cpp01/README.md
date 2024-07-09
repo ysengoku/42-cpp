@@ -40,4 +40,33 @@ For `HumanB`, we use a reference in the `setWeapon`:
 
 - Storing the weapon as a pointer (`this->_weapon = &weapon;`) inside the `setWeapon` method allows `HumanB` to potentially support a state where it has no weapon (e.g., if the pointer is set to `nullptr`). 
 
-## ex04
+## ex04 File manipulation in C++
+Open file  
+`fstream_object.open(filename, mode);`  
+
+There are 4 mode to open a file:
+- `std::ios::in`: Used to open a file in read-only mode
+- `std::ios::out`: It overwrites the contents. If the old content is smaller than the new one, some content will remain.
+- `std::ios::trunc`: Open a file and delete the contents if the file already exist.
+- `std::ios::app`: Open a file to write in append mode.
+  
+
+```cpp
+bool	FileHandler::openInfile( void )
+{
+	// 
+	this->_ifs.open(this->_infileName.c_str(), std::ifstream::in);
+
+	// Error handling.
+	if (!this->_ifs.is_open())
+	{
+    		std::cerr << "Failed to open the file: " << this->_infileName << std::endl;
+    		return (false);
+	}
+
+	return (true);
+}
+```
+  
+We need to close the file with `fstream_object.close();` when we don't need it anymore.   
+
