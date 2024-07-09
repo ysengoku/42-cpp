@@ -6,11 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:42:50 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 16:29:00 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:40:57 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "StringReplacer.hpp"
+
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
 
 /*============================================================================*/
 /*       Constructor & Destructor                                             */
@@ -19,13 +22,13 @@
 StringReplacer::StringReplacer( std::string searchedStr, std::string replacingStr )
 	: _searchedStr(searchedStr), _replacingStr(replacingStr), _searchedStrLength(searchedStr.length())
 {
-	std::cout << "\033[33m" << "StringReplacer: Constructor called" << "\033[0m" <<std::endl;
+	std::cout << YELLOW << "StringReplacer: Constructor called" << RESET <<std::endl;
 	return ;
 }
 
 StringReplacer::~StringReplacer( void )
 {
-	std::cout << "\033[33m" << "StringReplacer: Destructor called" << "\033[0m" <<std::endl;
+	std::cout << YELLOW << "StringReplacer: Destructor called" << RESET <<std::endl;
 	return ;
 }
 
@@ -37,16 +40,14 @@ bool	StringReplacer::replaceString( std::string& content )
 {
 	bool	replaced = false;
 	size_t	position;
+	size_t	contentLength = content.length();
 	char	nextChar;
 
 	position = content.find(this->_searchedStr);
-	std::cout << content.length() << std::endl;
-	while (position != std::string::npos && position < content.length())
+	while (position != std::string::npos && position < contentLength)
 	{
-		if (position + this->_searchedStrLength < content.length())
+		if (position + this->_searchedStrLength <= content.length())
 		{
-			// Catch replace 'a' by 'aa' case in the text contein only 'a'
-			std::cout << position << std::endl;
 			nextChar = content[position + this->_searchedStrLength];
 			if (!std::isalnum(nextChar))
 			{
