@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:42:50 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 16:40:57 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:27:29 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ bool	StringReplacer::replaceString( std::string& content )
 {
 	bool	replaced = false;
 	size_t	position;
-	size_t	contentLength = content.length();
 	char	nextChar;
 
 	position = content.find(this->_searchedStr);
-	while (position != std::string::npos && position < contentLength)
+	while (position != std::string::npos)
 	{
 		if (position + this->_searchedStrLength <= content.length())
 		{
