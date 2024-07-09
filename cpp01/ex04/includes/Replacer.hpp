@@ -6,13 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:52:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 16:47:11 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:23:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REPLACER_HPP
 # define REPLACER_HPP
 
+# include <sstream>
 # include "FileHandler.hpp"
 # include "StringReplacer.hpp"
 

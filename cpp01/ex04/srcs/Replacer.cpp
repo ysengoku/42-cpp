@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:07:25 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/28 10:06:44 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:06:18 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ int	Replacer::replaceText( void )
 
 void	Replacer::replaceStrings( void )
 {
-	std::string		line;
-	std::ifstream&	ifs = this->_fileHandler.getInputFile();
-	std::ofstream&	ouf = this->_fileHandler.getOutputFile();
+	std::string			content;
+	std::stringstream	fileContentStream;
+	std::ifstream&		ifs = this->_fileHandler.getInputFile();
+	std::ofstream&		ouf = this->_fileHandler.getOutputFile();
 	
-	while(std::getline(ifs, line))
-	{
-		if (this->_stringReplacer.replaceString(line) == true)
-			this->_replaced = true;
-		ouf << line + '\n';
-	}
+	fileContentStream << ifs.rdbuf();
+	content = fileContentStream.str();
+	if (this->_stringReplacer.replaceString(content) == true)
+		this->_replaced = true;
+	ouf << content;
 }
 
 void	Replacer::printStatus( void )
