@@ -42,19 +42,22 @@ For `HumanB`, we use a reference in the `setWeapon`:
 
 ## ex04 File manipulation in C++
 Open file  
-`fstream_object.open(filename, mode);`  
-
-There are 4 mode to open a file:
-- `std::ios::in`: Used to open a file in read-only mode
-- `std::ios::out`: It overwrites the contents. If the old content is smaller than the new one, some content will remain.
-- `std::ios::trunc`: Open a file and delete the contents if the file already exist.
+```cpp
+void open(const char* filename, ios_base::openmode mode);
+```
+There are 6 modes to open a file:
+- `std::ios::in`: Open a file in read-only mode
+- `std::ios::out`: Open a file for writing. It overwrites the contents. If the old content is smaller than the new one, some content will remain.
+- `std::ios::trunc`: Open a file and delete the contents existing before.
 - `std::ios::app`: Open a file to write in append mode.
+- `std::ios::ate`: The output position starts at the end of the file.
+- `std::ios::binary`: Operations are performed in binary mode rather than text.
   
 
 ```cpp
 bool	FileHandler::openInfile( void )
 {
-	// 
+	// Convert the filename from string to const char* with .c_str()
 	this->_ifs.open(this->_infileName.c_str(), std::ifstream::in);
 
 	// Error handling.
@@ -64,6 +67,28 @@ bool	FileHandler::openInfile( void )
     		return (false);
 	}
 
+	return (true);
+}
+```
+```cpp
+bool	FileHandler::openOutfile( void )
+{
+	// Open with truncate mode to delete existing content and close.
+	this->_ofs.open(this->_outfileName.c_str(), std::ios::trunc);
+	if (!this->_ofs.is_open())
+	{
+		this->_ifs.close();
+    		return (false);
+	}
+	this->_ofs.close();
+
+	// Reopen with append mode
+	this->_ofs.open(this->_outfileName.c_str(), std::ios::app);
+	if (!this->_ofs.is_open())
+	{
+		this->_ifs.close();
+    		return (false);
+	}
 	return (true);
 }
 ```
