@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:42:50 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 17:20:37 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:29:00 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,29 @@ StringReplacer::~StringReplacer( void )
 /*       Member functions                                                     */
 /*============================================================================*/
 
-bool	StringReplacer::replaceString( std::string& line )
+bool	StringReplacer::replaceString( std::string& content )
 {
 	bool	replaced = false;
 	size_t	position;
 	char	nextChar;
 
-	position = line.find(this->_searchedStr);
-	while (position != std::string::npos)
+	position = content.find(this->_searchedStr);
+	std::cout << content.length() << std::endl;
+	while (position != std::string::npos && position < content.length())
 	{
-		if (position + this->_searchedStrLength < line.length())
+		if (position + this->_searchedStrLength < content.length())
 		{
-			nextChar = line[position + this->_searchedStrLength];
+			// Catch replace 'a' by 'aa' case in the text contein only 'a'
+			std::cout << position << std::endl;
+			nextChar = content[position + this->_searchedStrLength];
 			if (!std::isalnum(nextChar))
 			{
-				line.erase(position, this->_searchedStrLength);
-				line.insert(position, this->_replacingStr);
+				content.erase(position, this->_searchedStrLength);
+				content.insert(position, this->_replacingStr);
 				replaced = true;
 			}
-			position = line.find(this->_searchedStr, position + 1);
 		}
+			position = content.find(this->_searchedStr, position + this->_replacingStr.length());
 	}
 	return (replaced);
 }
