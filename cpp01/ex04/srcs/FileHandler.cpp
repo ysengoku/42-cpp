@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:05:41 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 11:14:50 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:18:31 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	FileHandler::openInfile( void )
 
 bool	FileHandler::openOutfile( void )
 {
-	this->_ofs.open(this->_outfileName.c_str(), std::ios::out | std::ios::trunc);
+	this->_ofs.open(this->_outfileName.c_str(), std::ios::trunc);
 	if (!this->_ofs.is_open())
 	{
     	std::cerr << "Failed to open the output file: " << this->_outfileName << std::endl;
