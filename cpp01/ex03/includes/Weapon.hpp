@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:00:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 09:09:17 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 08:36:11 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class Weapon
 {
 	public:
 		/* Constructor */
+		Weapon( void );
 		Weapon( std::string weaponType );
 		/* Destructor */
 		~Weapon( void );
