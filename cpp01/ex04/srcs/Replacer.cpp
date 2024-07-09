@@ -6,11 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:07:25 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 16:06:18 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:36:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Replacer.hpp"
+
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
 
 /*============================================================================*/
 /*       Constructor & Destructor                                             */
@@ -20,13 +23,13 @@ Replacer::Replacer( std::string const filename, std::string const s1, std::strin
 	: _infileName(filename), _searchedStr(s1), _replacingStr(s2), _replaced(false),
 	_fileHandler(filename), _stringReplacer(s1, s2)
 {
-	std::cout << "\033[33m" << "Replacer: Constructor called" << "\033[0m" <<std::endl;
+	std::cout << YELLOW << "Replacer: Constructor called" << RESET <<std::endl;
 	return ;
 }
 
 Replacer::~Replacer( void )
 {
-	std::cout << "\033[33m" << "Replacer: Destructor called" << "\033[0m" <<std::endl;
+	std::cout << YELLOW << "Replacer: Destructor called" << RESET <<std::endl;
 	return ;	
 }
 

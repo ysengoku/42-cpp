@@ -6,11 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:05:41 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 13:18:31 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:37:32 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FileHandler.hpp"
+
+#define YELLOW "\033[33m"
+#define RESET "\033[0m"
 
 /*============================================================================*/
 /*       Constructor & Destructor                                             */
@@ -19,13 +22,13 @@
 FileHandler::FileHandler( std::string infileName )
 	: _infileName(infileName), _outfileName(infileName + ".replace")
 {
-	std::cout << "\033[33m" << "FileHandler: Constructor called" << "\033[0m" <<std::endl;
+	std::cout << YELLOW << "FileHandler: Constructor called" << RESET <<std::endl;
 	return ;
 }
 
 FileHandler::~FileHandler( void )
 {
-	std::cout << "\033[33m" << "FileHandler: Destructor called" << "\033[0m" <<std::endl;
+	std::cout << YELLOW << "FileHandler: Destructor called" << RESET <<std::endl;
 	return ;
 }
 
