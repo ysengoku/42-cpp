@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:07:25 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/10 11:24:28 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:30:04 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 /*============================================================================*/
 
 Replacer::Replacer( std::string const filename, std::string const s1, std::string const s2)
-	// : _infileName(filename), _searchedStr(s1), _replacingStr(s2), _replaced(false),
-	// _fileHandler(filename), _stringReplacer(s1, s2)
 		: _infileName(filename), _searchedStr(s1), _replacingStr(s2),
 		_fileHandler(filename), _stringReplacer(s1, s2)
 {
@@ -44,7 +42,6 @@ int	Replacer::replaceText( void )
 	if (this->_fileHandler.openInfile() == false || this->_fileHandler.openOutfile() == false)
 		return (1);
 	this->replaceStrings();
-	// this->printStatus();
 	return (0);
 }
 
@@ -62,15 +59,5 @@ void	Replacer::replaceStrings( void )
 	fileContentStream << ifs.rdbuf();
 	content = fileContentStream.str();
 	this->_stringReplacer.replaceString(content);
-	// if (this->_stringReplacer.replaceString(content) == true)
-	// 	this->_replaced = true;
 	ouf << content;
 }
-
-// void	Replacer::printStatus( void )
-// {
-// 	if (this->_replaced)
-// 		std::cout << "'" << this->_searchedStr << "' was successfully replaced by '" << this->_replacingStr << "'" << std::endl;
-// 	else
-// 		std::cout << "'" << this->_searchedStr << "' was not found in the file '" << this->_infileName << "'" << std::endl;
-// }

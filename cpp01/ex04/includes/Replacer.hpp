@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:52:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/10 10:37:07 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:26:51 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ class Replacer
 		const std::string	_infileName;
 		const std::string	_searchedStr;
 		const std::string	_replacingStr;
-		// bool				_replaced;
 		FileHandler			_fileHandler;
 		StringReplacer		_stringReplacer;
 
 		/* Member functions */
 		void	replaceStrings( void );
-		// void	printStatus( void );
 };
 
 #endif
