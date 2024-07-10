@@ -12,13 +12,19 @@
 
 #include "ClapTrap.hpp"
 
-#define YELLOW "\033[33m"
 #define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
 #define RESET "\033[0m"
 
 /*============================================================================*/
 /*       Constructor & destructor                                             */
 /*============================================================================*/
+
+ClapTrap::ClapTrap( void )
+{
+	std::cout << YELLOW << "ClapTrap: Default constructor called." << RESET << std::endl;
+}
 
 ClapTrap::ClapTrap( std::string Name )
 	: _name(Name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
@@ -32,9 +38,8 @@ ClapTrap::ClapTrap( std::string Name )
 
 ClapTrap::ClapTrap( const ClapTrap& src )
 {
-	std::cout << YELLOW << "The copy of ClapTrap " << this->_name << " appeared." << RESET << std::endl;
-	if (this != &src)
-		*this = src;
+	std::cout << YELLOW << "The copy of ClapTrap " << this->_name << " was created." << RESET << std::endl;
+	*this = src;
 }
 
 ClapTrap::~ClapTrap( void )
@@ -102,7 +107,7 @@ void	ClapTrap::beRepaired( unsigned int amount )
 
 void	ClapTrap::printStatus( void )
 {
-	std::cout << YELLOW << "> " << this->_name << "'s current status : Energy points " \
+	std::cout << BLUE << "> " << this->_name << "'s current status : Energy points " \
 	<< this->_energyPoints << " | Hit points " << this->_hitPoints << RESET << std::endl;
 }
 

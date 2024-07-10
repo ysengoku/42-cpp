@@ -31,7 +31,7 @@ void	test1( void )
 
 void	test2( void )
 {
-	std::cout << CYAN << "====== TEST2 ======" << RESET << std::endl;
+	std::cout << std::endl << CYAN << "====== TEST2 ======" << RESET << std::endl;
 	ClapTrap*	clapTrap = new ClapTrap( "Clappy" );
 	
 	for(int i = 0; i < 5; i++)

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "ScavTrap.hpp"
 
 #define CYAN "\033[36m"
 #define RESET "\033[0m"
@@ -18,34 +19,37 @@
 void	test1( void )
 {
 	std::cout << CYAN << "====== TEST1 ======" << RESET << std::endl;
-	ClapTrap*	clapTrap = new ClapTrap( "Clappy" );
+	ScavTrap*	scavTrap = new ScavTrap( "Scappy" );
 	
-	clapTrap->attack("Trappy");
-	clapTrap->printStatus();
-	clapTrap->takeDamage(5);
-	clapTrap->printStatus();
-	clapTrap->beRepaired(2);
-	clapTrap->printStatus();
-	delete clapTrap;
+	scavTrap->attack("Trappy");
+	scavTrap->printStatus();
+	scavTrap->takeDamage(5);
+	scavTrap->printStatus();
+	scavTrap->beRepaired(2);
+	scavTrap->printStatus();
+	scavTrap->guardGate();
+	delete scavTrap;
 }
 
 void	test2( void )
 {
-	std::cout << CYAN << "====== TEST2 ======" << RESET << std::endl;
-	ClapTrap*	clapTrap = new ClapTrap( "Clappy" );
+	std::cout << std::endl << CYAN << "====== TEST2 ======" << RESET << std::endl;
+	ScavTrap*	scavTrap = new ScavTrap( "Scappy" );
 	
 	for(int i = 0; i < 5; i++)
 	{
-		clapTrap->attack("Trappy");
-		clapTrap->printStatus();
-		clapTrap->takeDamage(5);
-		clapTrap->printStatus();
-		clapTrap->beRepaired(2);
-		clapTrap->printStatus();
+		scavTrap->attack("Trappy");
+		scavTrap->printStatus();
+		scavTrap->takeDamage(5);
+		scavTrap->printStatus();
+		scavTrap->guardGate();
+		scavTrap->beRepaired(2);
+		scavTrap->printStatus();
 	}
-	clapTrap->beRepaired(2);
-	clapTrap->printStatus();
-	delete clapTrap;
+	scavTrap->guardGate();
+	scavTrap->beRepaired(2);
+	scavTrap->printStatus();
+	delete scavTrap;
 }
 
 int	main()

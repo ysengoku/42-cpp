@@ -20,7 +20,8 @@ class ClapTrap
 {
 	public:
 		/* Constructor*/
-		ClapTrap( std::string Name );	
+		ClapTrap( void );
+		ClapTrap( std::string Name );
 		/* Copy constructor */
 		ClapTrap( const ClapTrap& src );
 		/* Copy assignment operator */
