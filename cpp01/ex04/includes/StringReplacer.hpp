@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:41:08 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/27 17:18:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:23:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ class StringReplacer
 		~StringReplacer( void );
 
 		/* Member functions */
-		bool	replaceString( std::string& line );
+		// bool	replaceString( std::string& line );
+		void	replaceString( std::string& line );
 
 	private:
 		const std::string	_searchedStr;

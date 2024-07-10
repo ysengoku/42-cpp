@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:39:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/06/28 10:10:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:20:48 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ int	main( int argc, char **argv )
 	std::string	const filename = argv[1];
 	std::string const s1 = argv[2];
 	std::string const s2 = argv[3];
+	if (s1.empty())
+	{
+		std::cerr << "s1(searchd string) is empty." << std::endl;
+		return (1);
+	}
+	if (s2.empty())
+	{
+		std::cerr << "s2(replacing string) is empty." << std::endl;
+		return (1);
+	}
 	Replacer replacer(filename, s1, s2);
 	if (replacer.replaceText() == 1)
 		return (1);
