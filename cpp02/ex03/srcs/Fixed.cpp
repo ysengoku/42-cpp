@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:03:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/09 11:03:49 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/10 08:12:43 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ Fixed::Fixed( const float n )
 
 Fixed &Fixed::operator=( const Fixed& rhs )
 {
-	//std::cout << YELLOW << "Fixed: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 		this->_rawBits = rhs._rawBits;
 	return (*this);
