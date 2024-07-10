@@ -12,38 +12,35 @@
 
 #include "ClapTrap.hpp"
 
-#define YELLOW "\033[33m"
 #define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
 #define RESET "\033[0m"
 
 /*============================================================================*/
 /*       Constructor & destructor                                             */
 /*============================================================================*/
 
+ClapTrap::ClapTrap( void )
+{
+	std::cout << YELLOW << "ClapTrap: Default constructor called." << RESET << std::endl;
+}
+
 ClapTrap::ClapTrap( std::string Name )
 	: _name(Name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << YELLOW << "ClapTrap " << this->_name << " appeared." << std::endl;
-	std::cout << "== His initial status ==" << std::endl \
-	<< "> Hit points: " << this->_hitPoints << std::endl \
-	<< "> Energy points: " << this->_energyPoints << std::endl \
-	<< "> Attack damage: " << this->_attackDamage << RESET << std::endl << std::endl;
+	std::cout << YELLOW << "ClapTrap: Constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap& src )
 {
-	std::cout << YELLOW << "The copy of ClapTrap " << this->_name << " appeared." << RESET << std::endl;
-	if (this != &src)
-		*this = src;
+	std::cout << YELLOW << "The copy of ClapTrap " << this->_name << " was created." << RESET << std::endl;
+	*this = src;
 }
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << std::endl << YELLOW << "ClapTrap " << this->_name << " disappeared." << std::endl;
-	std::cout << "== His Final status ==" << std::endl \
-	<< "> Hit points: " << this->_hitPoints << std::endl \
-	<< "> Energy points: " << this->_energyPoints << std::endl \
-	<< "> Attack damage: " << this->_attackDamage << RESET << std::endl;
+	std::cout << YELLOW << "ClapTrap: Destructor called." << std::endl;
 }
 
 /*============================================================================*/
@@ -71,19 +68,17 @@ void	ClapTrap::attack( const std::string& target )
 	if (this->_energyPoints > 0)
 	{
 		--this->_energyPoints;
-		std::cout << "ClapTrap " << this->_name << " attacks " << target << \
+		std::cout << this->_name << " attacks " << target << \
 		", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		return ;
 	}
-	std::cout << RED << "ClapTrap " << this->_name << \
-	" has no energy points left." << RESET << std::endl;
+	std::cout << RED << this->_name << " has no energy points left." << RESET << std::endl;
 }
 
 void	ClapTrap::takeDamage( unsigned int amount )
 {
 	this->_hitPoints -= amount;
-	std::cout << "ClapTrap " << this->_name << " has taken " \
-	<< amount << " points of damage!" << std::endl;
+	std::cout << this->_name << " has taken " << amount << " points of damage!" << std::endl;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount )
@@ -92,17 +87,15 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	{
 		this->_hitPoints += amount;
 		--this->_energyPoints;
-		std::cout << "ClapTrap " << this->_name << " repaires itself, getting " \
-		<< amount << " points back." << std::endl;
+		std::cout << this->_name << " repaires itself, getting " << amount << " points back." << std::endl;
 		return ;
 	}
-	std::cout << RED << "ClapTrap " << this->_name << \
-	" has no energy points left." << RESET << std::endl;
+	std::cout << RED << this->_name << " has no energy points left." << RESET << std::endl;
 }
 
 void	ClapTrap::printStatus( void )
 {
-	std::cout << YELLOW << "> " << this->_name << "'s current status : Energy points " \
+	std::cout << BLUE << "> " << this->_name << "'s current status : Energy points " \
 	<< this->_energyPoints << " | Hit points " << this->_hitPoints << RESET << std::endl;
 }
 

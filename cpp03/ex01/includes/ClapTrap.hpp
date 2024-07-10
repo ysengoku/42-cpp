@@ -19,8 +19,9 @@
 class ClapTrap
 {
 	public:
-		/* Constructor*/
-		ClapTrap( std::string Name );	
+		/* Constructor */
+		ClapTrap( void );
+		ClapTrap( std::string Name );
 		/* Copy constructor */
 		ClapTrap( const ClapTrap& src );
 		/* Copy assignment operator */
@@ -39,7 +40,7 @@ class ClapTrap
 		unsigned int const&	getEnergyPoints( void );
 		unsigned int const&	getAttackDamage( void );
 		
-	private:
+	protected:
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
