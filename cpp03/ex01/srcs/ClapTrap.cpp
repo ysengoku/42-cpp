@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 13:11:08 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:32:11 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ ClapTrap::ClapTrap( const ClapTrap& src )
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << YELLOW << "ClapTrap: Destructor called." << std::endl;
+	std::cout << YELLOW << "ClapTrap: Destructor called." << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -68,16 +68,24 @@ void	ClapTrap::attack( const std::string& target )
 	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
 		--this->_energyPoints;
-		std::cout << this->_name << " attacks " << target << \
+		std::cout << "ClapTrap " << this->_name << " attacks " << target << \
 		", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		return ;
 	}
-	std::cout << RED << this->_name << " has no energy points left." << RESET << std::endl;
+	if (this->_energyPoints == 0)
+		std::cout << RED << this->_name \
+		<< " has no energy points left. Cannot attack." << RESET << std::endl;
+	else if (this->_hitPoints == 0)
+		std::cout << RED << this->_name \
+		<< " has no hit points left. Cannot attack." << RESET << std::endl;
 }
 
 void	ClapTrap::takeDamage( unsigned int amount )
 {
-	this->_hitPoints -= amount;
+	if (this->_hitPoints >= amount)
+		this->_hitPoints -= amount;
+	else
+		this->_hitPoints = 0;
 	std::cout << this->_name << " has taken " << amount << " points of damage!" << std::endl;
 }
 
@@ -87,10 +95,16 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	{
 		this->_hitPoints += amount;
 		--this->_energyPoints;
-		std::cout << this->_name << " repaires itself, getting " << amount << " points back." << std::endl;
+		std::cout << this->_name << " repaires itself, getting " \
+		<< amount << " points back." << std::endl;
 		return ;
 	}
-	std::cout << RED << this->_name << " has no energy points left." << RESET << std::endl;
+	if (this->_energyPoints == 0)
+		std::cout << RED << this->_name \
+		<< " has no energy points left. Cannot repaire itself." << RESET << std::endl;
+	else if (this->_hitPoints == 0)
+		std::cout << RED << this->_name \
+		<< " has no hit points left. Cannot repaire itself." << RESET << std::endl;
 }
 
 void	ClapTrap::printStatus( void )
@@ -103,11 +117,6 @@ void	ClapTrap::printStatus( void )
 /*       Accesors                                                             */
 /*============================================================================*/
 
-// std::string const&	ClapTrap::getName( void )
-// {
-// 	return (this->_name);
-// }
-
 unsigned int const&	ClapTrap::getHitPoints( void )
 {
 	return (this->_hitPoints);
@@ -117,8 +126,3 @@ unsigned int const&	ClapTrap::getEnergyPoints( void )
 {
 	return (this->_energyPoints);
 }
-
-// unsigned int const&	ClapTrap::getAttackDamage( void )
-// {
-// 	return (this->_attackDamage);
-// }

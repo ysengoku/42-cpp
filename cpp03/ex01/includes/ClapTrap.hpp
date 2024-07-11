@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 13:10:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:05:47 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ class ClapTrap
 		~ClapTrap( void );
 
 		/* Public member functions */
-		void	attack( const std::string& target );
-		void	takeDamage( unsigned int amount );
-		void	beRepaired( unsigned int amount );
-		void	printStatus( void );
+		void virtual	attack( const std::string& target );
+		void			takeDamage( unsigned int amount );
+		void			beRepaired( unsigned int amount );
+		void			printStatus( void );
 		/* Accesors */
-		// std::string const&	getName( void );
 		unsigned int const&	getHitPoints( void );
 		unsigned int const&	getEnergyPoints( void );
-		// unsigned int const&	getAttackDamage( void );
 		
 	protected:
 		std::string		_name;
