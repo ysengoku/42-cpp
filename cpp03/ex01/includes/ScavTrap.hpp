@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:33 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/10 17:18:28 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 09:57:06 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class ScavTrap : public ClapTrap
 		~ScavTrap( void );
 
 		void	guardGate( void );
-
-	private:
 };
 
 #endif

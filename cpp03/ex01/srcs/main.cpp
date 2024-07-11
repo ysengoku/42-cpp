@@ -6,19 +6,21 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/10 16:36:32 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:47:41 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 #include "ScavTrap.hpp"
+#include <cstdlib>
+#include <ctime>
 
 #define CYAN "\033[36m"
 #define RESET "\033[0m"
 
-void	test1( void )
+void	simpleTest( void )
 {
-	std::cout << CYAN << "====== TEST1 ======" << RESET << std::endl;
+	std::cout << CYAN << "====== SIMPLE TEST ======" << RESET << std::endl;
 	ScavTrap*	scavTrap = new ScavTrap( "Scappy" );
 	
 	scavTrap->attack("Trappy");
@@ -31,30 +33,38 @@ void	test1( void )
 	delete scavTrap;
 }
 
-void	test2( void )
+void	randomTest( void )
 {
-	std::cout << std::endl << CYAN << "====== TEST2 ======" << RESET << std::endl;
 	ScavTrap*	scavTrap = new ScavTrap( "Scappy" );
+	int	randomNum;
 	
-	for(int i = 0; i < 5; i++)
+	std::cout << std::endl << CYAN << "====== TEST RANDOM ======" << RESET << std::endl;
+	std::srand(std::time(0));
+	while (scavTrap->getEnergyPoints() > 0 && scavTrap->getHitPoints() > 0)
 	{
-		scavTrap->attack("Trappy");
-		scavTrap->printStatus();
-		scavTrap->takeDamage(5);
-		scavTrap->printStatus();
-		scavTrap->guardGate();
-		scavTrap->beRepaired(2);
+		randomNum = std::rand() % 3;
+		switch (randomNum)
+		{
+			case 0:
+				scavTrap->attack("Trappy");
+				break;
+			case 1:
+				scavTrap->takeDamage(15);
+				break;
+			case 2:
+				scavTrap->beRepaired(10);
+				break;
+			default:
+				break;
+		}
 		scavTrap->printStatus();
 	}
-	scavTrap->guardGate();
-	scavTrap->beRepaired(2);
-	scavTrap->printStatus();
 	delete scavTrap;
 }
 
 int	main()
 {
-	test1();
-	test2();
+	simpleTest();
+	randomTest();
 	return (0);
 }

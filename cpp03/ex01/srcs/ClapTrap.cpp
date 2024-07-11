@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/10 16:40:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:11:08 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ ClapTrap	&ClapTrap::operator=( const ClapTrap& rhs )
 
 void	ClapTrap::attack( const std::string& target )
 {
-	if (this->_energyPoints > 0)
+	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
 		--this->_energyPoints;
 		std::cout << this->_name << " attacks " << target << \
@@ -83,7 +83,7 @@ void	ClapTrap::takeDamage( unsigned int amount )
 
 void	ClapTrap::beRepaired( unsigned int amount )
 {
-	if (this->_energyPoints > 0)
+	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
 		this->_hitPoints += amount;
 		--this->_energyPoints;
@@ -103,10 +103,10 @@ void	ClapTrap::printStatus( void )
 /*       Accesors                                                             */
 /*============================================================================*/
 
-std::string const&	ClapTrap::getName( void )
-{
-	return (this->_name);
-}
+// std::string const&	ClapTrap::getName( void )
+// {
+// 	return (this->_name);
+// }
 
 unsigned int const&	ClapTrap::getHitPoints( void )
 {
@@ -117,7 +117,8 @@ unsigned int const&	ClapTrap::getEnergyPoints( void )
 {
 	return (this->_energyPoints);
 }
-unsigned int const&	ClapTrap::getAttackDamage( void )
-{
-	return (this->_attackDamage);
-}
+
+// unsigned int const&	ClapTrap::getAttackDamage( void )
+// {
+// 	return (this->_attackDamage);
+// }
