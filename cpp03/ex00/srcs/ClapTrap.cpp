@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 13:11:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:42:12 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ ClapTrap::ClapTrap( std::string Name )
 
 ClapTrap::ClapTrap( const ClapTrap& src )
 {
-	std::cout << YELLOW << "The copy of ClapTrap " << this->_name << " was created." << RESET << std::endl;
+	std::cout << YELLOW << "The copy of ClapTrap " << src._name << " was created." << RESET << std::endl;
 	*this = src;
 }
 
@@ -86,7 +86,10 @@ void	ClapTrap::attack( const std::string& target )
 
 void	ClapTrap::takeDamage( unsigned int amount )
 {
-	this->_hitPoints -= amount;
+	if (this->_hitPoints >= amount)
+		this->_hitPoints -= amount; // Need to avoid negative calculation
+	else
+		this->_hitPoints = 0;
 	std::cout << "ClapTrap " << this->_name << " has taken " \
 	<< amount << " points of damage!" << std::endl;
 }
