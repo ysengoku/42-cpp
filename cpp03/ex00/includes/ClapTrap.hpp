@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 13:11:40 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:57:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ class ClapTrap
 		void	beRepaired( unsigned int amount );
 		void	printStatus( void );
 		/* Accesors */
-		// std::string const&	getName( void );
 		unsigned int const&	getHitPoints( void );
 		unsigned int const&	getEnergyPoints( void );
-		// unsigned int const&	getAttackDamage( void );
 		
 	private:
 		std::string		_name;
