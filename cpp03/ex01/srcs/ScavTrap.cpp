@@ -6,14 +6,13 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/10 17:16:43 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:18:48 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 #define YELLOW "\033[33m"
-#define RED "\033[31m"
 #define RESET "\033[0m"
 
 /*============================================================================*/
@@ -39,6 +38,7 @@ ScavTrap::ScavTrap( std::string Name )
 }
 
 ScavTrap::ScavTrap( const ScavTrap& src )
+	: ClapTrap(src)
 {
 	std::cout << YELLOW << "The copy of ScavTrap " << this->_name << " was created." << RESET << std::endl;
 	*this = src;
