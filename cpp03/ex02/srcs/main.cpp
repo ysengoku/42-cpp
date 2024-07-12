@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 17:10:56 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/12 08:04:38 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ void	simpleTest( void )
 {
 	std::cout << std::endl << CYAN << "====== SIMPLE TEST ======" << RESET << std::endl;
 	{
+		std::cout << CYAN << " ++ ClapTrap ++ " << RESET << std::endl;
 		ClapTrap	clapTrap("CLAPPY");
 		clapTrap.attack("Trappy");
 		clapTrap.takeDamage(5);
 		clapTrap.beRepaired(2);
 	}
 	{
+		std::cout << CYAN << " ++ ScavTrap ++ " << RESET << std::endl;
 		ScavTrap	scavTrap("SCAPPY");	
 		scavTrap.attack("TRAPPY");
 		scavTrap.takeDamage(5);
@@ -58,6 +60,7 @@ void	simpleTest( void )
 		scavTrap.guardGate();
 	}
 	{
+		std::cout << CYAN << " ++ FrapTrap ++ " << RESET << std::endl;
 		FragTrap	fragTrap("FRAPPY");
 		fragTrap.takeDamage(5);
 		fragTrap.beRepaired(2);
@@ -68,7 +71,7 @@ void	simpleTest( void )
 void	randomTest( void )
 {
 	std::cout << std::endl << CYAN << "====== RANDOM TEST ======" << RESET << std::endl;
-	FragTrap	fragTrap("SCAPPY");
+	FragTrap	fragTrap("FRAPPY");
 	int			randomNum;
 	
 	std::srand(std::time(0));
@@ -94,10 +97,20 @@ void	randomTest( void )
 	fragTrap.beRepaired(10);
 }
 
+void	egergyPointsTest( void )
+{
+	std::cout << std::endl << CYAN << "====== ENERGY POINTS TEST ======" << RESET << std::endl;
+	FragTrap	fragTrap("FRAPPY");	
+
+	for (int i = 0; i <= 100; i++)
+		fragTrap.beRepaired(1);
+}
+
 int	main()
 {
 	constructorCheck();
 	simpleTest();
 	randomTest();
+	egergyPointsTest();
 	return (0);
 }
