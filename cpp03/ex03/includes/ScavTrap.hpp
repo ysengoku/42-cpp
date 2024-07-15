@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:33 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 13:23:39 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:28:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class ScavTrap : virtual public ClapTrap
 		ScavTrap& operator=( const ScavTrap& rhs );
 		~ScavTrap( void );
 
-		void	attack( const std::string& target );
+		void	attack( const std::string& target ) override;
 		void	guardGate( void );
 };
 
