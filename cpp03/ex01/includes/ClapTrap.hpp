@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 16:05:47 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:22:04 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class ClapTrap
 		/* Constructor */
 		ClapTrap( void );
 		ClapTrap( std::string Name );
+		ClapTrap( std::string Name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
 		/* Copy constructor */
 		ClapTrap( const ClapTrap& src );
 		/* Copy assignment operator */

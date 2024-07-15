@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 09:36:53 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:32:54 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	randomTest( void )
 	scavTrap.beRepaired(10);
 }
 
-void	engergyPointsTest( void )
+void	energyPointsTest( void )
 {
 	std::cout << std::endl << CYAN << "====== ENERGY POINTS TEST ======" << RESET << std::endl;
 	ScavTrap	scavTrap("SCAPPY");	
@@ -101,6 +101,6 @@ int	main()
 	constructorCheck();
 	simpleTest();
 	randomTest();
-	engergyPointsTest();
+	energyPointsTest();
 	return (0);
 }
