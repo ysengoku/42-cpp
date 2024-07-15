@@ -30,7 +30,6 @@
 *.exe
 *.out
 *.app
-miniPhoneBook
 
 # Readme
 README.md
@@ -38,3 +37,4 @@ README.md
 # .vscode
 settings.json
 c_cpp_properties.json
+*.json
