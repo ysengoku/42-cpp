@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 08:30:40 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:07:08 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ ClapTrap::ClapTrap( void )
 
 ClapTrap::ClapTrap( std::string Name )
 	: _name(Name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << YELLOW << "ClapTrap: Constructor called." << RESET << std::endl;
+}
+
+ClapTrap::ClapTrap( std::string Name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage)
+	: _name(Name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
 {
 	std::cout << YELLOW << "ClapTrap: Constructor called." << std::endl;
 }
@@ -86,7 +92,7 @@ void	ClapTrap::takeDamage( unsigned int amount )
 		this->_hitPoints -= amount;
 	else
 		this->_hitPoints = 0;
-	std::cout << this->_name << " has taken " << amount << " points of damage!" << std::endl;
+	std::cout << "🤕 " << this->_name << " has taken " << amount << " points of damage!" << std::endl;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount )
@@ -95,7 +101,7 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	{
 		this->_hitPoints += amount;
 		--this->_energyPoints;
-		std::cout << this->_name << " repaires itself, getting " \
+		std::cout << "🧘 " << this->_name << " repaires itself, getting " \
 		<< amount << " points back." << std::endl;
 		return ;
 	}

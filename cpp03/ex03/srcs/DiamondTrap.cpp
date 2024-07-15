@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 08:39:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 11:20:31 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:35:49 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ DiamondTrap::DiamondTrap( std::string Name )
 {
 	this->_name = Name;
 	this->_clap_name = Name + "_clap_name";
-	std::cout << MAGENTA << "DiamondTrap " << this->_name << " appeared." << RESET << std::endl;
+	std::cout << MAGENTA << "DiamondTrap " << this->_name << " appeared." << std::endl;
+	std::cout << "> " << this->_name << "'s initial status: " \
+	<< "Hit points: " << this->_hitPoints \
+	<< " | Energy points: " << this->_energyPoints \
+	<< " | Attack damage: " << this->_attackDamage << RESET << std::endl;
 }
 
 DiamondTrap::DiamondTrap( const DiamondTrap& src )
@@ -41,7 +45,11 @@ DiamondTrap::DiamondTrap( const DiamondTrap& src )
 
 DiamondTrap::~DiamondTrap( void )
 {
-	std::cout << MAGENTA << "DiamondTrap " << this->_name << " disappeared." << RESET << std::endl;
+	std::cout << MAGENTA << "DiamondTrap " << this->_name << " disappeared." << std::endl;
+	std::cout << "> " << this->_name << "'s final status: " \
+	<< "Hit points: " << this->_hitPoints \
+	<< " | Energy points: " << this->_energyPoints \
+	<< " | Attack damage: " << this->_attackDamage << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -67,6 +75,5 @@ DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& rhs )
 
 void	DiamondTrap::whoAmI( void )
 {
-	std::cout << "I'm " << this->_name << "." << std::endl \
-	<< "My ClapTrap name is " << this->_clap_name << std::endl;
+	std::cout << "🙋 I'm " << this->_name << ". My ClapTrap name is " << this->_clap_name << std::endl;
 }
