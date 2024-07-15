@@ -24,19 +24,14 @@ ScavTrap::ScavTrap( void )
 {
 	std::cout << YELLOW << "ScavTrap: Default constructor called." << RESET << std::endl;
 }
-
 ScavTrap::ScavTrap( std::string Name )
 {
 	this->_name = Name;
+	//this->_hitPoints = 100;
 	this->_energyPoints = 50;
+	//this->_attackDamage = 20;
 	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << RESET << std::endl;
 }
-
-// ScavTrap::ScavTrap( std::string Name )
-// 	: ClapTrap(Name, 0, 50, 0)
-// {
-// 	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << RESET << std::endl;
-// }
 
 ScavTrap::ScavTrap( const ScavTrap& src )
 	: ClapTrap(src)
@@ -47,7 +42,7 @@ ScavTrap::ScavTrap( const ScavTrap& src )
 
 ScavTrap::~ScavTrap( void )
 {
-	std::cout << YELLOW << "ScavTrap " << this->_name << ": destructor called." << std::endl;
+	std::cout << YELLOW << "ScavTrap: destructor called." << std::endl;
 }
 
 /*============================================================================*/

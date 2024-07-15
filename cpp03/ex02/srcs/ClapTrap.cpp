@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "../includes/ClapTrap.hpp"
 
 #define RED "\033[31m"
 #define YELLOW "\033[33m"
@@ -22,6 +22,7 @@
 /*============================================================================*/
 
 ClapTrap::ClapTrap( void )
+	: _name("Noname"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	std::cout << YELLOW << "ClapTrap: Default constructor called." << RESET << std::endl;
 }
@@ -131,4 +132,9 @@ unsigned int const&	ClapTrap::getHitPoints( void )
 unsigned int const&	ClapTrap::getEnergyPoints( void )
 {
 	return (this->_energyPoints);
+}
+
+unsigned int const&	ClapTrap::getAttackDamage( void )
+{
+	return (this->_attackDamage);
 }

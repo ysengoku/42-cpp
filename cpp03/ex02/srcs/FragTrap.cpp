@@ -20,6 +20,7 @@
 /*============================================================================*/
 
 FragTrap::FragTrap( void )
+	: ClapTrap("No name", 100, 100, 30)
 {
 	std::cout << YELLOW << "FragTrap: Default constructor called." << RESET << std::endl;
 }
