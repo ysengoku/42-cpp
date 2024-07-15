@@ -38,6 +38,7 @@ class ClapTrap
 		/* Accesors */
 		unsigned int const&	getHitPoints( void );
 		unsigned int const&	getEnergyPoints( void );
+		unsigned int const&	getAttackDamage( void );
 		
 	protected:
 		std::string		_name;

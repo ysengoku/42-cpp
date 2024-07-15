@@ -26,17 +26,12 @@ FragTrap::FragTrap( void )
 
 FragTrap::FragTrap( std::string Name )
 {
-	(void)Name;
+	this->_name = Name;
 	this->_hitPoints = 100;
+	//this->_energyPoints = 100;
 	this->_attackDamage = 30;
 	std::cout << YELLOW << "FragTrap " << this->_name << ": Constructor called." << RESET << std::endl;
 }
-
-// FragTrap::FragTrap( std::string Name )
-// 	: ClapTrap(Name, 100, 0, 30)
-// {
-// 	std::cout << YELLOW << "FragTrap " << this->_name << ": Constructor called." << RESET << std::endl;
-// }
 
 FragTrap::FragTrap( const FragTrap& src )
 	: ClapTrap(src)
@@ -47,7 +42,7 @@ FragTrap::FragTrap( const FragTrap& src )
 
 FragTrap::~FragTrap( void )
 {
-	std::cout << YELLOW << "FragTrap " << this->_name << ": Destructor called." << std::endl;
+	std::cout << YELLOW << "FragTrap : Destructor called." << std::endl;
 }
 
 /*============================================================================*/
