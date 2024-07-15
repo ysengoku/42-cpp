@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 16:50:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 08:29:54 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ ClapTrap::ClapTrap( std::string Name )
 
 ClapTrap::ClapTrap( const ClapTrap& src )
 {
-	std::cout << YELLOW << "The copy of ClapTrap " << src._name << " was created." << RESET << std::endl;
+	std::cout << YELLOW << "ClapTrap: Copy constructor called." << RESET << std::endl;
 	*this = src;
 }
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << std::endl << YELLOW << "ClapTrap " << this->_name << " disappeared." << std::endl;
+	std::cout << std::endl << YELLOW << "ClapTrap: Destructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s final status: " \
 	<< "Hit points: " << this->_hitPoints \
 	<< " | Energy points: " << this->_energyPoints << RESET << std::endl;

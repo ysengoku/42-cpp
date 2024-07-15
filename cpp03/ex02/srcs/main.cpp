@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/12 08:04:38 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 08:33:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,15 @@ void	constructorCheck( void )
 {
 	std::cout << CYAN << "====== CONSTRUCTOR CHECK ======" << RESET << std::endl;	
 	{
-		std::cout << CYAN << " ++ ClapTrap ++ " << RESET << std::endl;
+		std::cout << CYAN << "++ ClapTrap ++ " << RESET << std::endl;
 		ClapTrap	a("CLAPPY");
 		ClapTrap	b(a);
 	}
 	{
-		std::cout << CYAN << " ++ ScavTrap ++ " << RESET << std::endl;
-		ScavTrap	c("SCAPPY");
-	}
-	{
-		std::cout << CYAN << " ++ FragTrap ++ " << RESET << std::endl;
-		FragTrap	d("FRAPPY");
-	}
-	{
-		std::cout << CYAN << " ++ FragTrap Copy constructor ++ " << RESET << std::endl;
-		FragTrap	e("FRAPPY");
-		FragTrap	f(e);
+		std::cout << CYAN << "++ FragTrap ++ " << RESET << std::endl;
+		FragTrap	c("FRAPPY");
+		std::cout << CYAN << "++ FragTrap Copy constructor ++ " << RESET << std::endl;
+		FragTrap	d(c);
 	}
 }
 
