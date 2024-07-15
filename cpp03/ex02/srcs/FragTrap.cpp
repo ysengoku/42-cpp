@@ -6,11 +6,11 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:07:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 17:09:38 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:58:10 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "../includes/FragTrap.hpp"
 
 #define YELLOW "\033[33m"
 #define RESET "\033[0m"
@@ -24,16 +24,26 @@ FragTrap::FragTrap( void )
 	std::cout << YELLOW << "FragTrap: Default constructor called." << RESET << std::endl;
 }
 
+// FragTrap::FragTrap( std::string Name )
+// {
+// 	this->_name = Name;
+// 	this->_hitPoints = 100;
+// 	this->_energyPoints = 100;
+// 	this->_attackDamage = 30;
+// 	std::cout << YELLOW << "FragTrap " << this->_name << " appeared." << std::endl;
+// 	std::cout << "> " << this->_name << "'s initial status: " 
+// 	<< "Hit points: " << this->_hitPoints 
+// 	<< " | Energy points: " << this->_energyPoints 
+// 	<< " | Attack damage: " << this->_attackDamage << RESET << std::endl;
+// }
+
 FragTrap::FragTrap( std::string Name )
+	: ClapTrap(Name, 100, 100, 30)
 {
-	this->_name = Name;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
 	std::cout << YELLOW << "FragTrap " << this->_name << " appeared." << std::endl;
-	std::cout << "> " << this->_name << "'s initial status: " \
-	<< "Hit points: " << this->_hitPoints \
-	<< " | Energy points: " << this->_energyPoints \
+	std::cout << "> " << this->_name << "'s initial status: " 
+	<< "Hit points: " << this->_hitPoints 
+	<< " | Energy points: " << this->_energyPoints 
 	<< " | Attack damage: " << this->_attackDamage << RESET << std::endl;
 }
 

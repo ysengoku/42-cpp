@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 09:36:34 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:01:53 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	randomTest( void )
 	fragTrap.beRepaired(10);
 }
 
-void	engergyPointsTest( void )
+void	energyPointsTest( void )
 {
 	std::cout << std::endl << CYAN << "====== ENERGY POINTS TEST ======" << RESET << std::endl;
 	FragTrap	fragTrap("FRAPPY");	
@@ -104,6 +104,6 @@ int	main()
 	constructorCheck();
 	simpleTest();
 	randomTest();
-	engergyPointsTest();
+	energyPointsTest();
 	return (0);
 }
