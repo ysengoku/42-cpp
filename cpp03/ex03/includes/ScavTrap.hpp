@@ -6,14 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:33 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 11:09:44 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:23:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
-# include "ClapTrap.hpp" 
+# include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap
 {

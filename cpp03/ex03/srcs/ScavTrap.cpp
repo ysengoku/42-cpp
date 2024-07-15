@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 09:52:22 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:12:33 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ ScavTrap::ScavTrap( void )
 ScavTrap::ScavTrap( std::string Name )
 {
 	this->_name = Name;
-	this->_hitPoints = 100;
 	this->_energyPoints = 50;
-	this->_attackDamage = 20;
-	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << std::endl;
+	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << RESET << std::endl;
 }
+
+// ScavTrap::ScavTrap( std::string Name )
+// 	: ClapTrap(Name, 0, 50, 0)
+// {
+// 	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << RESET << std::endl;
+// }
 
 ScavTrap::ScavTrap( const ScavTrap& src )
 	: ClapTrap(src)
@@ -71,7 +75,7 @@ void	ScavTrap::attack( const std::string& target )
 	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
 		--this->_energyPoints;
-		std::cout << "ScavTrap " << this->_name << " attacks " << target << \
+		std::cout << "💥 " << this->_name << " attacks " << target << \
 		", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		return ;
 	}
