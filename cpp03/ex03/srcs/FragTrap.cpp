@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:07:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 10:20:09 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:09:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ FragTrap::FragTrap( const FragTrap& src )
 
 FragTrap::~FragTrap( void )
 {
-	std::cout << YELLOW << "FragTrap : Destructor called." << std::endl;
+	std::cout << YELLOW << "FragTrap: Destructor called." << std::endl;
 }
 
 /*============================================================================*/
