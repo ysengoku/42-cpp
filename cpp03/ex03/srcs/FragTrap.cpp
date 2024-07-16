@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:07:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:40:49 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:59:29 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ FragTrap::FragTrap( void )
 }
 
 FragTrap::FragTrap( std::string Name )
+	: ClapTrap(Name, 100, 100, 30)
 {
-	this->_name = Name;
-	this->_hitPoints = 100;
-	//this->_energyPoints = 100;
-	this->_attackDamage = 30;
-	std::cout << YELLOW << "FragTrap " << this->_name << ": Constructor called." << RESET << std::endl;
+	std::cout << YELLOW << "FragTrap: Constructor called." << std::endl;
 }
 
 FragTrap::FragTrap( const FragTrap& src )
