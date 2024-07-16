@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 14:34:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:19:48 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 /*============================================================================*/
 
 ScavTrap::ScavTrap( void )
+	: ClapTrap("Default", 100, 50, 20)
 {
 	std::cout << YELLOW << "ScavTrap: Default constructor called." << RESET << std::endl;
 }
@@ -41,7 +42,7 @@ ScavTrap::ScavTrap( void )
 ScavTrap::ScavTrap( std::string Name )
 	: ClapTrap(Name, 100, 50, 20)
 {
-	std::cout << YELLOW << "ScavTrap " << this->_name << " appeared." << std::endl;
+	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s initial status: " \
 	<< "Hit points: " << this->_hitPoints \
 	<< " | Energy points: " << this->_energyPoints \
@@ -88,7 +89,7 @@ void	ScavTrap::attack( const std::string& target )
 	if (this->_energyPoints > 0 && this->_hitPoints > 0)
 	{
 		--this->_energyPoints;
-		std::cout << "ScavTrap " << this->_name << " attacks " << target << \
+		std::cout << "💥 " << this->_name << " attacks " << target << \
 		", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		return ;
 	}

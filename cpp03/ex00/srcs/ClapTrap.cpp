@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 08:29:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:19:15 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define RED "\033[31m"
 #define YELLOW "\033[33m"
-#define BLUE "\033[34m"
+#define BLACKI "\e[0;90m"
 #define RESET "\033[0m"
 
 /*============================================================================*/
@@ -22,7 +22,7 @@
 /*============================================================================*/
 
 ClapTrap::ClapTrap( void )
-	: _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+	: _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	std::cout << YELLOW << "ClapTrap: Default constructor called." << RESET << std::endl;
 }
@@ -30,7 +30,7 @@ ClapTrap::ClapTrap( void )
 ClapTrap::ClapTrap( std::string Name )
 	: _name(Name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << YELLOW << "ClapTrap " << this->_name << " appeared." << std::endl;
+	std::cout << YELLOW << "ClapTrap " << this->_name << ": Constructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s initial status: " \
 	<< "Hit points: " << this->_hitPoints \
 	<< " | Energy points: " << this->_energyPoints \
@@ -117,7 +117,7 @@ void	ClapTrap::beRepaired( unsigned int amount )
 
 void	ClapTrap::printStatus( void )
 {
-	std::cout << BLUE << "> " << this->_name << "'s current status : Energy points " \
+	std::cout << BLACKI << this->_name << "'s current status : Energy points " \
 	<< this->_energyPoints << " | Hit points " << this->_hitPoints << RESET << std::endl;
 }
 

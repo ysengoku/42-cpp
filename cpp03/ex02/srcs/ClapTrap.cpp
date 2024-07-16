@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 14:52:56 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:10:07 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define RED "\033[31m"
 #define YELLOW "\033[33m"
-#define BLUE "\033[34m"
+#define BLACKI "\e[0;90m"
 #define RESET "\033[0m"
 
 /*============================================================================*/
@@ -116,7 +116,7 @@ void	ClapTrap::beRepaired( unsigned int amount )
 
 void	ClapTrap::printStatus( void )
 {
-	std::cout << BLUE << "> " << this->_name << "'s current status : Energy points " \
+	std::cout << BLACKI << "> " << this->_name << "'s current status : Energy points " \
 	<< this->_energyPoints << " | Hit points " << this->_hitPoints << RESET << std::endl;
 }
 
