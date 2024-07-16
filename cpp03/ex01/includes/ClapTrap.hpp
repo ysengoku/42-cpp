@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:12:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:14:38 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class ClapTrap
 		~ClapTrap( void );
 
 		/* Public member functions */
-		void virtual	attack( const std::string& target );
+		virtual void	attack( const std::string& target );
 		void			takeDamage( unsigned int amount );
 		void			beRepaired( unsigned int amount );
 		void			printStatus( void );
