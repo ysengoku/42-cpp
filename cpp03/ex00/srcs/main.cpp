@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/11 16:13:45 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:58:44 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,26 @@
 #include <ctime>
 
 #define CYAN "\033[36m"
+#define BLACKI "\e[0;90m"
 #define RESET "\033[0m"
 
 void	constructorCheck( void )
 {
-	std::cout << CYAN << "====== CONSTRUCTOR CHECK ======" << RESET << std::endl;	
-	ClapTrap a( "Test" );
+	std::cout << CYAN << "====== CONSTRUCTOR CHECK ======" << RESET << std::endl;		
+	ClapTrap a("CLAPPY");
+	std::cout << BLACKI << "--------------------------------------------------" << RESET << std::endl;
 	ClapTrap b(a);
+	std::cout << BLACKI << "--------------------------------------------------" << RESET << std::endl;
+	ClapTrap c;
+	c = b;
 }
 
 void	simpleTest( void )
 {
 	std::cout << std::endl << CYAN << "====== SIMPLE TEST ======" << RESET << std::endl;
-	ClapTrap	clapTrap( "Clappy" );
+	ClapTrap	clapTrap("CLAPPY");
 	
-	clapTrap.attack("Trappy");
+	clapTrap.attack("TRAPPY");
 	clapTrap.takeDamage(5);
 	clapTrap.beRepaired(2);
 }
@@ -37,7 +42,7 @@ void	simpleTest( void )
 void	randomTest( void )
 {
 	std::cout << std::endl << CYAN << "====== RANDOM TEST ======" << RESET << std::endl;
-	ClapTrap	clapTrap( "Clappy" );
+	ClapTrap	clapTrap("CLAPPY");
 	int			randomNum;
 
 	std::srand(std::time(0));
@@ -47,7 +52,7 @@ void	randomTest( void )
 		switch(randomNum)
 		{
 			case 0:
-				clapTrap.attack("Trappy");
+				clapTrap.attack("TRAPPY");
 				break;
 			case 1:
 				clapTrap.takeDamage(5);
@@ -59,8 +64,22 @@ void	randomTest( void )
 		}
 		clapTrap.printStatus();
 	}
-	clapTrap.attack("Trappy");
+	clapTrap.attack("TRAPPY");
 	clapTrap.beRepaired(3);
+}
+
+void	energyPointsTest( void )
+{
+	std::cout << std::endl << CYAN << "====== ENERGY POINTS TEST ======" << RESET << std::endl;
+	ClapTrap	clapTrap("CLAPPY");	
+
+	for (int i = 0; i <= 10; i++)
+	{
+		if (i % 2 == 0)
+			clapTrap.beRepaired(1);
+		else
+			clapTrap.attack("TRAPPY");
+	}
 }
 
 int	main()
@@ -68,5 +87,6 @@ int	main()
 	constructorCheck();
 	simpleTest();
 	randomTest();
+	energyPointsTest();
 	return (0);
 }

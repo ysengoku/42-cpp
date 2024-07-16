@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:19:15 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:58:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ ClapTrap::ClapTrap( const ClapTrap& src )
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << std::endl << YELLOW << "ClapTrap: Destructor called." << std::endl;
+	std::cout << YELLOW << "ClapTrap: Destructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s final status: " \
 	<< "Hit points: " << this->_hitPoints \
 	<< " | Energy points: " << this->_energyPoints << RESET << std::endl;
@@ -57,6 +57,7 @@ ClapTrap::~ClapTrap( void )
 
 ClapTrap	&ClapTrap::operator=( const ClapTrap& rhs )
 {
+	std::cout << YELLOW << "ClapTrap: Copy assignement operator called." << RESET << std::endl;
 	if (this != &rhs)
 	{
 		this->_name = rhs._name;
