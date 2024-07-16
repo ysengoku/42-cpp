@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 08:39:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 09:37:57 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:07:49 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,12 @@ DiamondTrap::DiamondTrap( void )
 }
 
 DiamondTrap::DiamondTrap( std::string Name )
-	: ClapTrap(Name + "_clap_name"), ScavTrap(Name), FragTrap(Name)
+	: ClapTrap(Name + "_clap_name"), scavTrap(Name), fragTrap(Name)
 {
 	this->_name = Name;
-	// this->_hitPoints = FragTrap::_hitPoints;
-	// this->_energyPoints = ScavTrap::_energyPoints;
-	// this->_attackDamage = FragTrap::_attackDamage;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 30;
+	this->_hitPoints = fragTrap.getHitPoints();
+	this->_energyPoints = scavTrap.getEnergyPoints();
+	this->_attackDamage = fragTrap.getAttackDamage();
 	std::cout << MAGENTA << "DiamondTrap " << this->_name << ": Constructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s initial status: " \
 	<< "Hit points: " << this->_hitPoints \
