@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 08:37:53 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 13:58:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:04:58 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class DiamondTrap : public ScavTrap, public FragTrap
 
 	private:
 		std::string	_name;
+		ScavTrap	scavTrap;
+		FragTrap	fragTrap;
 };
 
 #endif
