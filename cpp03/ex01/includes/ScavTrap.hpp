@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:33 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 15:26:46 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:11:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,3 @@ class ScavTrap : public ClapTrap
 };
 
 #endif
-
-/*
-public: accessible from outside the class
-private: not accessible from outside the class
-protected: not accessible from outside the class but accessible in inherited classes.
-*/

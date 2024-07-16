@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 15:12:33 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:40:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 /*============================================================================*/
 
 ScavTrap::ScavTrap( void )
+	: ClapTrap("Default", 100, 50, 20)
 {
 	std::cout << YELLOW << "ScavTrap: Default constructor called." << RESET << std::endl;
 }
+
 ScavTrap::ScavTrap( std::string Name )
 {
 	this->_name = Name;

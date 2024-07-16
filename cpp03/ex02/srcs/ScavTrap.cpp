@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 15:05:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:39:50 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 /*============================================================================*/
 
 ScavTrap::ScavTrap( void )
+	: ClapTrap("Default", 100, 50, 20)
 {
 	std::cout << YELLOW << "ScavTrap: Default constructor called." << RESET << std::endl;
 }
@@ -41,7 +42,7 @@ ScavTrap::ScavTrap( void )
 ScavTrap::ScavTrap( std::string Name )
 	: ClapTrap(Name, 100, 50, 20)
 {
-	std::cout << YELLOW << "ScavTrap " << this->_name << " appeared." << std::endl;
+	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s initial status: " \
 	<< "Hit points: " << this->_hitPoints \
 	<< " | Energy points: " << this->_energyPoints \

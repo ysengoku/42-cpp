@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:07:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 15:12:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 08:40:49 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 /*============================================================================*/
 
 FragTrap::FragTrap( void )
+	: ClapTrap("Default", 100, 100, 30)
 {
 	std::cout << YELLOW << "FragTrap: Default constructor called." << RESET << std::endl;
 }
