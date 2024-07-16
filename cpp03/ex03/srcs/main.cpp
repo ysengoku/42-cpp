@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 15:15:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:17:56 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,62 @@ void	energyPointsTest( void )
 	diamondTrap.attack("TRAPPY");
 }
 
+void	battleTest( void )
+{
+	std::cout << std::endl << CYAN << "====== BATTLE TEST ======" << RESET << std::endl;
+	DiamondTrap	diamondTrap1("WALL-E");
+	DiamondTrap	diamondTrap2("M-O");
+	int			randomNum;
+	std::srand(std::time(0));
+	
+	while (diamondTrap1.getEnergyPoints() > 0 && diamondTrap1.getHitPoints() > 0 \
+	&& diamondTrap2.getEnergyPoints() > 0 && diamondTrap2.getHitPoints() > 0)
+	{
+		randomNum = std::rand() % 8;
+		switch (randomNum)
+		{
+			case 0:
+				diamondTrap1.attack(diamondTrap2.getName());
+				diamondTrap2.takeDamage(diamondTrap1.getAttackDamage());
+				break;
+			case 1:
+				diamondTrap2.attack(diamondTrap1.getName());
+				diamondTrap1.takeDamage(diamondTrap2.getAttackDamage());
+				break;
+			case 2:
+				diamondTrap1.beRepaired(20);
+				break;
+			case 3:
+				diamondTrap2.beRepaired(25);
+				break;
+			case 4:
+				diamondTrap1.highFivesGuys();
+				break;
+			case 5:
+				diamondTrap2.highFivesGuys();
+				break;
+			case 6:
+				diamondTrap1.whoAmI();
+				break;
+			case 7:
+				diamondTrap2.whoAmI();
+				break;
+			default:
+				break;
+		}
+	}
+	if (diamondTrap1.getEnergyPoints() == 0 || diamondTrap1.getHitPoints() == 0)
+		std::cout << std::endl << "🎉🎉🎉 " << diamondTrap2.getName() << " is winner 🎉🎉🎉" << std::endl << std::endl;
+	else
+		std::cout << std::endl << "🎉🎉🎉 " << diamondTrap1.getName() << " is winner 🎉🎉🎉" << std::endl << std::endl;
+}
+
 int	main()
 {
 	constructorCheck();
 	simpleTest();
 	randomTest();
 	energyPointsTest();
+	battleTest();
 	return (0);
 }

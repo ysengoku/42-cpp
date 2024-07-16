@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 08:39:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 11:07:49 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:08:20 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& rhs )
 /*============================================================================*/
 /*      Overload function                                                     */
 /*============================================================================*/
+
+std::string const&	DiamondTrap::getName( void )
+{
+	return (this->_name);
+}
 
 void	DiamondTrap::attack( std::string const & target )
 {
