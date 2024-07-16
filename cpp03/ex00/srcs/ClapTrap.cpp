@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 12:58:16 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:32:51 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,11 @@ void	ClapTrap::printStatus( void )
 /*============================================================================*/
 /*       Accesors                                                             */
 /*============================================================================*/
+
+std::string	const&	ClapTrap::getName( void )
+{
+	return (this->_name);
+}
 
 unsigned int const&	ClapTrap::getHitPoints( void )
 {

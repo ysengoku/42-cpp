@@ -6,11 +6,10 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 14:32:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:21:07 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
 #include "ScavTrap.hpp"
 #include <cstdlib>
 #include <ctime>
@@ -96,11 +95,51 @@ void	energyPointsTest( void )
 	}
 }
 
+void	battleTest( void )
+{
+	std::cout << std::endl << CYAN << "====== BATTLE TEST ======" << RESET << std::endl;
+	ScavTrap	scavTrap1("SCAPPY");
+	ScavTrap	scavTrap2("TRAPPY");
+	
+	int			randomNum;
+	
+	std::srand(std::time(0));
+	while (scavTrap1.getEnergyPoints() > 0 && scavTrap1.getHitPoints() > 0 \
+	&& scavTrap2.getEnergyPoints() > 0 && scavTrap2.getHitPoints() > 0)
+	{
+		randomNum = std::rand() % 4;
+		switch (randomNum)
+		{
+			case 0:
+				scavTrap1.attack(scavTrap2.getName());
+				scavTrap2.takeDamage(scavTrap1.getAttackDamage());
+				break;
+			case 1:
+				scavTrap2.attack(scavTrap1.getName());
+				scavTrap1.takeDamage(scavTrap2.getAttackDamage());
+				break;
+			case 2:
+				scavTrap1.beRepaired(20);
+				break;
+			case 3:
+				scavTrap2.beRepaired(25);
+				break;
+			default:
+				break;
+		}
+	}
+	if (scavTrap1.getEnergyPoints() == 0 || scavTrap1.getHitPoints() == 0)
+		std::cout << "🎉🎉🎉 " << scavTrap2.getName() << " is winner 🎉🎉🎉" << std::endl;
+	else
+		std::cout << "🎉🎉🎉 " << scavTrap1.getName() << " is winner 🎉🎉🎉" << std::endl;
+}
+
 int	main()
 {
 	constructorCheck();
 	simpleTest();
 	randomTest();
 	energyPointsTest();
+	battleTest();
 	return (0);
 }
