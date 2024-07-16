@@ -123,7 +123,7 @@ void	battleTest( void )
 				diamondTrap1.beRepaired(20);
 				break;
 			case 3:
-				diamondTrap2.beRepaired(25);
+				diamondTrap2.beRepaired(20);
 				break;
 			case 4:
 				diamondTrap1.highFivesGuys();
@@ -140,6 +140,8 @@ void	battleTest( void )
 			default:
 				break;
 		}
+		diamondTrap1.printStatus();
+		diamondTrap2.printStatus();
 	}
 	if (diamondTrap1.getEnergyPoints() == 0 || diamondTrap1.getHitPoints() == 0)
 		std::cout << std::endl << "🎉🎉🎉 " << diamondTrap2.getName() << " is winner 🎉🎉🎉" << std::endl << std::endl;

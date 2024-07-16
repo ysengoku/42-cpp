@@ -116,8 +116,7 @@ void	ClapTrap::beRepaired( unsigned int amount )
 
 void	ClapTrap::printStatus( void )
 {
-	std::cout << BLACKI << "> " << "Current status : Energy points " \
-	<< this->_energyPoints << " | Hit points " << this->_hitPoints << RESET << std::endl;
+	std::cout << BLACKI << "> " << this->getName() << "'s current status : Energy points " << this->_energyPoints << " | Hit points " << this->_hitPoints << RESET << std::endl;
 }
 
 /*============================================================================*/
