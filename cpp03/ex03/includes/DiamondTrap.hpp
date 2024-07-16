@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 08:37:53 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 11:04:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:06:51 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap& operator=(const DiamondTrap& rhs);
 		~DiamondTrap();
 
-		void	attack( std::string const& target );
-		void	whoAmI( void );
+		void				attack( std::string const& target );
+		void				whoAmI( void );
+		std::string const&	getName( void );
 
 	private:
 		std::string	_name;

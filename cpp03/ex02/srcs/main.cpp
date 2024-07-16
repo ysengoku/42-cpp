@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 15:01:53 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:55:06 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ void	constructorCheck( void )
 {
 	std::cout << CYAN << "====== CONSTRUCTOR CHECK ======" << RESET << std::endl;	
 	{
-		std::cout << CYAN << "++ ClapTrap ++ " << RESET << std::endl;
-		ClapTrap	a("CLAPPY");
-		ClapTrap	b(a);
-	}
-	{
 		std::cout << CYAN << "++ FragTrap ++ " << RESET << std::endl;
-		FragTrap	c("FRAPPY");
+		FragTrap	a("FRAPPY");
 		std::cout << CYAN << "++ FragTrap Copy constructor ++ " << RESET << std::endl;
-		FragTrap	d(c);
+		FragTrap	b(a);
 	}
 }
 
