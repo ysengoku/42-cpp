@@ -6,11 +6,11 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:34:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:53:00 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:39:13 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 #define RED "\033[31m"
 #define YELLOW "\033[33m"
@@ -123,6 +123,11 @@ void	ClapTrap::printStatus( void )
 /*============================================================================*/
 /*       Accesors                                                             */
 /*============================================================================*/
+
+std::string	const&	ClapTrap::getName( void )
+{
+	return (this->_name);
+}
 
 unsigned int const&	ClapTrap::getHitPoints( void )
 {
