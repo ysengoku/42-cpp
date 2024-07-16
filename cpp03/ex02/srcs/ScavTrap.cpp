@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:59:55 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:22:37 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,19 @@ ScavTrap::ScavTrap( void )
 ScavTrap::ScavTrap( std::string Name )
 	: ClapTrap(Name, 100, 50, 20)
 {
-	std::cout << YELLOW << "ScavTrap " << this->_name << ": Constructor called." << std::endl;
-	std::cout << "> " << this->_name << "'s initial status: " \
-	<< "Hit points: " << this->_hitPoints \
-	<< " | Energy points: " << this->_energyPoints \
-	<< " | Attack damage: " << this->_attackDamage << RESET << std::endl;
+	std::cout << YELLOW << "ScavTrap: Constructor called." << std::endl;
 }
 
 ScavTrap::ScavTrap( const ScavTrap& src )
 	: ClapTrap(src)
 {
-	std::cout << YELLOW << "The copy of ScavTrap " << this->_name << " was created." << RESET << std::endl;
+	std::cout << YELLOW << "ScavTrap: Copy constructor called." << RESET << std::endl;
 	*this = src;
 }
 
 ScavTrap::~ScavTrap( void )
 {
-	std::cout << YELLOW << "ScavTrap " << this->_name << " disappeared." << std::endl;
-	std::cout << "> " << this->_name << "'s final status: " \
-	<< "Hit points: " << this->_hitPoints \
-	<< " | Energy points: " << this->_energyPoints << RESET << std::endl;
+	std::cout << YELLOW << "ScavTrap: Destructor called." << std::endl;
 }
 
 /*============================================================================*/

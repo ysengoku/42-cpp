@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:49:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:59:09 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:20:32 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ ScavTrap::ScavTrap( std::string Name )
 ScavTrap::ScavTrap( const ScavTrap& src )
 	: ClapTrap(src)
 {
-	std::cout << YELLOW << "The copy of ScavTrap " << this->_name << " was created." << RESET << std::endl;
+	std::cout << YELLOW << "ScavTrap: Copy constructor called." << RESET << std::endl;
 	*this = src;
 }
 

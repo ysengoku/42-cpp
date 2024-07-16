@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:07:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/16 08:59:29 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:20:09 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ FragTrap::FragTrap( std::string Name )
 FragTrap::FragTrap( const FragTrap& src )
 	: ClapTrap(src)
 {
-	std::cout << YELLOW << "The copy of FragTrap " << this->_name << " was created." << RESET << std::endl;
+	std::cout << YELLOW << "FragTrap: Copy constructor called." << RESET << std::endl;
 	*this = src;
 }
 
