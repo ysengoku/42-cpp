@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 08:39:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/15 13:35:49 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:37:57 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,17 @@ DiamondTrap::DiamondTrap( void )
 	std::cout << MAGENTA << "DiamondTrap: Default constructor called." << RESET << std::endl;
 }
 
-/*
 DiamondTrap::DiamondTrap( std::string Name )
-	: ScavTrap(Name), FragTrap(Name)
+	: ClapTrap(Name + "_clap_name"), ScavTrap(Name), FragTrap(Name)
 {
 	this->_name = Name;
-	this->ClapTrap::_name = Name + "_clap_name";
-	std::cout << MAGENTA << "DiamondTrap " << this->_name << " appeared." << std::endl;
-	std::cout << "> " << this->_name << "'s initial status: " \
-	<< "Hit points: " << this->_hitPoints \
-	<< " | Energy points: " << this->_energyPoints \
-	<< " | Attack damage: " << this->_attackDamage << RESET << std::endl;
-}
-*/
-
-DiamondTrap::DiamondTrap( std::string Name )
-	: ClapTrap(), ScavTrap(Name), FragTrap(Name)
-{
-	this->_name = Name;
-	this->ClapTrap::_name = Name + "_clap_name";
-	this->_hitPoints = FragTrap::_hitPoints;
-	this->_energyPoints = ScavTrap::_energyPoints;
-	this->_attackDamage = FragTrap::_attackDamage;
-	std::cout << MAGENTA << "DiamondTrap " << this->_name << " appeared." << std::endl;
+	// this->_hitPoints = FragTrap::_hitPoints;
+	// this->_energyPoints = ScavTrap::_energyPoints;
+	// this->_attackDamage = FragTrap::_attackDamage;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 30;
+	std::cout << MAGENTA << "DiamondTrap " << this->_name << ": Constructor called." << std::endl;
 	std::cout << "> " << this->_name << "'s initial status: " \
 	<< "Hit points: " << this->_hitPoints \
 	<< " | Energy points: " << this->_energyPoints \
