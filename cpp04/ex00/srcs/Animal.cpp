@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 11:03:25 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:07:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 /*============================================================================*/
 
 Animal::Animal( void )
-	: _type("animal")
 {
 	std::cout << BLACKI << "Animal: Default constructor called." << RESET << std::endl;
 }
@@ -44,7 +43,7 @@ Animal&	Animal::operator=( const Animal& rhs)
 
 Animal::~Animal( void )
 {
-	std::cout << BLACKI << "Animal: Default constructor called." << RESET << std::endl;
+	std::cout << BLACKI << "Animal: Destructor called." << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -53,7 +52,7 @@ Animal::~Animal( void )
 
 void	Animal::makeSound( void ) const
 {
-	std::cout << "(animal sound)" << std::endl;
+	std::cout << "Buzz" << std::endl;
 }
 
 /*============================================================================*/
@@ -64,9 +63,3 @@ std::string const&	Animal::getType( void ) const
 {
 	return (this->_type);
 }
-
-// void	Animal::setType( std::string const& type)
-// {
-// 	this->_type = type;
-// }
-		
