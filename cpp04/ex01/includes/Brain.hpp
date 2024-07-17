@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 08:10:35 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 14:21:50 by yusengok         ###   ########.fr       */
+/*   Created: 2024/07/17 14:07:31 by yusengok          #+#    #+#             */
+/*   Updated: 2024/07/17 14:36:53 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include <iostream>
 # include <string>
 
-class WrongAnimal
+class Brain
 {
-	public :
-		WrongAnimal( void );
-		WrongAnimal( const std::string type );
-		WrongAnimal( const WrongAnimal& src );
-		WrongAnimal& operator=( const WrongAnimal& rhs );
-		virtual ~WrongAnimal( void );
+	public:
+		Brain( void );
+		Brain( const Brain& src );
+		Brain& operator=( const Brain& rhs );
+		~Brain( void );
 
-		std::string const&	getType( void ) const;
+		std::string const&	getIdea();
+		void				setIdea( const std::string& idea );
 
-		void	makeSound( void ) const ;
-
-	protected :
-		std::string	_type;
+	private:
+		std::string	_ideas[100];
 };
 
 # define RED "\033[31m"
@@ -41,3 +39,5 @@ class WrongAnimal
 # define RESET "\033[0m"
 
 #endif
+
+// https://zenn.dev/rt3mis10/articles/2d9f5e8bcc06a7
