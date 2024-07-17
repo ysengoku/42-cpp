@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 11:04:46 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:56:24 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*============================================================================*/
 
 Cat::Cat( void )
-	: Animal("cat")
+	: Animal("Cat")
 {
 	std::cout << BLACKI << "Cat: Default constructor called." << RESET << std::endl;
 }
@@ -48,5 +48,5 @@ Cat::~Cat( void )
 
 void	Cat::makeSound( void ) const
 {
-	std::cout << "Meow🐱" << std::endl;
+	std::cout << "Meow 🐱" << std::endl;
 }

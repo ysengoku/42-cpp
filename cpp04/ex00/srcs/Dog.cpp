@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:44 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 11:04:49 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:56:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*============================================================================*/
 
 Dog::Dog( void )
-	: Animal("dog")
+	: Animal("Dog")
 {
 	std::cout << BLACKI << "Dog: Default constructor called." << RESET << std::endl;
 }
@@ -48,5 +48,5 @@ Dog::~Dog( void )
 
 void	Dog::makeSound( void ) const
 {
-	std::cout << "Woof woof🐶" << std::endl;
+	std::cout << "Woof woof 🐶" << std::endl;
 }
