@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:07:22 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 13:00:36 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:21:41 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ class	Animal
 		std::string	_type;
 };
 
-#define RED "\033[31m"
-#define YELLOW "\033[33m"
-#define MAGENTA "\033[35m"
-#define CYAN "\033[36m"
-#define BLACKI "\e[0;90m"
-#define RESET "\033[0m"
+# define RED "\033[31m"
+# define YELLOW "\033[33m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define BLACKI "\e[0;90m"
+# define RESET "\033[0m"
 
 #endif
