@@ -64,10 +64,14 @@ void	Animal::makeSound( void ) const
 	std::cout << "Buzz" << std::endl;
 }
 
-void	Animal::voiceIdea( void ) const {}
+void	Animal::showIdeas( void ) const
+{
+	std::cout << "I have no idea." << std::endl;
+}
 
-void	Animal::replaceIdea( const std::string idea, unsigned int i ) const
+void	Animal::updateIdea( std::string const& idea, unsigned int i ) const
 {
 	(void)idea;
 	(void)i;
 }
+

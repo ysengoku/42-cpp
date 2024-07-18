@@ -28,6 +28,8 @@ class WrongAnimal
 		std::string const&	getType( void ) const;
 
 		void	makeSound( void ) const ;
+		void	showIdeas( void ) const;
+		void	updateIdea( std::string const& idea, unsigned int i  ) const;
 
 	protected :
 		std::string	_type;
