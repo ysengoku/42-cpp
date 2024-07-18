@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 15:18:37 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:55:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ Cat::Cat( void )
 {
 	std::cout << BLACKI << "Cat: Default constructor called." << RESET << std::endl;
 	this->_brain = new Brain();
+	std::string catIdeas[IDEAS_COUNT] = {CAT_IDEAS};
+	for (int i = 0; i < IDEAS_COUNT; i++)
+		this->_brain->setIdea(catIdeas[i], i);
 }
 
 Cat::Cat( const Cat& src )
@@ -55,4 +58,15 @@ Cat::~Cat( void )
 void	Cat::makeSound( void ) const
 {
 	std::cout << "Meow 🐱" << std::endl;
+}
+
+void	Cat::voiceIdea( void ) const
+{
+	for (int i = 0; i < IDEAS_COUNT; i++)
+		std::cout << this->_brain->getIdeas()[i] << std::endl;
+}
+
+void	Cat::replaceIdea( const std::string idea, unsigned int i ) const
+{
+	this->_brain->setIdea(idea, i);
 }

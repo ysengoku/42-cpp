@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:07:24 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 15:17:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:53:11 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,12 @@ Brain::~Brain( void )
 /*       Accessors                                                            */
 /*============================================================================*/
 
+void	Brain::setIdea( const std::string idea, unsigned int i )
+{
+	this->_ideas[i] = idea; 
+}
+
+const std::string*	Brain::getIdeas( void )
+{
+	return (this->_ideas);
+}

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 13:07:39 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:45:21 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ Animal::~Animal( void )
 }
 
 /*============================================================================*/
+/*       Accesors                                                             */
+/*============================================================================*/
+
+std::string const&	Animal::getType( void ) const
+{
+	return (this->_type);
+}
+
+/*============================================================================*/
 /*       Public member functions                                              */
 /*============================================================================*/
 
@@ -55,11 +64,10 @@ void	Animal::makeSound( void ) const
 	std::cout << "Buzz" << std::endl;
 }
 
-/*============================================================================*/
-/*       Accesors                                                             */
-/*============================================================================*/
+void	Animal::voiceIdea( void ) const {}
 
-std::string const&	Animal::getType( void ) const
+void	Animal::replaceIdea( const std::string idea, unsigned int i ) const
 {
-	return (this->_type);
+	(void)idea;
+	(void)i;
 }
