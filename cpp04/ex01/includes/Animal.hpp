@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:07:22 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 14:19:31 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:44:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class	Animal
 		std::string const&	getType( void ) const;
 
 		virtual void	makeSound( void ) const;
+		virtual void	voiceIdea( void ) const;
+		virtual void	replaceIdea( const std::string idea, unsigned int i ) const;
 	 	
 	protected:
 		std::string	_type;

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:07:31 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 14:36:53 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:35:28 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <string>
 
+# define IDEAS_COUNT 4
+
 class Brain
 {
 	public:
@@ -24,8 +26,8 @@ class Brain
 		Brain& operator=( const Brain& rhs );
 		~Brain( void );
 
-		std::string const&	getIdea();
-		void				setIdea( const std::string& idea );
+		const std::string*	getIdeas( void );
+		void				setIdea( const std::string idea, unsigned int i );
 
 	private:
 		std::string	_ideas[100];
