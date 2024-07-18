@@ -63,3 +63,14 @@ std::string const&	WrongAnimal::getType( void ) const
 {
 	return (this->_type);
 }
+
+void	WrongAnimal::showIdeas( void ) const
+{
+	std::cout << "I have no idea." << std::endl;
+}
+
+void	WrongAnimal::updateIdea( std::string const& idea, unsigned int i ) const
+{
+	(void)idea;
+	(void)i;
+}

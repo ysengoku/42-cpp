@@ -14,6 +14,7 @@
 # define WRONGCAT_HPP
 
 # include "WrongAnimal.hpp"
+# include "Brain.hpp"
 
 class WrongCat : public WrongAnimal
 {
@@ -23,7 +24,12 @@ class WrongCat : public WrongAnimal
 		WrongCat& operator=( const WrongCat& rhs );
 		~WrongCat( void );
 		
-		virtual void	makeSound( void ) const;
+		void	makeSound( void ) const;
+		void	showIdeas( void ) const;
+		void	updateIdea( std::string const& idea, unsigned int i  ) const;
+
+	private:
+		Brain*	_brain;
 };
 
 #endif

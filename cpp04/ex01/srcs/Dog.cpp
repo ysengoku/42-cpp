@@ -60,13 +60,14 @@ void	Dog::makeSound( void ) const
 	std::cout << "Woof woof 🐶" << std::endl;
 }
 
-void	Dog::voiceIdea( void ) const
+void	Dog::showIdeas( void ) const
 {
 	for (int i = 0; i < IDEAS_COUNT; i++)
-		std::cout << this->_brain->getIdeas()[i] << std::endl;
+		std::cout << this->_brain->getIdea(i) << std::endl;
 }
 
-void	Dog::replaceIdea( const std::string idea, unsigned int i ) const
+void	Dog::updateIdea( std::string const& idea, unsigned int i ) const
 {
-	this->_brain->setIdea(idea, i);
+	if (i < IDEAS_COUNT)
+		this->_brain->setIdea(idea, i);
 }

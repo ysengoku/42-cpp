@@ -33,7 +33,10 @@ WrongCat& WrongCat::operator=( const WrongCat& rhs )
 {
 	std::cout << BLACKI << "WrongCat: Copy assignment operator called."	<< RESET << std::endl;
 	if (this != &rhs)
+	{
 		this->_type = rhs._type;
+		this->_brain = rhs._brain; // Shallow copy
+	}
 	return (*this);
 }
 
@@ -49,4 +52,16 @@ WrongCat::~WrongCat( void )
 void	WrongCat::makeSound( void ) const
 {
 	std::cout << "Roarrrrr 🦁" << std::endl;
+}
+
+void	WrongCat::showIdeas( void ) const
+{
+	for (int i = 0; i < IDEAS_COUNT; i++)
+		std::cout << this->_brain->getIdea(i) << std::endl;
+}
+
+void	WrongCat::updateIdea( std::string const& idea, unsigned int i ) const
+{
+	if (i < IDEAS_COUNT)
+		this->_brain->setIdea(idea, i);
 }

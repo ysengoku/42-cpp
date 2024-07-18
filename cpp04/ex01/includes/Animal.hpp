@@ -22,14 +22,14 @@ class	Animal
 		Animal( void );
 		Animal( const std::string type );
 		Animal( const Animal& src );
-		Animal& operator=( const Animal& rhs);
+		virtual Animal& operator=( const Animal& rhs);
 		virtual ~Animal( void );
 
 		std::string const&	getType( void ) const;
 
 		virtual void	makeSound( void ) const;
-		virtual void	voiceIdea( void ) const;
-		virtual void	replaceIdea( const std::string idea, unsigned int i ) const;
+		virtual void	showIdeas( void ) const;
+		virtual void	updateIdea( std::string const& idea, unsigned int i ) const;
 	 	
 	protected:
 		std::string	_type;

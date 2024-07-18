@@ -27,6 +27,7 @@ class Brain
 		~Brain( void );
 
 		const std::string*	getIdeas( void );
+		std::string const&	getIdea( unsigned int i );
 		void				setIdea( const std::string idea, unsigned int i );
 
 	private:

@@ -27,8 +27,8 @@ class Dog : public Animal
 		~Dog( void );
 
 		void	makeSound( void ) const;
-		void	voiceIdea( void ) const;
-		void	replaceIdea( const std::string idea, unsigned int i  ) const;
+		void	showIdeas( void ) const;
+		void	updateIdea( std::string const& idea, unsigned int i  ) const;
 
 	private:
 		Brain*	_brain;
