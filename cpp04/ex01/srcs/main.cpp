@@ -6,11 +6,11 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:06:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 10:34:47 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:08:27 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "../includes/Cat.hpp"
 #include "../includes/Dog.hpp"
 #include "WrongCat.hpp"
 
@@ -110,6 +110,7 @@ void	animalsArrayTest( void )
 
 int main( void )
 {
+	Animal animal();
 	testInSubject();
 	deepCopyTest();
 	// shallowCopyTest();
