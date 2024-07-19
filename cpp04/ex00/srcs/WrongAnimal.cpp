@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 13:01:08 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/19 10:40:23 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ WrongAnimal::~WrongAnimal( void )
 
 void	WrongAnimal::makeSound( void ) const
 {
-	std::cout << "GRRRRR" << std::endl;
+	std::cout << "RRRRRRR" << std::endl;
 }
 
 /*============================================================================*/
