@@ -14,7 +14,7 @@ NAME = AAnimal
 
 vpath %.cpp srcs
 FILES = main \
-		Animal	\
+		AAnimal	\
 		Dog	\
 		Cat	\
 		WrongAnimal	\
@@ -23,7 +23,7 @@ FILES = main \
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = Animal	\
+HEADER_FILEES = AAnimal	\
 				Dog	\
 				Cat	\
 				WrongAnimal	\
