@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
 
-# include "ICharacter.hpp"
+# include <string>
+# include <iostream>
+# include "AMateria.hpp"
 
-class	Character : public ICharacter
+//class	AMateria;
+
+class	ICharacter
 {
-	private:
-		std::string	_name;
-		AMateria*	_inventory[4];
-		AMateria*	_tmpInventory[4];
-
 	public:
-		Character( void );
-		Character( std::string const& name );
-		Character( Character const& src );
-		Character& operator=( Character const& rhs );
-		~Character( void );
-
-		std::string const&	getName( void ) const;
-
-		void				equip( AMateria *m );
-		void				unequip( int idx );
-		void				use( int idx, ICharacter& target );
+		virtual ~ICharacter() {}
+		virtual std::string const& getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
 };
 
-# endif
+# define RED "\033[31m"
+# define YELLOW "\033[33m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define BLACKI "\e[0;90m"
+# define RESET "\033[0m"
+
+#endif

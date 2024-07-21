@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIA_HPP
-# define MATERIA_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 # include <string>
 # include <iostream>
-# include "Character.hpp"
+# include "ICharacter.hpp"
 
 class AMateria
 {
@@ -27,9 +27,9 @@ class AMateria
 		AMateria( std::string const& type );
 		AMateria( AMateria const& src );
 		AMateria& operator=( AMateria const& rhs );
-		~AMateria( void );
+		virtual ~AMateria( void );
 
-		std::string& const getType( void ) const;
+		std::string const& getType( void ) const;
 
 		virtual AMateria* clone() const = 0;
 		virtual void use( ICharacter& target );
