@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Materia.hpp"
+#include "AMateria.hpp"
 
 /*============================================================================*/
 /*       Constructor / destructor / Copy assignment operator                  */
@@ -50,6 +50,16 @@ AMateria::~AMateria( void )
 /*       Accesors                                                             */
 /*============================================================================*/
 
+std::string const& AMateria::getType( void ) const
+{
+	return (this->_type);
+}
+
 /*============================================================================*/
 /*       Public member functions                                              */
 /*============================================================================*/
+
+void	AMateria::use( ICharacter& target )
+{
+	(void)target;
+}

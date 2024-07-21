@@ -13,9 +13,21 @@
 #ifndef MATERIASOURCE_HPP
 # define MATERIASOURCE_HPP
 
-class	IMateriaSource
+# include "IMateriaSource.hpp"
+
+class	MateriaSource : public IMateriaSource
 {
-	
+	public:
+		MateriaSource( void );
+		MateriaSource( MateriaSource const& src );
+		MateriaSource& operator=( MateriaSource const& rhs );
+		~MateriaSource( void );
+
+		void		learnMateria( AMateria* src );
+		AMateria*	createMateria( std::string const & type );
+
+	private:
+		AMateria*	_materias[4];
 };
 
 #endif

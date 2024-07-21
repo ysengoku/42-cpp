@@ -13,7 +13,7 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-# include "Materia.hpp"
+# include "AMateria.hpp"
 
 class Cure : public AMateria
 {
@@ -24,6 +24,7 @@ class Cure : public AMateria
 		~Cure( void );
 
 		void	use( ICharacter& target );
+		Cure*	clone( void ) const;
 };
 
 #endif

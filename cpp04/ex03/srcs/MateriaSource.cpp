@@ -16,10 +16,63 @@
 /*       Constructor / destructor / Copy assignment operator                  */
 /*============================================================================*/
 
-/*============================================================================*/
-/*       Accesors                                                             */
-/*============================================================================*/
+MateriaSource::MateriaSource( void )
+{
+	std::cout << BLACKI << "MateriaSource: Default constructor called." << RESET << std::endl;
+}
+
+MateriaSource::MateriaSource( MateriaSource const& src )
+{
+	std::cout << BLACKI << "MateriaSource: Copy constructor called." << RESET << std::endl;
+	*this = src;
+}
+
+MateriaSource& MateriaSource::operator=( MateriaSource const& rhs )
+{
+	if (this != &rhs)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			delete this->_materias[i];
+			this->_materias[i] = nullptr;
+			if (rhs._materias[i] != nullptr)
+				this->_materias[i] = rhs._materias[i]->clone();
+		}
+	}
+	return (*this);
+}
+
+MateriaSource::~MateriaSource( void )
+{
+	std::cout << BLACKI << "MateriaSource: Destructor called." << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+		delete this->_materias[i];
+}
 
 /*============================================================================*/
 /*       Public member functions                                              */
 /*============================================================================*/
+
+void	MateriaSource::learnMateria( AMateria* src )
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materias[i] == nullptr)
+		{
+			this->_materias[i] = src->clone();
+			return ;
+		}
+	}
+	std::cout << RED << "Materia source is full." << RESET << std::endl;
+}
+
+AMateria*	MateriaSource::createMateria( std::string const & type )
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_materias[i]->getType() == type)
+			return (this->_materias[i]->clone());
+	}
+	std::cout << "Materia \'" << type << "\' was not found." << std::endl;
+	return (nullptr);
+}

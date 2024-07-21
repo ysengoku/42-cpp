@@ -14,7 +14,7 @@ NAME = IMateriaSource
 
 vpath %.cpp srcs
 FILES = main \
-		Materia	\
+		AMateria	\
 		Ice	\
 		Cure	\
 		MateriaSource	\
@@ -22,10 +22,12 @@ FILES = main \
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = Materia	\
+HEADER_FILEES = AMateria	\
 				Ice	\
 				Cure	\
+				IMateriaSource	\
 				MateriaSource	\
+				ICharacter	\
 				Character
 HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
 
