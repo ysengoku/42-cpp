@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:24 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 09:17:31 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:05:28 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	MateriaSource::learnMateria( AMateria* src )
 {
 	for (int i = 0; i < 4; i++)
 	{
+		if (this->_materias[i] == src)
+			return ;
 		if (!this->_materias[i])
 		{
 			this->_materias[i] = src;
