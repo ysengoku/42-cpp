@@ -6,11 +6,11 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:44 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 10:49:05 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:42:25 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Dog.hpp"
+#include "Dog.hpp"
 
 /*============================================================================*/
 /*       Constructor / destructor / Copy assignment operator                  */
