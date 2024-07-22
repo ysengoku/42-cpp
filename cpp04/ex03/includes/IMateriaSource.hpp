@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:16 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 12:20:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 08:03:49 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define IMATERIASOURCE_HPP
 
 #include "AMateria.hpp"
+
+class Amateria;
 
 class	IMateriaSource
 {

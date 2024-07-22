@@ -6,11 +6,11 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/17 08:04:22 by yusengok          #+#    #+#              #
-#    Updated: 2024/07/19 12:09:02 by yusengok         ###   ########.fr        #
+#    Updated: 2024/07/22 09:19:56 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = IMateriaSource
+NAME = Materia
 
 vpath %.cpp srcs
 FILES = main \

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:24 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 12:19:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:17:31 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 MateriaSource::MateriaSource( void )
 {
 	std::cout << BLACKI << "MateriaSource: Default constructor called." << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+		this->_materias[i] = 0;
 }
 
 MateriaSource::MateriaSource( MateriaSource const& src )
@@ -34,8 +36,8 @@ MateriaSource& MateriaSource::operator=( MateriaSource const& rhs )
 		for (int i = 0; i < 4; i++)
 		{
 			delete this->_materias[i];
-			this->_materias[i] = nullptr;
-			if (rhs._materias[i] != nullptr)
+			this->_materias[i] = 0;
+			if (rhs._materias[i])
 				this->_materias[i] = rhs._materias[i]->clone();
 		}
 	}
@@ -57,9 +59,9 @@ void	MateriaSource::learnMateria( AMateria* src )
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_materias[i] == nullptr)
+		if (!this->_materias[i])
 		{
-			this->_materias[i] = src->clone();
+			this->_materias[i] = src;
 			return ;
 		}
 	}
@@ -74,5 +76,5 @@ AMateria*	MateriaSource::createMateria( std::string const & type )
 			return (this->_materias[i]->clone());
 	}
 	std::cout << "Materia \'" << type << "\' was not found." << std::endl;
-	return (nullptr);
+	return (0);
 }
