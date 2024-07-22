@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:06:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 10:47:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:53:11 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void	deepCopyTest( void )
 		std::cout << std::endl << "🐱 Cat copy" << std::endl;
 		cat2.showIdeas();
 		std::cout << std::endl;
+	}
+	std::cout << std::endl << CYAN << "====== Another deep copy test ======" << RESET << std::endl;
+	Dog	a;
+	{
+		Dog tmp = a;
 	}
 }
 
