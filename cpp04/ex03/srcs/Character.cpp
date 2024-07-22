@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 09:01:36 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:19:36 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,14 @@ Character&	Character::operator=( Character const& rhs )
 		this->_name = rhs._name;
 		for (int i = 0; i < 4; i++)
 		{
-			delete this->_inventory[i];
 			this->_inventory[i] = 0;
+			delete this->_inventory[i];
 			if (rhs._inventory[i])
 				this->_inventory[i] = rhs._inventory[i]->clone();
+			this->_tmpInventory[i] = 0;
+			delete this->_tmpInventory[i];
+			if (rhs._tmpInventory[i])
+				this->_tmpInventory[i] = rhs._tmpInventory[i]->clone();
 		}
 	}
 	return (*this);
@@ -63,16 +67,11 @@ Character&	Character::operator=( Character const& rhs )
 Character::~Character( void )
 {
 	std::cout << BLACKI << "Character: Destructor called." << RESET << std::endl;
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	if (this->_inventory[i])
-	// 		delete this->_inventory[i];
-	// }
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	if (this->_tmpInventory[i])
-	// 		delete this->_tmpInventory[i];
-	// }
+	for (int i = 0; i < 4; i++)
+	{
+		delete this->_inventory[i];
+		delete this->_tmpInventory[i];
+	}
 }
 
 /*============================================================================*/
@@ -95,7 +94,6 @@ void	Character::equip( AMateria *m )
 		if (!this->_inventory[i])
 		{
 			this->_inventory[i] = m;
-			this->_tmpInventory[i] = m;
 			std::cout << YELLOW << m->getType() << " has been successfully equipped." << RESET << std::endl;
 			return ;
 		}
@@ -106,8 +104,16 @@ void	Character::unequip( int idx )
 {
 	if (idx >= 0 && idx < 4 && this->_inventory[idx])
 	{
-		this->_inventory[idx] = 0;
-		std::cout << YELLOW << this->_inventory[idx]->getType() << " has been successfully unequipped." << RESET << std::endl;
+		std::string	tmp = this->_inventory[idx]->getType();
+		for (int i = 0; i < 4; i++)
+		{
+			if (!this->_tmpInventory[i])
+			{
+				this->_tmpInventory[i] = this->_inventory[idx];
+				this->_inventory[idx] = 0;
+			}
+		}
+		std::cout << YELLOW << tmp << " has been successfully unequipped." << RESET << std::endl;
 	}
 }
 
