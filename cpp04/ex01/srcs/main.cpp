@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:06:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 11:08:27 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:47:04 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,6 @@ void	deepCopyTest( void )
 	}
 }
 
-void	shallowCopyTest( void )
-{
-	std::cout << std::endl << CYAN << "====== Shallow copy tests with WrongCat ======" << RESET << std::endl;
-	WrongCat wrongCat;
-	// for (int i = 0; i < IDEAS_COUNT; i++)
-	// 	wrongCat.updateIdea("Hello", i);
-	// WrongCat wrongCat2(wrongCat);
-
-	std::cout << std::endl << MAGENTA << "[BEFORE] " << RESET << std::endl;
-	wrongCat.showIdeas();
-	// wrongCat2.showIdeas();
-
-	// wrongCat2.updateIdea("grrrrr", 0);
-	
-	std::cout << std::endl << MAGENTA << "[AFTER] " << RESET << std::endl;
-	wrongCat.showIdeas();
-	// wrongCat2.showIdeas();
-}
-
 void	animalsArrayTest( void )
 {
 	std::cout << std::endl << CYAN << "====== Array of animals tests ======" << RESET << std::endl;
@@ -113,7 +94,6 @@ int main( void )
 	Animal animal();
 	testInSubject();
 	deepCopyTest();
-	// shallowCopyTest();
 	animalsArrayTest();
 	return (0);
 }
