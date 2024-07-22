@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:27 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 13:49:34 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:12:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ void	testInSubject( void )
 	delete src;
 }
 
+void	deepCopyTest( void )
+{
+	std::cout << CYAN << "====== TEST: deep copy ======" << RESET << std::endl;
+	Character me;
+	{
+		Character tmp = me;
+	}
+}
+
 void	equipTest( void )
 {
 	std::cout << CYAN << "====== TEST: equip() function ======" << RESET << std::endl;
@@ -50,7 +59,7 @@ void	equipTest( void )
 	src->learnMateria(new Cure());
 
 	ICharacter* me = new Character("me");
-	ICharacter* you = new Character("you");
+	ICharacter* sam = new Character("sam");
 	AMateria* tmp;
 
 	std::cout << BLUE << "--- 1st equip() ---" << RESET << std::endl;
@@ -72,9 +81,9 @@ void	equipTest( void )
 	
 	std::cout << BLUE << "--- Let's use them ---" << RESET << std::endl;
 	for (int i = 0; i < 4; i++)
-		me->use(i, *you);
+		me->use(i, *sam);
 
-	delete you;
+	delete sam;
 	delete me;
 	delete src;
 }
@@ -87,47 +96,62 @@ void	unequipTest( void )
 	src->learnMateria(new Cure());
 
 	ICharacter* me = new Character("me");
-	ICharacter* you = new Character("you");
+	ICharacter* sam = new Character("sam");
 	AMateria* tmp;
 
 	std::cout << BLUE << "--- Try use() before equip() ---" << RESET << std::endl;
-	me->use(0, *you);
+	me->use(0, *sam);
 	
-	std::cout << BLUE << "--- equip() 0 & 1 ---" << RESET << std::endl;
+	std::cout << BLUE << "--- equip() 'ice' ---" << RESET << std::endl;
 	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	
 	std::cout << BLUE << "--- Use index 0 ---" << RESET << std::endl;
-	me->use(0, *you);
+	me->use(0, *sam);
 	std::cout << BLUE << "--- Unequip index 0 ---" << RESET << std::endl;
 	me->unequip(0);
+	std::cout << BLUE << "--- Use index 0 ---" << RESET << std::endl;
+	me->use(0, *sam);
 	std::cout << BLUE << "--- Use index 2 ---" << RESET << std::endl;
-	me->use(2, *you);
+	me->use(2, *sam);
 	std::cout << BLUE << "--- Unequip index 2 ---" << RESET << std::endl;
 	me->unequip(2);
 
-	delete you;
+	std::cout << BLUE << "--- equip 'cure' & use it ---" << RESET << std::endl;
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	me->use(0, *sam);
+
+	delete sam;
 	delete me;
 	delete src;
 }
 
-// void	learnMateriaCheck( void )
-// {
-// 	IMateriaSource *src = new MateriaSource();
-// 	AMateria *tmp = new Ice();
-// 	AMateria *tmp2 = new Ice();
-// 	src->learnMateria(tmp);
-// 	src->learnMateria(tmp);
-// 	src->learnMateria(tmp2);
-// 	delete src;
-// }
+void	materiaSourceTest( void )
+{
+	std::cout << CYAN << "====== TEST: materia source ======" << RESET << std::endl;
+	IMateriaSource *src = new MateriaSource();
+	
+	std::cout << BLUE << "--- Learn 4 times ---" << RESET << std::endl;
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	
+	std::cout << BLUE << "--- 5th learn ---" << RESET << std::endl;
+	AMateria *tmp5 = new Ice();
+	src->learnMateria(tmp5);
+	delete tmp5;
+	
+	delete src;
+}
 
 int main( void )
 {
 	testInSubject();
+	deepCopyTest();
 	equipTest();
 	unequipTest();
+	materiaSourceTest();
   	return (0);
 }
