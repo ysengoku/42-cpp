@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:40:55 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 08:04:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:42:30 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ class AMateria
 };
 
 # define RED "\033[31m"
+# define GREEN "\033[32m"
 # define YELLOW "\033[33m"
+# define BLUE  "\033[34m"
 # define MAGENTA "\033[35m"
 # define CYAN "\033[36m"
 # define BLACKI "\e[0;90m"
