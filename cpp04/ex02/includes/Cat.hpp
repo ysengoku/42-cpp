@@ -6,14 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:29 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 10:48:11 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:40:31 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
 # define CAT_IDEAS "Food dish is empty!", "Nap time?", "This is my place.", "Who is he?"

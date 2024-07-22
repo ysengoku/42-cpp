@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:06:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 11:07:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:43:03 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	animalsArrayTest( void )
 
 int main( void )
 {
-	// AAnimal aanimal(); // "AAnimal" is not instantiable
-	
+	// AAnimal aanimal(); // "AAnimal" is not instantiable	
 	testInSubject();
 	animalsArrayTest();
 	return (0);
