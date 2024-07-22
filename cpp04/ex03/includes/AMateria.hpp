@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Materia.hpp                                        :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:40:55 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 12:11:38 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 08:04:24 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string>
 # include <iostream>
 # include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {

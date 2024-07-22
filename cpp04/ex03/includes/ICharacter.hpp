@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:13 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 12:08:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 08:03:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <iostream>
 # include "AMateria.hpp"
 
-//class	AMateria;
+class	AMateria;
 
 class	ICharacter
 {

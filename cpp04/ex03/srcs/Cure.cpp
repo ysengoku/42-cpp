@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:23:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 12:19:32 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 08:38:45 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Cure::~Cure( void )
 
 void	Cure::use( ICharacter& target )
 {
-	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << "\'s wounds *" << std::endl;
 }
 
 Cure*	Cure::clone( void ) const

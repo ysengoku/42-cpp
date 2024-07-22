@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 12:20:14 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:01:36 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,22 @@
 Character::Character( void )
 {
 	std::cout << BLACKI << "Character: Default constructor called." << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		this->_inventory[i] = 0;
+		this->_tmpInventory[i] = 0;
+	}
 }
 
 Character::Character( std::string const& name )
 	: _name(name)
 {
 	std::cout << BLACKI << "Character: Constructor called." << RESET << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		this->_inventory[i] = 0;
+		this->_tmpInventory[i] = 0;
+	}
 }
 
 Character::Character( Character const& src )
@@ -42,8 +52,8 @@ Character&	Character::operator=( Character const& rhs )
 		for (int i = 0; i < 4; i++)
 		{
 			delete this->_inventory[i];
-			this->_inventory[i] = nullptr;
-			if (rhs._inventory[i] != nullptr)
+			this->_inventory[i] = 0;
+			if (rhs._inventory[i])
 				this->_inventory[i] = rhs._inventory[i]->clone();
 		}
 	}
@@ -53,16 +63,16 @@ Character&	Character::operator=( Character const& rhs )
 Character::~Character( void )
 {
 	std::cout << BLACKI << "Character: Destructor called." << RESET << std::endl;
-	for (int i = 0; i < 4; i++)
-	{
-		delete this->_inventory[i];
-		this->_inventory[i] = nullptr;
-	}
-	for (int i = 0; i < 4; i++)
-	{
-		if (this->_tmpInventory[i] != nullptr)
-			delete this->_tmpInventory[i];
-	}
+	// for (int i = 0; i < 4; i++)
+	// {
+	// 	if (this->_inventory[i])
+	// 		delete this->_inventory[i];
+	// }
+	// for (int i = 0; i < 4; i++)
+	// {
+	// 	if (this->_tmpInventory[i])
+	// 		delete this->_tmpInventory[i];
+	// }
 }
 
 /*============================================================================*/
@@ -82,11 +92,11 @@ void	Character::equip( AMateria *m )
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_inventory[i] == nullptr)
+		if (!this->_inventory[i])
 		{
 			this->_inventory[i] = m;
 			this->_tmpInventory[i] = m;
-			std::cout << m->getType() << " has been successfully equipped." << std::endl;
+			std::cout << YELLOW << m->getType() << " has been successfully equipped." << RESET << std::endl;
 			return ;
 		}
 	}
@@ -94,15 +104,15 @@ void	Character::equip( AMateria *m )
 
 void	Character::unequip( int idx )
 {
-	if (idx >= 0 && idx < 4 && this->_inventory[idx] != nullptr)
+	if (idx >= 0 && idx < 4 && this->_inventory[idx])
 	{
-		this->_inventory[idx] = nullptr;
-		std::cout << this->_inventory[idx]->getType() << " has been successfully unequipped." << std::endl;
+		this->_inventory[idx] = 0;
+		std::cout << YELLOW << this->_inventory[idx]->getType() << " has been successfully unequipped." << RESET << std::endl;
 	}
 }
 
 void	Character::use( int idx, ICharacter& target )
 {
-	if (idx >= 0 && idx < 4 && this->_inventory[idx] != nullptr)
+	if (idx >= 0 && idx < 4 && this->_inventory[idx])
 		this->_inventory[idx]->use(target);
 }
