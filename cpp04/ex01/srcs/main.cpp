@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:06:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 14:53:11 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:48:24 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 #include "WrongCat.hpp"
 
 #define N  6
+#define IDEAS_COUNT 4
+#define DOG_IDEAS "Play!", "I'm hungry.", "I'm sleepy.", "Let's go for a Walk?"
+#define CAT_IDEAS "Food dish is empty!", "Nap time?", "This is my place.", "Who is he?"
 	
 void	testInSubject( void )
 {
 	std::cout << CYAN << "====== Tests given in the subject ======" << RESET << std::endl;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
-	delete j;//should not create a leak
+	delete j;
 	delete i;
 }
 
@@ -30,41 +33,55 @@ void	deepCopyTest( void )
 	{
 		std::cout << std::endl << CYAN << "====== Deep copy tests Dog ======" << RESET << std::endl;
 		Dog	dog;
+		std::string dogIdeas[IDEAS_COUNT] = {DOG_IDEAS};
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			dog.setIdeaToBrain(dogIdeas[i], i);
 		Dog	dog2(dog);
 
 		std::cout << std::endl << MAGENTA << "[BEFORE] " << RESET << std::endl;
 		std::cout << "🐶 Dog" << std::endl;
-		dog.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			dog.showIdea(i);
 		std::cout << std::endl << "🐶 Dog copy"  << std::endl;
-		dog2.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			dog2.showIdea(i);
 
-		dog2.updateIdea("zzzzz", 0);
+		dog2.setIdeaToBrain("zzzzz", 0);
 
 		std::cout << std::endl << MAGENTA << "[AFTER] " << RESET << std::endl;
 		std::cout << "🐶 Dog" << std::endl;
-		dog.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			dog.showIdea(i);
 		std::cout << std::endl << "🐶 Dog copy" << std::endl;
-		dog2.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			dog2.showIdea(i);
 		std::cout << std::endl;
 	}
 	{
 		std::cout << std::endl << CYAN << "====== Deep copy tests Cat ======" << RESET << std::endl;
 		Cat cat;
+		std::string catIdeas[IDEAS_COUNT] = {CAT_IDEAS};
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			cat.setIdeaToBrain(catIdeas[i], i);
 		Cat	cat2(cat);
 
 		std::cout << std::endl << MAGENTA << "[BEFORE] " << RESET << std::endl;
 		std::cout << "🐱 Cat" << std::endl;
-		cat.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			cat.showIdea(i);
 		std::cout << std::endl << "🐱 Cat copy" << std::endl;
-		cat2.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			cat2.showIdea(i);
 
-		cat2.updateIdea("grrrrr", 0);
+		cat2.setIdeaToBrain("grrrrr", 0);
 	
 		std::cout << std::endl << MAGENTA << "[AFTER] " << RESET << std::endl;
 		std::cout << "🐱 Cat" << std::endl;
-		cat.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			cat.showIdea(i);
 		std::cout << std::endl << "🐱 Cat copy" << std::endl;
-		cat2.showIdeas();
+		for (int i = 0; i < IDEAS_COUNT; i++)
+			cat2.showIdea(i);
 		std::cout << std::endl;
 	}
 	std::cout << std::endl << CYAN << "====== Another deep copy test ======" << RESET << std::endl;

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:42:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	Animal::makeSound( void ) const
 	std::cout << ".........." << std::endl;
 }
 
-void	Animal::showIdeas( void ) const
+void	Animal::showAllIdeas( void ) const
 {
 	std::cout << "I have no idea." << std::endl;
 }
 
-void	Animal::updateIdea( std::string const& idea, unsigned int i ) const
+void	Animal::setIdeaToBrain( std::string const& idea, unsigned int i ) const
 {
 	(void)idea;
 	(void)i;
