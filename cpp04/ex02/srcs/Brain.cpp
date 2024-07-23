@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:07:24 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/18 13:53:11 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:56:15 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,17 @@ Brain::~Brain( void )
 
 void	Brain::setIdea( const std::string idea, unsigned int i )
 {
-	if (i < IDEAS_COUNT)
+	if (i < 100)
 		this->_ideas[i] = idea; 
 }
 
 std::string const&	Brain::getIdea( unsigned int i )
 {
-	if (i >= IDEAS_COUNT)
-	{
-		std::cerr << RED << "Error: Invalid index." << RESET << std::endl;
-		return (this->_ideas[0]);
-	}
-	return (this->_ideas[i]);
+	std::string const& emptyString = "";
+	if (i < 100)
+		return (this->_ideas[i]);
+	std::cerr << RED << "Error: Invalid index." << RESET << std::endl;
+		return (emptyString);
 }
 
 const std::string*	Brain::getIdeas( void )

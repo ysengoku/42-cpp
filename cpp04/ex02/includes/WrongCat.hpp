@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:37 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 10:16:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:02:12 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class WrongCat : public WrongAnimal
 		~WrongCat( void );
 		
 		void	makeSound( void ) const;
-		void	showAllIdeas( void ) const;
-		void	updateIdea( std::string const& idea, unsigned int i  ) const;
 
 	private:
 		Brain*	_brain;

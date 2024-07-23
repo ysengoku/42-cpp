@@ -28,8 +28,8 @@ class	AAnimal
 		std::string const&	getType( void ) const;
 
 		virtual void	makeSound( void ) const = 0;
-		virtual void	showIdeas( void ) const = 0;
-		virtual void	updateIdea( std::string const& idea, unsigned int i ) const = 0;
+		virtual void	showAllIdeas( void ) const = 0;
+		virtual void	setIdeaToBrain( std::string const& idea, unsigned int i ) const = 0;
 	 	
 	protected:
 		std::string	type;

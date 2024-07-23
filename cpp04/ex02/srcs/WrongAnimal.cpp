@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 10:16:51 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:59:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,4 @@ void	WrongAnimal::makeSound( void ) const
 std::string const&	WrongAnimal::getType( void ) const
 {
 	return (this->type);
-}
-
-void	WrongAnimal::showAllIdeas( void ) const
-{
-	std::cout << "I have no idea." << std::endl;
-}
-
-void	WrongAnimal::updateIdea( std::string const& idea, unsigned int i ) const
-{
-	(void)idea;
-	(void)i;
 }

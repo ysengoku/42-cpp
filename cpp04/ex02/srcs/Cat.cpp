@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:47:11 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ Cat::Cat( void )
 {
 	std::cout << BLACKI << "Cat: Default constructor called." << RESET << std::endl;
 	this->_brain = new Brain();
-	std::string catIdeas[IDEAS_COUNT] = {CAT_IDEAS};
-	for (int i = 0; i < IDEAS_COUNT; i++)
-		this->_brain->setIdea(catIdeas[i], i);
 }
 
 Cat::Cat( const Cat& src )
@@ -60,14 +57,20 @@ void	Cat::makeSound( void ) const
 	std::cout << "Meow 🐱" << std::endl;
 }
 
-void	Cat::showIdeas( void ) const
+void	Cat::showIdea( unsigned int i ) const
 {
-	for (int i = 0; i < IDEAS_COUNT; i++)
+	if (i < 100)
 		std::cout << this->_brain->getIdea(i) << std::endl;
 }
 
-void	Cat::updateIdea( std::string const& idea, unsigned int i ) const
+void	Cat::showAllIdeas( void ) const
 {
-	if (i < IDEAS_COUNT)
+	for (int i = 0; i < 100; i++)
+		std::cout << this->_brain->getIdea(i) << std::endl;
+}
+
+void	Cat::setIdeaToBrain( std::string const& idea, unsigned int i ) const
+{
+	if (i < 100)
 		this->_brain->setIdea(idea, i);
 }
