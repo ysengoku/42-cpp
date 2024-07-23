@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:15:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 15:19:36 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:51:09 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,11 @@ void	Character::unequip( int idx )
 			{
 				this->_tmpInventory[i] = this->_inventory[idx];
 				this->_inventory[idx] = 0;
+				std::cout << YELLOW << tmp << " has been successfully unequipped." << RESET << std::endl;
+				return ;
 			}
 		}
-		std::cout << YELLOW << tmp << " has been successfully unequipped." << RESET << std::endl;
+		std::cout << RED << "Cannot unequip "<< tmp << ". Temporary storage is full." << RESET << std::endl;
 	}
 }
 
