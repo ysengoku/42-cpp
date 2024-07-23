@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:06:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 10:48:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:17:10 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ void	deepCopyTest( void )
 	{
 		Dog tmp = a;
 	}
+	// Following test carash because of double free
+	// WrongCat b;
+	// {
+	// 	WrongCat tmp = b;
+	// }
 }
 
 void	animalsArrayTest( void )

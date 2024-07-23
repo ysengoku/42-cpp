@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/22 10:40:39 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:44:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "AAnimal.hpp"
 # include "Brain.hpp"
-
-# define DOG_IDEAS "Play!", "I'm hungry.", "I'm sleepy.", "Let's go for a Walk?"
 
 class Dog : public AAnimal
 {
@@ -27,8 +25,9 @@ class Dog : public AAnimal
 		~Dog( void );
 
 		void	makeSound( void ) const;
-		void	showIdeas( void ) const;
-		void	updateIdea( std::string const& idea, unsigned int i  ) const;
+		void	showIdea( unsigned int i ) const;
+		void	showAllIdeas( void ) const;
+		void	setIdeaToBrain( std::string const& idea, unsigned int i ) const;
 
 	private:
 		Brain*	_brain;

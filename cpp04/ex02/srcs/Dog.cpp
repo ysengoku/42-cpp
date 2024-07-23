@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:44 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:47:49 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ Dog::Dog( void )
 {
 	std::cout << BLACKI << "Dog: Default constructor called." << RESET << std::endl;
 	this->_brain = new Brain();
-	std::string dogIdeas[IDEAS_COUNT] = {DOG_IDEAS};
-	for (int i = 0; i < IDEAS_COUNT; i++)
-		this->_brain->setIdea(dogIdeas[i], i);
 }
 
 Dog::Dog( const Dog& src )
@@ -60,14 +57,23 @@ void	Dog::makeSound( void ) const
 	std::cout << "Woof woof 🐶" << std::endl;
 }
 
-void	Dog::showIdeas( void ) const
+void	Dog::showIdea( unsigned int i ) const
 {
-	for (int i = 0; i < IDEAS_COUNT; i++)
+	if (i < 100)
 		std::cout << this->_brain->getIdea(i) << std::endl;
 }
 
-void	Dog::updateIdea( std::string const& idea, unsigned int i ) const
+void	Dog::showAllIdeas( void ) const
 {
-	if (i < IDEAS_COUNT)
+	for (int i = 0; i < 100; i++)
+	{
+		if (!this->_brain->getIdea(i).empty())
+			std::cout << this->_brain->getIdea(i) << std::endl;
+	}
+}
+
+void	Dog::setIdeaToBrain( std::string const& idea, unsigned int i ) const
+{
+	if (i < 100)
 		this->_brain->setIdea(idea, i);
 }

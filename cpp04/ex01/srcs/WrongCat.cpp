@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:51 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 10:34:26 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:15:02 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ WrongCat::WrongCat( void )
 	: WrongAnimal("WrongCat")
 {
 	std::cout << BLACKI << "WrongCat: Default constructor called." << RESET << std::endl;
+	this->_brain = new Brain();	
 }
 
 WrongCat::WrongCat( const WrongCat& src )
@@ -35,7 +36,7 @@ WrongCat& WrongCat::operator=( const WrongCat& rhs )
 	if (this != &rhs)
 	{
 		this->type = rhs.type;
-		this->_brain = rhs._brain; // Shallow copy
+		this->_brain = rhs._brain;
 	}
 	return (*this);
 }
@@ -43,6 +44,7 @@ WrongCat& WrongCat::operator=( const WrongCat& rhs )
 WrongCat::~WrongCat( void )
 {
 	std::cout << BLACKI << "WrongCat: Destructor called." << RESET << std::endl;
+	delete this->_brain;
 }
 
 /*============================================================================*/
