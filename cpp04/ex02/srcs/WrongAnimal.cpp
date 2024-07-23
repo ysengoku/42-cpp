@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:16:51 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ std::string const&	WrongAnimal::getType( void ) const
 	return (this->type);
 }
 
-void	WrongAnimal::showIdeas( void ) const
+void	WrongAnimal::showAllIdeas( void ) const
 {
 	std::cout << "I have no idea." << std::endl;
 }
