@@ -22,7 +22,7 @@ AAnimal::AAnimal( void )
 }
 
 AAnimal::AAnimal( const std::string type )
-	: _type(type)
+	: type(type)
 {
 	std::cout << BLACKI << "AAnimal: Constructor called." << RESET << std::endl;
 }
@@ -37,7 +37,7 @@ AAnimal&	AAnimal::operator=( const AAnimal& rhs)
 {
 	std::cout << BLACKI << "AAnimal: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-		this->_type = rhs._type;
+		this->type = rhs.type;
 	return (*this);
 }
 
@@ -52,5 +52,5 @@ AAnimal::~AAnimal( void )
 
 std::string const&	AAnimal::getType( void ) const
 {
-	return (this->_type);
+	return (this->type);
 }

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:44 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/18 14:44:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Dog& Dog::operator=( const Dog& rhs )
 	std::cout << BLACKI << "Dog: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
 	{
-		this->_type = rhs._type;
+		this->type = rhs.type;
 		delete this->_brain;
 		this->_brain = new Brain(*rhs._brain);	
 	}

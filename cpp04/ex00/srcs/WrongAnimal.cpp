@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 10:40:23 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ WrongAnimal::WrongAnimal( void )
 }
 
 WrongAnimal::WrongAnimal( const std::string type )
-	: _type(type)
+	: type(type)
 {
 	std::cout << BLACKI << "WrongAnimal: Constructor called." << RESET << std::endl;	
 }
@@ -37,7 +37,7 @@ WrongAnimal&	WrongAnimal::operator=( const WrongAnimal& rhs )
 {
 	std::cout << BLACKI << "WrongAnimal: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-		this->_type = rhs._type;
+		this->type = rhs.type;
 	return (*this);
 }
 
@@ -61,5 +61,5 @@ void	WrongAnimal::makeSound( void ) const
 
 std::string const&	WrongAnimal::getType( void ) const
 {
-	return (this->_type);
+	return (this->type);
 }

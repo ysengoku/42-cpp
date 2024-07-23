@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 12:56:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Cat& Cat::operator=( const Cat& rhs )
 {
 	std::cout << BLACKI << "Cat: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-		this->_type = rhs._type;
+		this->type = rhs.type;
 	return (*this);
 }
 

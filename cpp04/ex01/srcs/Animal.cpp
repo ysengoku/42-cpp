@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/19 10:39:34 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Animal::Animal( void )
 }
 
 Animal::Animal( const std::string type )
-	: _type(type)
+	: type(type)
 {
 	std::cout << BLACKI << "Animal: Constructor called." << RESET << std::endl;
 }
@@ -37,7 +37,7 @@ Animal&	Animal::operator=( const Animal& rhs)
 {
 	std::cout << BLACKI << "Animal: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-		this->_type = rhs._type;
+		this->type = rhs.type;
 	return (*this);
 }
 
@@ -52,7 +52,7 @@ Animal::~Animal( void )
 
 std::string const&	Animal::getType( void ) const
 {
-	return (this->_type);
+	return (this->type);
 }
 
 /*============================================================================*/

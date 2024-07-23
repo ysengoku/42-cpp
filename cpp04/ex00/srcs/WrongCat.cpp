@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:51 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/17 13:24:18 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ WrongCat& WrongCat::operator=( const WrongCat& rhs )
 {
 	std::cout << BLACKI << "WrongCat: Copy assignment operator called."	<< RESET << std::endl;
 	if (this != &rhs)
-		this->_type = rhs._type;
+		this->type = rhs.type;
 	return (*this);
 }
 
