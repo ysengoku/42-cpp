@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:10:35 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:16:51 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class WrongAnimal
 		std::string const&	getType( void ) const;
 
 		void	makeSound( void ) const ;
-		void	showIdeas( void ) const;
+		void	showAllIdeas( void ) const;
 		void	updateIdea( std::string const& idea, unsigned int i  ) const;
 
 	protected :
