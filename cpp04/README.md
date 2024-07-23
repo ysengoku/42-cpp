@@ -6,8 +6,8 @@ In object-oriented programming,subtype polymorphism
 ある1つの関数（メソッド）の呼び出しに対し、オブジェクト毎に異なる動作をすることをいいます
 
 ## Deep copy
-Deep copy creates a new object copying the content of the source object. The copied object is independant of the original one.
-If we modify a value of attribute of the copy or delete the copied object, there is no impact on the original one. 
+Deep copy creates a new object copying the content of the source object.  
+The copied object is independant of the original one. Even if we modify a value of attribute of the copy or delete it, there is no impact on the original one. 
 
 ## Abstract class
 
