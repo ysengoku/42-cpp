@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 08:07:22 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/18 14:44:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 08:54:01 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class	Animal
 		virtual void	updateIdea( std::string const& idea, unsigned int i ) const;
 	 	
 	protected:
-		std::string	_type;
+		std::string	type;
 };
 
 # define RED "\033[31m"

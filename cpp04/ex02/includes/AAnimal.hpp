@@ -32,7 +32,7 @@ class	AAnimal
 		virtual void	updateIdea( std::string const& idea, unsigned int i ) const = 0;
 	 	
 	protected:
-		std::string	_type;
+		std::string	type;
 };
 
 # define RED "\033[31m"
