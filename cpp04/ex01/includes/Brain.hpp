@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:07:31 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/18 14:35:28 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:10:28 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <iostream>
 # include <string>
-
-# define IDEAS_COUNT 4
 
 class Brain
 {
