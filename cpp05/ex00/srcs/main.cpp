@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 13:24:53 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:12:43 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	constructorTest( int grade )
 		return ;
 	}	
 	std::cout << *test << std::endl;
+	std::cout << BLUE << "Copy test" << RESET << std::endl;
+	Bureaucrat copyTest(*test);
+	std::cout << copyTest << std::endl;
 	delete test;
 }
 
