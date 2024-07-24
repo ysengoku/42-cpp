@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:03:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 13:53:47 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:32:44 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Bureaucrat
 
 		void	gradeUp( void );
 		void	gradeDown( void );
-		void	signForm( Form const& form );
+		void	signForm( Form& form );
 
 	private:
 		const std::string	_name;

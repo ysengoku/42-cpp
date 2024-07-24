@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 15:25:33 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:32:32 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	Bureaucrat::gradeDown( void )
 	}
 }
 
-void	Bureaucrat::signForm( Form const& form )
+void	Bureaucrat::signForm( Form& form )
 {
 	try
 	{
