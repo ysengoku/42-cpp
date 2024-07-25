@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 09:06:26 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:29:24 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ Bureaucrat::Bureaucrat( std::string const name, int const grade )
 }
 
 Bureaucrat::Bureaucrat( Bureaucrat const& src )
-	: _name(src._name)
+	: _name(src._name), _grade(src._grade)
 {
 	std::cout << BLACKI << "Bureaucrat: Copy constructor called." << RESET << std::endl;
-	*this = src;
 }
 
 Bureaucrat&	Bureaucrat::operator=( Bureaucrat const& rhs )
 {
 	std::cout << BLACKI << "Bureaucrat: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-		this->_grade = rhs._grade;
+	{
+		this->~Bureaucrat();
+		new (this) Bureaucrat(rhs._name, rhs._grade);
+	}
 	return (*this);
 }
 
