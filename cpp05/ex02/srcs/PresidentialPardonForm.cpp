@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:35:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:45:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ PresidentialPardonForm::~PresidentialPardonForm( void )
 
 void	PresidentialPardonForm::execute( Bureaucrat const& executor ) const
 {
-	(void)executor;
-	// Informs that <target> has been pardoned by Zaphod Beeblebrox.
+	if (!this->_signed)
+		throw NotSignedException();
+	else if (executor.getGrade() > this->_gradeToExecute)
+		throw GradeTooLowException();
+	else
+		std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
