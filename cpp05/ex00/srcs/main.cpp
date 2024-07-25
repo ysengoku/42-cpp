@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 14:12:43 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:05:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,6 @@ void	constructorTest( int grade )
 	delete test;
 }
 
-void	constructorFailTest()
-{
-	std::cout << std::endl << CYAN << "====== Constructor fail test ======" << RESET << std::endl;
-}
-
-void	basicTest( void )
-{
-	std::cout << BLUE << "--- Basic test ---" << RESET << std::endl;
-	Bureaucrat	*bob;
-	try
-	{
-		bob = new Bureaucrat("Bob", 150);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;
-		return ;
-	}
-	std::cout << *bob << std::endl;
-	bob->gradeUp();
-	std::cout << *bob << std::endl;
-	bob->gradeDown();
-	std::cout << *bob << std::endl;
-	delete bob;
-}
-
 void	gardeUpDownTest( void )
 {
 	std::cout << BLUE << "--- Basic test ---" << RESET << std::endl;
@@ -78,6 +52,24 @@ void	gardeUpDownTest( void )
 		bob->gradeDown();
 		std::cout << *bob << std::endl;
 		delete bob;
+	}
+	{
+		Bureaucrat	*will;
+		try
+		{
+			will = new Bureaucrat("Will", 1);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << RED << e.what() << RESET << std::endl;
+			return ;
+		}
+		std::cout << *will << std::endl;
+		will->gradeDown();
+		std::cout << *will << std::endl;
+		will->gradeUp();
+		std::cout << *will << std::endl;
+		delete will;
 	}
 	std::cout << BLUE << "--- Exception test ---" << RESET << std::endl;
 	{
