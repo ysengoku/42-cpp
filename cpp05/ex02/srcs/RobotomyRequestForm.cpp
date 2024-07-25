@@ -31,7 +31,7 @@ RobotomyRequestForm::RobotomyRequestForm( std::string const& target )
 }
 
 RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm const& src )
-	: AForm(src)
+	: AForm(src), _target(src._target)
 {
 	std::cout << BLACKI << "RobotomyRequestForm: Copy constructor called" << RESET << std::endl;
 }
@@ -41,8 +41,8 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=( RobotomyRequestForm const& 
 	std::cout << BLACKI << "RobotomyRequestForm: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 	{
-		this->~RobotomyRequestForm();
-		new (this) RobotomyRequestForm(rhs);
+		this->_signed = rhs._signed;
+		this->_target = rhs._target;
 	}
 	return (*this);
 }
@@ -52,6 +52,14 @@ RobotomyRequestForm::~RobotomyRequestForm( void )
 	std::cout << BLACKI << "RobotomyRequestForm: Destructor called" << RESET << std::endl;
 }
 
+/*============================================================================*/
+/*       Accesors                                                             */
+/*============================================================================*/
+
+std::string const&	RobotomyRequestForm::getTarget( void )
+{
+	return (this->_target);
+}
 /*============================================================================*/
 /*       Public member functions                                              */
 /*============================================================================*/

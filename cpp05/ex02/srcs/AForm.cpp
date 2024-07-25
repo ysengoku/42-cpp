@@ -48,11 +48,7 @@ AForm&	AForm::operator=( AForm const& rhs )
 {
 	std::cout << BLACKI << "AForm: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-	{
-		// this->~AForm();
-		// new (this) AForm(rhs._name, rhs._gradeToSign, rhs._gradeToExecute);
 		this->_signed = rhs._signed;
-	}
 	return (*this);
 }
 
