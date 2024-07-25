@@ -21,38 +21,57 @@ void	constructorsTests( void )
 	std::cout << std::endl << CYAN << "====== Constructors tests =====" << RESET << std::endl;
 	{
 		std::cout << BLUE << "+++ Shrubbery Creation Form +++" << std::endl;
+		AForm	*original;
+		original = new ShrubberyCreationForm("TEST");
+		std::cout << *original << std::endl << "Target: " << dynamic_cast<ShrubberyCreationForm*>(original)->getTarget() << std::endl;
+
 		std::cout << "Copy constructor test" << RESET << std::endl;
-		ShrubberyCreationForm	original("target");
-		ShrubberyCreationForm	copy1(original);
-		std::cout << copy1 << std::endl;
+		ShrubberyCreationForm	copy1(*dynamic_cast<ShrubberyCreationForm*>(original));
+		std::cout << copy1 << std::endl << "Target: " << copy1.getTarget() << std::endl;
+
 		std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
 		ShrubberyCreationForm copy2;
-		copy2 = original;
-		std::cout << copy2 << std::endl;
+		copy2 = *dynamic_cast<ShrubberyCreationForm*>(original);
+		std::cout << copy2 << std::endl << "Target: " << copy2.getTarget() << std::endl;
+		delete original;
 	}
 	{
-		std::cout << BLUE << "+++ Presidential Pardon Form +++" << std::endl;
+		std::cout << std::endl << BLUE << "+++ Robotomy Request Form +++" << std::endl;
+		AForm	*original;
+		original = new RobotomyRequestForm("TEST");
+		std::cout << *original << std::endl << "Target: " << dynamic_cast<RobotomyRequestForm*>(original)->getTarget() << std::endl; ;
+		std::cout << "Copy constructor test" << RESET << std::endl; 
+		RobotomyRequestForm	copy1(*dynamic_cast<RobotomyRequestForm*>(original));
+		std::cout << copy1 << std::endl << "Target: " << copy1.getTarget() << std::endl;
+		std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
+		RobotomyRequestForm copy2;
+		copy2 = *dynamic_cast<RobotomyRequestForm*>(original);
+		std::cout << copy2 << std::endl << "Target: " << copy2.getTarget() << std::endl;
+		delete original;
+	}
+	{
+		std::cout << std::endl << BLUE << "+++ Presidential Pardon Form +++" << std::endl;
+		AForm	*original;
+		original = new PresidentialPardonForm("TEST");
+		std::cout << *original << std::endl << "Target: " << dynamic_cast<PresidentialPardonForm*>(original)->getTarget() << std::endl; ;
 		std::cout << "Copy constructor test" << RESET << std::endl;
-		// AForm	*original;
-		// original = new PresidentialPardonForm("target");
-		// PresidentialPardonForm	copy1(*original);
-		PresidentialPardonForm	original("target");
-		PresidentialPardonForm	copy1(original);
-		std::cout << copy1 << std::endl;
+		PresidentialPardonForm	copy1(*dynamic_cast<PresidentialPardonForm*>(original));
+		std::cout << copy1 << std::endl << "Target: " << copy1.getTarget() << std::endl;
 		std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
 		PresidentialPardonForm copy2;
-		copy2 = original;
-		std::cout << copy2 << std::endl;
+		copy2 = *dynamic_cast<PresidentialPardonForm*>(original);
+		std::cout << copy2 << std::endl << "Target: " << copy2.getTarget() << std::endl;
+		delete original;
 	}
 }
 
 void	shrubberyCreationFormTest( std::string target, int grade )
 {
 	std::cout << std::endl << CYAN << "====== Shrubbery Creation Form =====" << RESET << std::endl;
-	AForm		*shrubberyCreationForm;
-	shrubberyCreationForm = new ShrubberyCreationForm(target);
-	std::cout << *shrubberyCreationForm << std::endl;
+	AForm		*form;
 	Bureaucrat	*bureaucrat;
+	form = new ShrubberyCreationForm(target);
+	std::cout << *form << std::endl;
 	try
 	{
 		bureaucrat = new Bureaucrat("Bob", grade);
@@ -65,24 +84,59 @@ void	shrubberyCreationFormTest( std::string target, int grade )
 	std::cout << *bureaucrat << std::endl;
 	try
 	{
-		bureaucrat->signForm(*shrubberyCreationForm);
+		bureaucrat->signForm(*form);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << e.what() << RESET << std::endl;
 	}
-	std::cout << *shrubberyCreationForm << std::endl;
-	bureaucrat->executeForm(*shrubberyCreationForm);
-	delete shrubberyCreationForm;
+	std::cout << *form << std::endl;
+	bureaucrat->executeForm(*form);
+	delete form;
+	delete bureaucrat;
+}
+
+void	presidentialPardonFormTest( std::string const& target, int grade )
+{
+	std::cout << std::endl << CYAN << "====== Presidential Pardon Form =====" << RESET << std::endl;
+	AForm		*form;
+	Bureaucrat	*bureaucrat;
+	form = new PresidentialPardonForm(target);
+	std::cout << *form << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Sam", grade);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+		return ;
+	}
+	std::cout << *bureaucrat << std::endl;
+	try
+	{
+		bureaucrat->signForm(*form);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << std::endl;
+	}
+	std::cout << *form << std::endl;
+	bureaucrat->executeForm(*form);
+	delete form;
 	delete bureaucrat;
 }
 
 int	main( void )
 {
 	constructorsTests();
+
 	shrubberyCreationFormTest("entrance", 50);
 	shrubberyCreationFormTest("garden", 140);
 	shrubberyCreationFormTest("garden", 148);
 
+	presidentialPardonFormTest("Marvin", 2);
+	presidentialPardonFormTest("Marvin", 10);
+	presidentialPardonFormTest("Marvin", 100);
 	return (0);
 }

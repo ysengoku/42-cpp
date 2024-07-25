@@ -25,10 +25,12 @@ class	ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm& operator=( ShrubberyCreationForm const& rhs );
 		~ShrubberyCreationForm( void );
 
+        std::string const&    getTarget( void );
+
 		void	execute( Bureaucrat const& executor ) const;
 
 	private:
-		std::string		_target;
+		std::string	_target;
 };
 
 # define TREE "\n\

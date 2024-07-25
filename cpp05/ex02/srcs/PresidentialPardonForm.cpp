@@ -31,7 +31,7 @@ PresidentialPardonForm::PresidentialPardonForm( std::string const& target )
 }
 
 PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const& src )
-	: AForm(src)
+	: AForm(src), _target(src._target)
 {
 	std::cout << BLACKI << "PresidentialPardonForm: Copy constructor called" << RESET << std::endl;
 }
@@ -41,8 +41,8 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( PresidentialPardonFor
 	std::cout << BLACKI << "PresidentialPardonForm: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 	{
-		this->~PresidentialPardonForm();
-		new (this) PresidentialPardonForm(rhs);
+		this->_signed = rhs._signed;
+		this->_target = rhs._target;
 	}
 	return (*this);
 }
@@ -50,6 +50,15 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( PresidentialPardonFor
 PresidentialPardonForm::~PresidentialPardonForm( void )
 {
 	std::cout << BLACKI << "PresidentialPardonForm: Destructor called" << RESET << std::endl;
+}
+
+/*============================================================================*/
+/*       Accesors                                                             */
+/*============================================================================*/
+
+std::string const&	PresidentialPardonForm::getTarget( void )
+{
+	return (this->_target);
 }
 
 /*============================================================================*/

@@ -31,7 +31,7 @@ ShrubberyCreationForm::ShrubberyCreationForm( std::string const& target )
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm const& src )
-	: AForm(src)
+	: AForm(src), _target(src._target)
 {
 	std::cout << BLACKI << "ShrubberyCreationForm: Copy constructor called" << RESET << std::endl;
 }
@@ -41,8 +41,8 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=( ShrubberyCreationForm c
 	std::cout << BLACKI << "ShrubberyCreationForm: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 	{
-		this->~ShrubberyCreationForm();
-		new (this) ShrubberyCreationForm(rhs);
+		this->_signed = rhs._signed;
+		this->_target = rhs._target;
 	}
 	return (*this);
 }
@@ -50,6 +50,15 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=( ShrubberyCreationForm c
 ShrubberyCreationForm::~ShrubberyCreationForm( void )
 {
 	std::cout << BLACKI << "ShrubberyCreationForm: Destructor called" << RESET << std::endl;
+}
+
+/*============================================================================*/
+/*       Accesors                                                             */
+/*============================================================================*/
+
+std::string const&	ShrubberyCreationForm::getTarget( void )
+{
+	return (this->_target);
 }
 
 /*============================================================================*/
