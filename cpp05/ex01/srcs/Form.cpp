@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:29:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 09:00:16 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:37:45 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,22 @@ Form::Form( std::string name, int gradeToSign, int gradeToExecute )
 
 Form::Form( Form const& src )
 	: _name(src._name),
+	_signed(src._signed),
 	_gradeToSign(src._gradeToSign),
 	_gradeToExecute(src._gradeToExecute)
 {
 	std::cout << BLACKI << "Form: Copy constructor called." << RESET << std::endl;
-	*this = src;
 }
 
 Form&	Form::operator=( Form const& rhs )
 {
 	std::cout << BLACKI << "Form: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
+	{
+		this->~Form();
+		new (this) Form(rhs._name, rhs._gradeToSign, rhs._gradeToExecute);
 		this->_signed = rhs._signed;
+	}
 	return (*this);
 }
 
