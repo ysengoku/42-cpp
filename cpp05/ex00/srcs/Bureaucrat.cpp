@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 13:12:18 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:59:48 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	Bureaucrat::gradeDown( void )
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("The grade cannot be heigher than 1.");
+	return ("The grade cannot be higher than 1.");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()

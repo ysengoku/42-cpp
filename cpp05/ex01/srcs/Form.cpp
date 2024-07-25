@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:29:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 15:20:10 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:00:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,12 @@ Form::~Form( void )
 
 std::ostream&	operator<<( std::ostream& os, Form const& form )
 {
-	os << "[Form] " << form.getName() << std::endl \
-	<< "Signature status: " << form.getSignatureStatus() << std::endl \
-	<< "Grade required to sign: " << form.getGradeToSign() << std::endl \
-	<< "Grade required to execute: " << form.getGradeToExecute() << std::endl;
+	os << "---------------------------------" << std::endl \
+	<< " Form Name: " << form.getName() << std::endl \
+	<< " Signature status: " << form.getSignatureStatus() << std::endl \
+	<< " Grade required to sign: " << form.getGradeToSign() << std::endl \
+	<< " Grade required to execute: " << form.getGradeToExecute() << std::endl \
+	<< "---------------------------------";
 	return (os);
 }
 
@@ -94,6 +96,11 @@ bool	Form::getSignatureStatus( void ) const
 	return (this->_signed);
 }
 
+void	Form::setSignatureStatus(bool status)
+{
+	if (this->_signed != status)
+		this->_signed = status;
+}
 
 /*============================================================================*/
 /*       Public member functions                                              */
@@ -113,10 +120,10 @@ void	Form::beSigned( Bureaucrat const& bureaucrat )
 
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return ("The grade cannot be heigher than 1.");
+	return ("The grade is too high.");
 }
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return ("The grade is not enough heigh.");
+	return ("The grade is not high enough.");
 }
