@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 15:32:32 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:06:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	Bureaucrat::signForm( Form& form )
 		<< e.what() << RESET << std::endl;
 		return ;
 	}
-	std::cout << this->_name << " signed " << form.getName() << "." << std::endl;
+	std::cout << this->_name << " signed " << form.getName() << " 🖊️" << std::endl;
 }
 
 /*============================================================================*/
@@ -137,7 +137,7 @@ void	Bureaucrat::signForm( Form& form )
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("The grade cannot be heigher than 1.");
+	return ("The grade cannot be higher than 1.");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()

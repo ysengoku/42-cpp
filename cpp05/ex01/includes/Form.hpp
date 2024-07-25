@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/24 15:20:18 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:47:31 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Form
 		bool				getSignatureStatus( void ) const;
 		int const& 			getGradeToSign( void ) const;
 		int	const&			getGradeToExecute( void ) const;
+		void				setSignatureStatus(bool status);
 		
 		void				beSigned( Bureaucrat const& bureaucrat );
 
