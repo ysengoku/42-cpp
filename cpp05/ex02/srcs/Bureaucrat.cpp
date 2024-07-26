@@ -19,13 +19,13 @@
 
 Bureaucrat::Bureaucrat( void )
 {
-	std::cout << BLACKI << "Bureaucrat: Default constructor called." << RESET << std::endl; 	
+	std::cout << BLACKI << "Bureaucrat: Default constructor called" << RESET << std::endl; 	
 }
 
 Bureaucrat::Bureaucrat( std::string const name, int const grade )
 	: _name(name), _grade(grade)
 {
-	std::cout << BLACKI << "Bureaucrat: Constructor called." << RESET << std::endl;
+	std::cout << BLACKI << "Bureaucrat: Constructor called" << RESET << std::endl;
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
@@ -35,12 +35,12 @@ Bureaucrat::Bureaucrat( std::string const name, int const grade )
 Bureaucrat::Bureaucrat( Bureaucrat const& src )
 	: _name(src._name), _grade(src._grade)
 {
-	std::cout << BLACKI << "Bureaucrat: Copy constructor called." << RESET << std::endl;
+	std::cout << BLACKI << "Bureaucrat: Copy constructor called" << RESET << std::endl;
 }
 
 Bureaucrat&	Bureaucrat::operator=( Bureaucrat const& rhs )
 {
-	std::cout << BLACKI << "Bureaucrat: Copy assignment operator called." << RESET << std::endl;
+	std::cout << BLACKI << "Bureaucrat: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 	{
 		this->~Bureaucrat();
@@ -51,7 +51,7 @@ Bureaucrat&	Bureaucrat::operator=( Bureaucrat const& rhs )
 
 Bureaucrat::~Bureaucrat( void )
 {
-	std::cout << BLACKI << "Bureaucrat: Destructor called." << RESET << std::endl; 
+	std::cout << BLACKI << "Bureaucrat: Destructor called" << RESET << std::endl; 
 }
 
 /*============================================================================*/
@@ -60,7 +60,7 @@ Bureaucrat::~Bureaucrat( void )
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
+	os << "▶︎ " << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return (os);
 }
 
@@ -131,7 +131,7 @@ void	Bureaucrat::signForm( AForm& form )
 		<< e.what() << RESET << std::endl;
 		return ;
 	}
-	std::cout << this->_name << " signed " << form.getName() << " 🖊️" << std::endl;
+	std::cout << this->_name << " signed " << form.getName() << "." << std::endl;
 }
 
 void	Bureaucrat::executeForm( AForm const& form )
@@ -146,7 +146,7 @@ void	Bureaucrat::executeForm( AForm const& form )
 		<< e.what() << RESET << std::endl;
 		return ;
 	}
-	std::cout << this->_name << " executed " << form.getName() << std::endl;
+	std::cout << this->_name << " executed " << form.getName() << "."<< std::endl;
 }
 
 /*============================================================================*/

@@ -19,7 +19,7 @@
 AForm::AForm( void )
 	: _signed(false), _gradeToSign(1), _gradeToExecute(1)
 {
-	std::cout << BLACKI << "AForm: Default constructor called." << RESET << std::endl;
+	std::cout << BLACKI << "AForm: Default constructor called" << RESET << std::endl;
 }
 
 AForm::AForm( std::string name, int gradeToSign, int gradeToExecute )
@@ -28,7 +28,7 @@ AForm::AForm( std::string name, int gradeToSign, int gradeToExecute )
 	_gradeToSign(gradeToSign),
 	_gradeToExecute(gradeToExecute)
 {
-	std::cout << BLACKI << "AForm: Constructor called." << RESET << std::endl;
+	std::cout << BLACKI << "AForm: Constructor called" << RESET << std::endl;
 	if (gradeToSign < 1 || gradeToExecute < 1)
 		throw AForm::GradeTooHighException();
 	if (gradeToSign > 150 || gradeToExecute > 150)
@@ -41,12 +41,12 @@ AForm::AForm( AForm const& src )
 	_gradeToSign(src._gradeToSign),
 	_gradeToExecute(src._gradeToExecute)
 {
-	std::cout << BLACKI << "AForm: Copy constructor called." << RESET << std::endl;
+	std::cout << BLACKI << "AForm: Copy constructor called" << RESET << std::endl;
 }
 
 AForm&	AForm::operator=( AForm const& rhs )
 {
-	std::cout << BLACKI << "AForm: Copy assignment operator called." << RESET << std::endl;
+	std::cout << BLACKI << "AForm: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
 		this->_signed = rhs._signed;
 	return (*this);
@@ -54,7 +54,7 @@ AForm&	AForm::operator=( AForm const& rhs )
 
 AForm::~AForm( void )
 {
-	std::cout << BLACKI << "AForm: Detructor called." << RESET << std::endl;
+	std::cout << BLACKI << "AForm: Detructor called" << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -63,12 +63,10 @@ AForm::~AForm( void )
 
 std::ostream&	operator<<( std::ostream& os, AForm const& form )
 {
-	os << "--------------------------------------" << std::endl \
-	<< " Form Name: " << form.getName() << std::endl \
-	<< " Signature status: " << form.getSignatureStatus() << std::endl \
-	<< " Grade required to sign: " << form.getGradeToSign() << std::endl \
-	<< " Grade required to execute: " << form.getGradeToExecute() << std::endl \
-	<< "--------------------------------------";
+	os << "▶︎ Form Name: " << form.getName() << std::endl \
+	<< "▶︎ Signature status: " << form.getSignatureStatus() << std::endl \
+	<< "▶︎ Grade required to sign: " << form.getGradeToSign() << std::endl \
+	<< "▶︎ Grade required to execute: " << form.getGradeToExecute();
 	return (os);
 }
 
