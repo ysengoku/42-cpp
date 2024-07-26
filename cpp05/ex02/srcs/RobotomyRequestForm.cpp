@@ -66,8 +66,17 @@ std::string const&	RobotomyRequestForm::getTarget( void )
 
 void	RobotomyRequestForm::execute( Bureaucrat const& executor ) const
 {
-	(void)executor;
-	// Makes some drilling noises. 
-	// Then, informs that <target> has been robotomized successfully 50% of the time.
-	// Otherwise, informs that the robotomy failed.
+	if (!this->_signed)
+		throw RobotomyRequestForm::NotSignedException();
+	else if (executor.getGrade() > this->_gradeToExecute)
+		throw RobotomyRequestForm::GradeTooLowException();
+	else
+	{
+		std::cout << "VRRRRRRRRRR" << std::endl;
+		int randomNum = std::rand();
+		if (randomNum % 2 == 0)
+			std::cout << this->_target << " has been robotomized successfully." << std::endl;
+		else
+			std::cout << "Robotomy failed." << std::endl;
+	}
 }
