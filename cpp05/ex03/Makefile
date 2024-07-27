@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Forms
+NAME = Intern
 
 vpath %.cpp srcs
 FILES = main \
@@ -18,7 +18,8 @@ FILES = main \
 		AForm	\
 		ShrubberyCreationForm	\
 		RobotomyRequestForm	\
-		PresidentialPardonForm
+		PresidentialPardonForm	\
+		Intern
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
@@ -26,7 +27,8 @@ HEADER_FILEES = Bureaucrat	\
 				AForm	\
 				ShrubberyCreationForm	\
 				RobotomyRequestForm	\
-				PresidentialPardonForm
+				PresidentialPardonForm	\
+				Intern
 HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
 
 OBJS_DIR = .objs/
