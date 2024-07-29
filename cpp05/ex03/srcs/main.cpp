@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:58:07 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:47:46 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	formTest( std::string formName, std::string target, int bureaucratGrade, In
 	bureaucrat->executeForm(*form);
 	delete form;
 	delete bureaucrat;
-	std::cout << std::endl;
 }
 
 int	main( void )
@@ -73,6 +72,7 @@ int	main( void )
 	formTest("presidential pardon", "Marvin", 2, intern);
 	formTest("presidential pardon form", "Marvin", 2, intern);
 
+	formTest("invalide form name", "Target", 100, intern);
 	formTest("", "Target", 100, intern);
 	return (0);
 }
