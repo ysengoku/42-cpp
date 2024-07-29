@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 08:37:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 09:30:55 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	constructorsTests( void )
 		std::cout << BLUE << "Copy constructor test" << RESET << std::endl;
 		ShrubberyCreationForm	copy1(*dynamic_cast<ShrubberyCreationForm*>(original));
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
-		copy1.setSignatureStatus(true);
+		Bureaucrat	bureaucrat("BOB", 1);
+		copy1.beSigned(bureaucrat);
 		ShrubberyCreationForm copy2(copy1);
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
 		std::cout << copy2 << std::endl << "▶︎ Target: " << copy2.getTarget() << std::endl;
@@ -43,7 +44,8 @@ void	constructorsTests( void )
 		std::cout << BLUE << "Copy constructor test" << RESET << std::endl; 
 		RobotomyRequestForm	copy1(*dynamic_cast<RobotomyRequestForm*>(original));
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
-		copy1.setSignatureStatus(true);
+		Bureaucrat	bureaucrat("BOB", 1);
+		copy1.beSigned(bureaucrat);
 		RobotomyRequestForm copy2(copy1);
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
 		std::cout << copy2 << std::endl << "▶︎ Target: " << copy2.getTarget() << std::endl;
@@ -57,7 +59,8 @@ void	constructorsTests( void )
 		std::cout << BLUE << "Copy constructor test" << RESET << std::endl;
 		PresidentialPardonForm	copy1(*dynamic_cast<PresidentialPardonForm*>(original));
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
-		copy1.setSignatureStatus(true);
+		Bureaucrat	bureaucrat("BOB", 1);
+		copy1.beSigned(bureaucrat);
 		PresidentialPardonForm copy2(copy1);
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
 		std::cout << copy2 << std::endl << "▶︎ Target: " << copy2.getTarget() << std::endl;
