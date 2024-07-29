@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 11:48:40 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:15:44 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ AForm*	Intern::makeForm( std::string const& formName, std::string const& target 
 {
 	std::string	formNameInLower = parseFormName(formName);
 	std::string	names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-
+	AForm*	(Intern::*functions[3])(std::string const&) = {
+		&Intern::makeShrubberyCreationForm, 
+		&Intern::makeRobotomyRequestForm, 
+		&Intern::makePresidentialPardonForm};
 	size_t	i;
 	for (i = 0; i < 3; i++)
 	{
@@ -73,12 +76,29 @@ AForm*	Intern::makeForm( std::string const& formName, std::string const& target 
 	switch(i)
 	{
 		case 0:
-			return (new ShrubberyCreationForm(target));
 		case 1:
-			return (new RobotomyRequestForm(target));
 		case 2:
-			return (new PresidentialPardonForm(target));
+			return (this->*(functions[i]))(target);
 		default:
 			throw AForm::InvalidNameException();
 	}
+}
+
+/*============================================================================*/
+/*       Private member functions                                              */
+/*============================================================================*/
+
+AForm*	Intern::makeShrubberyCreationForm( std::string const& target )
+{
+	return (new ShrubberyCreationForm(target));
+}	
+
+AForm*	Intern::makeRobotomyRequestForm( std::string const& target )
+{
+	return (new RobotomyRequestForm(target));
+}
+
+AForm*	Intern::makePresidentialPardonForm( std::string const& target )
+{
+	return (new PresidentialPardonForm(target));
 }
