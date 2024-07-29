@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.cpp                                          :+:      :+:    :+:  */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 09:31:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:39:12 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ Intern::Intern( Intern const& src )
 
 Intern& Intern::operator=( Intern const& rhs )
 {
-	(void)rhs;
 	std::cout << BLACKI << "Intern: Copy assignment operator called" << RESET << std::endl;
+	(void)rhs;
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:58:07 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:37:54 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ void	constructorsTests( void )
 		std::cout << BLUE << "Copy constructor test" << RESET << std::endl;
 		ShrubberyCreationForm	copy1(*dynamic_cast<ShrubberyCreationForm*>(original));
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
-
-		std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
-		ShrubberyCreationForm copy2;
-		copy2 = *dynamic_cast<ShrubberyCreationForm*>(original);
+		copy1.setSignatureStatus(true);
+		ShrubberyCreationForm copy2(copy1);
+		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
 		std::cout << copy2 << std::endl << "▶︎ Target: " << copy2.getTarget() << std::endl;
 		delete original;
 	}
@@ -44,9 +43,9 @@ void	constructorsTests( void )
 		std::cout << BLUE << "Copy constructor test" << RESET << std::endl; 
 		RobotomyRequestForm	copy1(*dynamic_cast<RobotomyRequestForm*>(original));
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
-		std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
-		RobotomyRequestForm copy2;
-		copy2 = *dynamic_cast<RobotomyRequestForm*>(original);
+		copy1.setSignatureStatus(true);
+		RobotomyRequestForm copy2(copy1);
+		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
 		std::cout << copy2 << std::endl << "▶︎ Target: " << copy2.getTarget() << std::endl;
 		delete original;
 	}
@@ -58,9 +57,9 @@ void	constructorsTests( void )
 		std::cout << BLUE << "Copy constructor test" << RESET << std::endl;
 		PresidentialPardonForm	copy1(*dynamic_cast<PresidentialPardonForm*>(original));
 		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
-		std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
-		PresidentialPardonForm copy2;
-		copy2 = *dynamic_cast<PresidentialPardonForm*>(original);
+		copy1.setSignatureStatus(true);
+		PresidentialPardonForm copy2(copy1);
+		std::cout << copy1 << std::endl << "▶︎ Target: " << copy1.getTarget() << std::endl;
 		std::cout << copy2 << std::endl << "▶︎ Target: " << copy2.getTarget() << std::endl;
 		delete original;
 	}
