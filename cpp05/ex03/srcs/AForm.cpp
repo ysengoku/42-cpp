@@ -133,5 +133,5 @@ const char*	AForm::NotSignedException::what() const throw()
 
 const char*	AForm::InvalidNameException::what() const throw()
 {
-	return ("Invalide form name");
+	return ("The requested form does not exist. Please verify the form name.");
 }
