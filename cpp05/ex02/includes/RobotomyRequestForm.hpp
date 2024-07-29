@@ -6,13 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:50 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:10:17 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:06:58 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
+# include <cstdlib>
 # include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
