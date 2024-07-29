@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:47 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 10:03:30 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:11:41 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 class PresidentialPardonForm : public AForm
 {
 	public:
-		PresidentialPardonForm( void );
 		PresidentialPardonForm( std::string const& target );
 		PresidentialPardonForm( PresidentialPardonForm const& src );
 		~PresidentialPardonForm( void );
@@ -30,6 +29,7 @@ class PresidentialPardonForm : public AForm
 	private:
 		const std::string _target;
 		
+		PresidentialPardonForm( void );
 		PresidentialPardonForm& operator=( PresidentialPardonForm const& rhs );
 };
 

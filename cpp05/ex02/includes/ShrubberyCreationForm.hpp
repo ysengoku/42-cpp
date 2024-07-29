@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 10:06:55 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:11:53 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 class	ShrubberyCreationForm : public AForm
 {
 	public:
-		ShrubberyCreationForm( void );
 		ShrubberyCreationForm( std::string const& target );
 		ShrubberyCreationForm( ShrubberyCreationForm const& src );
 		~ShrubberyCreationForm( void );
@@ -31,6 +30,7 @@ class	ShrubberyCreationForm : public AForm
 	private:
 		const std::string	_target;
         
+		ShrubberyCreationForm( void );
 		ShrubberyCreationForm& operator=( ShrubberyCreationForm const& rhs );
 };
 
