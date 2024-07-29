@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:45:34 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:04:03 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( PresidentialPardonFor
 {
 	std::cout << BLACKI << "PresidentialPardonForm: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
-	{
 		this->_signed = rhs._signed;
-		this->_target = rhs._target;
-	}
 	return (*this);
 }
 

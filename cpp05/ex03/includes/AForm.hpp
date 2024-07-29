@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAForm.hpp                                          :+:      :+:    :+:  */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 09:31:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:14:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,29 @@ class AForm
 			virtual const char* what() const throw();
 		};
 
-	protected:
-		AForm& operator=( AForm const& rhs );
+		class	GradeTooHighException : public std::exception
+		{
+			virtual const char*	what() const throw();
+		};
 
+		class	GradeTooLowException : public std::exception
+		{
+			virtual const char*	what() const throw();
+		};
+	
+		class	NotSignedException : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
+	
+	protected:
 		const std::string	_name;
 		bool				_signed;
 		const int			_gradeToSign;
 		const int			_gradeToExecute;
 
-	class	GradeTooHighException : public std::exception
-	{
-		virtual const char*	what() const throw();
-	};
-
-	class	GradeTooLowException : public std::exception
-	{
-		virtual const char*	what() const throw();
-	};
-	
-	class	NotSignedException : public std::exception
-	{
-		virtual const char* what() const throw();
-	};
-
+	private:
+		AForm& operator=( AForm const& rhs );
 };
 
 std::ostream&	operator<<(std::ostream& os, AForm const& Aform);

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:10 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:17:44 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class	ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm( void );
 		ShrubberyCreationForm( std::string const& target );
 		ShrubberyCreationForm( ShrubberyCreationForm const& src );
-		ShrubberyCreationForm& operator=( ShrubberyCreationForm const& rhs );
 		~ShrubberyCreationForm( void );
 
         std::string const&    getTarget( void );
@@ -30,7 +29,9 @@ class	ShrubberyCreationForm : public AForm
 		void	execute( Bureaucrat const& executor ) const;
 
 	private:
-		std::string	_target;
+		const std::string	_target;
+        
+		ShrubberyCreationForm& operator=( ShrubberyCreationForm const& rhs );
 };
 
 # define TREE "\n\
