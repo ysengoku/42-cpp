@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 10:02:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:11:03 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Bureaucrat;
 class Form
 {
 	public:
-		Form( void );
 		Form( std::string name, int gradeToSign, int gradeToExecute);
 		Form( Form const& src );
 		~Form( void );
@@ -42,6 +41,7 @@ class Form
 		const int			_gradeToSign;
 		const int			_gradeToExecute;
 
+		Form( void );
 		Form& operator=( Form const& rhs );
 		
 	class	GradeTooHighException : public std::exception

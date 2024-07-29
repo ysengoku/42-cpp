@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:50 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 10:06:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:11:48 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 class RobotomyRequestForm : public AForm
 {
 	public:
-		RobotomyRequestForm( void );
 		RobotomyRequestForm( std::string const& target );
 		RobotomyRequestForm( RobotomyRequestForm const& src );
 		~RobotomyRequestForm( void );
@@ -31,6 +30,7 @@ class RobotomyRequestForm : public AForm
 	private:
 		const std::string _target;
 		
+		RobotomyRequestForm( void );
 		RobotomyRequestForm& operator=( RobotomyRequestForm const& rhs );
 };
 
