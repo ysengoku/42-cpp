@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 10:47:46 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:56:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,16 @@ int	main( void )
 
 	formTest("Shrubbery Creation", "Garden", 100, intern);
 	formTest("Shrubbery creation Form", "Garden", 100, intern);
+	formTest("Shrubbery ccreation Form", "Garden", 100, intern);
 
 	formTest("Robotomy Request", "Cyborg", 42, intern);
 	formTest("ROBOTOMY REQUEST FORM", "Cyborg", 42, intern);
+	formTest("Robotomy Requestt", "Cyborg", 42, intern);
 
 	formTest("Presidential Pardon", "Marvin", 2, intern);
 	formTest("presidential pardon", "Marvin", 2, intern);
 	formTest("presidential pardon form", "Marvin", 2, intern);
+	formTest("pPresidential Pardon", "Marvin", 2, intern);
 
 	formTest("invalide form name", "Target", 100, intern);
 	formTest("", "Target", 100, intern);
