@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                          :+:      :+:    :+:  */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 09:31:54 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:06:36 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ class Intern
 		~Intern( void );
 
 		AForm*	makeForm( std::string const& formName, std::string const& target );
+
+	private:
+		AForm*	makeShrubberyCreationForm( std::string const& target );
+		AForm*	makeRobotomyRequestForm( std::string const& target );
+		AForm*	makePresidentialPardonForm( std::string const& target );
 };
 
 #endif
