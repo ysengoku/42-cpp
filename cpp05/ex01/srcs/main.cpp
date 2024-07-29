@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 08:27:56 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 09:28:28 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	constructorTest( int gradeToSign, int gradeToExecute )
 	std::cout << BLUE << "Copy constructor test" << RESET << std::endl;
 	Form copy1(*test);
 	std::cout << copy1 << std::endl;
-	copy1.setSignatureStatus(true);
+	Bureaucrat	bureaucrat("BOB", 1);
+	copy1.beSigned(bureaucrat);
 	std::cout << copy1 << std::endl;
 	Form copy2(copy1);
 	std::cout << copy2 << std::endl;
