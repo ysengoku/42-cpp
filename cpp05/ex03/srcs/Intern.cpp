@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 08:39:12 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:48:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,25 @@ Intern::~Intern( void )
 /*       Public member functions                                              */
 /*============================================================================*/
 
-AForm*	Intern::makeForm( std::string const& formName, std::string const& target )
+std::string	parseFormName(std::string const& name)
 {
 	std::string	formNameInLower;
 	std::string	suffix = " form";
+	if (name.empty())
+		throw AForm::InvalidNameException();
+	for (size_t i = 0; i < name.length(); i++)
+		formNameInLower += tolower(name[i]);
+	if (name.length() > 5 && formNameInLower.substr(formNameInLower.length() - suffix.length()) == suffix)
+		formNameInLower = formNameInLower.substr(0, formNameInLower.length() - suffix.length());
+	return (formNameInLower);
+}
+
+AForm*	Intern::makeForm( std::string const& formName, std::string const& target )
+{
+	std::string	formNameInLower = parseFormName(formName);
 	std::string	names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 
-	if (formName.empty())
-		throw AForm::InvalidNameException();
-	for (unsigned int i = 0; i < formName.length(); i++)
-		formNameInLower += tolower(formName[i]);
-	if (formNameInLower.substr(formNameInLower.length() - suffix.length()) == suffix)
-		formNameInLower = formNameInLower.substr(0, formNameInLower.length() - suffix.length());
-	int	i;
+	size_t	i;
 	for (i = 0; i < 3; i++)
 	{
 		if (formNameInLower == names[i])
