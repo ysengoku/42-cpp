@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:59 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 10:28:34 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:20:30 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ void	constructorTest( int grade )
 	std::cout << BLUE << "Copy constructor test" << RESET << std::endl;
 	Bureaucrat copy1(*test);
 	std::cout << copy1 << std::endl;
-	std::cout << BLUE << "Copy assignment operator test" << RESET << std::endl;
-	Bureaucrat copy2;
-	copy2 = *test;
-	std::cout << copy2 << std::endl;
 	delete test;
 }
 
