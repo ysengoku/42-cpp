@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:29:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 10:37:45 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:18:23 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ Form&	Form::operator=( Form const& rhs )
 {
 	std::cout << BLACKI << "Form: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-	{
-		this->~Form();
-		new (this) Form(rhs._name, rhs._gradeToSign, rhs._gradeToExecute);
 		this->_signed = rhs._signed;
-	}
 	return (*this);
 }
 

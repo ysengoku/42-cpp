@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:02:56 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 10:29:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:17:56 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ Bureaucrat&	Bureaucrat::operator=( Bureaucrat const& rhs )
 {
 	std::cout << BLACKI << "Bureaucrat: Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs)
-	{
-		this->~Bureaucrat();
-		new (this) Bureaucrat(rhs._name, rhs._grade);
-	}
+		this->_grade = rhs._grade;
 	return (*this);
 }
 
