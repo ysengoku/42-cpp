@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:51:50 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 08:09:07 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:17:08 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm( void );
 		RobotomyRequestForm( std::string const& target );
 		RobotomyRequestForm( RobotomyRequestForm const& src );
-		RobotomyRequestForm& operator=( RobotomyRequestForm const& rhs );
 		~RobotomyRequestForm( void );
 
 		std::string const&	getTarget( void );
@@ -30,7 +29,9 @@ class RobotomyRequestForm : public AForm
 		void	execute( Bureaucrat const& executor ) const;
 
 	private:
-		std::string _target;
+		const std::string _target;
+		
+		RobotomyRequestForm& operator=( RobotomyRequestForm const& rhs );
 };
 
 #endif

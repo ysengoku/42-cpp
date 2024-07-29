@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:52:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 14:35:45 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:16:56 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=( RobotomyRequestForm const& 
 {
 	std::cout << BLACKI << "RobotomyRequestForm: Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs)
-	{
 		this->_signed = rhs._signed;
-		this->_target = rhs._target;
-	}
 	return (*this);
 }
 

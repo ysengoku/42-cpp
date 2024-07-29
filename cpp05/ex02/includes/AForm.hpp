@@ -37,28 +37,29 @@ class AForm
 		void				beSigned( Bureaucrat const& bureaucrat );
 		virtual void		execute( Bureaucrat const & executor ) const = 0;
 
-	protected:
-		AForm& operator=( AForm const& rhs );
+		class	GradeTooHighException : public std::exception
+		{
+			virtual const char*	what() const throw();
+		};
 
+		class	GradeTooLowException : public std::exception
+		{
+			virtual const char*	what() const throw();
+		};
+	
+		class	NotSignedException : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
+
+	protected:
 		const std::string	_name;
 		bool				_signed;
 		const int			_gradeToSign;
 		const int			_gradeToExecute;
 
-	class	GradeTooHighException : public std::exception
-	{
-		virtual const char*	what() const throw();
-	};
-
-	class	GradeTooLowException : public std::exception
-	{
-		virtual const char*	what() const throw();
-	};
-	
-	class	NotSignedException : public std::exception
-	{
-		virtual const char* what() const throw();
-	};
+	private:
+		AForm& operator=( AForm const& rhs );
 };
 
 std::ostream&	operator<<(std::ostream& os, AForm const& Aform);

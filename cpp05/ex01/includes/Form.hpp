@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:30:03 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/25 08:47:31 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:02:04 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ class Form
 		Form( void );
 		Form( std::string name, int gradeToSign, int gradeToExecute);
 		Form( Form const& src );
-		Form& operator=( Form const& rhs );
 		~Form( void );
 
 		std::string const&	getName( void ) const;
@@ -43,6 +42,8 @@ class Form
 		const int			_gradeToSign;
 		const int			_gradeToExecute;
 
+		Form& operator=( Form const& rhs );
+		
 	class	GradeTooHighException : public std::exception
 	{
 		virtual const char*	what() const throw();
