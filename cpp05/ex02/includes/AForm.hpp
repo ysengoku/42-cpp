@@ -23,6 +23,7 @@ class Bureaucrat;
 class AForm
 {
 	public:
+		AForm( void );
 		AForm( std::string name, int gradeToSign, int gradeToExecute);
 		AForm( AForm const& src );
 		virtual	~AForm( void );
@@ -58,7 +59,6 @@ class AForm
 		const int			_gradeToExecute;
 
 	private:
-		AForm( void );
 		AForm& operator=( AForm const& rhs );
 };
 

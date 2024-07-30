@@ -34,24 +34,24 @@ class Bureaucrat
 		void	gradeDown( void );
 		void	signForm( Form& form );
 
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+	
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
 	private:
 		const std::string	_name;
 		int					_grade;
 		
 		Bureaucrat( void );
 		Bureaucrat&	operator=( Bureaucrat const& rhs );
-
-	class GradeTooHighException : public std::exception
-	{
-		public:
-			virtual const char* what() const throw();
-	};
-	
-	class GradeTooLowException : public std::exception
-	{
-		public:
-			virtual const char* what() const throw();
-	};
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
