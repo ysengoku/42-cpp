@@ -20,6 +20,7 @@
 # include <cerrno>
 # include <cstdlib>
 # include <iomanip>
+# include "colors.hpp"
 
 class	ScalarConverter
 {
@@ -69,13 +70,11 @@ class	ScalarConverter
 
 std::ostream&	operator<<( std::ostream& os, ScalarConverter::Scalar const& scalar );
 
-# define RED "\033[31m"
-# define GREEN "\033[32m"
-# define YELLOW "\033[33m"
-# define BLUE  "\033[34m"
-# define MAGENTA "\033[35m"
-# define CYAN "\033[36m"
-# define GREY "\e[0;90m"
-# define RESET "\033[0m"
+# define NANF std::numeric_limits<float>::quiet_NaN()
+# define INFF std::numeric_limits<float>::infinity()
+# define NAN_DOUBLE std::numeric_limits<double>::quiet_NaN()
+# define INF_DOUBLE std::numeric_limits<double>::infinity()
+# define FLOAT_MAX std::numeric_limits<float>::max()
+# define FLOAT_LOWEST std::numeric_limits<float>::lowest()
 
 #endif

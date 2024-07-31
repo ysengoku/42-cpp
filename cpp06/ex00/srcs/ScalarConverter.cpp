@@ -89,20 +89,29 @@ bool	ScalarConverter::isInt( std::string const& literal, ScalarConverter::Scalar
 
 bool	ScalarConverter::isFloat( std::string const& literal, ScalarConverter::Scalar& scalar ) const
 {
-	if (literal[literal.length() - 1] != 'f')
-		return (false);
+	if (literal == "nanf")
+	{
+		scalar.floatValue = NANF;
+		return (true);
+	}
+	if (literal == "+inff")
+	{
+		scalar.floatValue = INFF;
+		return (true);
+	}
+	if (literal == "-inff")
+	{
+		scalar.floatValue = -INFF;
+		return (true);
+	}
 	errno = 0;
 	char	*end;
 	float	num;
 	double	tmp = std::strtod(literal.c_str(), &end);
-	if (*end == '\0' || (*(end + 1) != '\0' && *end != 'f')) // Need to fix the condition
+	if (*end != 'f' || *(end + 1) != '\0')
 		return (false);
-	const float	max_float = std::numeric_limits<float>::max();
-    const float	min_positive_float = std::numeric_limits<float>::min();
-    const float	lowest_float = std::numeric_limits<float>::lowest();
-    const float	neg_max_float = -std::numeric_limits<float>::max();
-	num = static_cast<float>(tmp); // Convert before check or after ?
-	if (errno == ERANGE || num > max_float) // Add more conditions
+	num = static_cast<float>(tmp);
+	if (errno == ERANGE || num > FLOAT_MAX || num < FLOAT_LOWEST)
 		return (false);
 	scalar.floatValue = num;
 	return (true);
@@ -110,12 +119,27 @@ bool	ScalarConverter::isFloat( std::string const& literal, ScalarConverter::Scal
 
 bool	ScalarConverter::isDouble( std::string const& literal, ScalarConverter::Scalar& scalar ) const
 {
+	if (literal == "nan")
+	{
+		scalar.doubleValue = NAN_DOUBLE;
+		return (true);
+	}
+	if (literal == "+inf")
+	{
+		scalar.doubleValue = INF_DOUBLE;
+		return (true);
+	}
+	if (literal == "-inf")
+	{
+		scalar.doubleValue = -INF_DOUBLE;
+		return (true);
+	}
 	errno = 0;
 	char	*end;
 	double	num = std::strtod(literal.c_str(), &end);
-	if (errno == ERANGE)
-		return (false);
 	if (*end != '\0')
+		return (false);
+	if (errno == ERANGE)
 		return (false);
 	scalar.doubleValue = num;
 	return (true);
