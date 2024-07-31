@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:23 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/29 13:39:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/31 09:51:58 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include <string>
 # include <iostream>
-# include <limits>
-# include <cmath>
+# include <climits>
+# include <cerrno>
+# include <cstdlib>
+# include <iomanip>
 
 class	ScalarConverter
 {
@@ -52,13 +54,12 @@ class	ScalarConverter
 		ScalarConverter& operator=( ScalarConverter const& rhs );
 		~ScalarConverter( void );
 
-		inputType	identifyType( std::string const& literal ) const;
-		bool		isChar( std::string const& literal ) const;
-		bool		isInt( std::string const& literal ) const;
-		bool		isFloat( std::string const& literal ) const;
-		bool		isDouble( std::string const& literal ) const;
+		inputType	identifyType( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
+		bool		isChar( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
+		bool		isInt( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
+		bool		isFloat( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
+		bool		isDouble( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
 
-		void	convertValues( std::string const& literal, ScalarConverter::Scalar &scalar ) const;
 		char	convertToChar( std::string const& literal )  const;
 		int		convertToInt( std::string const& literal )  const;
 		float	convertToFloat( std::string const& literal )  const;
