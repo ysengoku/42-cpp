@@ -6,7 +6,7 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 13:38:33 by yusengok          #+#    #+#              #
-#    Updated: 2024/07/29 13:39:02 by yusengok         ###   ########.fr        #
+#    Updated: 2024/07/31 11:04:45 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = convert
 
 vpath %.cpp srcs
 FILES = main \
-		Convert
+		ScalarConverter
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = Convert
+HEADER_FILEES = ScalarConverter
 HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
 
 OBJS_DIR = .objs/
