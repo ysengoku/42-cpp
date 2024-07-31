@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:27 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/31 10:46:43 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:55:22 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,17 @@ ScalarConverter::inputType	ScalarConverter::identifyType( std::string const& lit
 
 bool	ScalarConverter::isChar( std::string const& literal, ScalarConverter::Scalar& scalar ) const
 {
-	if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
-	{
-		scalar.charValue = literal[0];
-		return (true);
-	}
-	return (false);
+	if (literal.length() != 1 || !std::isprint(literal[0]) || std::isdigit(literal[0]))
+		return (false);
+	scalar.charValue = literal[0];
+	return (true);
 }
 
 bool	ScalarConverter::isInt( std::string const& literal, ScalarConverter::Scalar& scalar ) const
 {
 	errno = 0;
-	char*	end;
-	long	num;
-
-	num = std::strtol(literal.c_str(), &end, 10);
+	char	*end;
+	long	num = std::strtol(literal.c_str(), &end, 10);
 	if (*end != '\0')
 		return (false);
 	if (errno == ERANGE || num > INT_MAX || num < INT_MIN)
@@ -95,11 +91,34 @@ bool	ScalarConverter::isFloat( std::string const& literal, ScalarConverter::Scal
 {
 	if (literal[literal.length() - 1] != 'f')
 		return (false);
+	errno = 0;
+	char	*end;
+	float	num;
+	double	tmp = std::strtod(literal.c_str(), &end);
+	if (*end == '\0' || (*(end + 1) != '\0' && *end != 'f')) // Need to fix the condition
+		return (false);
+	const float	max_float = std::numeric_limits<float>::max();
+    const float	min_positive_float = std::numeric_limits<float>::min();
+    const float	lowest_float = std::numeric_limits<float>::lowest();
+    const float	neg_max_float = -std::numeric_limits<float>::max();
+	num = static_cast<float>(tmp); // Convert before check or after ?
+	if (errno == ERANGE || num > max_float) // Add more conditions
+		return (false);
+	scalar.floatValue = num;
+	return (true);
 }
 
 bool	ScalarConverter::isDouble( std::string const& literal, ScalarConverter::Scalar& scalar ) const
 {
-
+	errno = 0;
+	char	*end;
+	double	num = std::strtod(literal.c_str(), &end);
+	if (errno == ERANGE)
+		return (false);
+	if (*end != '\0')
+		return (false);
+	scalar.doubleValue = num;
+	return (true);
 }
 
 char	ScalarConverter::convertToChar( std::string const& literal ) const

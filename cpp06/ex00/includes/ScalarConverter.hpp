@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:23 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/31 09:51:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:38:58 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string>
 # include <iostream>
 # include <climits>
+# include <limits>
 # include <cerrno>
 # include <cstdlib>
 # include <iomanip>
