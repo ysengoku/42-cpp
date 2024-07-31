@@ -18,7 +18,8 @@ FILES = main \
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = ScalarConverter
+HEADER_FILEES = ScalarConverter	\
+				colors
 HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
 
 OBJS_DIR = .objs/
