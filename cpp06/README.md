@@ -1,5 +1,4 @@
-# CPP Module06 (On working)
-
+# CPP Module06
 ## ex00
 ### static_cast
 
