@@ -30,8 +30,6 @@ int	main(int argc, char **argv)
 ```
 ➜  ex00 git:(main) ✗ ./convert 123
 Converted value: 123
-➜  ex00 git:(main) ✗ ./convert 123abc
-Invalid argument
 ➜  ex00 git:(main) ✗ ./convert -123  
 Converted value: -123
 ➜  ex00 git:(main) ✗ ./convert +123
@@ -48,6 +46,8 @@ Converted value: 2147483647
 Converted value: 0
 ➜  ex00 git:(main) ✗ ./convert aaa
 Invalid argument
+➜  ex00 git:(main) ✗ ./convert 123abc
+Invalid argument
 ➜  ex00 git:(main) ✗ ./convert a123
 Invalid argument
 
@@ -60,33 +60,37 @@ We can use `double strtod(const char* str, char** str_end)` from `cstdlib`
 # define NAN_DOUBLE std::numeric_limits<double>::quiet_NaN()
 # define INF_DOUBLE std::numeric_limits<double>::infinity()
 
+// double max_double = std::numeric_limits<double>::max();
+// double min_double = std::numeric_limits<double>::min();
+// Maximum double value: 1.79769e+308
+// Minimum positive double value: 2.22507e-308
+
 int	main(int argc, char** argv)
 {
-    // double max_double = std::numeric_limits<double>::max();
-    // double min_double = std::numeric_limits<double>::min();
-    // std::cout << "Maximum double value: " << max_double << std::endl;
-    // std::cout << "Minimum positive double value: " << min_double << std::endl;
-
-    // Maximum double value: 1.79769e+308
-	// Minimum positive double value: 2.22507e-308
-
 	if (argc == 2)
 	{
-		if (literal == "nan")
-			scalar.doubleValue = NAN_DOUBLE;
-		else if (literal == "+inf")
-			scalar.doubleValue = INF_DOUBLE;
-		else if (literal == "-inf")
-			scalar.doubleValue = -INF_DOUBLE;
+		double num;
+		std::string input = static_cast<std::string>(argv[1]);
+		if (input == "nan")
+			num = NAN_DOUBLE;
+		else if (input == "+inf")
+			num = INF_DOUBLE;
+		else if (input == "-inf")
+			num = -INF_DOUBLE;
+		else if (input.find('.') == std::string::npos)
+		{
+			std::cout << "It's not double." << std::endl;
+			return 1;
+		}
 		else
 		{
     		errno = 0;
     		char *end;
 
-    		double num = std::strtod(argv[1].c_str(), &end);
+    		num = std::strtod(input.c_str(), &end);
     		if (*end != '\0')
     		{
-    			std::cout << "Invalid input" << std::endl;
+    			std::cout << "It's not double." << std::endl;
         		return 1;
     		}
     		if (errno == ERANGE)
@@ -95,15 +99,36 @@ int	main(int argc, char** argv)
         		return 1;
     		}    
 		}
-    	std::size_t precision = argv[1].length() - argv[1].find('.') - 1;
-    	if (argv[1].length() == precision)
-        	precision = 1;
-   		std::cout << std::fixed << std::setprecision(precision) << num << std::endl;
+		std::cout << "It's double." << std::endl;
+		std::size_t precision = input.length() - input.find('.') - 1;
+		std::cout << "Convertd value: " << std::fixed << std::setprecision(precision) << num << std::endl;
 		return 0;
 	}
 	std::cout << "Usage: ./convert <value to convert>" << std::endl;
 	return 1;
 }
+```
+   
+Output examples   
+```
+➜  ex01 git:(main) ✗ ./a.out 0.0
+It's double.
+Convertd value: 0.0
+➜  ex01 git:(main) ✗ ./a.out 42.0
+It's double.
+Convertd value: 42.0
+➜  ex01 git:(main) ✗ ./a.out -42.0
+It's double.
+Convertd value: -42.0
+➜  ex01 git:(main) ✗ ./a.out 42.0f
+It's not double.
+➜  ex01 git:(main) ✗ ./a.out a    
+It's not double.
+➜  ex01 git:(main) ✗ ./a.out 1.79769e+308        
+It's double.
+Convertd value: 179769000000000006323030492138942643493033036433685336215410983289126434148906289940615299632196609445533816320312774433484859900046491141051651091672734470972759941382582304802812882753059262973637182942535982636884444611376868582636745405553206881859340916340092953230149901406738427651121855107737424232448.0000000000
+➜  ex01 git:(main) ✗ ./a.out 2.79769e+308
+Overflow
 ```
 
 #### Check if the input valur is float
@@ -119,54 +144,78 @@ int	main(int argc, char** argv)
 {
 	if (argc == 2)
 	{
-		if (static_cast<std::string>(argv[1]) == "nanf")
+		float	num;
+		std::string input = static_cast<std::string>(argv[1]);
+	
+		if (input == "nanf")
 			num = std::numeric_limits<float>::quiet_NaN();
-		else if (static_cast<std::string>(argv[1]) == "+inff")
+		else if (input == "+inff")
 			num = std::numeric_limits<float>::infinity();
-		else if (static_cast<std::string>(argv[1]) == "-inff")
+		else if (input == "-inff")
 			num = -std::numeric_limits<float>::infinity();
+		else if (input.find('.') == std::string::npos)
+		{
+			std::cout << "It's not float"<< std::endl;
+			return 1;
+		}
 		else
 		{
 			errno = 0;
 			char	*end;
-			float	num;
-			double	tmp = std::strtod(argv[1].c_str(), &end);
+			double	tmp = std::strtod(input.c_str(), &end);
 			if (*end != 'f' || *(end + 1) != '\0')
 			{
 				std::cout << "Not a float" << std::endl;
 				return 1;
 			}
 			const float	max_float = std::numeric_limits<float>::max();
-    		const float	lowest_float = std::numeric_limits<float>::lowest();
-			// max_float: 3.40282e+38
-			// lowest_float: -3.40282e+38
-
-			// const float denorm_min_float = std::numeric_limits<float>::denorm_min();
-			// denorm_min_float: 1.4013e-45
+			// max_float == 3.40282e+38
 
 			num = static_cast<float>(tmp);
-			if (errno == ERANGE || num > max_float　|| num < lowest_float)
+			if (errno == ERANGE || num > max_float || num < -max_float)
 			{
 				std::cout << "Overflow" << std::endl;
 				return 1;
 			}
 		}
 		std::cout << "It's float"<< std::endl;
+		std::size_t precision = input.length() - input.find('.') - 1;
+		std::cout << "Convertd value: " << std::fixed << std::setprecision(precision) << num << std::endl;
 		return 0;
 	}
 	std::cout << "Usage: ./convert <value to convert>" << std::endl;
 	return 1;
 }
 ```
+```
+➜  ex01 git:(main) ✗ ./a.out 0.0f                      
+It's float
+Convertd value: 0.00
+➜  ex01 git:(main) ✗ ./a.out 42.0f
+It's float
+Convertd value: 42.00
+➜  ex01 git:(main) ✗ ./a.out -42.0f
+It's float
+Convertd value: -42.00
+➜  ex01 git:(main) ✗ ./a.out 42    
+It's not float
+➜  ex01 git:(main) ✗ ./a.out a 
+It's not float
+➜  ex01 git:(main) ✗ ./a.out 42fa
+It's not float
+➜  ex01 git:(main) ✗ ./a.out 42af
+It's not float
+```
 
 #### Infinity and NaN(Not a Number)
 
-```c++
-bool is_infinity(float value) {
-    return (value == std::numeric_limits<float>::infinity() || value == -std::numeric_limits<float>::infinity());
-}
+`+inff` : `std::numeric_limits<float>::infinity()`
+`-inff` : `-std::numeric_limits<float>::infinity()`
+`nanf` : `std::numeric_limits<float>::quiet_NaN()`
+`+inf` : `std::numeric_limits<double>::infinity()`
+`-inf` : `-std::numeric_limits<double>::infinity()`
+`nan` : `std::numeric_limits<double>::quiet_NaN()`
 
-bool is_nan(float value) {
-    return (value != value);  // NaNは自分自身と等しくない
-}
-```
+> [!NOTE]
+> If `value != value` is true, the value is NaN
+
