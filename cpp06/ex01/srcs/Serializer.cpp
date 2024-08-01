@@ -31,14 +31,10 @@ Serializer::~Serializer( void ) {}
 
 uintptr_t	Serializer::serialize(Data* ptr)
 {
-	void		*tmp = static_cast<void*>(ptr);
-	uintptr_t	res = reinterpret_cast<uintptr_t>(tmp);
-	return (res);
+	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
 Data*		Serializer::deserialize(uintptr_t raw)
 {
-	void	*tmp = reinterpret_cast<void*>(raw);
-	Data	*res = static_cast<Data*>(tmp);
-	return (res);
+	return (reinterpret_cast<Data*>(raw));
 }

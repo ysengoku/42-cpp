@@ -13,12 +13,19 @@
 #ifndef DATA_HPP
 # define DATA_HPP
 
+# include <string>
+# include <iostream>
+
 struct Data
 {
-	int	value;
-	Data( void );
-	Data( int dataValue );
+	int			id;
+	std::string	name;
+	double		level;
+	bool		isOnLine;
+
+	Data( int id, std::string name, double level, bool isOnLine );
 };
 
+std::ostream&	operator<<(std::ostream& os, Data const& data);
 
 #endif
