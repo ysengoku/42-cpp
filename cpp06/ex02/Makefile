@@ -14,10 +14,7 @@ NAME = identifyRealType
 
 vpath %.cpp srcs
 FILES = main \
-		Base	\
-		A	\
-		B	\
-		C
+		Base
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
