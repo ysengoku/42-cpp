@@ -10,3 +10,90 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+#include "colors.hpp"
+
+Base*	generate(void)
+{
+	int			randomNum;
+	
+	std::srand(std::time(0));
+	randomNum = std::rand() % 3;
+	switch (randomNum)
+	{
+		case 0:
+			std::cout << "A has been generated." << std::endl;
+			return (new A());
+		case 1:
+			std::cout << "B has been generated." << std::endl;
+			return (new B());
+		case 2:
+			std::cout << "C has been generated." << std::endl;
+			return (new C());
+	}
+	return (0);
+} 
+
+void	identify(Base* p)
+{
+	if (p != NULL)
+	{
+		if (dynamic_cast<A*>(p) != NULL)
+		{
+			std::cout << "The type is A." << std::endl;
+			return ;
+		}
+		if (dynamic_cast<B*>(p) != NULL)
+		{
+			std::cout << "The type is B." << std::endl;
+			return ;
+		}
+			if (dynamic_cast<C*>(p) != NULL)
+		{
+			std::cout << "The type is C." << std::endl;
+			return ;
+		}
+	}
+	std::cout << RED << "Error: Received pointer is null." << RESET << std::endl;
+}
+
+void	identify(Base& p)
+{
+	try
+	{
+		A tmp = dynamic_cast<A&>(p);
+		std::cout << "The type is A." << std::endl;
+		return ;
+	}
+	catch(const std::bad_cast& e) {}
+	try
+	{
+		B tmp = dynamic_cast<B&>(p);
+		std::cout << "The type is B." << std::endl;
+		return ;
+	}
+	catch(const std::bad_cast& e) {}
+	try
+	{
+		C tmp = dynamic_cast<C&>(p);
+		std::cout << "The type is C." << std::endl;
+	}
+	catch(const std::bad_cast& e) {}
+}
+
+int	main( void )
+{
+	Base	*object;
+
+	object = generate();
+	identify(object);
+	identify(*object);
+	delete object;
+	return (0);
+}
