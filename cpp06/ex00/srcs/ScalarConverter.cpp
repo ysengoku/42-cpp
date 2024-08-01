@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:27 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/01 11:06:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:59:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ScalarConverter& ScalarConverter::operator=( ScalarConverter const& rhs )
 
 ScalarConverter::Scalar::Scalar( void )
 	: charValue(0), intValue(0), floatValue(0.0f), doubleValue(0.0),
-	charDisplayable(true), charImpossible(false), intImpossible(false) {}
+	charDisplayable(true), charImpossible(false), intImpossible(false), floatingPointPrecision(1) {}
 
 /*============================================================================*/
 /*       Public member functions                                              */
@@ -71,8 +71,6 @@ bool	ScalarConverter::isChar( std::string const& literal, ScalarConverter::Scala
 	if (literal.length() != 1 || !std::isprint(literal[0]) || std::isdigit(literal[0]))
 		return (false);
 	scalar.charValue = literal[0];
-	scalar.charDisplayable = true;
-	scalar.charImpossible = false;
 	return (true);
 }
 
@@ -86,7 +84,6 @@ bool	ScalarConverter::isInt( std::string const& literal, ScalarConverter::Scalar
 	if (errno == ERANGE || num > INT_MAX || num < INT_MIN)
 		return (false);
 	scalar.intValue = static_cast<int>(num);
-	scalar.intImpossible = false;
     return (true);
 }
 
@@ -107,6 +104,8 @@ bool	ScalarConverter::isFloat( std::string const& literal, ScalarConverter::Scal
 		scalar.floatValue = -INFF;
 		return (true);
 	}
+	if (literal.find('.') == std::string::npos)
+		return (false);
 	errno = 0;
 	char	*end;
 	float	num;
@@ -117,9 +116,10 @@ bool	ScalarConverter::isFloat( std::string const& literal, ScalarConverter::Scal
 	if (errno == ERANGE || num > FLOAT_MAX || num < -FLOAT_MAX)
 		return (false);
 	scalar.floatValue = num;
+	scalar.floatingPointPrecision = literal.length() - literal.find('.') - 2;
 	return (true);
 }
-
+	
 bool	ScalarConverter::isDouble( std::string const& literal, ScalarConverter::Scalar& scalar ) const
 {
 	if (literal == "nan")
@@ -127,7 +127,7 @@ bool	ScalarConverter::isDouble( std::string const& literal, ScalarConverter::Sca
 		scalar.doubleValue = NAN_DOUBLE;
 		return (true);
 	}
-	if (literal == "+inf")
+	if (literal == "+inf" || literal == "inf")
 	{
 		scalar.doubleValue = INF_DOUBLE;
 		return (true);
@@ -137,6 +137,8 @@ bool	ScalarConverter::isDouble( std::string const& literal, ScalarConverter::Sca
 		scalar.doubleValue = -INF_DOUBLE;
 		return (true);
 	}
+	if (literal.find('.') == std::string::npos)
+		return (false);
 	errno = 0;
 	char	*end;
 	double	num = std::strtod(literal.c_str(), &end);
@@ -145,6 +147,7 @@ bool	ScalarConverter::isDouble( std::string const& literal, ScalarConverter::Sca
 	if (errno == ERANGE)
 		return (false);
 	scalar.doubleValue = num;
+	scalar.floatingPointPrecision = literal.length() - literal.find('.') - 1;
 	return (true);
 }
 
@@ -156,25 +159,22 @@ void	ScalarConverter::convertToInt( ScalarConverter::Scalar& scalar ) const
 			break ;
 		case CHAR:
 			scalar.intValue = static_cast<int>(scalar.charValue);
-			scalar.intImpossible = false;
 			break ;
-		case FLOAT: // Issue with NANF check
-			if (scalar.floatValue == NANF || scalar.floatValue == INFF || scalar.floatValue == -INFF)
+		case FLOAT:
+			if (scalar.floatValue != scalar.floatValue 
+				|| scalar.floatValue == INFF || scalar.floatValue == -INFF
+				|| scalar.floatValue < INT_MIN || scalar.floatValue > INT_MAX)
 				scalar.intImpossible = true;
 			else
-			{
 				scalar.intValue = static_cast<int>(scalar.floatValue);
-				scalar.intImpossible = false;
-			}
 			break ;
-		case DOUBLE: // Issue with NAN check
-			if (scalar.doubleValue == NAN_DOUBLE || scalar.doubleValue == INF_DOUBLE || scalar.doubleValue == -INF_DOUBLE)
+		case DOUBLE:
+			if (scalar.doubleValue != scalar.doubleValue
+				|| scalar.doubleValue == INF_DOUBLE || scalar.doubleValue == -INF_DOUBLE
+				|| scalar.doubleValue < INT_MIN || scalar.doubleValue > INT_MAX)
 				scalar.intImpossible = true;
 			else
-			{
 				scalar.intValue = static_cast<int>(scalar.doubleValue);
-				scalar.intImpossible = false;
-			}
 			break ;
 	}
 }
@@ -190,7 +190,6 @@ void	ScalarConverter::convertToChar( ScalarConverter::Scalar& scalar ) const
 				scalar.charImpossible = true;
 			else
 			{
-				scalar.charImpossible = false;
 				scalar.charValue = static_cast<char>(scalar.intValue);
 				scalar.charDisplayable = std::isprint(scalar.charValue);
 			}
@@ -200,7 +199,6 @@ void	ScalarConverter::convertToChar( ScalarConverter::Scalar& scalar ) const
 				scalar.charImpossible = true;
 			else
 			{
-				scalar.charImpossible = false;
 				scalar.charValue = static_cast<char>(scalar.floatValue);
 				scalar.charDisplayable = std::isprint(scalar.charValue);
 			}
@@ -210,7 +208,6 @@ void	ScalarConverter::convertToChar( ScalarConverter::Scalar& scalar ) const
 				scalar.charImpossible = true;
 			else
 			{
-				scalar.charImpossible = false;
 				scalar.charValue = static_cast<char>(scalar.doubleValue);
 				scalar.charDisplayable = std::isprint(scalar.charValue);
 			}
@@ -270,16 +267,10 @@ std::ostream&	operator<<( std::ostream& os, ScalarConverter::Scalar const& scala
 		os << "int:    impossible" << std::endl;
 	else
 		os << "int:    " << scalar.intValue << std::endl;
-	os << "float:  " << scalar.floatValue << 'f' <<std::endl;
-	os << "double: " << scalar.doubleValue << std::endl;
+	os << "float:  " << std::fixed << std::setprecision(scalar.floatingPointPrecision) << scalar.floatValue << 'f' <<std::endl;
+	os << "double: " << std::fixed << std::setprecision(scalar.floatingPointPrecision) << scalar.doubleValue;
 	return (os);
 }
-
-// print decimal floating number
-	// std::size_t precision = value.length() - value.find('.') - 1;
-    // if (input.length() == precision)
-    //     precision = 1;
-	// std::cout << std::fixed << std::setprecision(precision) << num << std::endl;
 
 /*============================================================================*/
 /*       Exception                                                            */
@@ -287,5 +278,5 @@ std::ostream&	operator<<( std::ostream& os, ScalarConverter::Scalar const& scala
 
 const char*	ScalarConverter::InvalidInputException::what() const throw()
 {
-	return ("Invalid input value.\n");
+	return ("Invalid input value.");
 }

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:23 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/01 11:00:17 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:37:59 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class	ScalarConverter
 			bool		charDisplayable;
 			bool		charImpossible;
 			bool		intImpossible;
+			size_t		floatingPointPrecision;
 			
 			Scalar(void);
 		};
