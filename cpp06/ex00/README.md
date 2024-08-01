@@ -212,6 +212,7 @@ It's not float
 `+inff` : `std::numeric_limits<float>::infinity()`  
 `-inff` : `-std::numeric_limits<float>::infinity()`  
 `nanf` : `std::numeric_limits<float>::quiet_NaN()`  
+  
 `+inf` : `std::numeric_limits<double>::infinity()`  
 `-inf` : `-std::numeric_limits<double>::infinity()`  
 `nan` : `std::numeric_limits<double>::quiet_NaN()`  
@@ -225,15 +226,15 @@ It's not float
 
 static_castは、コンパイル時にチェックされるキャストであり、型間の安全な変換を行います。以下のような場合に使用されます：
 
-    基本型の間の変換（例えば、intからfloatへの変換）。
-    ポインタ型の間の変換（例えば、派生クラスのポインタを基底クラスのポインタに変換する）。
-    void*から特定の型のポインタへの変換。
-    数値型の間の変換（例えば、intからdoubleへの変換）。
+- 基本型の間の変換（例えば、intからfloatへの変換）。
+- ポインタ型の間の変換（例えば、派生クラスのポインタを基底クラスのポインタに変換する）。
+- void*から特定の型のポインタへの変換。
+- 数値型の間の変換（例えば、intからdoubleへの変換）。
 
 ### reinterpret_cast
 
-reinterpret_castは、ポインタ型や整数型の間でビットレベルの変換を行います。型のサイズやビット表現に関係なく、ビットパターンをそのまま変換するため、非常に強力である反面、誤用すると未定義動作を引き起こす可能性があります。以下のような場合に使用されます：
+reinterpret_castは、ポインタ型や整数型の間でビットレベルの変換を行います。型のサイズやビット表現に関係なく、ビットパターンをそのまま変換するため、非常に強力である反面、誤用すると未定義動作を引き起こす可能性があります。以下のような特定の用途で使用されます。
 
-    異なるポインタ型の間の変換（例えば、int*をchar*に変換する）。
-    ポインタ型と整数型の間の変換（例えば、void*をuintptr_tに変換する）
+- 異なるポインタ型の間の変換（例えば、int*をchar*に変換する）。
+- ポインタ型と整数型の間の変換（例えば、void*をuintptr_tに変換する）
 	
