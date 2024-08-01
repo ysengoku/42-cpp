@@ -12,5 +12,15 @@
 
 #include "Data.hpp"
 
-Data::Data( void ) : value(0) {}
-Data::Data( int dataValue ) : value(dataValue) {}
+Data::Data( int id, std::string name, double level, bool isOnLine ) 
+	: id(id), name(name), level(level), isOnLine(isOnLine) {};
+
+std::ostream&	operator<<(std::ostream& os, Data const& data)
+{
+	os << std::endl << "Data content" << std::endl
+	<< "id: " << data.id << std::endl
+	<< "name: " << data.name << std::endl
+	<< "level: " << data.level << std::endl
+	<< "isOnLine: " << data.isOnLine << std::endl;
+	return (os);
+}
