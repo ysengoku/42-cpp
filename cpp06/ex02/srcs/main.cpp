@@ -59,6 +59,7 @@ void	identify(Base* p)
 			std::cout << "The type is C." << std::endl;
 			return ;
 		}
+		std::cout << RED << "Unknown type" << RESET << std::endl;
 	}
 	std::cout << RED << "Error: Received pointer is null." << RESET << std::endl;
 }
@@ -83,8 +84,10 @@ void	identify(Base& p)
 	{
 		C tmp = dynamic_cast<C&>(p);
 		std::cout << "The type is C." << std::endl;
+		return ;
 	}
 	catch(const std::bad_cast& e) {}
+	std::cout << RED << "Unknown type" << RESET << std::endl;
 }
 
 int	main( void )
