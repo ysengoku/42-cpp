@@ -209,12 +209,12 @@ It's not float
 
 #### Infinity and NaN(Not a Number)
 
-`+inff` : `std::numeric_limits<float>::infinity()`
-`-inff` : `-std::numeric_limits<float>::infinity()`
-`nanf` : `std::numeric_limits<float>::quiet_NaN()`
-`+inf` : `std::numeric_limits<double>::infinity()`
-`-inf` : `-std::numeric_limits<double>::infinity()`
-`nan` : `std::numeric_limits<double>::quiet_NaN()`
+`+inff` : `std::numeric_limits<float>::infinity()`  
+`-inff` : `-std::numeric_limits<float>::infinity()`  
+`nanf` : `std::numeric_limits<float>::quiet_NaN()`  
+`+inf` : `std::numeric_limits<double>::infinity()`  
+`-inf` : `-std::numeric_limits<double>::infinity()`  
+`nan` : `std::numeric_limits<double>::quiet_NaN()`  
 
 > [!NOTE]
 > If `value != value` is true, the value is NaN
