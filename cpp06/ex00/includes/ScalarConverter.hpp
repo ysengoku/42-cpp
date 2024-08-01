@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:23 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/01 12:37:59 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:52:24 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <cstdlib>
 # include <iomanip>
 # include <cctype>
-# include "colors.hpp"
 
 class	ScalarConverter
 {
