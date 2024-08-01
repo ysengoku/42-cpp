@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:38:23 by yusengok          #+#    #+#             */
-/*   Updated: 2024/07/31 11:38:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:00:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <cerrno>
 # include <cstdlib>
 # include <iomanip>
+# include <cctype>
 # include "colors.hpp"
 
 class	ScalarConverter
@@ -42,6 +43,11 @@ class	ScalarConverter
 			int			intValue;
 			float		floatValue;
 			double		doubleValue;
+			bool		charDisplayable;
+			bool		charImpossible;
+			bool		intImpossible;
+			
+			Scalar(void);
 		};
 		
 		class	InvalidInputException	: std::exception
@@ -62,10 +68,10 @@ class	ScalarConverter
 		bool		isFloat( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
 		bool		isDouble( std::string const& literal, ScalarConverter::Scalar& scalar ) const;
 
-		char	convertToChar( std::string const& literal )  const;
-		int		convertToInt( std::string const& literal )  const;
-		float	convertToFloat( std::string const& literal )  const;
-		double	convertToDouble( std::string const& literal )  const;
+		void	convertToChar( ScalarConverter::Scalar& scalar )  const;
+		void	convertToInt( ScalarConverter::Scalar& scalar )  const;
+		void	convertToFloat( ScalarConverter::Scalar& scalar )  const;
+		void	convertToDouble( ScalarConverter::Scalar& scalar )  const;
 };
 
 std::ostream&	operator<<( std::ostream& os, ScalarConverter::Scalar const& scalar );
@@ -75,6 +81,5 @@ std::ostream&	operator<<( std::ostream& os, ScalarConverter::Scalar const& scala
 # define NAN_DOUBLE std::numeric_limits<double>::quiet_NaN()
 # define INF_DOUBLE std::numeric_limits<double>::infinity()
 # define FLOAT_MAX std::numeric_limits<float>::max()
-# define FLOAT_LOWEST std::numeric_limits<float>::lowest()
 
 #endif
