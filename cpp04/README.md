@@ -2,8 +2,7 @@
 # CPP Module04
 
 ## Subtype polymorphism 
-In object-oriented programming,subtype polymorphism
-ある1つの関数（メソッド）の呼び出しに対し、オブジェクト毎に異なる動作をすることをいいます
+In object-oriented programming,__subtype polymorphism__, is a concept that allows objects of different classes to be treated as objects of a common superclass. It enables a single function or method to operate on objects of different types in a way that each type can provide its own implementation of the method.
 
 ## Deep copy
 Deep copy creates a new object copying the content of the source object.  
