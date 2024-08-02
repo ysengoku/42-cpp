@@ -224,30 +224,29 @@ nan : `std::numeric_limits<double>::quiet_NaN()`
 
 ## ex01
 ### reinterpret_cast
-
-reinterpret_castは、ポインタ型や整数型の間でビットレベルの変換を行います。型のサイズやビット表現に関係なく、ビットパターンをそのまま変換するため、非常に強力である反面、誤用すると未定義動作を引き起こす可能性があります。以下のような特定の用途で使用されます。
-
-- 異なるポインタ型の間の変換（例えば、int*をchar*に変換する）。
-- ポインタ型と整数型の間の変換（例えば、void*をuintptr_tに変換する）
+`reinterpret_cast` performs a bit-level conversion between pointer types and integer types. It is very powerful because it converts the bit pattern directly, regardless of the size or bit representation of the types. However, misuse can lead to undefined behavior.  
+It is used for specific purposes such as the following.
+- Conversion between different pointer types (i.g. from int* to char*)
+- Conversion between pointer types and integer types (i.g. void* to uintptr_t).
 	
 ## ex02
 ### dynamic_cast
-dynamic_castは、特に多態性を持つクラス階層において、オブジェクトの実際の型を安全に判別するために使用されます。  
-dynamic_castにはポインタ型と参照型の2つの形式があり、それぞれ異なる動作をします。
+`dynamic_cast` is used to safely determine the actual type of an object, particularly in class hierarchies with polymorphism.  
+It has two forms: one for pointer types and one for reference types, each of which behaves differently.
 
-#### ポインタに対するdynamic_cast
+#### dynamic_cast for pointers
 ```cpp
 Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
 ```
-成功した場合: ポインタ型の変数に派生クラスのポインタが返されます。
-失敗した場合: nullptrが返されます。
+On success: A pointer to the derived class is returned to the pointer variable.
+On failure: nullptr is returned.
 
-#### 参照型に対するdynamic_cast
+#### dynamic_cast for references
 ```cpp
 Derived& derivedRef = dynamic_cast<Derived&>(baseRef);
 ```
-成功した場合: 参照型の変数に派生クラスの参照が返されます。
-失敗した場合: std::bad_cast例外が投げられます。
+On success: A reference to the areived class is returned to the reference variable.
+On failure: std::bad_cast exception is thrown.
 
 >[!caution]
 >In this exercise, `typeinfo` header defining `std::bad_cast` is forbitten.
