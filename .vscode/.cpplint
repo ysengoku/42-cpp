@@ -1,0 +1,11 @@
+# .cpplint
+
+# Enable all checks but disable specific categories
+filters = +whitespace,+readability
+
+# Ignore specific files or directories
+ignore = Makefile
+
+# Specify other options (optional)
+# You can also define a list of file patterns to lint
+# files = *.cpp, *.hpp
