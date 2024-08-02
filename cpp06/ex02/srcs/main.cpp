@@ -6,13 +6,14 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:28:35 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/01 16:28:36 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:37:47 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <exception>
 #include "Base.hpp"
 #include "A.hpp"
 #include "B.hpp"
@@ -72,21 +73,21 @@ void	identify(Base& p)
 		std::cout << "The type is A." << std::endl;
 		return ;
 	}
-	catch(const std::bad_cast& e) {}
+	catch(const std::exception& e) {}
 	try
 	{
 		B tmp = dynamic_cast<B&>(p);
 		std::cout << "The type is B." << std::endl;
 		return ;
 	}
-	catch(const std::bad_cast& e) {}
+	catch(const std::exception& e) {}
 	try
 	{
 		C tmp = dynamic_cast<C&>(p);
 		std::cout << "The type is C." << std::endl;
 		return ;
 	}
-	catch(const std::bad_cast& e) {}
+	catch(const std::exception& e) {}
 	std::cout << RED << "Unknown type" << RESET << std::endl;
 }
 
