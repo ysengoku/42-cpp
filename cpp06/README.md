@@ -248,3 +248,6 @@ Derived& derivedRef = dynamic_cast<Derived&>(baseRef);
 ```
 成功した場合: 参照型の変数に派生クラスの参照が返されます。
 失敗した場合: std::bad_cast例外が投げられます。
+
+>[!caution]
+>In this exercise, `typeinfo` header defining `std::bad_cast` is forbitten.
