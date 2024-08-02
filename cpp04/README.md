@@ -9,7 +9,7 @@ Example
 class Animal {
     public:
       [...]
-      virtual void	makeSound( void ) const;
+      virtual void makeSound( void ) const; // Set it 'virtual' so that dirived classes can override the function.
 
     protected:
       std::string  _type;
@@ -18,13 +18,13 @@ class Animal {
 class  Dog {
     public:
       [...]
-      void	makeSound( void ) const; // Dog has its own 'makeSound'
+      void makeSound( void ) const; // Dog has its own 'makeSound'
 }
 
 class  Cat {
     public:
       [...]
-      void	makeSound( void ) const; // Cat has its own 'makeSound'
+      void makeSound( void ) const; // Cat has its own 'makeSound'
 }
 ```
 
