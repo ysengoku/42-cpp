@@ -2,8 +2,8 @@
 # CPP Module04
 
 ## Subtype polymorphism 
-In object-oriented programming,__subtype polymorphism__, is a concept that allows objects of different classes to be treated as objects of a common superclass. It enables a single function or method to operate on objects of different types in a way that each type can provide its own implementation of the method.
-
+In object-oriented programming,__subtype polymorphism__, is a concept that allows objects of different classes to be treated as objects of a common superclass. It enables a single function or method to operate on objects of different types in a way that each type can provide its own implementation of the method.  
+  
 Example
 ```cpp
 // Base class
@@ -17,13 +17,13 @@ class Animal {
 }
 
 // Derived classes
-class  Dog {
+class  Dog : public Animal {
     public:
       [...]
       void makeSound( void ) const; // Dog has its own 'makeSound'
 }
 
-class  Cat {
+class  Cat : public Animal {
     public:
       [...]
       void makeSound( void ) const; // Cat has its own 'makeSound'
@@ -32,7 +32,33 @@ class  Cat {
 
 ## Deep copy
 Deep copy creates a new object copying the content of the source object.  
-The copied object is independant of the original one. Even if we modify a value of attribute of the copy or delete it, there is no impact on the original one. 
+The copied object is independant of the original one. Even if we modify a value of attribute of the copy or delete it, there is no impact on the original one.  
+  
+Example
+```cpp
+class Brain
+{
+	public:
+		[...]
+
+	private:
+		std::string	_ideas[100];
+};
+
+class Dog : public Animal
+{
+	public:
+        Dog( void );
+		Dog( const Dog& src );
+		Dog& operator=( const Dog& rhs );
+		~Dog( void );
+		[...]
+
+	private:
+		Brain*	_brain;
+};
+
+```
 
 ## Abstract class
 Abstract class is a base class which is not instantiable.
