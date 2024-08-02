@@ -6,6 +6,7 @@ In object-oriented programming,__subtype polymorphism__, is a concept that allow
 
 Example
 ```cpp
+// Base class
 class Animal {
     public:
       [...]
@@ -15,6 +16,7 @@ class Animal {
       std::string  _type;
 }
 
+// Derived classes
 class  Dog {
     public:
       [...]
