@@ -36,31 +36,32 @@ The copied object is independant of the original one. Even if we modify a value 
   
 Example
 ```cpp
-#include <iotream>
+#include <iostream>
 #include <string>
 
 class Book {
     public:
+	Book(void) {}
 	Book(const std::string& title);
 	Book(Book const& src);
 	Book& operator=(Book const& rhs);
 	~Book(void) {}
 
+	void setTitle(const std::string& title);
 	void displayTitle(void) const;
 
     private:
-	std::sring _title;
-	Book(void) {}
+	std::string _title;
 };
 
 class Library {
     public:
-	Library(const nsigned int& size);
+	Library(const unsigned int& size);
 	Library(Library const& src); // This should do 'Deep copy'
 	Library& operator=(Library const& rhs); // This should do 'Deep copy'
 	~Library(void);
 
-	void addBook(Book const& book);
+	void addBook(const std::string& title);
 	void showLibrary(void);
 
     private:
@@ -79,17 +80,21 @@ Book& Book::operator=(Book const& rhs) {
 	return (*this);
 }
 
-void Book::displayTitile(void) const {
+void Book::setTitle(const std::string& title) {
+	_title = title;
+}
+
+void Book::displayTitle(void) const {
 	std::cout << _title << std::endl;
 }
 
 // Library class definitoin
-Library::Library((const unsigned int& size) : _size(size), _count(0) {
+Library::Library(const unsigned int& size) : _size(size), _count(0) {
 	_books = new Book[_size];
 }
 
 Library::Library(Library const& src) : _size(src._size), _count(src._count) {
-	books = new Book[_size]; // Allocate new memory
+	_books = new Book[_size]; // Allocate new memory
 	for (int i = 0; i < _size; i++)
 		_books[i] = src._books[i]; // Copy each Book
 }
@@ -100,22 +105,22 @@ Library& Library::operator=(Library const& rhs) {
 	delete _books[]; // Free old memory
 	_size = rhs._size; // Update _size
 	_count = rhs._count; // Update _count
-	_books = new Book(_size); // Allocate new memory
+	_books = new Book[_size]; // Allocate new memory
 	for (int i = 0; i < _size; i++)
-		books[i] = rhs._books[i]; // Copy each Book
+		_books[i] = rhs._books[i]; // Copy each Book
 	return *this;
 }
 
 Library::~Library(void) {
-	delete[] books; // Free allocated memory
+	delete[] _books; // Free allocated memory
 }
 
-void Library::addBook(std::string title) {
+void Library::addBook(const std::string& title) {
 	if (_count == _size) {
 		std::cout << "Library is full. You cannot add a new book." << std::endl;
 		return ;
 	}
-	_books[_count]._title = title;
+	_books[_count].setTitle(title);
 	_count++;
 }
 
@@ -123,6 +128,7 @@ void Library::showLibrary(void) {
 	for (int i = 0; i < _size; i++) {
 		std::cout << "[" << i + 1 << "] ";
 		_books[i].displayTitle();
+	}
 }
 
 int main() {
