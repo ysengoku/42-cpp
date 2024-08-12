@@ -109,3 +109,46 @@ void	Replacer::replaceStrings( void )
 	ouf << content;
 }
 ```
+```cpp
+void StringReplacer::replaceString(std::string& content)
+{
+    std::string result;
+
+	// This will be used to track whether any replacements were made.
+    bool replaced = false;
+
+	// This keeps track of the current position in the content string as the method searches for the target substring.
+    size_t position = 0;
+
+	// The position of the found substring is stored in nextPosition. If the substring is not found, nextPosition will be std::string::npos.
+    size_t nextPosition = content.find(this->_searchedStr, position);
+
+    while (nextPosition != std::string::npos) // Loop as long as _searchedStr is found
+    {
+		// Appends the portion of content from position to nextPosition to result. This portion excludes the found substring.
+        result += content.substr(position, nextPosition - position);
+
+		// Appends _replacingStr (the replacement string) to result, replacing the found substring.
+        result += this->_replacingStr;
+
+		// Indicates that at least one replacement has been made.
+        replaced = true;
+
+		// Updates position to move past the last found substring.
+        position = nextPosition + this->_searchedStrLength;
+
+		// Searches for the next occurrence of _searchedStr starting from the updated position.
+        nextPosition = content.find(this->_searchedStr, position);
+    }
+	// Appends remaining part of content to result.
+    result += content.substr(position);
+    if (replaced)
+    {
+        content = result;
+        std::cout << "'" << this->_searchedStr << "' was successfully replaced by '"
+                  << this->_replacingStr << "'." << std::endl;
+    }
+    else
+        std::cout << "'" << this->_searchedStr << "' was not found in the file." << std::endl;
+}
+```
