@@ -34,7 +34,7 @@ Array<T>::Array(unsigned int const &n) : _size(n) {
 }
 
 template<typename T>
-Array<T>::Array(Array const& src) : _size(src.len) {
+Array<T>::Array(Array const& src) : _size(src._size) {
 	std::cout << GREY << "Copy constructor called" << RESET << std::endl;
 	this->_array = new T[this->_size];
 	for (unsigned int i = 0; i < src._size; i++)	
@@ -76,7 +76,7 @@ unsigned int const& Array<T>::size(void) const {
 
 template<typename T>
 T& Array<T>::operator[](int index) const {
-	if (index < 0 || index > static_cast<int>(this->_size))
+	if (index < 0 || index >= static_cast<int>(this->_size))
 		throw OutOfBoundsException();
 	return (this->_array[index]);
 }
@@ -87,5 +87,5 @@ T& Array<T>::operator[](int index) const {
 
 template<typename T>
 const char* Array<T>::OutOfBoundsException::what() const throw() {
-	return ("The index is out of bounds");
+	return ("ERROR: The index is out of bounds.");
 }
