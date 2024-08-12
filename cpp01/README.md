@@ -60,34 +60,27 @@ bool	FileHandler::openInfile( void )
 	// Convert the filename from string to const char* with .c_str()
 	this->_ifs.open(this->_infileName.c_str(), std::ifstream::in);
 
-	// Error handling.
+	// Error handling
 	if (!this->_ifs.is_open())
 	{
-    		std::cerr << "Failed to open the file: " << this->_infileName << std::endl;
-    		return (false);
+    	std::cerr << "Failed to open the file: " << this->_infileName << std::endl;
+    	return (false);
 	}
-
 	return (true);
 }
 ```
 ```cpp
 bool	FileHandler::openOutfile( void )
 {
-	// Open with truncate mode to delete existing content and close.
+	// Open with truncate mode so that the existing content is deleted.
 	this->_ofs.open(this->_outfileName.c_str(), std::ios::trunc);
-	if (!this->_ofs.is_open())
-	{
-		this->_ifs.close();
-    		return (false);
-	}
-	this->_ofs.close();
 
-	// Reopen with append mode
-	this->_ofs.open(this->_outfileName.c_str(), std::ios::app);
+	// Error handling
 	if (!this->_ofs.is_open())
 	{
+    	std::cerr << "Failed to open the output file: " << this->_outfileName << std::endl;
 		this->_ifs.close();
-    		return (false);
+    	return (false);
 	}
 	return (true);
 }
@@ -95,3 +88,24 @@ bool	FileHandler::openOutfile( void )
   
 We need to close the file with `fstream_object.close();` when we don't need it anymore.   
 
+```cpp
+void	Replacer::replaceStrings( void )
+{
+	std::string			content;
+	std::stringstream	fileContentStream;
+	std::ifstream&		ifs = this->_fileHandler.getInputFile();
+	std::ofstream&		ouf = this->_fileHandler.getOutputFile();
+	
+	// Reads the entire content of the input file (ifs) and streams it into fileContentStream. The rdbuf() function returns a pointer to the underlying buffer object associated with the input file stream.
+	fileContentStream << ifs.rdbuf();
+
+	// Converts the content of 'fileContentStream' to a string and stores it in 'content'.
+	content = fileContentStream.str();
+
+	// Perform the string replacement operation.
+	this->_stringReplacer.replaceString(content);
+
+	// Writes the modified content to the output file using the output file stream(ouf).
+	ouf << content;
+}
+```
