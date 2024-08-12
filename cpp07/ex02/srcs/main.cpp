@@ -29,14 +29,6 @@ void testFromSubject(void)
         numbers[i] = value;
         mirror[i] = value;
     }
-    std::cout << "--- Copy constructor & copy assignment operator ---" << std::endl;
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-		Array<int> tmp2;
-		tmp2 = numbers;
-    }
-
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
@@ -45,23 +37,42 @@ void testFromSubject(void)
             return ;
         }
     }
-	std::cout << "--- Negative index value ---" << std::endl;
+
+    std::cout << "--- Copy constructor & copy assignment operator ---" << std::endl;
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+		Array<int> test2;
+		test2 = tmp;
+    
+    	for (int i = 0; i < MAX_VAL; i++)
+    	{
+    		if (test[i] != tmp[i] || test2[i] != tmp[i])
+    		{
+            	std::cerr << RED << "Copy failed" << RESET << std::endl;
+            	return ;
+        	}
+    	}
+		std::cout << "All values have successfully been copied." << std::endl;
+	}
+
+	std::cout << std::endl << "--- Negative index value ---" << std::endl;
     try
     {
         numbers[-2] = 0;
     }
     catch(const std::exception& e)
     {
-        std::cerr << RED << e.what() << RESET << '\n';
+        std::cerr << e.what() << '\n';
     }
-	std::cout << "--- Too big index value ---" << std::endl;
+	std::cout << std::endl << "--- Too big index value ---" << std::endl;
     try
     {
         numbers[MAX_VAL] = 0;
     }
     catch(const std::exception& e)
     {
-        std::cerr << RED << e.what() << RESET << '\n';
+        std::cerr << e.what() << '\n';
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -69,7 +80,7 @@ void testFromSubject(void)
         numbers[i] = rand();
     }
 
-	std::cout << "--- Extra tests by me ---" << std::endl;
+	std::cout << std::endl << "--- Extra tests by me ---" << std::endl;
 	{
 		Array<int> tmp(numbers);
 		for (int i = 0; i < 5; i++)

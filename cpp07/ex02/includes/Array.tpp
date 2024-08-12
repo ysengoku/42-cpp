@@ -13,6 +13,7 @@
 #include "Array.hpp"
 
 #define GREY "\e[0;90m"
+#define RED "\033[31m"
 #define RESET "\033[0m"
 
 /*============================================================================*/
@@ -87,5 +88,5 @@ T& Array<T>::operator[](int index) const {
 
 template<typename T>
 const char* Array<T>::OutOfBoundsException::what() const throw() {
-	return ("ERROR: The index is out of bounds.");
+	return (RED "ERROR: The index is out of bounds." RESET);
 }
