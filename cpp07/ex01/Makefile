@@ -6,7 +6,7 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 08:02:32 by yusengok          #+#    #+#              #
-#    Updated: 2024/08/12 10:02:47 by yusengok         ###   ########.fr        #
+#    Updated: 2024/08/12 16:29:30 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJS_DIR = .objs/
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 DEPS = $(OBJS:.o=.d)
 
+CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(INCLUDE)
 
 all: $(NAME)
