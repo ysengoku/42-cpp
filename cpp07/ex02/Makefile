@@ -5,20 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/29 13:38:33 by yusengok          #+#    #+#              #
-#    Updated: 2024/08/12 16:30:04 by yusengok         ###   ########.fr        #
+#    Created: 2024/08/12 10:41:35 by yusengok          #+#    #+#              #
+#    Updated: 2024/08/12 16:29:18 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = whatever
+NAME = array
 
 vpath %.cpp srcs
 FILES = main
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = whatever
-HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
+HEADERS = Array.hpp	Array.tpp
 
 OBJS_DIR = .objs/
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
