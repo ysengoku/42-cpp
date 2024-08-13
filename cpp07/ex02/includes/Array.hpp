@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:41:43 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/12 16:39:48 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:26:30 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ class Array {
 		Array& operator=(Array const& rhs);
 		~Array(void);
 
-		T& operator[](int index) const;
+		T& operator[](int index);
+		T const& operator[](int index) const;
 		unsigned int const& size(void) const;
 
 		class OutOfBoundsException : public std::exception {
