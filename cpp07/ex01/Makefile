@@ -6,18 +6,20 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 08:02:32 by yusengok          #+#    #+#              #
-#    Updated: 2024/08/12 16:29:30 by yusengok         ###   ########.fr        #
+#    Updated: 2024/08/13 12:28:22 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = iter
 
 vpath %.cpp srcs
-FILES = main
+FILES = main	\
+		Fixed
 SRCS = $(addsuffix .cpp, $(FILES))
 
 INCLUDE = includes/
-HEADER_FILEES = iter
+HEADER_FILEES = iter	\
+				Fixed
 HEADERS = $(addprefix $(INCLUDE), $(addsuffix .hpp, $(HEADER_FILES)))
 
 OBJS_DIR = .objs/

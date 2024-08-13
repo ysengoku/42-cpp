@@ -6,11 +6,12 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:36 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 10:30:32 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:32:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
+#include "Fixed.hpp"
 
 void testEmptyArray(void) {
 	std::cout << CYAN << "===== Test - Empty array =====" << RESET << std::endl; 
@@ -122,6 +123,23 @@ void testSizeT(void) {
 	std::cout << std::endl;
 }
 
+void printFixed(Fixed const& value) {
+	std::cout << value << std::endl;
+}
+
+void testFixedClass(void) {
+	std::cout << CYAN << "===== Test 7 - Fixed class =====" << RESET << std::endl; 
+	Fixed array[3];
+	size_t len = sizeof(array) / sizeof(Fixed);
+	Fixed a(0.5f);
+	Fixed b(1.2f);
+	Fixed c(42.0f);
+	array[0] = a;
+	array[1] = b;
+	array[2] = c;
+	::iter(&array, len, printFixed);
+}
+
 int main(void) {
 	testEmptyArray();
 	testInt();
@@ -130,5 +148,6 @@ int main(void) {
 	testChar2();
 	testString();
 	testSizeT();
+	testFixedClass();
 	return 0;
 }
