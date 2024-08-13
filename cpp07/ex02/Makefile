@@ -6,7 +6,7 @@
 #    By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 10:41:35 by yusengok          #+#    #+#              #
-#    Updated: 2024/08/12 16:29:18 by yusengok         ###   ########.fr        #
+#    Updated: 2024/08/13 15:03:51 by yusengok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,16 +24,16 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 DEPS = $(OBJS:.o=.d)
 
 CXX = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(INCLUDE)
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CPPFLAGS) $^ -o $@
+	$(CXX) $(CPPFLAGS) -I$(INCLUDE) $^ -o $@
 
 $(OBJS_DIR)%.o: %.cpp Makefile
 	@mkdir -p $(OBJS_DIR)
-	$(CXX) $(CPPFLAGS) -c $< -o $@ -MMD -MP
+	$(CXX) $(CPPFLAGS) -I$(INCLUDE) -c $< -o $@ -MMD -MP
 
 -include $(DEPS)
 
