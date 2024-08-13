@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:40:08 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 08:46:05 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:26:59 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,14 @@ unsigned int const& Array<T>::size(void) const {
 /*============================================================================*/
 
 template<typename T>
-T& Array<T>::operator[](int index) const {
+T& Array<T>::operator[](int index) {
+	if (index < 0 || index >= static_cast<int>(this->_size))
+		throw OutOfBoundsException();
+	return (this->_array[index]);
+}
+
+template<typename T>
+T const& Array<T>::operator[](int index) const {
 	if (index < 0 || index >= static_cast<int>(this->_size))
 		throw OutOfBoundsException();
 	return (this->_array[index]);

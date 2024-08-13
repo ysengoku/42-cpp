@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:41:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 09:14:05 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:28:35 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,9 @@ void testFromSubject(void)
         numbers[i] = rand();
     }
 
-	std::cout << std::endl << "--- Extra tests (deep copy check) ---" << std::endl;
+	std::cout << std::endl << "--- Extra tests ---" << std::endl;
 	{
+		std::cout << "< deep copy check >" << std::endl;
 		Array<int> tmp(numbers);
 		for (int i = 0; i < 5; i++)
 		{
@@ -93,6 +94,7 @@ void testFromSubject(void)
 		}
 	}
 	{
+		std::cout << "< deep copy check >" << std::endl;
 		Array<int> tmp; 
 		tmp = numbers;
 		for (int i = 0; i < 5; i++)
@@ -103,6 +105,16 @@ void testFromSubject(void)
 			std::cout << "tmp[" << index << "] " << tmp[index] << std::endl;
 		}
 	}
+	{
+		std::cout << "< const Array >" << std::endl;
+		const Array<int> tmp(numbers);
+		for (int i = 0; i < 5; i++)
+		{
+			int index = rand() % MAX_VAL;
+			std::cout << "tmp[" << index << "] " << tmp[index] << std::endl;
+			// tmp[index] += 1; // cannot modify the value
+		}
+	}
     delete [] mirror;
 }
 
@@ -110,7 +122,6 @@ void emptyArray(void) {
 	std::cout << std::endl << CYAN << "====== Empty array ======" << RESET << std::endl;
 	Array<int> array;
 	std::cout << "Array size: " << array.size() << std::endl;
-	// std::cout << "Array content: " << array[0] << std::endl;
 }
 
 void stringToUpper(std::string& str) {
