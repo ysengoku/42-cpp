@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:40:08 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/12 17:04:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 08:46:05 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Array<T>::Array(unsigned int const &n) : _size(n) {
 	std::cout << GREY << "Constructor called" << RESET << std::endl;
 	this->_array = new T[static_cast<int>(this->_size)];
 	for (unsigned int i = 0; i < this->_size; i++)
-		this->_array[i] = 0;
+		this->_array[i] = T();
 }
 
 template<typename T>
