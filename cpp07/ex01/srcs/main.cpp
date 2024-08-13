@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:36 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/12 13:35:23 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 09:54:50 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void testChar(void) {
 }
 
 void toupperWrapper(char &c) {
-	c = std::toupper(c, std::locale::classic());
+	c = std::toupper(c);
 }
 
 void testChar2(void) {
@@ -84,7 +84,7 @@ void testChar2(void) {
 	std::cout << std::endl << "AFTER:  ";
 	for (size_t i = 0; i < len; i++)
 		std::cout << array[i] << " ";
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 }
 
 void writeA(size_t const& n) {
@@ -93,12 +93,30 @@ void writeA(size_t const& n) {
 	std::cout << std::endl;
 }
 
-void testChar3(void) {
-	std::cout << CYAN << "===== Test 5 - char/write =====" << RESET << std::endl; 
+void testSizeT(void) {
+	std::cout << CYAN << "===== Test 5 - size_t =====" << RESET << std::endl; 
 	size_t array[] = {2, 15, 0, 5, 20};
 	size_t len = sizeof(array) / sizeof(size_t);
 	::iter(&array, len, ::writeA);
 	std::cout << std::endl;
+}
+
+void stringToUpper(std::string& str) {
+	for (int i = 0; str[i]; i++)
+		str[i] = std::toupper(str[i]);
+}
+
+void testString(void) {
+	std::cout << CYAN << "===== Test 6 - string/toupper =====" << RESET << std::endl; 
+	std::string array[] = {"aaa", "bBb", "CCc!"};
+	size_t len = sizeof(array) / sizeof(std::string);
+	std::cout << "BEFORE:" << std::endl;
+	for (size_t i = 0; i < len; i++)
+		std::cout << array[i] << std::endl;
+	::iter(&array, len, ::stringToUpper);
+	std::cout << "AFTER:" << std::endl;
+	for (size_t i = 0; i < len; i++)
+		std::cout << array[i] << std::endl;
 }
 
 int main(void) {
@@ -107,6 +125,7 @@ int main(void) {
 	testDouble();
 	testChar();
 	testChar2();
-	testChar3();
+	testSizeT();
+	testString();
 	return 0;
 }
