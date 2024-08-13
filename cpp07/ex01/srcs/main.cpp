@@ -138,7 +138,28 @@ void testFixedClass(void) {
 	array[0] = a;
 	array[1] = b;
 	array[2] = c;
-	::iter(array, len, printFixed);
+	::iter(array, len, ::printFixed);
+	std::cout << std::endl;
+}
+
+/* Test from eval */
+class Awesome {
+	public:
+		Awesome( void ) : _n( 42 ) {}
+		int get( void ) const { return this->_n; }
+	private:
+		int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) {
+	o << rhs.get();
+	return o;
+}
+
+template< typename T >
+void print( T const & x ) {
+	std::cout << x << std::endl;
+	return;
 }
 
 int main(void) {
@@ -150,5 +171,12 @@ int main(void) {
 	testString();
 	testSizeT();
 	testFixedClass();
+
+	/* Test from eval */
+	std::cout << CYAN << "===== Test from eval =====" << RESET << std::endl; 
+	int tab[] = { 0, 1, 2, 3, 4 };
+	Awesome tab2[5];
+	::iter(tab, 5, print);
+	::iter(tab2, 5, print);
 	return 0;
 }
