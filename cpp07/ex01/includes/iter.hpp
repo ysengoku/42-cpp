@@ -16,10 +16,16 @@
 # include <iostream>
 # include <cstdlib>
 
-template<typename T, typename U>
-void iter(T *array, size_t const& len, U *function) {
+template<typename T>
+void iter(T *array, size_t const len, void(*function)(T&)) {
 	for (size_t i = 0; i < len; i++)
-		(*function)(array[i]);
+		function(array[i]);
+}
+
+template<typename T>
+void iter(T *array, size_t const len, void(*function)(T const&)) {
+	for (size_t i = 0; i < len; i++)
+		function(array[i]);
 }
 
 /* Function templates for tests */
