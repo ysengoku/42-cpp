@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/12 13:23:46 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:13:17 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 template<typename T, typename U>
 void iter(T *array, size_t const& len, U *function) {
 	for (size_t i = 0; i < len; i++)
-		(*function)((*array)[i]);
+		(*function)(array[i]);
 }
 
 /* Function templates for tests */
