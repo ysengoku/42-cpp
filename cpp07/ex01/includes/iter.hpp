@@ -29,12 +29,6 @@ void iter(T *array, size_t const len, void(*function)(T const&)) {
 		function(array[i]);
 }
 
-/* Function templates for tests */
-template<typename T>
-void incrementOne(T& value) {
-	++value;
-}
-
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define YELLOW "\033[33m"
