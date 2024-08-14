@@ -6,19 +6,12 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:36 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 14:15:26 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:27:21 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 #include "Fixed.hpp"
-
-void testEmptyArray(void) {
-	std::cout << CYAN << "===== Test - Empty array =====" << RESET << std::endl; 
-	int array[3];
-	::iter(array, 3, ::incrementOne<int>);
-	std::cout << std::endl ;
-}
 
 void testInt(void) {
 	std::cout << CYAN << "===== Test 1 - int/increment =====" << RESET << std::endl; 
@@ -28,7 +21,7 @@ void testInt(void) {
 	for (size_t i = 0; i < len; i++)
 		std::cout << array[i] << " ";
 
-	::iter(array, len, ::incrementOne<int>);
+	iter(array, len, incrementOne<int>);
 	
 	std::cout << std::endl << "AFTER:  ";
 	for (size_t i = 0; i < len; i++)
@@ -44,7 +37,7 @@ void testDouble(void) {
 	for (size_t i = 0; i < len; i++)
 		std::cout << array[i] << " ";
 
-	::iter(array, len, ::incrementOne<double>);
+	iter(array, len, incrementOne<double>);
 	
 	std::cout << std::endl << "AFTER:  ";
 	for (size_t i = 0; i < len; i++)
@@ -60,7 +53,7 @@ void testChar(void) {
 	for (size_t i = 0; i < len; i++)
 		std::cout << array[i] << " ";
 
-	::iter(array, len, ::incrementOne<char>);
+	iter(array, len, incrementOne<char>);
 	
 	std::cout << std::endl << "AFTER:  ";
 	for (size_t i = 0; i < len; i++)
@@ -80,7 +73,7 @@ void testChar2(void) {
 	for (size_t i = 0; i < len; i++)
 		std::cout << array[i] << " ";
 
-	::iter(array, len, ::toupperWrapper);
+	iter(array, len, toupperWrapper);
 	
 	std::cout << std::endl << "AFTER:  ";
 	for (size_t i = 0; i < len; i++)
@@ -102,7 +95,7 @@ void testString(void) {
 	for (size_t i = 0; i < len; i++)
 		std::cout << array[i] << std::endl;
 		
-	::iter(array, len, ::stringToUpper);
+	iter(array, len, stringToUpper);
 	
 	std::cout << "AFTER:" << std::endl;
 	for (size_t i = 0; i < len; i++)
@@ -120,7 +113,7 @@ void testSizeT(void) {
 	std::cout << CYAN << "===== Test 6 - size_t =====" << RESET << std::endl; 
 	size_t array[] = {2, 15, 0, 5, 20};
 	size_t len = sizeof(array) / sizeof(size_t);
-	::iter(array, len, ::writeA);
+	iter(array, len, writeA);
 	std::cout << std::endl;
 }
 
@@ -138,7 +131,7 @@ void testFixedClass(void) {
 	array[0] = a;
 	array[1] = b;
 	array[2] = c;
-	::iter(array, len, ::printFixed);
+	iter(array, len, ::printFixed);
 	std::cout << std::endl;
 }
 
@@ -163,7 +156,6 @@ void print( T const & x ) {
 }
 
 int main(void) {
-	testEmptyArray();
 	testInt();
 	testDouble();
 	testChar();
@@ -176,7 +168,7 @@ int main(void) {
 	std::cout << CYAN << "===== Test from eval =====" << RESET << std::endl; 
 	int tab[] = { 0, 1, 2, 3, 4 };
 	Awesome tab2[5];
-	::iter(tab, 5, print);
-	::iter(tab2, 5, print);
+	iter(tab, 5, print);
+	iter(tab2, 5, print);
 	return 0;
 }

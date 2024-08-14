@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 14:13:17 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:46:22 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void iter(T *array, size_t const len, void(*function)(T&)) {
 		function(array[i]);
 }
 
+/* Overload for functions taking a const argument */
 template<typename T>
 void iter(T *array, size_t const len, void(*function)(T const&)) {
 	for (size_t i = 0; i < len; i++)
