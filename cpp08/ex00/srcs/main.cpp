@@ -6,7 +6,13 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 14:26:53 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:26:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "easyfind.hpp"
+
+int main(void) {
+	
+	return (0);
+}
