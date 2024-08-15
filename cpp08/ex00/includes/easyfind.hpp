@@ -17,12 +17,13 @@
 # include <cstdlib>
 # include <algorithm>
 
-template< template <typename> typename T >
-int easyfind(T<int> const& c, int const& n);
+template< typename T >
+int easyfind(T const& c, int const& n);
 
 class NoOccurrenceException : std::exception {
-	virtual const char* what() const throw();
-}
+	public:
+		virtual const char* what() const throw();
+};
 
 # include "easyfind.tpp"
 
@@ -33,6 +34,7 @@ class NoOccurrenceException : std::exception {
 # define MAGENTA "\033[35m"
 # define CYAN "\033[36m"
 # define GREY "\e[0;90m"
+# define BGCYAN "\033[46m"
 # define RESET "\033[0m"
 
 #endif

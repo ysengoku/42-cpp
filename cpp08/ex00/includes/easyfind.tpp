@@ -15,10 +15,10 @@
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
-template< template <typename> typename T >
-int easyfind(T<int> const& c, int const& n) {
-	T<int>::iterator it = std::find(c.begin(), c.end(), n);
-	if (it == c.end())
+template< typename T >
+int easyfind(T const& intContainer, int const& to_find) {
+	typename T::const_iterator it = std::find(intContainer.begin(), intContainer.end(), to_find);
+	if (it == intContainer.end())
 		throw NoOccurrenceException();
 	return (*it);
 }
