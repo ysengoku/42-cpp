@@ -84,13 +84,9 @@ next()
 
 prev()
 ```
-Iterators can be used for following containers
-- std::array
-- std::vector
-- std::map
-- std::set
-- std::unordered_map
-- std::unordered_set
+Iterators can be used for following containers  
+`std::list` `std::vector` `std::map` `std::array`   
+`std::set` `std::unordered_map` `std::unordered_set`
 
 #### References
 [Introduction to Iterators in C++](https://www.geeksforgeeks.org/introduction-iterators-c/)
