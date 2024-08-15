@@ -3,6 +3,35 @@
 ## Containers
 https://ja.cppreference.com/w/cpp/container
 ### list
+
+```cpp
+#include <list>
+#include <iostream>
+
+int main(void) {
+    /* Create an empty list */
+	std::list<int> test;
+
+    /* Add elements to the list */
+	test.push_back(1);
+	test.push_back(2);
+	test.push_back(3);
+	test.push_back(4);
+	test.push_front(5);
+        // push_back: Add an element to the end of the list
+        // push_front: Insert an element to the beginning of the list
+
+    /* Print the elements of the list using iterator */
+	for (std::list<int>::iterator it = test.begin(); it != test.end(); ++it)
+		std::cout << *it << " ";
+        std::cout << std::endl;
+}
+
+// Output
+// 5 1 2 3 4 
+```
+Reference: [std::list - cppreference.com](https://en.cppreference.com/w/cpp/container/list)
+  
 ### vector
 ### map
 
