@@ -23,16 +23,51 @@ int main(void) {
 
     /* Print the elements of the list using iterator */
 	for (std::list<int>::iterator it = test.begin(); it != test.end(); ++it)
-		std::cout << *it << " ";
+		std::cout << *it << ' ';
         std::cout << std::endl;
 }
 
 // Output
 // 5 1 2 3 4 
 ```
-Reference: [std::list - cppreference.com](https://en.cppreference.com/w/cpp/container/list)
+#### Reference:
+- [cppreference.com](https://en.cppreference.com/w/cpp/container/list)
   
 ### vector
+```cpp
+#include <vector>
+#include <iostream>
+
+int main(void) {
+	/* Create an empty vector */
+	std::vector<int> test;
+
+	/* Add elements to the end of the vector */
+	test.push_back(1);
+	test.push_back(2);
+	test.push_back(3);
+	test.push_back(4);
+	test.push_back(5);
+
+	/* Print elements using operator[] */
+	for (size_t i = 0; i < test.size(); i++)
+		std::cout << test[i] << ' ';
+	std::cout << std::endl;
+
+	/* Update the value of an element using 'at()' function */
+	test.at(3) = 42;
+	for (size_t i = 0; i < test.size(); i++)
+		std::cout << test.at(i) << ' ';
+	std::cout << std::endl;
+}
+
+// Output
+// 1 2 3 4 5 
+// 1 2 3 42 5
+```
+#### Reference:
+- [cppreference.com](https://en.cppreference.com/w/cpp/container/vector)
+
 ### map
 
 ## Algorithms
