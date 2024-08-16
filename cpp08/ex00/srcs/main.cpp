@@ -25,9 +25,9 @@ void listTest(int to_find1, int to_find2) {
 	std::cout << "List: ";
 	for (std::list<int>::iterator it = test.begin(); it != test.end(); it++)
 		std::cout << *it << " ";
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 	
-	std::cout << ">>> Searching " << to_find1 << "....." << std::endl;
+	std::cout << YELLOW << ">>> Searching " << to_find2 << "....." << RESET << std::endl;
 	try
 	{
 		std::cout << easyfind(test, to_find1) << " has been found." << std::endl;
@@ -36,7 +36,7 @@ void listTest(int to_find1, int to_find2) {
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << ">>> Searching " << to_find2 << "....." << std::endl;
+	std::cout << YELLOW << ">>> Searching " << to_find2 << "....." << RESET << std::endl;
 	try
 	{
 		std::cout << easyfind(test, to_find2) << " has been found." << std::endl;
@@ -58,9 +58,9 @@ void vectorTest(int to_find1, int to_find2) {
 	std::cout << "Vector: ";
 	for (size_t i = 0; i < test.size(); i++)
 		std::cout << test.at(i) << " ";
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 
-	std::cout << ">>> Searching " << to_find1 << "....." << std::endl;
+	std::cout << YELLOW << ">>> Searching " << to_find1 << "....." << RESET << std::endl;
 	try
 	{
 		std::cout << easyfind(test, to_find1) << " has been found." << std::endl;
@@ -69,12 +69,41 @@ void vectorTest(int to_find1, int to_find2) {
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << ">>> Searching " << to_find2 << "....." << std::endl;
+	std::cout << YELLOW << ">>> Searching " << to_find2 << "....." << RESET << std::endl;
 	try
 	{
 		std::cout << easyfind(test, to_find2) << " has been found." << std::endl;
 	}
 	catch (NoOccurrenceException &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+}
+
+void arrayTest(int to_find1, int to_find2) {
+	std::cout << std::endl << BGCYAN << " Array Test " << RESET << std::endl;
+	std::array<int, 5> test = {40, 41, 42, 43, 44};
+	std::cout << "Array: ";
+	for(size_t i = 0; i < test.size(); i++)
+		std::cout << test[i] << ' ';
+	std::cout << std::endl;
+
+	std::cout << YELLOW << ">>> Searching " << to_find1 << "....." << RESET << std::endl;
+	try
+	{
+		std::cout << easyfind(test, to_find1) << " has been found." << std::endl;
+	}
+	catch(const NoOccurrenceException& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << YELLOW << ">>> Searching " << to_find2 << "....." << RESET << std::endl;
+	try
+	{
+		std::cout << easyfind(test, to_find2) << std::endl;
+	}
+	catch(const NoOccurrenceException& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -87,5 +116,6 @@ int main(void) {
 
 	listTest(to_find1, to_find2);
 	vectorTest(to_find1, to_find2);
+	arrayTest(to_find1, to_find2);
 	return (0);
 }
