@@ -10,3 +10,58 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef SPAN_HPP
+# define SPAN_HPP
+
+# include <iostream>
+# include <cstdlib>
+# include <cstdarg>
+# include <vector>
+# include <algorithm>
+
+class Span {
+	public:
+		Span(unsigned int N);
+		Span(Span const& src);
+		Span& operator=(Span const& rhs);
+		~Span(void);
+
+		void addNumber(int n);
+		void addNumbers(int const count, ...);
+		int shortestSpan(void);
+		int longestSpan(void);
+
+		class NoMoreSpaceException : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+		class NoElementException : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+		class OnlyOneElementException : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+		class NoSpanException : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+	private:
+		std::vector<int>	_elements;
+		unsigned int		_size;
+
+		Span(void);
+};
+
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define BLUE  "\033[34m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define GREY "\e[0;90m"
+# define BGCYAN "\033[46m"
+# define RESET "\033[0m"
+
+#endif
