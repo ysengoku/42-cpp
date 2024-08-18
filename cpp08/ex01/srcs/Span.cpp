@@ -54,30 +54,31 @@ void Span::addNumbers(int const count, ...) {
 
 }
 
-int Span::shortestSpan(void) {
+int Span::shortestSpan(void) const {
 	if (_elements.empty())
 		throw NoElementException();
 	if (_elements.size() == 1)
 		throw OnlyOneElementException();
-	std::sort(_elements.begin(), _elements.end());
-	int shortestSpan = _elements.at(1) - _elements.at(0);
-	for (std::vector<int>::iterator it = _elements.begin(); it != _elements.end(); it++) {
-		if (shortestSpan > *(it + 1) - *it)
-			shortestSpan = *(it + 1) - *it;
+	std::vector<int> tmp = _elements;
+	std::sort(tmp.begin(), tmp.end());
+	int span = tmp.at(1) - tmp.at(0);
+	for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end() - 1; it++) {
+		if (span > *(it + 1) - *it)
+			span = *(it + 1) - *it;
 	}
-	if (shortestSpan == 0)
+	if (span == 0)
 		throw NoSpanException();
-	return (shortestSpan);
+	return (span);
 }
 
-int Span::longestSpan(void) {
+int Span::longestSpan(void) const {
 	if (_elements.empty())
 		throw NoElementException();
 	if (_elements.size() == 1)
 		throw OnlyOneElementException();
 	int max = _elements.at(0);
 	int min = _elements.at(0);
-	for (std::vector<int>::iterator it = _elements.begin(); it != _elements.end(); it++) {
+	for (std::vector<int>::const_iterator it = _elements.begin(); it != _elements.end(); it++) {
 		if (*it > max)
 			max = *it;
 		if (*it < min)

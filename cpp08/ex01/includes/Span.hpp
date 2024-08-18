@@ -28,8 +28,8 @@ class Span {
 
 		void addNumber(int n);
 		void addNumbers(int const count, ...);
-		int shortestSpan(void);
-		int longestSpan(void);
+		int shortestSpan(void) const;
+		int longestSpan(void) const;
 
 		class NoMoreSpaceException : public std::exception {
 			virtual const char* what() const throw();
