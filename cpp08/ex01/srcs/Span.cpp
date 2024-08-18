@@ -43,10 +43,10 @@ Span::~Span(void) {
 /*============================================================================*/
 
 void Span::addNumber(int n) {
-	if (this->_elements.size() == this->_size)
+	if (_elements.size() == _size)
 		throw NoMoreSpaceException();
-	this->_elements.push_back(n);
-	++this->_size;
+	_elements.push_back(n);
+	++_size;
 }
 
 // Implement a member function to add many numbers to your Span in one call.
@@ -54,23 +54,30 @@ void Span::addNumbers(int const count, ...) {
 
 }
 
-// find out the shortest span or the longest span (or distance, if you prefer) between all the numbers stored, and return it. If there are no numbers stored, or only one, no span can be found. Thus, throw an exception
 int Span::shortestSpan(void) {
-	if (this->_elements.empty())
+	if (_elements.empty())
 		throw NoElementException();
-	if (this->_elements.size() == 1)
+	if (_elements.size() == 1)
 		throw OnlyOneElementException();
-
+	std::sort(_elements.begin(), _elements.end());
+	int shortestSpan = _elements.at(1) - _elements.at(0);
+	for (std::vector<int>::iterator it = _elements.begin(); it != _elements.end(); it++) {
+		if (shortestSpan > *(it + 1) - *it)
+			shortestSpan = *(it + 1) - *it;
+	}
+	if (shortestSpan == 0)
+		throw NoSpanException();
+	return (shortestSpan);
 }
 
 int Span::longestSpan(void) {
-	if (this->_elements.empty())
+	if (_elements.empty())
 		throw NoElementException();
-	if (this->_elements.size() == 1)
+	if (_elements.size() == 1)
 		throw OnlyOneElementException();
-	int max = this->_elements.at(0);
-	int min = this->_elements.at(0);
-	for (std::vector<int>::iterator it = this->_elements.begin(); it != this->_elements.end(); it++) {
+	int max = _elements.at(0);
+	int min = _elements.at(0);
+	for (std::vector<int>::iterator it = _elements.begin(); it != _elements.end(); it++) {
 		if (*it > max)
 			max = *it;
 		if (*it < min)
