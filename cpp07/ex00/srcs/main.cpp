@@ -6,14 +6,13 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:36:55 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 11:44:29 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:41:54 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include "whatever.hpp"
-#include "Fixed.hpp"
 
 void	testFromSubject(void) {
 	std::cout << CYAN << "===== Tests from the subject =====" << RESET << std::endl;
@@ -67,16 +66,6 @@ void	additionalTests(void) {
 		std::cout << std::endl << "----- bool -----" << std::endl;
 		bool a = true;
 		bool b = false;
-		std::cout << "BEFORE swap: a = " << a << " b = " << b << std::endl;
-		::swap(a, b);
-		std::cout << "AFTER swap:  a = " << a << " b = " << b << std::endl;
-		std::cout << "min( " << a << ", " << b << " ) = " << ::min( a, b ) << std::endl;
-		std::cout << "max( " << a << ", " << b << " ) = " << ::max( a, b ) << std::endl;
-	}
-	{
-		std::cout << std::endl << "----- 'Fixed' class -----" << std::endl;
-		Fixed a(1.2f);
-		Fixed b(2.0f);
 		std::cout << "BEFORE swap: a = " << a << " b = " << b << std::endl;
 		::swap(a, b);
 		std::cout << "AFTER swap:  a = " << a << " b = " << b << std::endl;

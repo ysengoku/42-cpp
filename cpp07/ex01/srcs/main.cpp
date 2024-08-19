@@ -6,12 +6,11 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:36 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/14 10:27:21 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:44:04 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
-#include "Fixed.hpp"
 
 template<typename T> void incrementOne(T& value);
 template<typename T> void printValue(T const& value);
@@ -102,40 +101,6 @@ void testSizeT(void) {
 	std::cout << std::endl;
 }
 
-void testFixedClass(void) {
-	std::cout << CYAN << "===== Test 7 - Fixed class =====" << RESET << std::endl; 
-	Fixed array[3];
-	size_t len = sizeof(array) / sizeof(Fixed);
-	Fixed a(0.5f);
-	Fixed b(1.2f);
-	Fixed c(42.0f);
-	array[0] = a;
-	array[1] = b;
-	array[2] = c;
-	iter(array, len, printValue);
-	std::cout << std::endl;
-}
-
-/* Test from eval */
-class Awesome {
-	public:
-		Awesome( void ) : _n( 42 ) {}
-		int get( void ) const { return this->_n; }
-	private:
-		int _n;
-};
-
-std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) {
-	o << rhs.get();
-	return o;
-}
-
-template< typename T >
-void print( T const& x ) {
-	std::cout << x << std::endl;
-	return;
-}
-
 int main(void) {
 	testInt();
 	testDouble();
@@ -143,14 +108,6 @@ int main(void) {
 	testChar2();
 	testString();
 	testSizeT();
-	testFixedClass();
-
-	/* Test from eval */
-	std::cout << CYAN << "===== Test from eval =====" << RESET << std::endl; 
-	int tab[] = { 0, 1, 2, 3, 4 };
-	Awesome tab2[5];
-	iter(tab, 5, print);
-	iter(tab2, 5, print);
 	return 0;
 }
 
