@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/19 14:43:30 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:23:20 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <iostream>
 # include <cstdlib>
-# include <cstdarg>
 # include <vector>
 # include <algorithm>
 
