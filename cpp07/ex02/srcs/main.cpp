@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:41:39 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 11:28:35 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:54:26 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void testFromSubject(void)
 		for (int i = 0; i < 5; i++)
 		{
 			int index = rand() % MAX_VAL;
-			tmp[index] = numbers[index] + 1;
+			++tmp [index];
 			std::cout << "numbers[" << index << "] " << numbers[index] << std::endl;
 			std::cout << "tmp[" << index << "] " << tmp[index] << std::endl;
 		}
@@ -100,7 +100,7 @@ void testFromSubject(void)
 		for (int i = 0; i < 5; i++)
 		{
 			int index = rand() % MAX_VAL;
-			tmp [index] = numbers[index] + 1;
+			++tmp [index];
 			std::cout << "numbers[" << index << "] " << numbers[index] << std::endl;
 			std::cout << "tmp[" << index << "] " << tmp[index] << std::endl;
 		}
