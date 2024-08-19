@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 14:27:07 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:23:11 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ Span::Span(unsigned int n) : _size(n) {
 	std::cout << GREY << "Span: Constructor called" << RESET << std::endl;
 }
 
-Span::Span(Span const& src) : Span(src) {
+Span::Span(Span const& src) {
 	std::cout << GREY << "Span: Copy constructor called" << RESET << std::endl;
+	*this = src;
 }
 
 Span& Span::operator=(Span const& rhs) {
@@ -46,12 +47,6 @@ void Span::addNumber(int n) {
 	if (_elements.size() == _size)
 		throw NoMoreSpaceException();
 	_elements.push_back(n);
-	++_size;
-}
-
-// Implement a member function to add many numbers to your Span in one call.
-void Span::addNumbers(int const count, ...) {
-
 }
 
 int Span::shortestSpan(void) const {
@@ -63,7 +58,7 @@ int Span::shortestSpan(void) const {
 	std::sort(tmp.begin(), tmp.end());
 	int span = tmp.at(1) - tmp.at(0);
 	for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end() - 1; it++) {
-		if (span > *(it + 1) - *it)
+		if (span > *(it + 1) - *it && (*(it + 1) - *it != 0))
 			span = *(it + 1) - *it;
 	}
 	if (span == 0)
@@ -76,17 +71,17 @@ int Span::longestSpan(void) const {
 		throw NoElementException();
 	if (_elements.size() == 1)
 		throw OnlyOneElementException();
-	int max = _elements.at(0);
-	int min = _elements.at(0);
-	for (std::vector<int>::const_iterator it = _elements.begin(); it != _elements.end(); it++) {
-		if (*it > max)
-			max = *it;
-		if (*it < min)
-			min = *it;
-	}
+	std::vector<int> tmp = _elements;
+	std::sort(tmp.begin(), tmp.end());
+	int min = tmp.at(0);
+	int max = tmp.at(tmp.size() - 1);
 	if (min == max)
 		throw NoSpanException();
 	return (max - min);
+}
+
+unsigned int Span::getSize(void) {
+	return (_size);
 }
 
 /*============================================================================*/

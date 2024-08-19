@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/13 14:27:01 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:43:30 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,35 @@ class Span {
 		~Span(void);
 
 		void addNumber(int n);
-		void addNumbers(int const count, ...);
 		int shortestSpan(void) const;
 		int longestSpan(void) const;
 
+		template<typename T>
+		void addNumbers(T const& nums) {
+			for (typename T::const_iterator it = nums.begin(); it != nums.end(); it++)
+			addNumber(*it);
+		}
+
+		unsigned int getSize(void);
+
 		class NoMoreSpaceException : public std::exception {
-			virtual const char* what() const throw();
+			public:
+				virtual const char* what() const throw();
 		};
 
 		class NoElementException : public std::exception {
-			virtual const char* what() const throw();
+			public:
+				virtual const char* what() const throw();
 		};
 
 		class OnlyOneElementException : public std::exception {
-			virtual const char* what() const throw();
+			public:
+				virtual const char* what() const throw();
 		};
 
 		class NoSpanException : public std::exception {
-			virtual const char* what() const throw();
+			public:
+				virtual const char* what() const throw();
 		};
 
 	private:
