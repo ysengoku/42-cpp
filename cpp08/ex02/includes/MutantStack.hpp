@@ -20,45 +20,45 @@
 # include <deque>
 
 template< typename T, typename Container = std::deque< T > >
-class MutantStack : public std::stack< T > {
+class MutantStack : public std::stack< T, Container > {
 	public:
-		// typedef std::iterator< std::input_iterator_tag, T > iterator = typename Container::iterator< T >;
-		// using iterator = typename Container::iterator;
-
-		// const_iterator
-		// reverse_iterator
-		// const_reverse_iterator
+		typedef typename Container::iterator iterator;
+		typedef typename Container::const_iterator const_iterator;
+		typedef typename Container::reverse_iterator reverse_iterator;
+		typedef typename Container::const_reverse_iterator const_reverse_iterator;
 		
-		// class iterator : public std::iterator< std::input_iterator_tag, T >
-		// 										// T,			// value_type
-        //                         				// std::ptrdiff_t, // difference_type
-        //                         				// T*,				// pointer
-        //                         				// T& >			// reference
-		// {
-		// 	public:
-		// 		iterator& operator++(void);
-		// 		iterator& operator--(void);
-		// 		iterator operator++(int);
-		// 		iterator operator--(int);
-		// 		bool operator==(iterator const& rhs);
-		// 		bool operator!=(iterator const& rhs);				
-		// 		T& operator*(void) const;
-		// };
-
-		
-		iterator begin(void) const {
-			// return c.begin();
-
+		iterator begin(void) {
+			return this->c.begin();
 		}
 		
-		iterator end(void) const {
-			return 0;
+		iterator end(void) {
+			return this->c.end();
 		}
-		// rbegin
-		// rend
+
+		const_iterator begin(void) const {
+			return this->c.begin();
+		}
+		
+		const_iterator end(void) const {
+			return this->c.end();
+		}
+
+		reverse_iterator rbegin(void) {
+			return this->c.rbegin();
+		}
+
+		reverse_iterator rend(void) {
+			return this->c.rend();
+		}
+
+		const_reverse_iterator rbegin(void) const {
+			return this->c.rbegin();
+		}
+
+		const_reverse_iterator rend(void) const {
+			return this->c.rend();
+		}
 };
-
-# include "MutantStack.tpp"
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"
