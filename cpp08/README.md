@@ -89,14 +89,40 @@ int main(void) {
 #### Reference:
 - [cppreference.com](https://en.cppreference.com/w/cpp/container/vector)
 
+
 ### std::stack
+
 Stack is a container adoptor with LIFO (Last-in First-out) structure.
+
+
+### std::deque
+
+A `deque` is a dynamic container that stores elements in a way similar to a vector but allows efficient insertions and deletions at both ends by internally managing multiple fixed-size arrays.  
+Its iterators are specifically designed to handle this unique structure, which are essentially dynamic arrays of fixed-size arrays.  
+
+```cpp
+// Visual representation of a deque's internal structure
+[fixed-size array][fixed-size array][fixed-size array]...
+```
+  
+Performance Comparison of deque, vector, and list iterators  
+| Feature | std::deque | std::vector | std::list |
+|---|---|---|---|
+| Random Access | Yes | Yes | No |
+| Insertion/Deletion (beginning) | Efficient | Inefficient | Efficient |
+| Insertion/Deletion (end) | Efficient | Efficient | Efficient |
+| Insertion/Deletion (middle) | Efficient | Inefficient | Efficient |
+| Memory Contiguity | Not necessarily | Yes | No |
+
 
 ### map
 
 ## Algorithms
+
 ### Iterators
+
 #### Operations
+
 ```cpp
 begin()
 
@@ -113,11 +139,13 @@ Iterators can be used for following containers
 `std::array` `std::unordered_map` `std::unordered_set`
 
 #### References
+
 [Introduction to Iterators in C++](https://www.geeksforgeeks.org/introduction-iterators-c/)
 [Iterators in C++ STL](https://www.geeksforgeeks.org/iterators-c-stl/)
 [ゼロから学ぶ C++ - イテレータ](https://rinatz.github.io/cpp-book/ch03-08-iterators/)
 
 ### std::find
+
 ```cpp
 template< class InputIt, class T >
 InputIt find( InputIt first, InputIt last, const T& value );
