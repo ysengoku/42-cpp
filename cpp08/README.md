@@ -1,8 +1,29 @@
 # CPP Module08 (on working)
 
 ## Containers
-https://ja.cppreference.com/w/cpp/container
-### list
+
+### STL containers
+
+#### Sequence containers  
+> Data structures which can be accessed sequentially  
+`vector` `list` `deque`  
+`array` `forward_list` (since C++11)  
+
+#### Associative containers 
+> Sorted data structures that can be quickly searched  
+`set` `multiset` `map` `multimap`  
+
+#### Unordered associative containers (since C++11)
+> Unsorted (hashed) data structures that can be quickly searched
+`unordered_set` `unordered_multiset` `unordered_map` `unordered_multimap`
+
+#### Container adaptors
+> Container adaptors provide a different interface for sequential containers.   
+`stack` `queue` `priority_queue`
+
+[cppreference.com/w/cpp/container](https://en.cppreference.com/w/cpp/container)
+
+### std::list
 
 ```cpp
 #include <list>
@@ -10,7 +31,7 @@ https://ja.cppreference.com/w/cpp/container
 
 int main(void) {
     /* Create an empty list */
-	std::list<int> test;
+	std::list< int > test;
 
     /* Add elements to the list */
 	test.push_back(1);
@@ -22,7 +43,7 @@ int main(void) {
         // push_front: Insert an element to the beginning of the list
 
     /* Print the elements of the list using iterator */
-	for (std::list<int>::iterator it = test.begin(); it != test.end(); ++it)
+	for (std::list< int >::iterator it = test.begin(); it != test.end(); ++it)
 		std::cout << *it << ' ';
         std::cout << std::endl;
 }
@@ -33,14 +54,14 @@ int main(void) {
 #### Reference:
 - [cppreference.com](https://en.cppreference.com/w/cpp/container/list)
   
-### vector
+### std::vector
 ```cpp
 #include <vector>
 #include <iostream>
 
 int main(void) {
 	/* Create an empty vector */
-	std::vector<int> test;
+	std::vector< int > test;
 
 	/* Add elements to the end of the vector */
 	test.push_back(1);
@@ -68,6 +89,9 @@ int main(void) {
 #### Reference:
 - [cppreference.com](https://en.cppreference.com/w/cpp/container/vector)
 
+### std::stack
+Stack is a container adoptor with LIFO (Last-in First-out) structure.
+
 ### map
 
 ## Algorithms
@@ -85,8 +109,8 @@ next()
 prev()
 ```
 Iterators can be used for following containers  
-`std::list` `std::vector` `std::map` `std::array`   
-`std::set` `std::unordered_map` `std::unordered_set`
+`std::list` `std::vector` `std::map` `std::set`  
+`std::array` `std::unordered_map` `std::unordered_set`
 
 #### References
 [Introduction to Iterators in C++](https://www.geeksforgeeks.org/introduction-iterators-c/)
@@ -113,8 +137,8 @@ Example:
 #include <algorithm>
 
 int main(void) {
-    std::vector<int> arr = {1, 2, 3, 4, 5};
-    std::vector<int>::iterator it = std::find(arr.begin(), arr.end(), 3);
+    std::vector< int > arr = {1, 2, 3, 4, 5};
+    std::vector< int >::iterator it = std::find(arr.begin(), arr.end(), 3);
     if (it != arr.end()) {
         std::cout << "Found 3 at index: " << it - arr.begin() << std::endl;
     } else {
@@ -126,3 +150,9 @@ int main(void) {
 // Output
 // Found 3 at index: 2
 ```
+
+### sort
+
+### std::min_element / std::max_element
+
+### std::distance
