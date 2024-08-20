@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:00 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/19 16:23:20 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:25:12 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,25 @@ class Span {
 		~Span(void);
 
 		void addNumber(int n);
-		int shortestSpan(void) const;
-		int longestSpan(void) const;
+		unsigned int shortestSpan(void) const;
+		unsigned int longestSpan(void) const;
 
 		template<typename T>
-		void addNumbers(T const& nums) {
-			for (typename T::const_iterator it = nums.begin(); it != nums.end(); it++)
-			addNumber(*it);
+		void addRange(typename T::const_iterator first, typename T::const_iterator last) {
+			size_t distance = std::distance(first, last);
+			if (distance > _size - _elements.size())
+				throw NoMoreSpaceException();
+			_elements.insert(_elements.end(), first, last);
 		}
 
-		unsigned int getSize(void);
+		void printElements(void) const;
 
 		class NoMoreSpaceException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
 
-		class NoElementException : public std::exception {
-			public:
-				virtual const char* what() const throw();
-		};
-
-		class OnlyOneElementException : public std::exception {
+		class TooFewElementException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
@@ -58,7 +55,7 @@ class Span {
 		};
 
 	private:
-		std::vector<int>	_elements;
+		std::vector< int >	_elements;
 		unsigned int		_size;
 
 		Span(void);

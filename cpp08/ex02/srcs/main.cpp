@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:21 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/19 16:24:37 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:38:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	// MutantStack<int> mstack;
+	// MutantStack< int > mstack;
 	// mstack.push(5);
 	// mstack.push(17);
 	// std::cout << mstack.top() << std::endl;
@@ -25,8 +25,8 @@ int main()
 	// mstack.push(737);
 	// //[...]
 	// mstack.push(0);
-	// MutantStack<int>::iterator it = mstack.begin();
-	// MutantStack<int>::iterator ite = mstack.end();
+	// MutantStack< int >::iterator it = mstack.begin();
+	// MutantStack< int >::iterator ite = mstack.end();
 	// ++it;
 	// --it;
 	// while (it != ite)
@@ -34,6 +34,6 @@ int main()
 	// std::cout << *it << std::endl;
 	// ++it;
 	// }
-	// std::stack<int>  s(mstack);
+	// std::stack< int >  s(mstack);
 	return (0);
 }

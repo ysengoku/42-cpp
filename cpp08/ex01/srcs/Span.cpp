@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:06 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/19 15:23:11 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:42:39 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,13 @@ void Span::addNumber(int n) {
 	_elements.push_back(n);
 }
 
-int Span::shortestSpan(void) const {
-	if (_elements.empty())
-		throw NoElementException();
-	if (_elements.size() == 1)
-		throw OnlyOneElementException();
-	std::vector<int> tmp = _elements;
+unsigned int Span::shortestSpan(void) const {
+	if (_elements.size() <= 1)
+		throw TooFewElementException();
+	std::vector< int > tmp = _elements;
 	std::sort(tmp.begin(), tmp.end());
 	int span = tmp.at(1) - tmp.at(0);
-	for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end() - 1; it++) {
+	for (std::vector< int >::iterator it = tmp.begin(); it != tmp.end() - 1; it++) {
 		if (span > *(it + 1) - *it && (*(it + 1) - *it != 0))
 			span = *(it + 1) - *it;
 	}
@@ -66,22 +64,21 @@ int Span::shortestSpan(void) const {
 	return (span);
 }
 
-int Span::longestSpan(void) const {
-	if (_elements.empty())
-		throw NoElementException();
-	if (_elements.size() == 1)
-		throw OnlyOneElementException();
-	std::vector<int> tmp = _elements;
-	std::sort(tmp.begin(), tmp.end());
-	int min = tmp.at(0);
-	int max = tmp.at(tmp.size() - 1);
+unsigned int Span::longestSpan(void) const {
+	if (_elements.size() <= 1)
+		throw TooFewElementException();
+	int min = *(std::min_element(_elements.begin(), _elements.end()));
+	int max = *(std::max_element(_elements.begin(), _elements.end()));
 	if (min == max)
 		throw NoSpanException();
 	return (max - min);
 }
 
-unsigned int Span::getSize(void) {
-	return (_size);
+void Span::printElements(void) const {
+	if (_elements.empty())
+		std::cout << RED << "No element found" << RESET << std::endl;
+	for (std::vector< int >::const_iterator it = _elements.begin(); it != _elements.end(); it++)
+		std::cout << *it << std::endl;
 }
 
 /*============================================================================*/
@@ -92,12 +89,8 @@ const char* Span::NoMoreSpaceException::what() const throw() {
 	return (RED "There is no space left to add a new element." RESET);
 }
 
-const char* Span::NoElementException::what() const throw() {
-	return (RED "The container is empty." RESET);
-}
-
-const char* Span::OnlyOneElementException::what() const throw() {
-	return (RED "There is only one element in the container." RESET);
+const char* Span::TooFewElementException::what() const throw() {
+	return (RED "Not enough elements found." RESET);
 }
 
 const char* Span::NoSpanException::what() const throw() {
