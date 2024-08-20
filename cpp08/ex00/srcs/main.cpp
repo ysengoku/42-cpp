@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/14 14:26:39 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:38:34 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 void listTest(int to_find1, int to_find2) {
 	std::cout << std::endl << BGCYAN << " List Test " << RESET << std::endl;
-	std::list<int> test;
+	std::list< int > test;
 	test.push_back(1);
 	test.push_back(2);
 	test.push_back(42);
 	test.push_back(4);
 	test.push_front(5);
 	std::cout << "List: ";
-	for (std::list<int>::iterator it = test.begin(); it != test.end(); it++)
+	for (std::list< int >::iterator it = test.begin(); it != test.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	
@@ -49,7 +49,7 @@ void listTest(int to_find1, int to_find2) {
 
 void vectorTest(int to_find1, int to_find2) {
 	std::cout << std::endl << BGCYAN << " Vector Test " << RESET << std::endl;
-	std::vector<int> test;
+	std::vector< int > test;
 	test.push_back(1);
 	test.push_back(2);
 	test.push_back(3);
