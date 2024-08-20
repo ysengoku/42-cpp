@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:14 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/19 16:28:21 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:38:58 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,45 @@
 # include <iostream>
 # include <algorithm>
 # include <iterator>
-# include <vector>
+# include <deque>
 
-template<typename T>
-class MutantStack : public std::stack {
+template< typename T, typename Container = std::deque< T > >
+class MutantStack : public std::stack< T > {
+	public:
+		// typedef std::iterator< std::input_iterator_tag, T > iterator = typename Container::iterator< T >;
+		// using iterator = typename Container::iterator;
 
+		// const_iterator
+		// reverse_iterator
+		// const_reverse_iterator
+		
+		// class iterator : public std::iterator< std::input_iterator_tag, T >
+		// 										// T,			// value_type
+        //                         				// std::ptrdiff_t, // difference_type
+        //                         				// T*,				// pointer
+        //                         				// T& >			// reference
+		// {
+		// 	public:
+		// 		iterator& operator++(void);
+		// 		iterator& operator--(void);
+		// 		iterator operator++(int);
+		// 		iterator operator--(int);
+		// 		bool operator==(iterator const& rhs);
+		// 		bool operator!=(iterator const& rhs);				
+		// 		T& operator*(void) const;
+		// };
+
+		
+		iterator begin(void) const {
+			// return c.begin();
+
+		}
+		
+		iterator end(void) const {
+			return 0;
+		}
+		// rbegin
+		// rend
 };
 
 # include "MutantStack.tpp"
