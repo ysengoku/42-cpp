@@ -14,7 +14,7 @@
 `set` `multiset` `map` `multimap`  
 
 #### Unordered associative containers (since C++11)
-> Unsorted (hashed) data structures that can be quickly searched
+> Unsorted (hashed) data structures that can be quickly searched  
 `unordered_set` `unordered_multiset` `unordered_map` `unordered_multimap`
 
 #### Container adaptors
@@ -92,8 +92,7 @@ int main(void) {
 
 ### std::stack
 
-Stack is a container adoptor with LIFO (Last-in First-out) structure.
-
+A `stack` is a container adapter that implements a Last-In-First-Out (LIFO) data structure. It encapsulates an underlying container (defaulting to std::deque) and provides a limited interface for accessing elements in a LIFO manner. Unlike other STL containers, stack does not directly support iterators, focusing solely on `push`, `pop`, and `top` operations.  
 
 ### std::deque
 
