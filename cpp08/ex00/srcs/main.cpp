@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:52 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/20 08:38:34 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:00:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void listTest(int to_find1, int to_find2) {
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	
-	std::cout << YELLOW << ">>> Searching " << to_find2 << "....." << RESET << std::endl;
+	std::cout << YELLOW << ">>> Searching " << to_find1 << "....." << RESET << std::endl;
 	try
 	{
 		std::cout << easyfind(test, to_find1) << " has been found." << std::endl;
