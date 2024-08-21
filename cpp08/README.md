@@ -116,7 +116,16 @@ class stack;
 
 #### Member object
 
-- `Container c` underlying con
+- `Container c` underlying container (protected)
+
+#### Member functions
+
+Accessor
+- `top()` Access to the top element
+
+Modifiers
+- `push(T value)` Add an element(value) at the top
+- `pop()` Remove the top element
 
 ### std::deque
 
