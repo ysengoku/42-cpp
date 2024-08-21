@@ -210,8 +210,21 @@ int main(void) {
 // Found 3 at index: 2
 ```
 
-### sort
+### std::sort
 
 ### std::min_element / std::max_element
+
+The function `std::min_element` returns the iterator to the min value element in the container.  
+The function `std::max_element` returns the iterator to the max value element in the container.   
+
+```cpp
+#include <algorithm>
+
+template <class ForwardIterator>
+ForwardIterator min_element (ForwardIterator first, ForwardIterator last);
+
+template <class ForwardIterator>
+ForwardIterator max_element (ForwardIterator first, ForwardIterator last);
+```
 
 ### std::distance
