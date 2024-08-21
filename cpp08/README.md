@@ -5,22 +5,27 @@
 ### STL containers
 
 #### Sequence containers  
-> Data structures which can be accessed sequentially  
+> Data structures which can be accessed sequentially
+
 `vector` `list` `deque`  
-`array` `forward_list` (since C++11)  
+since C++11: `array` `forward_list`   
 
 #### Associative containers 
-> Sorted data structures that can be quickly searched  
+> Sorted data structures that can be quickly searched
+
 `set` `multiset` `map` `multimap`  
 
 #### Unordered associative containers (since C++11)
-> Unsorted (hashed) data structures that can be quickly searched  
+> Unsorted (hashed) data structures that can be quickly searched
+
 `unordered_set` `unordered_multiset` `unordered_map` `unordered_multimap`
 
 #### Container adaptors
-> Container adaptors provide a different interface for sequential containers.   
+> Container adaptors provide a different interface for sequential containers.
+  
 `stack` `queue` `priority_queue`
 
+Reference:  
 [cppreference.com/w/cpp/container](https://en.cppreference.com/w/cpp/container)
 
 ### std::list
@@ -51,8 +56,8 @@ int main(void) {
 // Output
 // 5 1 2 3 4 
 ```
-#### Reference:
-- [cppreference.com](https://en.cppreference.com/w/cpp/container/list)
+Reference:  
+[cppreference.com/w/cpp/container/list](https://en.cppreference.com/w/cpp/container/list)
   
 ### std::vector
 ```cpp
@@ -86,13 +91,32 @@ int main(void) {
 // 1 2 3 4 5 
 // 1 2 3 42 5
 ```
-#### Reference:
-- [cppreference.com](https://en.cppreference.com/w/cpp/container/vector)
+Reference:  
+[cppreference.com/w/cpp/container/vector](https://en.cppreference.com/w/cpp/container/vector)
 
 
 ### std::stack
 
 A `stack` is a container adapter that implements a Last-In-First-Out (LIFO) data structure. It encapsulates an underlying container (defaulting to std::deque) and provides a limited interface for accessing elements in a LIFO manner. Unlike other STL containers, stack does not directly support iterators, focusing solely on `push`, `pop`, and `top` operations.  
+
+```cpp
+template< class T, class Container = std::deque<T> >
+class stack;
+
+// T: Type of elements
+// Container: Type of underlying container (defaulting to std::deque)
+```
+#### Member types
+
+- `container_type` Container
+- `value_type` Container::value_type
+- `size_type` Container::size_type
+- `reference` Container::reference
+- `const_reference` Container::const_reference
+
+#### Member object
+
+- `Container c` underlying con
 
 ### std::deque
 
@@ -137,11 +161,10 @@ Iterators can be used for following containers
 `std::list` `std::vector` `std::map` `std::set`  
 `std::array` `std::unordered_map` `std::unordered_set`
 
-#### References
-
-[Introduction to Iterators in C++](https://www.geeksforgeeks.org/introduction-iterators-c/)
-[Iterators in C++ STL](https://www.geeksforgeeks.org/iterators-c-stl/)
-[ゼロから学ぶ C++ - イテレータ](https://rinatz.github.io/cpp-book/ch03-08-iterators/)
+References:  
+[Introduction to Iterators in C++](https://www.geeksforgeeks.org/introduction-iterators-c/)  
+[Iterators in C++ STL](https://www.geeksforgeeks.org/iterators-c-stl/)  
+[ゼロから学ぶ C++ - イテレータ](https://rinatz.github.io/cpp-book/ch03-08-iterators/)  
 
 ### std::find
 
