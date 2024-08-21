@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:27:14 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/20 15:38:58 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:20:13 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 # include <iterator>
 # include <deque>
 
-template< typename T, typename Container = std::deque< T > >
-class MutantStack : public std::stack< T, Container > {
+template< typename T >
+class MutantStack : public std::stack< T > {
 	public:
-		typedef typename Container::iterator iterator;
-		typedef typename Container::const_iterator const_iterator;
-		typedef typename Container::reverse_iterator reverse_iterator;
-		typedef typename Container::const_reverse_iterator const_reverse_iterator;
+		MutantStack(void);
+		MutantStack(MutantStack const& src);
+		MutantStack< T >& operator=(MutantStack const& rhs);
+		~MutantStack(void);
+
+		typedef typename std::stack< T >::container_type::iterator iterator;
+		typedef typename std::stack< T >::container_type::const_iterator const_iterator;
+		typedef typename std::stack< T >::container_type::reverse_iterator reverse_iterator;
+		typedef typename std::stack< T >::container_type::const_reverse_iterator const_reverse_iterator;
 		
 		iterator begin(void) {
 			return this->c.begin();
@@ -59,6 +64,8 @@ class MutantStack : public std::stack< T, Container > {
 			return this->c.rend();
 		}
 };
+
+# include "MutantStack.tpp"
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"

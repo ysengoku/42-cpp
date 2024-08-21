@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 08:02:36 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/19 09:44:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:42:43 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,3 +131,35 @@ void writeA(size_t const& n) {
 		std::cout << 'A';
 	std::cout << std::endl;
 }
+
+// class Awesome
+// {
+//   public:
+//     Awesome( void ) : _n( 42 ) { return; }
+//     int get( void ) const { return this->_n; }
+//   private:
+//     int _n;
+// };
+
+// std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+// {
+//   o << rhs.get();
+//   return o;
+// }
+
+// template< typename T >
+// void print( T& x )
+// {
+//   std::cout << x << std::endl;
+//   return;
+// }
+
+// int main() {
+//   int tab[] = { 0, 1, 2, 3, 4 };
+//   Awesome tab2[5];
+
+//   iter( tab, 5, print<const int> );
+//   iter( tab2, 5, print<Awesome> );
+
+//   return 0;
+// }
