@@ -211,19 +211,22 @@ int main(void) {
 ```
 
 ### std::sort
+The function `std::sort` sorts the elemets in the container in non-descending order in the range from `first` to `last`.
+
+```cpp
+template< class RandomIterator >
+void sort( RandomIterator first, RandomIterator last );
+```
 
 ### std::min_element / std::max_element
 
-The function `std::min_element` returns the iterator to the min value element in the container.  
-The function `std::max_element` returns the iterator to the max value element in the container.   
+The functions `std::min_element`/`std::max_element` returns the iterator to the min/max value element in the container.  
 
 ```cpp
-#include <algorithm>
-
-template <class ForwardIterator>
+template < class ForwardIterator >
 ForwardIterator min_element (ForwardIterator first, ForwardIterator last);
 
-template <class ForwardIterator>
+template < class ForwardIterator >
 ForwardIterator max_element (ForwardIterator first, ForwardIterator last);
 ```
 
