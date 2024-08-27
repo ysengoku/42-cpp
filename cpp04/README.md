@@ -164,10 +164,10 @@ int main() {
 
 ## Abstract class
 Abstract class is a base class which is not instantiable.
-To create an abstruct class, we put 
+To create an abstract class, we set all methodes to pure virtual. 
 
 ## Interface
-Interface is a pure abstruct class which has only pure virtual methodes.
+Interface is a pure abstract class which has only pure virtual methodes.
 
 ```c++
 // Virtual methode
