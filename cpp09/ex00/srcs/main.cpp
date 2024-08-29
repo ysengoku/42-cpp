@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:19 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/28 12:36:24 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/29 13:55:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,14 @@ int main(int argc, char** argv) {
 		std::cout << "Usage: ./btc <file name>" << std::endl;
 		return (1);
 	}
-	BitcoinExcange btc;
-	try 
-	{
-		btc.readDatabase();
-	}
-	catch (const BitcoinExcange::FileOpenErrorException& e)
-	{
-		std::cout << "Database file: " << e.what() << std::endl;
-	}
-	catch (const BitcoinExcange::InvalidValueException& e)
-	{
-		std::cout << "Database file: " << e.what() << std::endl;
-	}
-	try
-	{
-		btc.openInputFile(argv[1]);
-	}
-	catch(const BitcoinExcange::FileOpenErrorException& e)
-	{
-		std::cout << "Input file: " << e.what() << std::endl;
-	}
-	
-	
+	BitcoinExcange btc(argv[1]);
+	btc.exchange();
+
+	// BitcoinExcange copy1(btc);
+	// copy1.exchange();
+
+	// BitcoinExcange copy2;
+	// copy2 = btc;
+	// copy2.exchange();
 	return (0);
 }
