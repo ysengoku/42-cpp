@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:31:55 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/28 12:35:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:58:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,35 @@
 # include <string>
 # include <map>
 # include <cstdlib>
-# include <climits>
-# include <limits>
 # include <cerrno>
+# include <ctime>
 
-# define DATABASE "../data.csv"
-# define FLOAT_MAX std::numeric_limits<float>::max()
+# ifndef DATABASE
+# 	define DATABASE "./data.csv"
+# endif
 
 class BitcoinExcange {
 	private:
 		std::map<std::string, float> _database;
+		char* _inputFileName;
 		std::ifstream _ifs;
+		std::string _today;
 
-		float strToFloat(std::string const& str);
+		void setTodaysDate(void);
+		bool readDatabase(void);
+		bool checkDate(std::string const&);
+		bool checkAmount(std::string const&);
+		float findRate(std::string const&);
+		
 
 	public:
 		BitcoinExcange(void);
+		BitcoinExcange(char* inputFileName);
 		BitcoinExcange(BitcoinExcange const& src);
 		BitcoinExcange& operator=(BitcoinExcange const& rhs);
 		~BitcoinExcange(void);
 
-		void readDatabase(void);
-		void openInputFile(char* filename);
-
-		class FileOpenErrorException : std::exception {
-			public:
-				virtual const char* what() const throw();
-		};
-
-		class InvalidValueException : std::exception {
-			public:
-				virtual const char* what() const throw();
-		};
+		void exchange(void);
 };
 
 # define RED "\033[31m"
