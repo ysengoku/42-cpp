@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:31:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/29 15:00:22 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:55:06 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ BitcoinExcange::BitcoinExcange(char* inputFileName) : _inputFileName(inputFileNa
 		exit(1);
 	_ifs.open(_inputFileName, std::ios::in);
 	if (!_ifs.is_open()) {
-		std::cout << "Error: could not open inputfile file" << std::endl;
+		std::cout << RED << "Error: could not open inputfile file" << RESET << std::endl;
 		exit(1);
 	}
 	setTodaysDate();
@@ -32,12 +32,23 @@ BitcoinExcange::BitcoinExcange(BitcoinExcange const& src)
 : _database(src._database), _inputFileName(src._inputFileName), _today(src._today) {
 	this->_ifs.open(_inputFileName, std::ios::in);
 	if (!this->_ifs.is_open()) {
-		std::cout << "Error: could not open inputfile file" << std::endl;
+		std::cout << RED << "Error: could not open inputfile file" << RESET << std::endl;
 		exit(1);
 	}	
 	std::cout << GREY << "Copy constructor called" << RESET << std::endl;
 }
 
+BitcoinExcange::~BitcoinExcange(void) {
+	std::cout << GREY << "Destructor called" << RESET << std::endl;
+	this->_ifs.close();
+} 
+
+/* Private */
+BitcoinExcange::BitcoinExcange(void) {
+	std::cout << GREY << "Default constructor called" << RESET << std::endl;
+}
+
+/* Private */
 BitcoinExcange& BitcoinExcange::operator=(BitcoinExcange const& rhs) {
 	if (this != &rhs) {
 		this->_database = rhs._database;
@@ -45,21 +56,12 @@ BitcoinExcange& BitcoinExcange::operator=(BitcoinExcange const& rhs) {
 		this->_today = rhs._today;
 		this->_ifs.open(_inputFileName, std::ios::in);
 		if (!this->_ifs.is_open()) {
-			std::cout << "Error: could not open inputfile file" << std::endl;
+			std::cout << RED << "Error: could not open inputfile file" << RESET << std::endl;
 			exit(1);
 		}
 	}
 	std::cout << GREY << "Copy assignment operator called" << RESET << std::endl;
 	return (*this);
-}
-
-BitcoinExcange::~BitcoinExcange(void) {
-	std::cout << GREY << "Destructor called" << RESET << std::endl;
-	this->_ifs.close();
-}
-
-BitcoinExcange::BitcoinExcange(void) {
-	std::cout << GREY << "Default constructor called" << RESET << std::endl;
 }
 
 /*============================================================================*/
@@ -109,7 +111,7 @@ bool BitcoinExcange::readDatabase(void) {
 	char delimiter = ',';
 
 	if (!ifs.is_open()) {
-		std::cout << "Error: could not open database file" << std::endl;
+		std::cout << RED << "Error: could not open database file" << RESET << std::endl;
 		return (false);	
 	}
 	while (std::getline(ifs, line)) {
@@ -136,10 +138,10 @@ bool BitcoinExcange::checkDate(std::string const& date) {
 	std::string dayStr;
 	char delimiter = '-';
 
-	if (date.empty()) 
+	if (date.empty())
 		return (false);
 	if (date > _today) {
-		std::cout << "Error: Bad input => " << date << std::endl;
+		std::cout << RED << "Error: Bad input => " << date << RESET << std::endl;
 		return (false);
 	}
 	std::getline(iss, yearStr, delimiter);
@@ -149,17 +151,17 @@ bool BitcoinExcange::checkDate(std::string const& date) {
 	int month = std::atoi(monthStr.c_str());
 	int day = std::atoi(dayStr.c_str());
 	if (year < 2009 || month < 1 || month > 12 || day < 1 || day > 31) {
-		std::cout << "Error: Bad input => " << date << std::endl;
+		std::cout << RED << "Error: Bad input => " << date << RESET << std::endl;
 		return (false);
 	}
 	// Check April, June, September and Novermber
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) {
-		std::cout << "Error: Bad input => " << date << std::endl;
+		std::cout << RED << "Error: Bad input => " << date << RESET << std::endl;
 		return (false);
 	}
 	// Check February
 	if (month == 2 && (day >= 30 || (year % 4 != 0 && day == 29))) {
-		std::cout << "Error: Bad input => " << date << std::endl;
+		std::cout << RED << "Error: Bad input => " << date << RESET << std::endl;
 		return (false);
 	}
 	return (true);
@@ -172,20 +174,20 @@ bool BitcoinExcange::checkAmount(std::string const& amount) {
 	
 	double tmp = std::strtod(amount.c_str(), &end);
 	if (amount.empty()) {
-		// std::cout << "Error: Empty input." << std::endl;
+		std::cout << RED << "Error: Bad input" << RESET << std::endl;
 		return (false);
 	}
 	if (errno == EINVAL)  {
-		std::cout << "Error: Bad input => " << amount << std::endl;
+		std::cout << RED << "Error: Bad input => " << RESET << amount << std::endl;
 		return (false);
 	}
 	num = static_cast<float>(tmp);
 	if (num < 0.0){
-		std::cout << "Error: Not a positive number." << std::endl;
+		std::cout << RED << "Error: Not a positive number" << RESET << std::endl;
 		return (false);
 	}
 	if (num > 1000.0) {
-		std::cout << "Error: Too large number." << std::endl;
+		std::cout << RED << "Error: Too large number" << RESET << std::endl;
 		return (false);
 	}
 	return (true);	

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:31:55 by yusengok          #+#    #+#             */
-/*   Updated: 2024/08/29 14:58:40 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:26:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ class BitcoinExcange {
 		bool checkAmount(std::string const&);
 		float findRate(std::string const&);
 		
+		BitcoinExcange(void);
+		BitcoinExcange& operator=(BitcoinExcange const& rhs);
 
 	public:
-		BitcoinExcange(void);
 		BitcoinExcange(char* inputFileName);
 		BitcoinExcange(BitcoinExcange const& src);
-		BitcoinExcange& operator=(BitcoinExcange const& rhs);
 		~BitcoinExcange(void);
 
 		void exchange(void);
