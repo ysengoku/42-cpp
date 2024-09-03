@@ -14,6 +14,6 @@ This repository showcases my progress in learning the C++ language through vario
 | [CPP05](./cpp05)                    | <ul><li>Repetition</li><li>Exceptions</li></ul>                                                | Handling exceptions and iterative processes |
 | [CPP06](./cpp06)                    | <ul><li>C++ Casts</li></ul>                                                                    | Using type casts in C++                   |
 | [CPP07](./cpp07)                    | <ul><li>C++ Templates</li></ul>                                                                | Implementing generic programming with templates |
-| [CPP08]                    | <ul><li>Templated containers</li><li>Iterators</li><li>Algorithms</li></ul>                    | Working with STL containers, iterators, and algorithms |
+| [CPP08](./cpp08)                    | <ul><li>Templated containers</li><li>Iterators</li><li>Algorithms</li></ul>                    | Working with STL containers, iterators, and algorithms |
 | [CPP09]                    | <ul><li>STL</li></ul>                                                                          | Exploring the Standard Template Library (STL) |
 
