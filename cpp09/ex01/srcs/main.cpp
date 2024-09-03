@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/02 12:35:57 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:41:33 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
 		return (1);
 	}
 	RPN rpn(argv[1]);
+	rpn.calculate();
 	return (0);
 }
 

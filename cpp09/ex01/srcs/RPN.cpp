@@ -32,7 +32,7 @@ RPN::RPN(RPN const& src) {
 RPN& RPN::operator=(RPN const& rhs) {
 	std::cout << GREY << "Copy assignment operator called" << RESET << std::endl;
 	if (this != &rhs) {
-		this->_data = rhs._data;
+		this->_stack = rhs._stack;
 		this->_input = rhs._input;
 	}
 	return (*this);
@@ -46,16 +46,34 @@ RPN::~RPN() {
 /*       Public member functions                                              */
 /*============================================================================*/
 
-int RPN::calculate(void) {
-	int resultat;
+void RPN::calculate(void) {
+	// std::istringstream iss(_input);
+	// std::string n1;
+	// std::string n2;
+	// int num1;
+	// int num2;
+	// char op;
 	
-	return (resultat);
+
+	
 }
 
 /*============================================================================*/
 /*       Private member functions                                             */
 /*============================================================================*/
 
-bool RPN::isInputNumeric(void) {
+bool RPN::isNumeric(void) {
 
+}
+
+bool RPN::readInput(void) {
+
+}
+
+/*============================================================================*/
+/*       Exceptions                                                           */
+/*============================================================================*/
+
+const char* RPN::InvalidValueException::what() const throw() {
+	return (RED "Error: Invalid value in the input\n" RESET);
 }

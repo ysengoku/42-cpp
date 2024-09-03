@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:28 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/02 12:37:35 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:43:56 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 # include <iostream>
 # include <string>
+# include <sstream>
 # include <stack>
+# include <exception> 
 
 class RPN {
 	private:
-		std::stack<int> _data;
+		std::stack<int> _stack;
 		std::string _input;
 
-		bool isInputNumeric(void);
+		bool isNumeric(void);
+		bool readInput(void);
 
 		RPN(void);
 
@@ -32,7 +35,12 @@ class RPN {
 		RPN& operator=(RPN const&);
 		~RPN(void);
 
-		int calculate();
+		void calculate();
+
+		class InvalidValueException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
 # define RED "\033[31m"
