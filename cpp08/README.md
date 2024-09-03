@@ -146,8 +146,62 @@ Performance Comparison of deque, vector, and list iterators
 | Insertion/Deletion (middle) | Efficient | Inefficient | Efficient |
 | Memory Contiguity | Not necessarily | Yes | No |
 
+### std::map
+A `map` is a sorted associative container that stores __key-value pairs__, with unique keys, in a strict weak ordering based on the key. Operations like insertions, deletions, and lookups are efficient, even as the map grows larger.  
+#### Member types
+- `key_type` Key
+- `mapped_type` T
+- `value_type` std::pair<const Key, T>
+- `iterator` std::pair<const Key, T>::iterator
 
-### map
+#### Member functions
+
+Accessor
+- `at()`
+- `operator[]`  
+
+Modifiers
+- `insert` Insert element
+- `clear` Clear the content
+- `erase` Erase element specified by key  
+
+Lookups
+- `find` Find element with specific key
+
+```cpp
+#include <iostream>
+#include <map>
+#include <string>
+
+int main() {
+	std::map<std::string, int> examList;
+
+	// insert
+	examList.insert(std::pair<std::string, int>("Jim", 18));
+	examList.insert(std::pair<std::string, int>("Bob", 9));
+
+	// accessor
+	std::cout << "Jim: " << examList.at("Jim") << std::endl;
+	std::cout << "Bob: " << examList["Bob"] << std::endl;
+
+	// find
+	std::map<std::string, int>::iterator it = examList.find("Bob");
+	std::cout << it->first << ": " << it->second << std::endl;
+
+	// erase
+	examList.erase("Jim");
+
+	// clear
+	examList.clear();
+
+    return 0;
+}
+
+// Output
+// Jim: 18
+// Bob: 9
+// Bob: 9
+```
 
 ## Algorithms
 
