@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:32 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/03 11:41:33 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:16:35 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ int main(int argc, char** argv) {
 		return (1);
 	}
 	RPN rpn(argv[1]);
-	rpn.calculate();
+	try {
+		rpn.calculate();
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what();
+	}
 	return (0);
 }
 
