@@ -40,6 +40,8 @@ RPN& RPN::operator=(RPN const& rhs) {
 
 RPN::~RPN() {
 	std::cout << GREY << "Destructor called" << RESET << std::endl;
+	while (!_stack.empty())
+		_stack.pop();
 }
 
 /*============================================================================*/
