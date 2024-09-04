@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:28 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/03 13:43:56 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:37:57 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@
 # include <string>
 # include <sstream>
 # include <stack>
-# include <exception> 
+# include <exception>
+# include <cstdlib>
 
 class RPN {
 	private:
-		std::stack<int> _stack;
+		std::stack<long> _stack;
 		std::string _input;
 
-		bool isNumeric(void);
-		bool readInput(void);
+		bool isOperator(std::string const&);
+		bool isValidNumber(std::string&);
+		void performOperation(char token);
 
 		RPN(void);
 
@@ -37,7 +39,27 @@ class RPN {
 
 		void calculate();
 
+		class EmptyInputException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+		
 		class InvalidValueException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class TooManyOperandsException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class TooFewOperandsException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class DivisionByZeroException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};

@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:19 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/02 09:51:26 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/04 08:21:52 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char** argv) {
 	if (argc != 2) {
-		std::cout << "Usage: ./btc <file name>" << std::endl;
+		std::cerr << "Usage: ./btc <file name>" << std::endl;
 		return (1);
 	}
 	BitcoinExcange btc(argv[1]);
