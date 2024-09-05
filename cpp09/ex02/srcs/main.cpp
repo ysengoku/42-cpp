@@ -13,11 +13,11 @@
 #include "PmergeMe.hpp"
 
 int main(int argc, char** argv) {
-	if (argc == 1 || !argv[1][0]) {
+	if (argc < 2 || !argv[1][0]) {
 		std::cerr << "Usage: ./PmergeMe <positive integer sequence>" << std::endl;
 		return (1);
 	}
-	PmergeMe pmergeme(argv);
+	PmergeMe pmergeme(argv, argc - 1);
 	pmergeme.sort();
 	return (0);
 }

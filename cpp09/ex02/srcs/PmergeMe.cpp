@@ -16,8 +16,8 @@
 /*       Constructor / destructor / Copy assignment operator                  */
 /*============================================================================*/
 
-PmergeMe::PmergeMe(char** input)
-: _input(input), _size(0), _timeV(0.0), _timeD(0.0) {
+PmergeMe::PmergeMe(char** input, size_t size)
+: _input(input), _size(size), _timeV(0.0), _timeD(0.0) {
 	std::cout << GREY << "Constructor called." << RESET << std::endl;
 }
 
@@ -53,12 +53,11 @@ void PmergeMe::sort(void) {
 		_timeV = mergeInsertSort(_containerV);
 		_timeD = mergeInsertSort(_containerD);
 
-		std::cout << "Before:  ";
+		std::cout << "Before:";
 		int i;
-		for (i = 1; _input[i + 1]; ++i)
-			std::cout << _input[i] << ' ';
-		std::cout << _input[i] << std::endl;
-		std::cout << "After:   " << _containerV << std::endl;
+		for (i = 1; _input[i]; ++i)
+			std::cout << ' ' << _input[i] << std::endl;
+		std::cout << "After: " << _containerV << std::endl;
 		printTime("std::vector", _timeV);
 		printTime("std::deque ", _timeD);
 	}
