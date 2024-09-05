@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/05 09:38:33 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:33:21 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,7 @@
 /*============================================================================*/
 
 PmergeMe::PmergeMe(char** input)
-: _elementCount(0), _timeV(0.0), _timeL(0.0) {
-	for (int i = 1; input[i]; ++i) {
-		if (!isValidValue(input[i]))
-			throw InvalidValueException();
-		_containerV.push_back(atoi(input[i]));
-		_containerL.push_back(atoi(input[i]));
-		++_elementCount;
-	}
-	if (_elementCount < 2)
-		throw TooFewElementsException();
+: _input(input), _size(0), _timeV(0.0), _timeD(0.0) {
 	std::cout << GREY << "Constructor called." << RESET << std::endl;
 }
 
@@ -43,10 +34,10 @@ PmergeMe& PmergeMe::operator=(PmergeMe const& rhs) {
 	std::cout << GREY << "Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs) {
 		this->_containerV = rhs._containerV;
-		this->_containerL = rhs._containerL;
-		this->_elementCount = rhs._elementCount;
+		this->_containerD = rhs._containerD;
+		this->_size = rhs._size;
 		this->_timeV = rhs._timeV;
-		this->_timeL = rhs._timeL;
+		this->_timeD = rhs._timeD;
 	}
 	return (*this);
 }
@@ -58,12 +49,22 @@ PmergeMe::PmergeMe(void) {}
 /*============================================================================*/
 
 void PmergeMe::sort(void) {
-	std::cout << "Before:  " << _containerV << std::endl;
-	_timeV = mergeInsertSort(_containerV);
-	_timeL = mergeInsertSort(_containerL);
-	std::cout << "After:   " << _containerV << std::endl;
-	printTime("std::vector", _timeV);
-	printTime("std::list  ", _timeL);
+	try {
+		_timeV = mergeInsertSort(_containerV);
+		_timeD = mergeInsertSort(_containerD);
+
+		std::cout << "Before:  ";
+		int i;
+		for (i = 1; _input[i + 1]; ++i)
+			std::cout << _input[i] << ' ';
+		std::cout << _input[i] << std::endl;
+		std::cout << "After:   " << _containerV << std::endl;
+		printTime("std::vector", _timeV);
+		printTime("std::deque ", _timeD);
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what();
+	}
 }
 
 /*============================================================================*/
@@ -82,7 +83,7 @@ bool PmergeMe::isValidValue(char* value) {
 
 void PmergeMe::printTime(std::string const& containerType, double time) {
 	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
-	std::cout << "Time to process a range of " << _elementCount << " elements with " \
+	std::cout << "Time to process a range of " << _size << " elements with " \
 	<< containerType << " : " << time  << " us " << std::endl;	
 }
 
@@ -94,6 +95,3 @@ const char* PmergeMe::InvalidValueException::what() const throw() {
 	return (RED "Error: Invalid value detected in the input.\n" RESET);
 }
 
-const char* PmergeMe::TooFewElementsException::what() const throw() {
-	return (RED "Error: You must provide at least 2 numbers.\n" RESET);
-}
