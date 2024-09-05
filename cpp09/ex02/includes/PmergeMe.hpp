@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/04 14:53:04 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/05 08:43:16 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,71 +33,117 @@
 # define GREY "\e[0;90m"
 # define RESET "\033[0m"
 
-template<template <typename, typename> class Container>
 class PmergeMe {
 	private:
-		Container<int, std::allocator<int> > _container;
+		std::vector<int> _containerV;
+		std::list<int> _containerL;
 		int	_elementCount;
-		double _time;
-		
+		double _timeV;
+		double _timeL;
+
 		PmergeMe(void);
+		
+		bool isValidValue(char*);
+		void printTime(std::string const& containerType, double time);
 
-		bool isValidValue(char* value)  {
-			errno = 0;
-			char* p_end;
-			long num = strtol(value, &p_end, 10);
-			
-			if (*p_end != '\0' || errno == ERANGE || num > INT_MAX || num < INT_MIN)
-				return (false);
-			return (true);
+		template<template <typename, typename> class Container>
+		void mergeInsertSort(Container<int, std::allocator<int> >& container) {
+			(void) container;
 		}
-
+		
 	public:
-		PmergeMe(char** input) : _elementCount(0), _time(0.0) {
-			for (int i = 1; input[i]; ++i) {
-				if (!isValidValue(input[i]))
-					throw InvalidValueException();
-				_container.push_back(atoi(input[i]));
-				++_elementCount;
-			}
-			std::cout << GREY << "Constructor called." << RESET << std::endl;
-		}
-		
-		~PmergeMe(void) {
-			std::cout << GREY << "Destructor called." << RESET << std::endl;
-		}
-		
+		PmergeMe(char** input);
+		~PmergeMe(void);
 		PmergeMe(PmergeMe const& src);
 		PmergeMe& operator=(PmergeMe const& rhs);
 
-		void sort(void) {
-			printTime();
-		}
-
-		void printNumbers(void)  {
-			typename Container<int, std::allocator<int> >::iterator it = _container.begin();
-			typename Container<int, std::allocator<int> >::iterator ite = _container.end();
-			while (it != ite - 1) {
-				std::cout << *it << ' ';
-				++it;
-			}
-			std::cout << *it << std::endl;
-		}
-
-		void printTime(void) {
-			std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
-			std::cout << "Time to process a range of " \
-			<< _elementCount << " elements with std::vector : " \
-			<< _time  << " us " << std::endl;	
-		}
-
+		void sort(void);
+		
 		class InvalidValueException : public std::exception {
 			public:
-				virtual const char* what() const throw() {
-					return (RED "Error: Invalid value detected in the input.\n" RESET);
-				}
+				virtual const char* what() const throw();
 		};
 };
+
+template<template <typename, typename> class Container>
+std::ostream& operator<<(std::ostream& os, const Container<int, std::allocator<int> >& container) {
+	typename Container<int, std::allocator<int> >::const_iterator it = container.begin();
+	typename Container<int, std::allocator<int> >::const_iterator ite = container.end();
+	while (it != ite - 1) {
+		os << *it << ' ';
+		++it;
+	}
+	os << *it;
+	return (os);
+}
+
+#endif
+
+// template<template <typename, typename> class Container>
+// class PmergeMe {
+// 	private:
+// 		Container<int, std::allocator<int> > _container;
+// 		int	_elementCount;
+// 		double _time;
+		
+// 		PmergeMe(void);
+
+// 		bool isValidValue(char* value)  {
+// 			errno = 0;
+// 			char* p_end;
+// 			long num = strtol(value, &p_end, 10);
+			
+// 			if (*p_end != '\0' || errno == ERANGE || num > INT_MAX || num < INT_MIN)
+// 				return (false);
+// 			return (true);
+// 		}
+
+// 	public:
+// 		PmergeMe(char** input) : _elementCount(0), _time(0.0) {
+// 			for (int i = 1; input[i]; ++i) {
+// 				if (!isValidValue(input[i]))
+// 					throw InvalidValueException();
+// 				_container.push_back(atoi(input[i]));
+// 				++_elementCount;
+// 			}
+// 			std::cout << GREY << "Constructor called." << RESET << std::endl;
+// 		}
+		
+// 		~PmergeMe(void) {
+// 			std::cout << GREY << "Destructor called." << RESET << std::endl;
+// 		}
+		
+// 		PmergeMe(PmergeMe const& src);
+// 		PmergeMe& operator=(PmergeMe const& rhs);
+
+// 		void sort(void) {
+// 			printTime();
+// 		}
+
+// 		void printNumbers(void)  {
+// 			typename Container<int, std::allocator<int> >::iterator it = _container.begin();
+// 			typename Container<int, std::allocator<int> >::iterator ite = _container.end();
+// 			while (it != ite - 1) {
+// 				std::cout << *it << ' ';
+// 				++it;
+// 			}
+// 			std::cout << *it << std::endl;
+// 		}
+
+// 		void printTime(void) {
+// 			std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
+// 			std::cout << "Time to process a range of " \
+// 			<< _elementCount << " elements with std::vector : " \
+// 			<< _time  << " us " << std::endl;	
+// 		}
+
+// 		class InvalidValueException : public std::exception {
+// 			public:
+// 				virtual const char* what() const throw() {
+// 					return (RED "Error: Invalid value detected in the input.\n" RESET);
+// 				}
+// 		};
+// };
 
 // template<typename T>
 // void mergeInsertSort(T& numbers) {
@@ -131,5 +177,3 @@ class PmergeMe {
 // 				virtual const char* what() const throw();
 // 		};
 // };
-
-#endif
