@@ -23,6 +23,7 @@
 # include <iomanip>
 # include <algorithm>
 # include <sys/time.h>
+// # include  <ctime>
 
 # define FLOATING_POINT_PRECISION 5
 
@@ -31,7 +32,7 @@
 
 class PmergeMe {
 	public:
-		PmergeMe(char** input);
+		PmergeMe(char** input, size_t size);
 		~PmergeMe(void);
 		PmergeMe(PmergeMe const& src);
 		PmergeMe& operator=(PmergeMe const& rhs);
@@ -45,10 +46,9 @@ class PmergeMe {
 		
 	private:
 		char** _input;
+		size_t	_size;
 		std::vector<int> _containerV;
 		std::deque<int> _containerD;
-		size_t	_size;
-		// int _straggler;
 		double _timeV;
 		double _timeD;
 
@@ -59,39 +59,58 @@ class PmergeMe {
 
 		template<template <typename, typename> class Container>
 		double mergeInsertSort(Container< int, std::allocator<int> >& container) {
-			int straggler = -1;
+			int straggler;
 			struct timeval begin, end;
 			gettimeofday(&begin, 0);
-
+			// clock_t start, end;
+			// start = clock();
+			Container< int, std::allocator<int> > tmp;
+			Container< int, std::allocator<int> > sortedSequence;
 			for (int i = 1; _input[i]; ++i) {
 				if (!isValidValue(_input[i]))
 					throw InvalidValueException();
-				container.push_back(atoi(_input[i]));
+				tmp.push_back(atoi(_input[i]));
 			}
-			_size = container.size();
+			// ----- Check duplicated elements
 			if (_size % 2 != 0) {
-				straggler = container.back();
-				container.pop_back();
+				straggler = tmp.back();
+				tmp.pop_back();
 			}
 
-			/* Step1 */
-			typename Container< int, std::allocator<int> >::iterator it = container.begin();
-			typename Container< int, std::allocator<int> >::iterator ite = container.end();
+// Group the elements of X into [n/2] pairs of elements, arbitrarily, leaving one element unpaired if there is an odd number of elements.
+// Perform [n/2] comparisons, one per pair, to determine the larger of the two elements in each pair.
+
+// Recursively sort the [n/2] larger elements from each pair, creating a sorted sequence S of [n/2] of the input elements, in ascending order.
+// Insert at the start of S the element that was paired with the first and smallest element of S.
+// Insert the remaining [n/2] - 1 elements of X ∖ S into S, one at a time, with a specially chosen insertion ordering described below. Use binary search in subsequences of S (as described below) to determine the position at which each element should be inserted.
+
+			/* Sort each pair */
+			typename Container< int, std::allocator<int> >::iterator it = tmp.begin();
+			typename Container< int, std::allocator<int> >::iterator ite = tmp.end();
 			while (it != ite) {
 				if (*it > *(it + 1))
 					std::swap(*it, *(it + 1));
 				std::advance(it, 2);
 			}
-			// std::cout << container << std::endl;
-			Container< int, std::allocator<int> > tmp1;
+			// std::cout << tmp << std::endl;
+			
+			// Sort according to grater value of pair (recursive)
+			// Push the first pair to container
+			// Push larger ones of each pair to container
+			// Insert the remaining of tmp by using binary search
 
-			if (straggler > 0)
-				container.push_back(straggler); /// temporary
+			if (_size % 2 != 0)
+				tmp.push_back(straggler); /// ------------- temporary
+				// insert the straggler by using binary search
+			container = tmp; /// ------------- temporary
 
 			gettimeofday(&end, 0);
 			long sec = end.tv_sec - begin.tv_sec;
 			long usec = end.tv_usec - begin.tv_usec;
 			return (sec * 1000000 + usec);
+			// end = clock();
+			// double sec = (end - start) / CLOCKS_PER_SEC;
+			// return  (sec * 1000000.0);
 		}		
 };
 
@@ -99,11 +118,10 @@ template<template <typename, typename> class Container>
 std::ostream& operator<<(std::ostream& os, const Container< int, std::allocator<int> >& container) {
 	typename Container< int, std::allocator<int> >::const_iterator it = container.begin();
 	typename Container< int, std::allocator<int> >::const_iterator ite = container.end();
-	while (it != ite - 1) {
-		os << *it << ' ';
+	while (it != ite) {
+		os << ' ' << *it;
 		++it;
 	}
-	os << *it;
 	return (os);
 }
 
