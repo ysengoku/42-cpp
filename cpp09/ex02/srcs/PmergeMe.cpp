@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/05 08:43:41 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/05 09:38:33 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ PmergeMe::PmergeMe(char** input)
 		_containerL.push_back(atoi(input[i]));
 		++_elementCount;
 	}
+	if (_elementCount < 2)
+		throw TooFewElementsException();
 	std::cout << GREY << "Constructor called." << RESET << std::endl;
 }
 
@@ -57,8 +59,8 @@ PmergeMe::PmergeMe(void) {}
 
 void PmergeMe::sort(void) {
 	std::cout << "Before:  " << _containerV << std::endl;
-
-	
+	_timeV = mergeInsertSort(_containerV);
+	_timeL = mergeInsertSort(_containerL);
 	std::cout << "After:   " << _containerV << std::endl;
 	printTime("std::vector", _timeV);
 	printTime("std::list  ", _timeL);
@@ -73,7 +75,7 @@ bool PmergeMe::isValidValue(char* value) {
 	char* p_end;
 	long num = strtol(value, &p_end, 10);
 	
-	if (*p_end != '\0' || errno == ERANGE || num > INT_MAX || num < INT_MIN)
+	if (*p_end != '\0' || errno == ERANGE || num > INT_MAX || num < 0)
 		return (false);
 	return (true);
 }
@@ -81,7 +83,7 @@ bool PmergeMe::isValidValue(char* value) {
 void PmergeMe::printTime(std::string const& containerType, double time) {
 	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
 	std::cout << "Time to process a range of " << _elementCount << " elements with " \
-	<< containerType << ": " << time  << " us " << std::endl;	
+	<< containerType << " : " << time  << " us " << std::endl;	
 }
 
 /*============================================================================*/
@@ -90,4 +92,8 @@ void PmergeMe::printTime(std::string const& containerType, double time) {
 
 const char* PmergeMe::InvalidValueException::what() const throw() {
 	return (RED "Error: Invalid value detected in the input.\n" RESET);
+}
+
+const char* PmergeMe::TooFewElementsException::what() const throw() {
+	return (RED "Error: You must provide at least 2 numbers.\n" RESET);
 }

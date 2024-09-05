@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/05 08:43:16 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/05 09:47:50 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,9 @@
 # include <climits>
 # include <cerrno>
 # include <iomanip>
+# include <sys/time.h>
 
-# define FLOATING_POINT_PRECISION 8
-
-# define RED "\033[31m"
-# define GREEN "\033[32m"
-# define YELLOW "\033[33m"
-# define BLUE  "\033[34m"
-# define MAGENTA "\033[35m"
-# define CYAN "\033[36m"
-# define GREY "\e[0;90m"
-# define RESET "\033[0m"
+# define FLOATING_POINT_PRECISION 5
 
 class PmergeMe {
 	private:
@@ -47,8 +39,18 @@ class PmergeMe {
 		void printTime(std::string const& containerType, double time);
 
 		template<template <typename, typename> class Container>
-		void mergeInsertSort(Container<int, std::allocator<int> >& container) {
+		double mergeInsertSort(Container<int, std::allocator<int> >& container) {
+			struct timeval begin, end;
+			gettimeofday(&begin, 0);
+
+			// Add code --------------
 			(void) container;
+			// -----------------------
+
+			gettimeofday(&end, 0);
+			long sec = end.tv_sec - begin.tv_sec;
+			long usec = end.tv_usec - begin.tv_usec;
+			return (sec * 1000000 + usec);
 		}
 		
 	public:
@@ -60,6 +62,11 @@ class PmergeMe {
 		void sort(void);
 		
 		class InvalidValueException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class TooFewElementsException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
@@ -76,6 +83,15 @@ std::ostream& operator<<(std::ostream& os, const Container<int, std::allocator<i
 	os << *it;
 	return (os);
 }
+
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define BLUE  "\033[34m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define GREY "\e[0;90m"
+# define RESET "\033[0m"
 
 #endif
 
