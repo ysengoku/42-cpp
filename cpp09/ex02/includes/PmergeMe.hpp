@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/05 09:47:50 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:33:15 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,20 @@
 # include <iostream>
 # include <string>
 # include <vector>
-# include <list>
+# include <deque>
 # include <cstdlib>
 # include <climits>
 # include <cerrno>
 # include <iomanip>
+# include <algorithm>
 # include <sys/time.h>
 
 # define FLOATING_POINT_PRECISION 5
 
+// template<template <typename, typename> class Container>
+// std::ostream& operator<<(std::ostream& os, const Container< int, std::allocator<int> >& container);
+
 class PmergeMe {
-	private:
-		std::vector<int> _containerV;
-		std::list<int> _containerL;
-		int	_elementCount;
-		double _timeV;
-		double _timeL;
-
-		PmergeMe(void);
-		
-		bool isValidValue(char*);
-		void printTime(std::string const& containerType, double time);
-
-		template<template <typename, typename> class Container>
-		double mergeInsertSort(Container<int, std::allocator<int> >& container) {
-			struct timeval begin, end;
-			gettimeofday(&begin, 0);
-
-			// Add code --------------
-			(void) container;
-			// -----------------------
-
-			gettimeofday(&end, 0);
-			long sec = end.tv_sec - begin.tv_sec;
-			long usec = end.tv_usec - begin.tv_usec;
-			return (sec * 1000000 + usec);
-		}
-		
 	public:
 		PmergeMe(char** input);
 		~PmergeMe(void);
@@ -65,17 +42,63 @@ class PmergeMe {
 			public:
 				virtual const char* what() const throw();
 		};
+		
+	private:
+		char** _input;
+		std::vector<int> _containerV;
+		std::deque<int> _containerD;
+		size_t	_size;
+		// int _straggler;
+		double _timeV;
+		double _timeD;
 
-		class TooFewElementsException : public std::exception {
-			public:
-				virtual const char* what() const throw();
-		};
+		PmergeMe(void);
+		
+		bool isValidValue(char*);
+		void printTime(std::string const& containerType, double time);
+
+		template<template <typename, typename> class Container>
+		double mergeInsertSort(Container< int, std::allocator<int> >& container) {
+			int straggler = -1;
+			struct timeval begin, end;
+			gettimeofday(&begin, 0);
+
+			for (int i = 1; _input[i]; ++i) {
+				if (!isValidValue(_input[i]))
+					throw InvalidValueException();
+				container.push_back(atoi(_input[i]));
+			}
+			_size = container.size();
+			if (_size % 2 != 0) {
+				straggler = container.back();
+				container.pop_back();
+			}
+
+			/* Step1 */
+			typename Container< int, std::allocator<int> >::iterator it = container.begin();
+			typename Container< int, std::allocator<int> >::iterator ite = container.end();
+			while (it != ite) {
+				if (*it > *(it + 1))
+					std::swap(*it, *(it + 1));
+				std::advance(it, 2);
+			}
+			// std::cout << container << std::endl;
+			Container< int, std::allocator<int> > tmp1;
+
+			if (straggler > 0)
+				container.push_back(straggler); /// temporary
+
+			gettimeofday(&end, 0);
+			long sec = end.tv_sec - begin.tv_sec;
+			long usec = end.tv_usec - begin.tv_usec;
+			return (sec * 1000000 + usec);
+		}		
 };
 
 template<template <typename, typename> class Container>
-std::ostream& operator<<(std::ostream& os, const Container<int, std::allocator<int> >& container) {
-	typename Container<int, std::allocator<int> >::const_iterator it = container.begin();
-	typename Container<int, std::allocator<int> >::const_iterator ite = container.end();
+std::ostream& operator<<(std::ostream& os, const Container< int, std::allocator<int> >& container) {
+	typename Container< int, std::allocator<int> >::const_iterator it = container.begin();
+	typename Container< int, std::allocator<int> >::const_iterator ite = container.end();
 	while (it != ite - 1) {
 		os << *it << ' ';
 		++it;
