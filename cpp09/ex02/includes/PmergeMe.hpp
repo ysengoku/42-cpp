@@ -52,8 +52,8 @@ class PmergeMe {
 	private:
 		char** _input;
 		size_t	_size;
-		std::vector<int> _containerV;
-		std::list<int> _containerL;
+		std::vector<int> _vec;
+		std::list<int> _list;
 
 		PmergeMe(void);
 		
@@ -61,6 +61,9 @@ class PmergeMe {
 		void printTime(std::string const& containerType, double time);
 		void mergeInsertSort(std::vector<int>&);
 		void mergeInsertSort(std::list<int>&);
+		void sortPairs(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller);
+		void insertPairedSmallest(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller);
+		void binarySearchInsert(std::vector<int>& vec, int toInsert);
 
 		template<template <typename, typename> class Container>
 		double sortSequence(Container< int, std::allocator<int> >& container) {
