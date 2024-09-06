@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:45 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/05 14:33:38 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:07:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int main(int argc, char** argv) {
 		return (1);
 	}
 	PmergeMe pmergeme(argv, argc - 1);
-	pmergeme.sort();
+	// try {
+	 pmergeme.pmergeme();
+	// } catch (std::exception &e) {
+	// 	std::cerr << e.what() << std::endl;
+	// }
 	return (0);
 }
 
