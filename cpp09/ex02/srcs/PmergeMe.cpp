@@ -48,14 +48,14 @@ PmergeMe::PmergeMe(void) {}
 
 void PmergeMe::pmergeme(void) {
 	double timeV;
-	double timeL;
+	// double timeL;
 	try {
 		timeV = sortSequence(_vec);
-		timeL = sortSequence(_list);
+		// timeL = sortSequence(_list);
 		std::cout << "Before:" << _input + 1 << std::endl;
 		std::cout << "After: " << _vec << std::endl;
 		printTime("std::vector", timeV);
-		printTime("std::list  ", timeL);
+		// printTime("std::list  ", timeL);
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
@@ -83,26 +83,24 @@ void PmergeMe::printTime(std::string const& numbersType, double time) {
 }
 
 /*============================================================================*/
-/*       Merge-insert sort for vector                                         */
+/*       Private member functions: Merge-insert sort for vector               */
 /*============================================================================*/
 
-//////// 最後のペアの大きいほうが消えてしまう ////////
-void PmergeMe::mergeInsertSort(std::vector<int>& vec) {
+void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 	int straggler = -1;
 	std::vector<int> largerNumbers;
 	std::vector<int> smallerNumbers;
 
-	std::cout << GREEN << vec << RESET << std::endl;
-	if (vec.size() <= 1)
+	if (sequence.size() <= 1)
 		return; 
 	/* leaving one element unpaired if there is an odd number of elements. */
-	if (_size % 2 != 0) {
-		straggler = vec.back();
-		vec.pop_back();
+	if (sequence.size() % 2 != 0) {
+		straggler = sequence.back();
+		sequence.pop_back();
 	}
-	sortPairs(vec, largerNumbers, smallerNumbers);
-	mergeInsertSort(largerNumbers);
-	insertPairedSmallest(vec, largerNumbers, smallerNumbers);
+	sortPairs(sequence, largerNumbers, smallerNumbers);
+	mergeInsertionSort(largerNumbers);
+	insertPairedSmallest(sequence, largerNumbers, smallerNumbers);
 	std::vector<int>::iterator it = smallerNumbers.begin();
 	std::vector<int>::iterator ite = smallerNumbers.end();
 	while (it != ite) {
@@ -111,17 +109,17 @@ void PmergeMe::mergeInsertSort(std::vector<int>& vec) {
 	}
 	if (straggler != -1)
 		binarySearchInsert(largerNumbers, straggler);
-	vec.clear();
-	vec.insert(vec.end(), largerNumbers.begin(), largerNumbers.end());
+	sequence.clear();
+	sequence.insert(sequence.end(), largerNumbers.begin(), largerNumbers.end());
 }
 
 /* Group the elements of X into [n/2] pairs of elements */
 /* Perform [n/2] comparisons, one per pair, to determine the larger of the two elements in each pair. */
 /* Recursively sort the [n/2] larger elements from each pair,
 creating a sorted sequence S of [n/2] of the input elements, in ascending order.*/
-void PmergeMe::sortPairs(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller) {
-	std::vector<int>::iterator it = vec.begin();
-	std::vector<int>::iterator ite = vec.end();
+void PmergeMe::sortPairs(std::vector<int>& sequence, std::vector<int>& larger, std::vector<int>& smaller) {
+	std::vector<int>::iterator it = sequence.begin();
+	std::vector<int>::iterator ite = sequence.end();
 	while (it != ite && it + 1 != ite) {
 		if (*it > *(it + 1)) {
 			larger.push_back(*it);
@@ -136,36 +134,36 @@ void PmergeMe::sortPairs(std::vector<int>& vec, std::vector<int>& larger, std::v
 }
 
 /* Insert at the start of S the element that was paired with the first and smallest element of S */
-void PmergeMe::insertPairedSmallest(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller) {
+void PmergeMe::insertPairedSmallest(std::vector<int>& sequence, std::vector<int>& larger, std::vector<int>& smaller) {
 	if (larger.empty() || smaller.empty())
 		return;
 	int smallestInLarger = *larger.begin();
-	std::vector<int>::iterator originalPosition = std::find(vec.begin(), vec.end(), smallestInLarger);
-	int position = std::distance(vec.begin(), originalPosition);
-	int pairedNum = (position % 2 == 0) ? vec.at(position + 1) : vec.at(position - 1);
+	std::vector<int>::iterator originalPosition = std::find(sequence.begin(), sequence.end(), smallestInLarger);
+	int position = std::distance(sequence.begin(), originalPosition);
+	int pairedNum = (position % 2 == 0) ? sequence.at(position + 1) : sequence.at(position - 1);
 	larger.insert(larger.begin(), pairedNum);
 	smaller.erase(std::find(smaller.begin(), smaller.end(), pairedNum));
 }
 
-void PmergeMe::binarySearchInsert(std::vector<int>& vec, int toInsert) {
+void PmergeMe::binarySearchInsert(std::vector<int>& sequence, int toInsert) {
 	size_t low = 0;
-	size_t high = vec.size();
+	size_t high = sequence.size();
 	while (low < high) {
 		size_t middle = low + (high - low) / 2;
-		if (toInsert < vec.at(middle))
+		if (toInsert < sequence.at(middle))
 				high = middle;
 			else
 				low = middle + 1;
 		}
 		size_t insertPosition = low;
-		vec.insert(vec.begin() + insertPosition, toInsert);
+		sequence.insert(sequence.begin() + insertPosition, toInsert);
 }
 
 /*============================================================================*/
 /*       Merge-insert sort for list                                           */
 /*============================================================================*/
 
-void PmergeMe::mergeInsertSort(std::list<int>& container) {
+void PmergeMe::mergeInsertionSort(std::list<int>& container) {
 	(void) container;
 }
 

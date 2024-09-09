@@ -59,8 +59,8 @@ class PmergeMe {
 		
 		bool isValidValue(char const*);
 		void printTime(std::string const& containerType, double time);
-		void mergeInsertSort(std::vector<int>&);
-		void mergeInsertSort(std::list<int>&);
+		void mergeInsertionSort(std::vector<int>&);
+		void mergeInsertionSort(std::list<int>&);
 		void sortPairs(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller);
 		void insertPairedSmallest(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller);
 		void binarySearchInsert(std::vector<int>& vec, int toInsert);
@@ -79,7 +79,7 @@ class PmergeMe {
 			}
 			if (!checkDuplicate(container))
 				throw DuplicateFoundException();
-			mergeInsertSort(container);
+			mergeInsertionSort(container);
 			gettimeofday(&end, 0);
 			double sec = end.tv_sec - begin.tv_sec;
 			double usec = end.tv_usec - begin.tv_usec;
@@ -97,8 +97,10 @@ class PmergeMe {
 			while (itBegin != itEnd) {
 				const_iterator it = itBegin;
 				while(++it != itEnd) {
-					if (*itBegin == *it)
+					if (*itBegin == *it) {
+						std::cout << *itBegin << " and " << *it << " are duplicates." << std::endl;
 						return (false);
+					}
 				}
 				++itBegin;
 			}
@@ -106,7 +108,7 @@ class PmergeMe {
 		}
 		
 		// template<template <typename, typename> class Container>
-		// void mergeInsertSort(Container< int, std::allocator<int> >& container) {
+		// void mergeInsertionSort(Container< int, std::allocator<int> >& container) {
 		// 	int straggler;
 		// 	// Container< int, std::allocator<int> > tmp = container;
 		// 	Container< int, std::allocator<int> > largerNumbers;
@@ -137,7 +139,7 @@ class PmergeMe {
 		// 		}
 		// 		std::advance(it, 2);
 		// 	}
-		// 	// mergeInsertSort(largerNumbers);
+		// 	// mergeInsertionSort(largerNumbers);
 		// 	sortedSequence = largerNumbers;
 
 		// /* Insert at the start of S the element that was paired with the first and smallest element of S */
