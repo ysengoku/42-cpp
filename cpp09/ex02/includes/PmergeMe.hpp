@@ -22,8 +22,7 @@
 # include <cerrno>
 # include <iomanip>
 # include <algorithm>
-# include <sys/time.h>
-// # include  <ctime>
+# include  <ctime>
 
 # define FLOATING_POINT_PRECISION 5
 
@@ -59,20 +58,24 @@ class PmergeMe {
 		
 		bool isValidValue(char const*);
 		void printTime(std::string const& containerType, double time);
+
+		/*----- For vector -----*/
 		void mergeInsertionSort(std::vector<int>&);
-		void mergeInsertionSort(std::list<int>&);
-		void sortPairs(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller);
-		void insertPairedSmallest(std::vector<int>& vec, std::vector<int>& larger, std::vector<int>& smaller);
+		void sortLargerNums(std::vector< std::pair<int, int> >& pairs);
+		void insertPend(std::vector<int>& mainChain, std::vector<int>& pend);
 		void binarySearchInsert(std::vector<int>& vec, int toInsert);
 
-		template<template <typename, typename> class Container>
-		double sortSequence(Container< int, std::allocator<int> >& container) {
-			struct timeval begin, end;
-			gettimeofday(&begin, 0);
-			// clock_t start, end;
-			// start = clock();
+		/*----- For list -----*/
+		void mergeInsertionSort(std::list<int>&);
+		void sortLargerNums(std::list< std::pair<int, int> >& pairs);
+		void insertPend(std::list<int>& mainChain, std::list<int>& pend);
+		void binarySearchInsert(std::list<int>& vec, int toInsert);
 
-			for (int i = 1; _input[i]; ++i) {
+		/*----- Templates -----*/
+		template<class Container>
+		double sortSequence(Container& container) {
+			clock_t start = clock();
+			for (int i = 0; _input[i]; ++i) {
 				if (!isValidValue(_input[i]))
 					throw InvalidValueException();
 				container.push_back(atoi(_input[i]));
@@ -80,79 +83,56 @@ class PmergeMe {
 			if (!checkDuplicate(container))
 				throw DuplicateFoundException();
 			mergeInsertionSort(container);
-			gettimeofday(&end, 0);
-			double sec = end.tv_sec - begin.tv_sec;
-			double usec = end.tv_usec - begin.tv_usec;
-			return (sec * 1000000.0 + usec);
-			// end = clock();
-			// double sec = (end - start) / CLOCKS_PER_SEC;
-			// return  (sec * 1000000.0);
+			return  ((clock() - start) / (CLOCKS_PER_SEC / 1000.0));
 		}
 
-		template<template <typename, typename> class Container>
-		bool checkDuplicate(Container< int, std::allocator<int> > const& container) {
-			typedef typename Container< int, std::allocator<int> >::const_iterator const_iterator;
+		template<class Container>
+		bool checkDuplicate(Container const& container) {
+			typedef typename Container::const_iterator const_iterator;
 			const_iterator itBegin = container.begin();
 			const_iterator itEnd = container.end();
 			while (itBegin != itEnd) {
 				const_iterator it = itBegin;
 				while(++it != itEnd) {
-					if (*itBegin == *it) {
-						std::cout << *itBegin << " and " << *it << " are duplicates." << std::endl;
+					if (*itBegin == *it)
 						return (false);
-					}
 				}
 				++itBegin;
 			}
 			return (true);
 		}
-		
-		// template<template <typename, typename> class Container>
-		// void mergeInsertionSort(Container< int, std::allocator<int> >& container) {
-		// 	int straggler;
-		// 	// Container< int, std::allocator<int> > tmp = container;
-		// 	Container< int, std::allocator<int> > largerNumbers;
-		// 	Container< int, std::allocator<int> > smallerNumbers;
-		// 	Container< int, std::allocator<int> > sortedSequence;
-			
-		// /* Group the elements of X into [n/2] pairs of elements */
-						 
-		// /* leaving one element unpaired if there is an odd number of elements. */
-		// 	if (_size % 2 != 0) {
-		// 		straggler = container.back();
-		// 		container.pop_back();
-		// 	}
 
-		// /* Perform [n/2] comparisons, one per pair, to determine the larger of the two elements in each pair. */
-		// /* Recursively sort the [n/2] larger elements from each pair,
-		// creating a sorted sequence S of [n/2] of the input elements, in ascending order.*/
-		// 	typename Container< int, std::allocator<int> >::iterator it = container.begin();
-		// 	typename Container< int, std::allocator<int> >::iterator ite = container.end();
-		// 	while (it != ite) {
-		// 		if (*it > *(it + 1)) {
-		// 			largerNumbers.push_back(*it);
-		// 			smallerNumbers.push_back(*(it + 1));
-		// 		}	
-		// 		else {
-		// 			largerNumbers.push_back(*(it + 1));
-		// 			smallerNumbers.push_back(*it);
-		// 		}
-		// 		std::advance(it, 2);
-		// 	}
-		// 	// mergeInsertionSort(largerNumbers);
-		// 	sortedSequence = largerNumbers;
+		template<class Container, class PairContainer>
+		void createSortedPairs(Container& seq, PairContainer& pairs) {
+		std::vector<int>::iterator itFirst = seq.begin();
+		std::vector<int>::iterator itSecond = seq.begin();
+		++itSecond;
+		std::vector<int>::iterator ite = seq.end();
+		while (itFirst != ite && itSecond != ite) {
+			if (*itFirst > *itSecond)
+				pairs.push_back(std::make_pair(*itSecond, *itFirst));
+			else
+				pairs.push_back(std::make_pair(*itFirst, *itSecond));
+			std::advance(itFirst, 2);
+			std::advance(itSecond, 2);
+		}
+	}
 
-		// /* Insert at the start of S the element that was paired with the first and smallest element of S */
-
-		// /* Insert the remaining [n/2] - 1 elements of X ∖ S into S, one at a time,
-		// with a binary search in subsequences of S (as described below) 
-		// to determine the position at which each element should be inserted. */
-			
-		// 	if (_size % 2 != 0)
-		// 		sortedSequence.push_back(straggler); /// ------------- temporary
-		// 		// insert the straggler by using binary search
-		// 	container = sortedSequence; /// ------------- temporary
-		// }
+	template<class PairContainer, class Container>
+	void pushToMainChain(PairContainer& pairs, Container& mainChain, Container& pend) {
+		typename PairContainer::iterator it = pairs.begin();
+		typename PairContainer::iterator ite = pairs.end();
+		if (it != ite) {
+			mainChain.push_back(it->first);
+			mainChain.push_back(it->second);
+			++it;
+		}
+		while (it != ite) {
+			mainChain.push_back(it->second);
+			pend.push_back(it->first);
+			++it;
+		}
+	}
 };
 
 std::ostream& operator<<(std::ostream& os, char**);
