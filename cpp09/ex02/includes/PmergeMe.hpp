@@ -22,12 +22,9 @@
 # include <cerrno>
 # include <iomanip>
 # include <algorithm>
-# include  <ctime>
+# include <ctime>
 
 # define FLOATING_POINT_PRECISION 5
-
-// template<template <typename, typename> class Container>
-// std::ostream& operator<<(std::ostream& os, const Container< int, std::allocator<int> >& container);
 
 class PmergeMe {
 	public:
@@ -53,10 +50,13 @@ class PmergeMe {
 		size_t	_size;
 		std::vector<int> _vec;
 		std::list<int> _list;
+		int* _insertionOrder;
 
 		PmergeMe(void);
 		
 		bool isValidValue(char const*);
+		int* generateInsertionOrder(size_t n);
+		int* getJacobsthalNum(size_t n);
 		void printTime(std::string const& containerType, double time);
 
 		/*----- For vector -----*/
@@ -82,7 +82,9 @@ class PmergeMe {
 			}
 			if (!checkDuplicate(container))
 				throw DuplicateFoundException();
+			_insertionOrder = generateInsertionOrder(_size / 2 + _size % 2);
 			mergeInsertionSort(container);
+			delete[] _insertionOrder;
 			return  ((clock() - start) / (CLOCKS_PER_SEC / 1000.0));
 		}
 
