@@ -71,10 +71,53 @@ bool PmergeMe::isValidValue(char const* value) {
 	return (true);
 }
 
+int* PmergeMe::generateInsertionOrder(size_t n) {
+	int* insertionOrder = new int[n];
+	if (n == 1) {
+		insertionOrder[0] = 0;
+		return (insertionOrder);
+	}
+	int* jacobsthalNum = getJacobsthalNum(n + 1);
+	size_t i = 0;
+	size_t j = 2;
+	int tmp = -1;
+	while (i < n) {
+		if (jacobsthalNum[j] < static_cast<int>(n)) {
+			insertionOrder[i] = jacobsthalNum[j];
+			++i;
+		}
+		int num = jacobsthalNum[j];
+		++j;
+		while (--num > tmp && i < n) {
+			if (num < static_cast<int>(n)) {
+	 			insertionOrder[i] = num;
+				++i;
+			}
+		}
+		tmp = *std::max_element(insertionOrder, insertionOrder + i + 1);
+	}
+	delete[] jacobsthalNum;
+	std::cout << BLUE << "Insertion order: ";
+	for (size_t i = 0; i < n; i++)
+		std::cout << insertionOrder[i] << " ";
+	std::cout << RESET << std::endl;
+	return (insertionOrder);
+}
+
 void PmergeMe::printTime(std::string const& numbersType, double time) {
 	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
 	std::cout << "Time to process a range of " << _size << " elements with " \
 	<< numbersType << " : " << time  << " ms " << std::endl;	
+}
+
+int* PmergeMe::getJacobsthalNum(size_t n) {
+	int* jacobsthalNum = new int[n];
+
+	jacobsthalNum[0] = 0;
+	jacobsthalNum[1] = 1;
+	for (size_t i = 2; i < n; i++)
+		jacobsthalNum[i] = jacobsthalNum[i - 1] + 2 * jacobsthalNum[i - 2];
+	return (jacobsthalNum);
 }
 
 /*============================================================================*/
@@ -98,15 +141,7 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 	pushToMainChain(pairs, mainChain, pend);
 	if (straggler != -1)
 		pend.push_back(straggler);
-
 	insertPend(mainChain, pend);
-	// std::vector<int>::iterator it = pend.begin();
-	// std::vector<int>::iterator ite = pend.end();
-	// while (it != ite) {
-	// 	binarySearchInsert(mainChain, *it);
-	// 	++it;
-	// }
-
 	sequence.clear();
 	sequence.insert(sequence.end(), mainChain.begin(), mainChain.end());
 }
@@ -130,6 +165,7 @@ void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
 }
 
 void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
+
 	// Temporary code to be modified using Jacobsthal number
 	std::vector<int>::iterator it = pend.begin();
 	std::vector<int>::iterator ite = pend.end();
