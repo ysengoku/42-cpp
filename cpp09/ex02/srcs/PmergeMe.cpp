@@ -97,17 +97,7 @@ int* PmergeMe::generateInsertionOrder(size_t n) {
 		tmp = *std::max_element(insertionOrder, insertionOrder + i + 1);
 	}
 	delete[] jacobsthalNum;
-	std::cout << BLUE << "Insertion order: ";
-	for (size_t i = 0; i < n; i++)
-		std::cout << insertionOrder[i] << " ";
-	std::cout << RESET << std::endl;
 	return (insertionOrder);
-}
-
-void PmergeMe::printTime(std::string const& numbersType, double time) {
-	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
-	std::cout << "Time to process a range of " << _size << " elements with " \
-	<< numbersType << " : " << time  << " ms " << std::endl;	
 }
 
 int* PmergeMe::getJacobsthalNum(size_t n) {
@@ -118,6 +108,12 @@ int* PmergeMe::getJacobsthalNum(size_t n) {
 	for (size_t i = 2; i < n; i++)
 		jacobsthalNum[i] = jacobsthalNum[i - 1] + 2 * jacobsthalNum[i - 2];
 	return (jacobsthalNum);
+}
+
+void PmergeMe::printTime(std::string const& numbersType, double time) {
+	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
+	std::cout << "Time to process a range of " << _size << " elements with " \
+	<< numbersType << " : " << time  << " ms " << std::endl;	
 }
 
 /*============================================================================*/
@@ -165,28 +161,29 @@ void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
 }
 
 void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
+	size_t	pendSize = pend.size();
+	int* 	insertionOrder = generateInsertionOrder(pendSize);
+	size_t	pendIndex;
 
-	// Temporary code to be modified using Jacobsthal number
-	std::vector<int>::iterator it = pend.begin();
-	std::vector<int>::iterator ite = pend.end();
-	while (it != ite) {
-		binarySearchInsert(mainChain, *it);
-		++it;
+	for (size_t i = 0; i < pendSize; ++i) {
+		pendIndex = insertionOrder[i];
+		binarySearchInsert(mainChain, pend.at(pendIndex));
 	}
+	delete[] insertionOrder;
 }
 
-void PmergeMe::binarySearchInsert(std::vector<int>& sequence, int toInsert) {
+void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert) {
 	size_t low = 0;
-	size_t high = sequence.size();
+	size_t high = mainChain.size();
 	while (low < high) {
 		size_t middle = low + (high - low) / 2;
-		if (toInsert < sequence.at(middle))
+		if (toInsert < mainChain.at(middle))
 				high = middle;
 			else
 				low = middle + 1;
 		}
 		size_t insertPosition = low;
-		sequence.insert(sequence.begin() + insertPosition, toInsert);
+		mainChain.insert(mainChain.begin() + insertPosition, toInsert);
 }
 
 /*============================================================================*/

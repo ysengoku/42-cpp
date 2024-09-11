@@ -50,7 +50,6 @@ class PmergeMe {
 		size_t	_size;
 		std::vector<int> _vec;
 		std::list<int> _list;
-		int* _insertionOrder;
 
 		PmergeMe(void);
 		
@@ -82,9 +81,7 @@ class PmergeMe {
 			}
 			if (!checkDuplicate(container))
 				throw DuplicateFoundException();
-			_insertionOrder = generateInsertionOrder(_size / 2 + _size % 2);
 			mergeInsertionSort(container);
-			delete[] _insertionOrder;
 			return  ((clock() - start) / (CLOCKS_PER_SEC / 1000.0));
 		}
 
