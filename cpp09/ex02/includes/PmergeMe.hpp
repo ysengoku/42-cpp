@@ -50,6 +50,7 @@ class PmergeMe {
 		size_t	_size;
 		std::vector<int> _vec;
 		std::list<int> _list;
+		int* _jacobsthalNum;
 
 		PmergeMe(void);
 		
@@ -58,16 +59,14 @@ class PmergeMe {
 		int* getJacobsthalNum(size_t n);
 		void printTime(std::string const& containerType, double time);
 
-		/*----- For vector -----*/
 		void mergeInsertionSort(std::vector<int>&);
-		void sortLargerNums(std::vector< std::pair<int, int> >& pairs);
-		void insertPend(std::vector<int>& mainChain, std::vector<int>& pend);
-		void binarySearchInsert(std::vector<int>& vec, int toInsert);
-
-		/*----- For list -----*/
 		void mergeInsertionSort(std::list<int>&);
+
+		void sortLargerNums(std::vector< std::pair<int, int> >& pairs);
 		void sortLargerNums(std::list< std::pair<int, int> >& pairs);
+		void insertPend(std::vector<int>& mainChain, std::vector<int>& pend);
 		void insertPend(std::list<int>& mainChain, std::list<int>& pend);
+		void binarySearchInsert(std::vector<int>& vec, int toInsert);
 		void binarySearchInsert(std::list<int>& vec, int toInsert);
 
 		/*----- Templates -----*/
@@ -81,6 +80,7 @@ class PmergeMe {
 			}
 			if (!checkDuplicate(container))
 				throw DuplicateFoundException();
+			_jacobsthalNum = getJacobsthalNum(container.size() / 2 + 3);
 			mergeInsertionSort(container);
 			return  ((clock() - start) / (CLOCKS_PER_SEC / 1000.0));
 		}
@@ -116,6 +116,25 @@ class PmergeMe {
 			std::advance(itSecond, 2);
 		}
 	}
+
+	// template<class PairContainer, class Container>
+	// void sortLargerNums(PairContainer& pairs) {
+	// 	Container tmp;
+	// 	typename PairContainer::iterator it = pairs.begin();
+	// 	typename PairContainer::iterator ite = pairs.end();
+	// 	while (it != ite) {
+	// 		tmp.push_back(it->second);
+	// 		++it;
+	// 	}
+	// 	mergeInsertionSort(tmp);
+	// 	it = pairs.begin();
+	// 	while (it != ite) {
+	// 		typename Container::iterator itTmp = tmp.begin();
+	// 		it->second = *itTmp;
+	// 		tmp.erase(itTmp);
+	// 		++it;
+	// 	}
+	// }
 
 	template<class PairContainer, class Container>
 	void pushToMainChain(PairContainer& pairs, Container& mainChain, Container& pend) {
