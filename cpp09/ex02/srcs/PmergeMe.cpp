@@ -55,6 +55,16 @@ void PmergeMe::pmergeme(void) {
 		std::cout << "After: " << _vec << std::endl;
 		printTime("std::vector", timeV);
 		printTime("std::list  ", timeL);
+
+		///// DEBUG ///////////////////////////////////////////////////////////
+		std::cout << "\n===== Check if sorted =====\n";
+		std::cout << "VECTOR: ";
+		std::is_sorted(_vec.begin(), _vec.end()) ? std::cout << GREEN << "SUCCESS!" << RESET : std::cout << RED << "FAILED" << RESET;
+		std::cout << std::endl;
+		std::cout << "LIST: ";
+		std::is_sorted(_list.begin(), _list.end()) ? std::cout << GREEN << "SUCCESS!" << RESET : std::cout << RED << "FAILED" << RESET;
+		std::cout << std::endl;
+		///////////////////////////////////////////////////////////////////////
 }
 
 /*============================================================================*/
@@ -71,43 +81,12 @@ bool PmergeMe::isValidValue(char const* value) {
 	return (true);
 }
 
-// int* PmergeMe::generateInsertionOrder(size_t n) {
-// 	int* insertionOrder = new int[n];
-// 	if (n == 1) {
-// 		insertionOrder[0] = 0;
-// 		return (insertionOrder);
-// 	}
-// 	int* jacobsthalNum = getJacobsthalNum(n + 1);
-// 	size_t i = 0;
-// 	size_t j = 2;
-// 	int tmp = -1;
-// 	while (i < n) {
-// 		if (jacobsthalNum[j] < static_cast<int>(n)) {
-// 			insertionOrder[i] = jacobsthalNum[j];
-// 			++i;
-// 		}
-// 		int num = jacobsthalNum[j];
-// 		++j;
-// 		while (--num > tmp && i < n) {
-// 			if (num < static_cast<int>(n)) {
-// 	 			insertionOrder[i] = num;
-// 				++i;
-// 			}
-// 		}
-// 		tmp = *std::max_element(insertionOrder, insertionOrder + i + 1);
-// 	}
-// 	delete[] jacobsthalNum;
-// 	return (insertionOrder);
-// }
-
-int* PmergeMe::getJacobsthalNum(size_t n) {
-	int* jacobsthalNum = new int[n];
-
-	jacobsthalNum[0] = 0;
-	jacobsthalNum[1] = 1;
-	for (size_t i = 2; i < n; i++)
-		jacobsthalNum[i] = jacobsthalNum[i - 1] + 2 * jacobsthalNum[i - 2];
-	return (jacobsthalNum);
+int PmergeMe::jacobsthalNumber(size_t n) {
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacobsthalNumber(n - 1) + 2 * jacobsthalNumber(n - 2));
 }
 
 void PmergeMe::printTime(std::string const& numbersType, double time) {
@@ -133,8 +112,24 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 		sequence.pop_back();
 	}
 	createSortedPairs(sequence, pairs);
-	sortLargerNums(pairs);
 	pushToMainChain(pairs, mainChain, pend);
+	mergeInsertionSort(mainChain);
+	mergeInsertionSort(pend);
+
+	////////// NEED TO BE FIXED //////////
+	// std::vector< std::pair<int, int> >::iterator it = pairs.begin();
+	// std::vector< std::pair<int, int> >::iterator ite = pairs.end();
+	// while (it != ite) {
+	// 	if  (it->second == mainChain.front()) {
+	// 		mainChain.insert(mainChain.begin(), it->first);
+	// 		break;
+	// 	}
+	// 	++it;
+	// }
+	// std::vector<int>::iterator itPend = std::find(pend.begin(), pend.end(), mainChain.front());
+	// if (itPend != pend.end())
+	// 	pend.erase(itPend);
+	
 	if (straggler != -1)
 		pend.push_back(straggler);
 	insertPend(mainChain, pend);
@@ -146,11 +141,14 @@ void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
 	std::vector<int> tmp;
 	std::vector< std::pair<int, int> >::iterator it = pairs.begin();
 	std::vector< std::pair<int, int> >::iterator ite = pairs.end();
+
 	while (it != ite) {
 		tmp.push_back(it->second);
 		++it;
 	}
 	mergeInsertionSort(tmp);
+
+	//////// DOESN'T WORK WELL //////////
 	it = pairs.begin();
 	while (it != ite) {
 		std::vector<int>::iterator itTmp = tmp.begin();
@@ -158,65 +156,95 @@ void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
 		tmp.erase(itTmp);
 		++it;
 	}
-}
-
-void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
-	size_t	pendSize = pend.size();
-	size_t i = 3;
-	size_t count = 2;
-	int currentJacobsthal;
-	int previousJacobsthal;
-	int jacobsthalDiff;
-
-	if (pendSize == 0)
-		return ;
-	if (pendSize == 1) {
-		binarySearchInsert(mainChain, pend.at(0));
-		return ;
-	}
-	binarySearchInsert(mainChain, pend.at(1));
-	binarySearchInsert(mainChain, pend.at(0));
-	while (count < pendSize) {
-		currentJacobsthal = _jacobsthalNum[i];
-		previousJacobsthal = _jacobsthalNum[i - 1];
-		jacobsthalDiff = currentJacobsthal - previousJacobsthal;
-		while (jacobsthalDiff > 0) {
-			if (currentJacobsthal < static_cast<int>(pendSize)){
-				binarySearchInsert(mainChain, pend.at(currentJacobsthal));
-				++count;
-			}
-			--currentJacobsthal;
-			--jacobsthalDiff;
-		}
-		++i;
-	}
+	/////////////////////////////////////
 }
 
 // void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
 // 	size_t	pendSize = pend.size();
-// 	int* 	insertionOrder = generateInsertionOrder(pendSize);
-// 	size_t	pendIndex;
-
-// 	for (size_t i = 0; i < pendSize; ++i) {
-// 		pendIndex = _insertionOrder[i];
-// 		binarySearchInsert(mainChain, pend.at(pendIndex));
+// 	size_t i = 3;
+// 	size_t count = 2;
+// 	int currentJacobsthal;
+// 	int previousJacobsthal = jacobsthalNumber(i - 1);
+// 	int jacobsthalDiff;
+	
+// 	if (pendSize == 0)
+// 		return ;
+// 	if (pendSize == 1) {
+// 		binarySearchInsert(mainChain, pend.at(0));
+// 		return ;
 // 	}
-// 	delete[] insertionOrder;
+// 	binarySearchInsert(mainChain, pend.at(1));
+// 	binarySearchInsert(mainChain, pend.at(0));
+// 	while (count < pendSize) {
+// 		currentJacobsthal = jacobsthalNumber(i);
+// 		jacobsthalDiff = currentJacobsthal - previousJacobsthal;
+// 		while (jacobsthalDiff > 0) {
+// 			if (currentJacobsthal < static_cast<int>(pendSize)){
+// 				binarySearchInsert(mainChain, pend.at(currentJacobsthal));
+// 				++count;
+// 			}
+// 			--currentJacobsthal;
+// 			--jacobsthalDiff;
+// 		}
+// 		++i;
+// 		previousJacobsthal = currentJacobsthal;
+// 	}
 // }
 
-void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert) {
-	size_t low = 0;
-	size_t high = mainChain.size();
+void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
+	int	pendSize = pend.size();
+	size_t i = 2;
+	int currentJacobsthal = jacobsthalNumber(i);
+
+	if (pendSize == 0)
+		return ;
+	while (currentJacobsthal < pendSize) {
+		binarySearchInsert(mainChain, pend.at(currentJacobsthal), 0, mainChain.size());
+
+		pend.at(currentJacobsthal) = -1;
+		currentJacobsthal = jacobsthalNumber(++i);
+	}
+	for (int j = 0; j < pendSize; ++j) {
+		if (pend.at(j) != -1)
+			binarySearchInsert(mainChain, pend.at(j), 0, mainChain.size());
+	}
+}
+
+void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert, size_t start, size_t end) {
+	size_t low = start;
+	size_t high = end;
+
+	// size_t count = 0;
 	while (low < high) {
 		size_t middle = low + (high - low) / 2;
 		if (toInsert < mainChain.at(middle))
-				high = middle;
-			else
-				low = middle + 1;
-		}
-		size_t insertPosition = low;
-		mainChain.insert(mainChain.begin() + insertPosition, toInsert);
+			high = middle;
+		else
+			low = middle + 1;
+		// ++count;
+	}
+	std::vector<int>::iterator insertPosition = mainChain.begin() + low;
+	mainChain.insert(insertPosition, toInsert);
+	// if (count > 4)
+	// 	std::cout << RED << count << RESET << std::endl;
+	// else
+	// 	std::cout << GREEN << count << RESET << std::endl;
 }
+
+// void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert) {
+// 	size_t low = 0;
+// 	size_t high = mainChain.size();
+
+// 	while (low < high) {
+// 		size_t middle = low + (high - low) / 2;
+// 		if (toInsert < mainChain.at(middle))
+// 			high = middle;
+// 		else
+// 			low = middle + 1;
+// 	}
+// 	size_t insertPosition = low;
+// 	mainChain.insert(mainChain.begin() + insertPosition, toInsert);
+// }
 
 /*============================================================================*/
 /*       Merge-insert sort for list                                           */

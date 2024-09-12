@@ -50,29 +50,29 @@ class PmergeMe {
 		size_t	_size;
 		std::vector<int> _vec;
 		std::list<int> _list;
-		int* _jacobsthalNum;
 
 		PmergeMe(void);
 		
 		bool isValidValue(char const*);
-		int* generateInsertionOrder(size_t n);
-		int* getJacobsthalNum(size_t n);
+		int jacobsthalNumber(size_t n);
 		void printTime(std::string const& containerType, double time);
 
 		void mergeInsertionSort(std::vector<int>&);
 		void mergeInsertionSort(std::list<int>&);
 
-		void sortLargerNums(std::vector< std::pair<int, int> >& pairs);
-		void sortLargerNums(std::list< std::pair<int, int> >& pairs);
+		void sortLargerNums(std::vector< std::pair<int, int> >& pairs); /////
+		void sortLargerNums(std::list< std::pair<int, int> >& pairs); /////
 		void insertPend(std::vector<int>& mainChain, std::vector<int>& pend);
 		void insertPend(std::list<int>& mainChain, std::list<int>& pend);
-		void binarySearchInsert(std::vector<int>& vec, int toInsert);
-		void binarySearchInsert(std::list<int>& vec, int toInsert);
+		void binarySearchInsert(std::vector<int>& vec, int toInsert, size_t start, size_t end);
+		// void binarySearchInsert(std::vector<int>& mainChain, int toInsert);
+		void binarySearchInsert(std::list<int>& lst, int toInsert, size_t start, size_t end);
 
 		/*----- Templates -----*/
 		template<class Container>
 		double sortSequence(Container& container) {
 			clock_t start = clock();
+
 			for (int i = 0; _input[i]; ++i) {
 				if (!isValidValue(_input[i]))
 					throw InvalidValueException();
@@ -80,7 +80,6 @@ class PmergeMe {
 			}
 			if (!checkDuplicate(container))
 				throw DuplicateFoundException();
-			_jacobsthalNum = getJacobsthalNum(container.size() / 2 + 3);
 			mergeInsertionSort(container);
 			return  ((clock() - start) / (CLOCKS_PER_SEC / 1000.0));
 		}
@@ -140,11 +139,10 @@ class PmergeMe {
 	void pushToMainChain(PairContainer& pairs, Container& mainChain, Container& pend) {
 		typename PairContainer::iterator it = pairs.begin();
 		typename PairContainer::iterator ite = pairs.end();
-		if (it != ite) {
-			mainChain.push_back(it->first);
-			mainChain.push_back(it->second);
-			++it;
-		}
+		// 	mainChain.push_back(it->first);
+		// 	mainChain.push_back(it->second);
+		// 	++it;
+		// }
 		while (it != ite) {
 			mainChain.push_back(it->second);
 			pend.push_back(it->first);
