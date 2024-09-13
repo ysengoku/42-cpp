@@ -17,26 +17,35 @@
 /*============================================================================*/
 
 PmergeMe::PmergeMe(char** input, size_t size)
-: _input(input), _size(size) {
-	std::cout << GREY << "Constructor called." << RESET << std::endl;
+: _input(input), _size(size), _time(0) {
+	#ifdef DEBUG
+		std::cout << GREY << "Constructor called." << RESET << std::endl;
+	#endif
+	std::cout << "Before:" << _input << std::endl;
 }
 
 PmergeMe::~PmergeMe(void) {
-	std::cout << GREY << "Destructor called." << RESET << std::endl;
+	#ifdef DEBUG
+		std::cout << GREY << "Destructor called." << RESET << std::endl;
+	#endif
 }
 
 PmergeMe::PmergeMe(PmergeMe const& src) {
-	std::cout << GREY << "Copy constructor called." << RESET << std::endl;
 	*this = src;
+	#ifdef DEBUG
+		std::cout << GREY << "Copy constructor called." << RESET << std::endl;
+	#endif
 }
 
 PmergeMe& PmergeMe::operator=(PmergeMe const& rhs) {
-	std::cout << GREY << "Copy assignment operator called." << RESET << std::endl;
 	if (this != &rhs) {
 		this->_vec = rhs._vec;
 		this->_list = rhs._list;
 		this->_size = rhs._size;
 	}
+	#ifdef DEBUG
+		std::cout << GREY << "Copy assignment operator called." << RESET << std::endl;
+	#endif
 	return (*this);
 }
 
@@ -46,25 +55,18 @@ PmergeMe::PmergeMe(void) {}
 /*       Public member functions                                              */
 /*============================================================================*/
 
-void PmergeMe::pmergeme(void) {
-	double timeV;
-	double timeL;
-		timeV = sortSequence(_vec);
-		timeL = sortSequence(_list);
-		std::cout << "Before:" << _input << std::endl;
-		std::cout << "After: " << _vec << std::endl;
-		printTime("std::vector", timeV);
-		printTime("std::list  ", timeL);
+std::vector<int>& PmergeMe::getVector(void) {
+	return (_vec);
+}
 
-		///// DEBUG ///////////////////////////////////////////////////////////
-		std::cout << "\n===== Check if sorted =====\n";
-		std::cout << "VECTOR: ";
-		std::is_sorted(_vec.begin(), _vec.end()) ? std::cout << GREEN << "SUCCESS!" << RESET : std::cout << RED << "FAILED" << RESET;
-		std::cout << std::endl;
-		std::cout << "LIST: ";
-		std::is_sorted(_list.begin(), _list.end()) ? std::cout << GREEN << "SUCCESS!" << RESET : std::cout << RED << "FAILED" << RESET;
-		std::cout << std::endl;
-		///////////////////////////////////////////////////////////////////////
+std::list<int>& PmergeMe::getList(void) {
+	return (_list);
+}
+
+void PmergeMe::printTime(std::string const& numbersType) {
+	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
+	std::cout << "Time to process a range of " << _size << " elements with " \
+	<< numbersType << " : " << _time  << " ms " << std::endl;	
 }
 
 /*============================================================================*/
@@ -89,12 +91,6 @@ int PmergeMe::jacobsthalNumber(size_t n) {
 	return (jacobsthalNumber(n - 1) + 2 * jacobsthalNumber(n - 2));
 }
 
-void PmergeMe::printTime(std::string const& numbersType, double time) {
-	std::cout << std::fixed << std::setprecision(FLOATING_POINT_PRECISION);
-	std::cout << "Time to process a range of " << _size << " elements with " \
-	<< numbersType << " : " << time  << " ms " << std::endl;	
-}
-
 /*============================================================================*/
 /*       Private member functions: Merge-insert sort for vector               */
 /*============================================================================*/
@@ -115,19 +111,9 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 	pushToMainChain(pairs, mainChain, pend);
 	mergeInsertionSort(mainChain);
 
-	////////// NEED TO BE FIXED //////////
-	// std::vector< std::pair<int, int> >::iterator it = pairs.begin();
-	// std::vector< std::pair<int, int> >::iterator ite = pairs.end();
-	// while (it != ite) {
-	// 	if  (it->second == mainChain.front()) {
-	// 		mainChain.insert(mainChain.begin(), it->first);
-	// 		break;
-	// 	}
-	// 	++it;
-	// }
-	// std::vector<int>::iterator itPend = std::find(pend.begin(), pend.end(), mainChain.front());
-	// if (itPend != pend.end())
-	// 	pend.erase(itPend);
+	// sortLargerNums(pairs);
+	// mainChain.push_back(pairs.front().first);
+
 	
 	if (straggler != -1)
 		pend.push_back(straggler);
@@ -135,60 +121,6 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 	sequence.clear();
 	sequence.insert(sequence.end(), mainChain.begin(), mainChain.end());
 }
-
-// void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
-// 	std::vector<int> tmp;
-// 	std::vector< std::pair<int, int> >::iterator it = pairs.begin();
-// 	std::vector< std::pair<int, int> >::iterator ite = pairs.end();
-
-// 	while (it != ite) {
-// 		tmp.push_back(it->second);
-// 		++it;
-// 	}
-// 	mergeInsertionSort(tmp);
-
-// 	//////// DOESN'T WORK WELL //////////
-// 	it = pairs.begin();
-// 	while (it != ite) {
-// 		std::vector<int>::iterator itTmp = tmp.begin();
-// 		it->second = *itTmp;
-// 		tmp.erase(itTmp);
-// 		++it;
-// 	}
-// 	/////////////////////////////////////
-// }
-
-// void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
-// 	size_t	pendSize = pend.size();
-// 	size_t i = 3;
-// 	size_t count = 2;
-// 	int currentJacobsthal;
-// 	int previousJacobsthal = jacobsthalNumber(i - 1);
-// 	int jacobsthalDiff;
-	
-// 	if (pendSize == 0)
-// 		return ;
-// 	if (pendSize == 1) {
-// 		binarySearchInsert(mainChain, pend.at(0));
-// 		return ;
-// 	}
-// 	binarySearchInsert(mainChain, pend.at(1));
-// 	binarySearchInsert(mainChain, pend.at(0));
-// 	while (count < pendSize) {
-// 		currentJacobsthal = jacobsthalNumber(i);
-// 		jacobsthalDiff = currentJacobsthal - previousJacobsthal;
-// 		while (jacobsthalDiff > 0) {
-// 			if (currentJacobsthal < static_cast<int>(pendSize)){
-// 				binarySearchInsert(mainChain, pend.at(currentJacobsthal));
-// 				++count;
-// 			}
-// 			--currentJacobsthal;
-// 			--jacobsthalDiff;
-// 		}
-// 		++i;
-// 		previousJacobsthal = currentJacobsthal;
-// 	}
-// }
 
 void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
 	int	pendSize = pend.size();
@@ -229,21 +161,6 @@ void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert, siz
 	// else
 	// 	std::cout << GREEN << count << RESET << std::endl;
 }
-
-// void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert) {
-// 	size_t low = 0;
-// 	size_t high = mainChain.size();
-
-// 	while (low < high) {
-// 		size_t middle = low + (high - low) / 2;
-// 		if (toInsert < mainChain.at(middle))
-// 			high = middle;
-// 		else
-// 			low = middle + 1;
-// 	}
-// 	size_t insertPosition = low;
-// 	mainChain.insert(mainChain.begin() + insertPosition, toInsert);
-// }
 
 /*============================================================================*/
 /*       Merge-insert sort for list                                           */

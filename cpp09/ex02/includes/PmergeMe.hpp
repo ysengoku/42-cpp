@@ -13,18 +13,21 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <iostream>
-# include <string>
 # include <vector>
 # include <list>
+# include <iostream>
+# include <iomanip>
+# include <string>
+# include <algorithm>
 # include <cstdlib>
 # include <climits>
 # include <cerrno>
-# include <iomanip>
-# include <algorithm>
 # include <ctime>
 
 # define FLOATING_POINT_PRECISION 5
+# define CLOCKS_PER_MS (CLOCKS_PER_SEC / 1000.0)
+# define VECTOR "std::vector"
+# define LIST "std::list"
 
 class PmergeMe {
 	public:
@@ -33,8 +36,24 @@ class PmergeMe {
 		PmergeMe(PmergeMe const& src);
 		PmergeMe& operator=(PmergeMe const& rhs);
 
-		void pmergeme(void);
+		template<typename Container>
+		void sortSequence(Container& container) {
+			clock_t start = clock();
+			for (int i = 0; _input[i]; ++i) {
+				if (!isValidValue(_input[i]))
+					throw InvalidValueException();
+				container.push_back(atoi(_input[i]));
+			}
+			if (!checkDuplicate(container))
+				throw DuplicateFoundException();
+			mergeInsertionSort(container);
+			_time = (clock() - start) / CLOCKS_PER_MS;
+		}
 		
+		std::vector<int>& getVector(void);
+		std::list<int>& getList(void);
+		void printTime(std::string const& containerType);
+
 		class InvalidValueException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -48,6 +67,7 @@ class PmergeMe {
 	private:
 		char** _input;
 		size_t	_size;
+		double _time;
 		std::vector<int> _vec;
 		std::list<int> _list;
 
@@ -55,35 +75,16 @@ class PmergeMe {
 		
 		bool isValidValue(char const*);
 		int jacobsthalNumber(size_t n);
-		void printTime(std::string const& containerType, double time);
 
 		void mergeInsertionSort(std::vector<int>&);
 		void mergeInsertionSort(std::list<int>&);
 
-		// void sortLargerNums(std::vector< std::pair<int, int> >& pairs); /////
-		// void sortLargerNums(std::list< std::pair<int, int> >& pairs); /////
 		void insertPend(std::vector<int>& mainChain, std::vector<int>& pend);
 		void insertPend(std::list<int>& mainChain, std::list<int>& pend);
 		void binarySearchInsert(std::vector<int>& vec, int toInsert, size_t start, size_t end);
-		// void binarySearchInsert(std::vector<int>& mainChain, int toInsert);
 		void binarySearchInsert(std::list<int>& lst, int toInsert, size_t start, size_t end);
 
 		/*----- Templates -----*/
-		template<class Container>
-		double sortSequence(Container& container) {
-			clock_t start = clock();
-
-			for (int i = 0; _input[i]; ++i) {
-				if (!isValidValue(_input[i]))
-					throw InvalidValueException();
-				container.push_back(atoi(_input[i]));
-			}
-			if (!checkDuplicate(container))
-				throw DuplicateFoundException();
-			mergeInsertionSort(container);
-			return  ((clock() - start) / (CLOCKS_PER_SEC / 1000.0));
-		}
-
 		template<class Container>
 		bool checkDuplicate(Container const& container) {
 			typedef typename Container::const_iterator const_iterator;
@@ -115,25 +116,6 @@ class PmergeMe {
 			std::advance(itSecond, 2);
 		}
 	}
-
-	// template<class PairContainer, class Container>
-	// void sortLargerNums(PairContainer& pairs) {
-	// 	Container tmp;
-	// 	typename PairContainer::iterator it = pairs.begin();
-	// 	typename PairContainer::iterator ite = pairs.end();
-	// 	while (it != ite) {
-	// 		tmp.push_back(it->second);
-	// 		++it;
-	// 	}
-	// 	mergeInsertionSort(tmp);
-	// 	it = pairs.begin();
-	// 	while (it != ite) {
-	// 		typename Container::iterator itTmp = tmp.begin();
-	// 		it->second = *itTmp;
-	// 		tmp.erase(itTmp);
-	// 		++it;
-	// 	}
-	// }
 
 	template<class PairContainer, class Container>
 	void pushToMainChain(PairContainer& pairs, Container& mainChain, Container& pend) {
