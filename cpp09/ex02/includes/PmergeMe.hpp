@@ -60,8 +60,8 @@ class PmergeMe {
 		void mergeInsertionSort(std::vector<int>&);
 		void mergeInsertionSort(std::list<int>&);
 
-		void sortLargerNums(std::vector< std::pair<int, int> >& pairs); /////
-		void sortLargerNums(std::list< std::pair<int, int> >& pairs); /////
+		// void sortLargerNums(std::vector< std::pair<int, int> >& pairs); /////
+		// void sortLargerNums(std::list< std::pair<int, int> >& pairs); /////
 		void insertPend(std::vector<int>& mainChain, std::vector<int>& pend);
 		void insertPend(std::list<int>& mainChain, std::list<int>& pend);
 		void binarySearchInsert(std::vector<int>& vec, int toInsert, size_t start, size_t end);
