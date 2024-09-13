@@ -11,6 +11,10 @@
 # **************************************************************************** #
 
 NAME = PmergeMe
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS += -std=c++98
+CXXFLAGS +=	-MMD -MP
 
 vpath %.cpp srcs
 FILES = main PmergeMe
@@ -24,16 +28,16 @@ OBJS_DIR = .objs/
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 DEPS = $(OBJS:.o=.d)
 
-CXX = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-all: $(NAME)
+all: $(OBJS_DIR) $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CPPFLAGS) -I$(INCLUDE) $^ -o $@
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)%.o: %.cpp Makefile
-	@mkdir -p $(OBJS_DIR)
-	$(CXX) $(CPPFLAGS) -I$(INCLUDE) -c $< -o $@ -MMD -MP
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $< -o $@
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) $^ -o $@
 
 -include $(DEPS)
 
@@ -46,4 +50,7 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+debug: CXXFLAGS += -DDEBUG
+debug: fclean $(OBJS_DIR) $(NAME)
+
+.PHONY: all clean fclean re check

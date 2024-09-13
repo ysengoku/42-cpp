@@ -18,11 +18,34 @@ int main(int argc, char** argv) {
 		return (1);
 	}
 	++argv;
-	PmergeMe pmergeme(argv, argc - 1);
 	try {
-		pmergeme.pmergeme();
-	} catch (std::exception &e) {
+		PmergeMe pmergeme(argv, argc - 1);
+
+		/* Sort with vector */
+		pmergeme.sortSequence(pmergeme.getVector());
+		std::cout << "After: " << pmergeme.getVector() << std::endl;
+		pmergeme.printTime(VECTOR);
+
+		/* Sort with list */
+		pmergeme.sortSequence(pmergeme.getList());
+		pmergeme.printTime(LIST);
+
+		#ifdef DEBUG
+			std::vector<int> vec = pmergeme.getVector();
+			std::list<int> lst = pmergeme.getList();
+			std::cout << "\n=== Sort Check ===\n";
+			std::cout << "vector: ";
+			std::is_sorted(vec.begin(), vec.end()) ? std::cout << GREEN << "SUCCESS!!" << RESET : std::cout << RED << "FAILED..." << RESET;
+			std::cout << std::endl;
+			std::cout << "list: ";
+			std::is_sorted(lst.begin(), lst.end()) ? std::cout << GREEN << "SUCCESS!" << RESET : std::cout << RED << "FAILED" << RESET;
+			std::cout << std::endl;
+		#endif
+	}
+	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
+
+
 	return (0);
 }
