@@ -114,7 +114,6 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 	createSortedPairs(sequence, pairs);
 	pushToMainChain(pairs, mainChain, pend);
 	mergeInsertionSort(mainChain);
-	mergeInsertionSort(pend);
 
 	////////// NEED TO BE FIXED //////////
 	// std::vector< std::pair<int, int> >::iterator it = pairs.begin();
@@ -137,27 +136,27 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
 	sequence.insert(sequence.end(), mainChain.begin(), mainChain.end());
 }
 
-void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
-	std::vector<int> tmp;
-	std::vector< std::pair<int, int> >::iterator it = pairs.begin();
-	std::vector< std::pair<int, int> >::iterator ite = pairs.end();
+// void PmergeMe::sortLargerNums(std::vector< std::pair<int, int> >& pairs) {
+// 	std::vector<int> tmp;
+// 	std::vector< std::pair<int, int> >::iterator it = pairs.begin();
+// 	std::vector< std::pair<int, int> >::iterator ite = pairs.end();
 
-	while (it != ite) {
-		tmp.push_back(it->second);
-		++it;
-	}
-	mergeInsertionSort(tmp);
+// 	while (it != ite) {
+// 		tmp.push_back(it->second);
+// 		++it;
+// 	}
+// 	mergeInsertionSort(tmp);
 
-	//////// DOESN'T WORK WELL //////////
-	it = pairs.begin();
-	while (it != ite) {
-		std::vector<int>::iterator itTmp = tmp.begin();
-		it->second = *itTmp;
-		tmp.erase(itTmp);
-		++it;
-	}
-	/////////////////////////////////////
-}
+// 	//////// DOESN'T WORK WELL //////////
+// 	it = pairs.begin();
+// 	while (it != ite) {
+// 		std::vector<int>::iterator itTmp = tmp.begin();
+// 		it->second = *itTmp;
+// 		tmp.erase(itTmp);
+// 		++it;
+// 	}
+// 	/////////////////////////////////////
+// }
 
 // void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
 // 	size_t	pendSize = pend.size();
