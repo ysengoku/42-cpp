@@ -95,79 +95,207 @@ int PmergeMe::jacobsthalNumber(size_t n) {
 /*       Private member functions: Merge-insert sort for vector               */
 /*============================================================================*/
 
-void PmergeMe::mergeInsertionSort(std::vector<int>& sequence) {
-	int straggler = -1;
-	std::vector< std::pair<int, int> > pairs;
-	std::vector<int> mainChain;
-	std::vector<int> pend;
-
-	if (sequence.size() <= 1)
+void PmergeMe::mergeInsertionSort(std::vector<int>& sequence, size_t const blockSize, size_t const blockCount) {
+	if (blockCount < 1)
 		return;
-	if (sequence.size() % 2 != 0) {
-		straggler = sequence.back();
-		sequence.pop_back();
-	}
-	createSortedPairs(sequence, pairs);
-	pushToMainChain(pairs, mainChain, pend);
-	mergeInsertionSort(mainChain);
-
-	// sortLargerNums(pairs);
-	// mainChain.push_back(pairs.front().first);
-
-	
-	if (straggler != -1)
-		pend.push_back(straggler);
-	insertPend(mainChain, pend);
-	sequence.clear();
-	sequence.insert(sequence.end(), mainChain.begin(), mainChain.end());
+	sortByPair(sequence, blockSize, blockCount);
+	mergeInsertionSort(sequence, blockSize * 2, blockCount / 2);
+	splitAndBinaryInsert(sequence, blockSize, blockCount);
 }
 
-void PmergeMe::insertPend(std::vector<int>& mainChain, std::vector<int>& pend) {
-	int	pendSize = pend.size();
+void PmergeMe::sortByPair(std::vector<int>& seq, size_t blockSize, size_t blockCount) {
+	v_iterator itLeft = seq.begin();
+	std::advance(itLeft, blockSize - 1);
+	v_iterator itRight = seq.begin();
+	std::advance(itRight, blockSize * 2 - 1);
+
+	if (blockCount < 2)
+		return;
+	#ifdef DEBUG
+		std::cout << GREEN "\n===== Block size: " << blockSize << "  Block count: " << blockCount << " =====" RESET << std::endl;
+	#endif
+	for (size_t i = 0; i < blockCount / 2; ++i) {
+		#ifdef DEBUG
+			std::cout << "Comapring [" << *itLeft << " - " << *itRight << "]" << std::endl;
+		#endif
+		if (*itLeft > *itRight) {
+			size_t leftIndex = std::distance(seq.begin(), itLeft);
+			size_t rightIndex = std::distance(seq.begin(), itRight);
+			for (size_t i = 0; i < blockSize; ++i)
+				std::swap(seq.at(leftIndex - i), seq.at(rightIndex - i));
+			#ifdef DEBUG
+				std::cout << CYAN << "Swapped ---> [" << *itLeft << " - " << *itRight << ']' << RESET << std::endl;
+			#endif
+		}
+		std::advance(itLeft, blockSize * 2);
+		std::advance(itRight, blockSize * 2);
+	}
+	#ifdef DEBUG
+		std::cout << "Sequence after sort by pair:" << seq << std::endl;
+	#endif
+}
+
+void PmergeMe::splitAndBinaryInsert(std::vector<int> seq, size_t blockSize, size_t blockCount) {
+	v_iter_pair_container mainChain;
+	v_iter_pair_container pend;
+	int pendSize;
+
+	if (blockCount < 2)
+		return;
+	bool hasLeftover = blockCount % 2;
+	pushToMainChain(seq, mainChain, pend, blockSize, blockCount);
+	pendSize= pend.size();
+	if (hasLeftover) 
+		pendSize -= 1;
+	insertPendElements(mainChain, pend, pendSize, blockSize);
+	if (hasLeftover) {
+		#ifdef DEBUG
+			std::cout << "Inserting (leftover) " << pend.at(pendSize).first << std::endl;
+		#endif
+		v_iter_pair_container::iterator start = mainChain.begin();
+		v_iter_pair_container::iterator end = mainChain.end();
+		binarySearchInsert(mainChain, pend.at(pendSize), start, end);
+	}
+	#ifdef DEBUG
+		std::cout << "\nMain chain (after): ";
+		for (v_iter_pair_container::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+			std::cout << it->first << ' ';
+		std::cout << std::endl;
+	#endif
+	rebuildSequence(seq, mainChain, blockSize, blockCount);
+}
+
+void PmergeMe::pushToMainChain(std::vector<int> const& sequence, v_iter_pair_container& mainChain, v_iter_pair_container& pend, size_t blockSize, size_t blockCount) {
+	std::vector<int>::const_iterator it = sequence.begin() + blockSize - 1;
+	
+	mainChain.push_back(std::make_pair(*it, it));
+	std::advance(it, blockSize);
+	mainChain.push_back(std::make_pair(*it, it));
+
+	for (size_t i = 3; i < blockCount; ++i) {
+		std::advance(it, blockSize);
+		if (i % 2 == 0)
+			mainChain.push_back(std::make_pair(*it, it));
+		else
+			pend.push_back(std::make_pair(*it, it));
+	}
+	if (blockCount % 2 != 0) {
+		std::advance(it, blockSize);
+		pend.push_back(std::make_pair(*it, it));
+	}
+	#ifdef DEBUG
+		std::cout << MAGENTA "\n===== Block size: " << blockSize << "  Block count: " << blockCount << " =====" RESET << std::endl;
+		std::cout << "Main chain: ";
+		for (v_iter_pair_container::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+			std::cout << it->first << ' ';
+		std::cout << std::endl;
+		std::cout << "Pend: ";
+		if (!pend.empty()) {
+			for (v_iter_pair_container::iterator it = pend.begin(); it != pend.end(); ++it)
+				std::cout << it->first << ' ';
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+	#endif
+}
+
+void PmergeMe::insertPendElements(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int pendSize, size_t blockSize) {
 	size_t i = 2;
-	int currentJacobsthal = jacobsthalNumber(i);
+	int target = jacobsthalNumber(i);
 
-	if (pendSize == 0)
-		return ;
-	while (currentJacobsthal < pendSize) {
-		binarySearchInsert(mainChain, pend.at(currentJacobsthal), 0, mainChain.size());
-
-		pend.at(currentJacobsthal) = -1;
-		currentJacobsthal = jacobsthalNumber(++i);
+	while (target < pendSize) {
+		#ifdef DEBUG
+			std::cout << "Inserting " << pend.at(target).first << std::endl;
+		#endif
+		v_iter_pair_container::iterator start = mainChain.begin();
+		v_iter_pair_container::iterator end = findBinarySearchRangeEnd(mainChain, pend, target, blockSize);
+		binarySearchInsert(mainChain, pend.at(target), start, end);
+		pend.at(target).first = -1;
+		target = jacobsthalNumber(++i);
 	}
 	for (int j = 0; j < pendSize; ++j) {
-		if (pend.at(j) != -1)
-			binarySearchInsert(mainChain, pend.at(j), 0, mainChain.size());
+		if (pend.at(j).first != -1) {
+			#ifdef DEBUG
+				std::cout << "Inserting " << pend.at(j).first << std::endl;
+			#endif
+			v_iter_pair_container::iterator start = mainChain.begin();
+			v_iter_pair_container::iterator end = findBinarySearchRangeEnd(mainChain, pend, j, blockSize);
+			binarySearchInsert(mainChain, pend.at(j), start, end);
+		}
 	}
 }
 
-void PmergeMe::binarySearchInsert(std::vector<int>& mainChain, int toInsert, size_t start, size_t end) {
-	size_t low = start;
-	size_t high = end;
+PmergeMe::v_iter_pair_container::iterator PmergeMe::findBinarySearchRangeEnd(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int target, size_t blockSize) {
+	std::vector<int>::const_iterator itInSequence = pend.at(target).second;
+	std::vector<int>::const_iterator itPairElement = itInSequence + blockSize;
 
+	v_iter_pair_container::iterator itPairElementInMainChain = std::find(mainChain.begin(), mainChain.end(), std::make_pair(*itPairElement, itPairElement));
+	return (itPairElementInMainChain);
+}
+
+void PmergeMe::binarySearchInsert(v_iter_pair_container& mainChain, v_iter_pair& toInsert, v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end) {
 	// size_t count = 0;
-	while (low < high) {
-		size_t middle = low + (high - low) / 2;
-		if (toInsert < mainChain.at(middle))
-			high = middle;
+	while (start < end) {
+		v_iter_pair_container::iterator middle = start + std::distance(start, end) / 2;
+		if (toInsert.first < middle->first)
+			end = middle;
 		else
-			low = middle + 1;
+			start = middle + 1;
 		// ++count;
 	}
-	std::vector<int>::iterator insertPosition = mainChain.begin() + low;
-	mainChain.insert(insertPosition, toInsert);
+	mainChain.insert(start, toInsert);
 	// if (count > 4)
 	// 	std::cout << RED << count << RESET << std::endl;
 	// else
 	// 	std::cout << GREEN << count << RESET << std::endl;
 }
 
+void PmergeMe::rebuildSequence(std::vector<int>& seq, v_iter_pair_container& mainChain, size_t blockSize, size_t blockCount) {
+	std::vector<int> tmp;
+	std::vector<int>::const_iterator itSequence;
+	for (size_t i = 0; i < blockCount; ++i) {
+		itSequence = (mainChain.begin() + i)->second;
+		#ifdef DEBUG
+			std::cout << BLUE "itSequence: " << *itSequence << RESET << std::endl;
+		#endif
+		itSequence -= blockSize - 1;
+		#ifdef DEBUG
+			std::cout << BLUE "Insert start: " << *itSequence << RESET << std::endl;
+		#endif
+		// std::cout << "<" << i << "> Add [ ";
+		for (size_t j = 0; j < blockSize; ++j) {
+			tmp.push_back(*itSequence);
+			// std::cout << *itSequence << ' ';
+			++itSequence;
+		}
+		// std::cout << "]" << std::endl;
+	}
+	size_t remainingCount = seq.size() - tmp.size();
+	v_iterator it = seq.end() - remainingCount;
+	for (size_t i = 0; i < remainingCount; ++i) {
+		tmp.push_back(*it);
+		++it;
+	}
+	#ifdef DEBUG
+		std::cout << "Sequence BEFORE:" << seq << std::endl;
+	#endif
+	seq.clear();
+	seq.insert(seq.end(), tmp.begin(), tmp.end());
+	#ifdef DEBUG
+		std::cout << "\nRebuilt sequence:" << seq << std::endl;
+		if (seq.size() != _size)
+			std::cout << RED << "Error: Rebuilt sequence size is not equal to the original size." << RESET << std::endl;
+	#endif
+}
+
 /*============================================================================*/
 /*       Merge-insert sort for list                                           */
 /*============================================================================*/
 
-void PmergeMe::mergeInsertionSort(std::list<int>& container) {
-	(void) container;
+void PmergeMe::mergeInsertionSort(std::list<int>& sequence, size_t const blockSize, size_t const blockCount) {
+	(void) sequence;
+	(void) blockSize;
+	(void) blockCount;
 }
 
 
