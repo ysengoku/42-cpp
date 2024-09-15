@@ -53,4 +53,7 @@ re: fclean
 debug: CXXFLAGS += -DDEBUG
 debug: fclean $(OBJS_DIR) $(NAME)
 
+check: CXXFLAGS += -DCHECK
+check: fclean $(OBJS_DIR) $(NAME)
+
 .PHONY: all clean fclean re check
