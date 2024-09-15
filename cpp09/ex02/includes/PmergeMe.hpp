@@ -31,8 +31,6 @@
 
 class PmergeMe {
 	public:
-		typedef std::vector<int>::iterator v_iterator;
-		typedef std::list<int>::iterator l_iterator;
 		typedef std::pair<int, std::vector<int>::const_iterator> v_iter_pair;
 		typedef std::pair<int, std::list<int>::const_iterator> l_iter_pair;
 		typedef std::vector<v_iter_pair> v_iter_pair_container;
@@ -86,14 +84,16 @@ class PmergeMe {
 		void mergeInsertionSort(std::vector<int>& sequence, size_t const blockeSize, size_t const blockCount);
 		void mergeInsertionSort(std::list<int>& sequence, size_t const blockSize, size_t const blockCount);
 
-		void sortByPair(std::vector<int>& seq, size_t blockSize, size_t blockCount);
-	
+		/*----- Vector  -----*/
+		void sortByPair(std::vector<int>& seq, size_t blockSize, size_t blockCount);	
 		void splitAndBinaryInsert(std::vector<int>& seq, size_t blockSize, size_t blockCount);
 		void pushToMainChain(std::vector<int> const& sequence, v_iter_pair_container& mainChain, v_iter_pair_container& pend, size_t blockSize, size_t blockCount);
 		void insertPendElements(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int pendSize, size_t blockSize);
-		v_iter_pair_container::iterator findBinarySearchRangeEnd(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int target, size_t blockSize);
-		void binarySearchInsert(v_iter_pair_container& mainChain, v_iter_pair& toInsert, v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end);
+		void findBinarySearchRange(v_iter_pair_container& mainChain, v_iter_pair_container& pend, v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end, v_iter_pair_container::iterator& lastInserted, int target, size_t blockSize);
+		v_iter_pair_container::iterator binarySearchInsert(v_iter_pair_container& mainChain, v_iter_pair& toInsert, v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end);
 		void rebuildSequence(std::vector<int>& seq, v_iter_pair_container& mainChain, size_t blockSize, size_t blockCount);
+
+		/*----- List  -----*/
 
 		/*----- Templates -----*/
 		template<class Container>
@@ -111,37 +111,6 @@ class PmergeMe {
 			}
 			return (true);
 		};
-
-		// template<class Container, class PairContainer>
-		// void createSortedPairs(Container& seq, PairContainer& pairs) {
-		// std::vector<int>::iterator itFirst = seq.begin();
-		// std::vector<int>::iterator itSecond = seq.begin();
-		// ++itSecond;
-		// std::vector<int>::iterator ite = seq.end();
-		// while (itFirst != ite && itSecond != ite) {
-		// 	if (*itFirst > *itSecond)
-		// 		pairs.push_back(std::make_pair(*itSecond, *itFirst));
-		// 	else
-		// 		pairs.push_back(std::make_pair(*itFirst, *itSecond));
-		// 	std::advance(itFirst, 2);
-		// 	std::advance(itSecond, 2);
-		// }
-
-
-		// template<class PairContainer, class Container>
-		// void pushToMainChain(PairContainer& pairs, Container& mainChain, Container& pend) {
-		// 	typename PairContainer::iterator it = pairs.begin();
-		// 	typename PairContainer::iterator ite = pairs.end();
-		// 	// 	mainChain.push_back(it->first);
-		// 	// 	mainChain.push_back(it->second);
-		// 	// 	++it;
-		// 	// }
-		// 	while (it != ite) {
-		// 		mainChain.push_back(it->second);
-		// 		pend.push_back(it->first);
-		// 		++it;
-		// 	}
-		// };
 };
 
 std::ostream& operator<<(std::ostream& os, char**);
