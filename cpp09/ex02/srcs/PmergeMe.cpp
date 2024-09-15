@@ -104,9 +104,9 @@ void PmergeMe::mergeInsertionSort(std::vector<int>& sequence, size_t const block
 }
 
 void PmergeMe::sortByPair(std::vector<int>& seq, size_t blockSize, size_t blockCount) {
-	v_iterator itLeft = seq.begin();
+	std::vector<int>::iterator itLeft = seq.begin();
 	std::advance(itLeft, blockSize - 1);
-	v_iterator itRight = seq.begin();
+	std::vector<int>::iterator itRight = seq.begin();
 	std::advance(itRight, blockSize * 2 - 1);
 
 	if (blockCount < 2)
@@ -221,40 +221,59 @@ void PmergeMe::pushToMainChain(std::vector<int> const& sequence, v_iter_pair_con
 void PmergeMe::insertPendElements(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int pendSize, size_t blockSize) {
 	size_t i = 2;
 	int target = jacobsthalNumber(i);
-	// v_iter_pair_container::iterator lastInserted = mainChain.begin();
+	v_iter_pair_container::iterator start = mainChain.begin();
+	v_iter_pair_container::iterator end = mainChain.end();
+	v_iter_pair_container::iterator lastInserted = mainChain.begin();
 
 	while (target < pendSize) {
 		#ifdef DEBUG
 			std::cout << "Inserting " << pend.at(target).first << std::endl;
 		#endif
-		/* Need to optimize start */
-		v_iter_pair_container::iterator start = mainChain.begin();
-		v_iter_pair_container::iterator end = findBinarySearchRangeEnd(mainChain, pend, target, blockSize);
-		binarySearchInsert(mainChain, pend.at(target), start, end);
+		findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
+		lastInserted = binarySearchInsert(mainChain, pend.at(target), start, end);
 		pend.at(target).first = -1;
 		target = jacobsthalNumber(++i);
 	}
-	for (int j = 0; j < pendSize; ++j) {
-		if (pend.at(j).first != -1) {
+	for (target = 0; target < pendSize; ++target) {
+		if (pend.at(target).first != -1) {
 			#ifdef DEBUG
-				std::cout << "Inserting " << pend.at(j).first << std::endl;
+				std::cout << "Inserting " << pend.at(target).first << std::endl;
 			#endif
-			v_iter_pair_container::iterator start = mainChain.begin();
-			v_iter_pair_container::iterator end = findBinarySearchRangeEnd(mainChain, pend, j, blockSize);
-			binarySearchInsert(mainChain, pend.at(j), start, end);
+			findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
+			lastInserted = binarySearchInsert(mainChain, pend.at(target), start, end);
 		}
 	}
 }
 
-PmergeMe::v_iter_pair_container::iterator PmergeMe::findBinarySearchRangeEnd(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int target, size_t blockSize) {
-	std::vector<int>::const_iterator itInSequence = pend.at(target).second;
-	std::vector<int>::const_iterator itPairElement = itInSequence + blockSize;
-
-	v_iter_pair_container::iterator itPairElementInMainChain = std::find(mainChain.begin(), mainChain.end(), std::make_pair(*itPairElement, itPairElement));
-	return (itPairElementInMainChain);
+void PmergeMe::findBinarySearchRange
+(v_iter_pair_container& mainChain, v_iter_pair_container& pend,
+ v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end,
+ v_iter_pair_container::iterator& lastInserted, int target, size_t blockSize) {
+	if (lastInserted != mainChain.end() && pend.at(target).first > lastInserted->first) {
+		start = lastInserted + 1;
+		std::vector<int>::const_iterator itInSequence = pend.at(target).second;
+		std::vector<int>::const_iterator itPairElement = itInSequence + blockSize;
+		end = std::find(mainChain.begin(), mainChain.end(), std::make_pair(*itPairElement, itPairElement));
+	}
+	else {
+		start = mainChain.begin();
+		end = lastInserted;
+	}
+	#ifdef DEBUG
+		std::cout << "Binary Search Start: " << start->first << std::endl;
+		std::cout << "Binary Search End:   " << end->first << RESET << std::endl;
+	#endif
 }
 
-void PmergeMe::binarySearchInsert(v_iter_pair_container& mainChain, v_iter_pair& toInsert, v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end) {
+// PmergeMe::v_iter_pair_container::iterator PmergeMe::findBinarySearchRangeEnd(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int target, size_t blockSize) {
+// 	std::vector<int>::const_iterator itInSequence = pend.at(target).second;
+// 	std::vector<int>::const_iterator itPairElement = itInSequence + blockSize;
+
+// 	v_iter_pair_container::iterator itPairElementInMainChain = std::find(mainChain.begin(), mainChain.end(), std::make_pair(*itPairElement, itPairElement));
+// 	return (itPairElementInMainChain);
+// }
+
+PmergeMe::v_iter_pair_container::iterator PmergeMe::binarySearchInsert(v_iter_pair_container& mainChain, v_iter_pair& toInsert, v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end) {
 	#ifdef CHECK
 		size_t count = 0;
 	#endif
@@ -268,11 +287,17 @@ void PmergeMe::binarySearchInsert(v_iter_pair_container& mainChain, v_iter_pair&
 			++count;
 		#endif
 	}
-	mainChain.insert(start, toInsert);
-	// lastInserted = start;
+	v_iter_pair_container::iterator insertPos =  mainChain.insert(start, toInsert);
 	#ifdef CHECK
 		std::cout << count << std::endl;
 	#endif
+	#ifdef DEBUG
+		std::cout << "Main chain ";
+		for (v_iter_pair_container::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+			std::cout << it->first << ' ';
+		std::cout << std::endl << std::endl;
+	#endif
+	return (insertPos);
 }
 
 void PmergeMe::rebuildSequence(std::vector<int>& seq, v_iter_pair_container& mainChain, size_t blockSize, size_t blockCount) {
@@ -287,16 +312,13 @@ void PmergeMe::rebuildSequence(std::vector<int>& seq, v_iter_pair_container& mai
 		#ifdef DEBUG
 			std::cout << "Target start: " << *itSequence << std::endl << std::endl;
 		#endif
-		// std::cout << "<" << i << "> Add [ ";
 		for (size_t j = 0; j < blockSize; ++j) {
 			tmp.push_back(*itSequence);
-			// std::cout << *itSequence << ' ';
 			++itSequence;
 		}
-		// std::cout << "]" << std::endl;
 	}
 	size_t remainingCount = seq.size() - tmp.size();
-	v_iterator it = seq.end() - remainingCount;
+	std::vector<int>::iterator it = seq.end() - remainingCount;
 	for (size_t i = 0; i < remainingCount; ++i) {
 		tmp.push_back(*it);
 		++it;

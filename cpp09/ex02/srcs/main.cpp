@@ -35,10 +35,10 @@ int main(int argc, char** argv) {
 			// std::list<int> lst = pmergeme.getList();
 			std::cout << "\n=== Sort Check ===\n";
 			std::cout << "vector: ";
-			std::is_sorted(vec.begin(), vec.end()) ? std::cout << GREEN << "SUCCESS!!" << RESET : std::cout << RED << "FAILED..." << RESET;
+			std::is_sorted(vec.begin(), vec.end()) ? std::cout << GREEN << "SUCCESS!!\n" << RESET : std::cout << RED << "FAILED...\n" << RESET;
 			// std::cout << std::endl;
 			// std::cout << "list: ";
-			// std::is_sorted(lst.begin(), lst.end()) ? std::cout << GREEN << "SUCCESS!" << RESET : std::cout << RED << "FAILED" << RESET;
+			// std::is_sorted(lst.begin(), lst.end()) ? std::cout << GREEN << "SUCCESS!\n" << RESET : std::cout << RED << "FAILED...\n" << RESET;
 			// std::cout << std::endl;
 		#endif
 	}
