@@ -88,7 +88,7 @@ class PmergeMe {
 
 		void sortByPair(std::vector<int>& seq, size_t blockSize, size_t blockCount);
 	
-		void splitAndBinaryInsert(std::vector<int> seq, size_t blockSize, size_t blockCount);
+		void splitAndBinaryInsert(std::vector<int>& seq, size_t blockSize, size_t blockCount);
 		void pushToMainChain(std::vector<int> const& sequence, v_iter_pair_container& mainChain, v_iter_pair_container& pend, size_t blockSize, size_t blockCount);
 		void insertPendElements(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int pendSize, size_t blockSize);
 		v_iter_pair_container::iterator findBinarySearchRangeEnd(v_iter_pair_container& mainChain, v_iter_pair_container& pend, int target, size_t blockSize);
