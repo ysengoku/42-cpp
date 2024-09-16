@@ -17,6 +17,7 @@ make check
    
 To generate random number sets for test   
 [Random Integer Set Generator](https://www.random.org/integer-sets/)   
+[Calculator Soup - Random Number Generator](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php)
 
 ## Algorithm
 
