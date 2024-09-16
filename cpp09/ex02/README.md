@@ -55,22 +55,23 @@ The range for binary search is determined as following:
 Using the sorted main chain, we rebuild the sequence while incorporating other elements from the groups.
    
 <img width="670" alt="insert1" src="https://github.com/user-attachments/assets/843e78ad-f1da-4f29-8f15-8bbf63ac67a4">   
-<img width="866" alt="insert_2" src="https://github.com/user-attachments/assets/f2e0bfb5-6456-4530-b971-4d043c7e5ec1">   
-<img width="818" alt="insert2" src="https://github.com/user-attachments/assets/e7f5f3f5-a94c-48b5-9e17-61b6aed81adf">   
-<img width="818" alt="insert3" src="https://github.com/user-attachments/assets/e6a3addd-5960-4bbc-9ad9-cf0046c1095d">   
+<img width="818" alt="insert2" src="https://github.com/user-attachments/assets/aee296f3-aa34-4b4a-946b-996e7307d03a">
+<img width="818" alt="insert3" src="https://github.com/user-attachments/assets/e7f5f3f5-a94c-48b5-9e17-61b6aed81adf">   
+<img width="818" alt="insert4" src="https://github.com/user-attachments/assets/e6a3addd-5960-4bbc-9ad9-cf0046c1095d">   
 
 ---
 #### Explanation step by step:  
-Split to Main chain and Pend   
-<img width="721" alt="fordjohnson5" src="https://github.com/user-attachments/assets/2f81c13a-f1dc-4224-bc08-6e3626d07656">   
+Before sort   
+![step0](https://github.com/user-attachments/assets/1283130d-f2cb-4615-9668-192805b4dc12)
 
-Binary Search insert   
-<img width="384" alt="fordjohnson6" src="https://github.com/user-attachments/assets/7b927cc7-6184-45b1-adf9-e73734192fc0">
-<img width="487" alt="fordjohnson7" src="https://github.com/user-attachments/assets/cb78f98b-1a7c-4791-9b59-cea6d5295067">
+Sorting   
+![step1](https://github.com/user-attachments/assets/2d10b1a3-a58f-48d6-a8a3-a4e34d3d5500)
+![step2](https://github.com/user-attachments/assets/d138a51a-4635-40de-b24a-96574d7bc6d4)
+![step3](https://github.com/user-attachments/assets/6cf98108-8903-40b8-81b4-17dd608f0ea7)
+![step4](https://github.com/user-attachments/assets/f60d4166-6d21-4e54-b49c-837057b67adc)
 
 Soerted   
-<img width="629" alt="fordjohnson8" src="https://github.com/user-attachments/assets/fa2afda6-c4c5-47fd-9ae5-ecd57e40b35a">
-
-
+<img alt="fordjohnson8" src="https://github.com/user-attachments/assets/66361ebe-2c89-4ff2-89ad-96e86598424b">
+   
 ---
 <img width="866" alt="fordjohnson" src="https://github.com/user-attachments/assets/5d6102fc-98de-4566-9809-cc098ef14506">
