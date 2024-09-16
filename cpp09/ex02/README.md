@@ -14,6 +14,9 @@ make debug
 /*Launch with sort check*/
 make check
 ```
+   
+To generate random number sets for test   
+[Random Integer Set Generator](https://www.random.org/integer-sets/)   
 
 ## Algorithm
 
