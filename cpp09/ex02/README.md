@@ -1,6 +1,19 @@
 # CPP Module09 - ex02 \[Ford-Johnson Sort\]
 
-The Ford-Johnson sort, also known as merge-insertion sort, is a comparison-based algorithm focused on minimizing the number of comparisons during sorting. Its primary goal is to reduce comparison count compared to traditional sorting methods.　　　
+The Ford-Johnson sort, also known as merge-insertion sort, is a comparison-based algorithm focused on minimizing the number of comparisons during sorting. Its primary goal is to reduce comparison count compared to traditional sorting methods.　
+
+## Usage
+```bash
+make
+./PmergeMe <positive integer sequence>
+```
+```c
+/*Debug mode*/
+make debug
+
+/*Launch with sort check*/
+make check
+```
 
 ## Algorithm
 
