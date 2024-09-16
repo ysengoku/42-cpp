@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/16 09:07:27 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:42:44 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void PmergeMe::findBinarySearchRange
 (v_iter_pair_container& mainChain, v_iter_pair_container& pend,
  v_iter_pair_container::iterator& start, v_iter_pair_container::iterator& end,
  v_iter_pair_container::iterator& lastInserted, int target, size_t blockSize) {
-	if (lastInserted != mainChain.end() && pend.at(target).first > lastInserted->first) {
+	if (pend.at(target).first > lastInserted->first && lastInserted != mainChain.end()) {
 		start = lastInserted + 1;
 		std::vector<int>::const_iterator itInSequence = pend.at(target).second;
 		std::vector<int>::const_iterator itPairElement = itInSequence + blockSize;
@@ -198,7 +198,11 @@ void PmergeMe::findBinarySearchRange
 	}
 	else {
 		start = mainChain.begin();
-		end = lastInserted;
+		std::vector<int>::const_iterator itInSequence = pend.at(target).second;
+		std::vector<int>::const_iterator itPairElement = itInSequence + blockSize;
+		end = std::find(mainChain.begin(), mainChain.end(), std::make_pair(*itPairElement, itPairElement));
+		if (end->first > lastInserted->first)
+			end = lastInserted;
 	}
 	#ifdef DEBUG
 		std::cout << "Binary Search Start: " << start->first << std::endl;
@@ -362,7 +366,12 @@ void PmergeMe::findBinarySearchRange
 	}
 	else {
 		start = mainChain.begin();
-		end = lastInserted;
+		std::list<int>::const_iterator itInSequence = toInsert->second;
+		std::list<int>::const_iterator itPairElement = itInSequence;
+		std::advance(itPairElement, blockSize);
+		end = std::find(mainChain.begin(), mainChain.end(), std::make_pair(*itPairElement, itPairElement));
+		if (end->first > lastInserted->first)
+			end = lastInserted;
 	}
 	#ifdef DEBUG
 		std::cout << "Binary Search Start: " << start->first << std::endl;
