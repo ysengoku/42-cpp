@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:31:55 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/02 10:26:52 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:40:03 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ class BitcoinExcange {
 		~BitcoinExcange(void);
 
 		void exchange(void);
+
+		class InputfileOpenException : public std::exception {
+			public: 
+				virtual const char* what() const throw();
+		};
 };
 
 # define RED "\033[31m"
