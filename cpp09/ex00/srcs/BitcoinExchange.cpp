@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:31:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/02 11:55:06 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:45:40 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ BitcoinExcange::BitcoinExcange(char* inputFileName) : _inputFileName(inputFileNa
 	if (readDatabase() == false)
 		exit(1);
 	_ifs.open(_inputFileName, std::ios::in);
-	if (!_ifs.is_open()) {
-		std::cout << RED << "Error: could not open inputfile file" << RESET << std::endl;
-		exit(1);
-	}
+	if (!_ifs.is_open())
+		throw InputfileOpenException();
 	setTodaysDate();
 	std::cout << GREY << "Constructor called" << RESET << std::endl;
 }
@@ -31,10 +29,8 @@ BitcoinExcange::BitcoinExcange(char* inputFileName) : _inputFileName(inputFileNa
 BitcoinExcange::BitcoinExcange(BitcoinExcange const& src)
 : _database(src._database), _inputFileName(src._inputFileName), _today(src._today) {
 	this->_ifs.open(_inputFileName, std::ios::in);
-	if (!this->_ifs.is_open()) {
-		std::cout << RED << "Error: could not open inputfile file" << RESET << std::endl;
-		exit(1);
-	}	
+	if (!this->_ifs.is_open())
+		throw InputfileOpenException();
 	std::cout << GREY << "Copy constructor called" << RESET << std::endl;
 }
 
@@ -55,10 +51,8 @@ BitcoinExcange& BitcoinExcange::operator=(BitcoinExcange const& rhs) {
 		this->_inputFileName = rhs._inputFileName;
 		this->_today = rhs._today;
 		this->_ifs.open(_inputFileName, std::ios::in);
-		if (!this->_ifs.is_open()) {
-			std::cout << RED << "Error: could not open inputfile file" << RESET << std::endl;
-			exit(1);
-		}
+		if (!this->_ifs.is_open())
+			throw InputfileOpenException();
 	}
 	std::cout << GREY << "Copy assignment operator called" << RESET << std::endl;
 	return (*this);
@@ -205,4 +199,12 @@ float BitcoinExcange::findRate(std::string const& date) {
 		++it;
 	}
 	return (rate);
+}
+
+/*============================================================================*/
+/*       Exceptions                                                           */
+/*============================================================================*/
+
+const char* BitcoinExcange::InputfileOpenException::what() const throw() {
+	return (RED "Error: could not open inputfile file" RESET);
 }
