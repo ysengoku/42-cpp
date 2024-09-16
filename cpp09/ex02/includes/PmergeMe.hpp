@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:42 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/06 13:16:39 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:03:55 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <iomanip>
 # include <string>
 # include <algorithm>
-# include <cstdlib>
 # include <climits>
 # include <cerrno>
 # include <ctime>
@@ -138,14 +137,15 @@ class PmergeMe {
 				std::cout << GREEN "\n===== < Push to Main chain > Block size: " << blockSize << "  Block count: " << blockCount << " =====" RESET << std::endl;
 			#endif
 			for (size_t i = 0; i < blockCount - blockCount % 2; ++i) {
-				if (i == 0)	
+				if (i == 0)
 					mainChain.push_back(std::make_pair(*it, it));
 				else if (i == 1)
 					mainChain.push_back(std::make_pair(*it, it));
 				else if (i % 2 != 0)
 					mainChain.push_back(std::make_pair(*it, it));
-				else
+				else {
 					pend.push_back(std::make_pair(*it, it));
+				}
 				#ifdef DEBUG
 					std::cout << "Pushed " << *it << std::endl;
 					std::cout << "Main chain: ";
@@ -197,7 +197,7 @@ class PmergeMe {
 			}
 			Iterator insertPos =  mainChain.insert(start, toInsert);
 			#ifdef DEBUG
-				std::cout << "Main chain ";
+				std::cout << "Main chain after insertion: ";
 				for (Iterator it = mainChain.begin(); it != mainChain.end(); ++it)
 				std::cout << it->first << ' ';
 				std::cout << std::endl << std::endl;
@@ -218,6 +218,20 @@ std::ostream& operator<<(std::ostream& os, const Container< int, std::allocator<
 		++it;
 	}
 	return (os);
+}
+
+template<typename Iterator>
+bool isSorted(Iterator start, Iterator end) {
+	Iterator left = start;
+	Iterator right = left;
+	++right;
+	while (right!= end) {
+		if (*right < *left)
+			return (false);
+		++left;
+		++right;
+	}
+	return (true);
 }
 
 #endif

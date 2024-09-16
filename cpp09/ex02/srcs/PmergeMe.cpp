@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:32:48 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/06 14:41:06 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:07:27 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void PmergeMe::insertPendElements(v_iter_pair_container& mainChain, v_iter_pair_
 
 	while (target < pendSize) {
 		#ifdef DEBUG
-			std::cout << "Inserting " << pend.at(target).first << std::endl;
+			std::cout << "Inserting " << pend.at(target).first << " from pend" << std::endl;
 		#endif
 		findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
 		lastInserted = binarySearchInsert(mainChain, pend.at(target), start, end);
@@ -178,7 +178,7 @@ void PmergeMe::insertPendElements(v_iter_pair_container& mainChain, v_iter_pair_
 	for (target = 0; target < pendSize; ++target) {
 		if (pend.at(target).first != -1) {
 			#ifdef DEBUG
-				std::cout << "Inserting " << pend.at(target).first << std::endl;
+				std::cout << "Inserting " << pend.at(target).first << " from pend" << std::endl;
 			#endif
 			findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
 			lastInserted = binarySearchInsert(mainChain, pend.at(target), start, end);
@@ -209,6 +209,9 @@ void PmergeMe::findBinarySearchRange
 void PmergeMe::rebuildSequence(std::vector<int>& seq, v_iter_pair_container& mainChain, size_t blockSize, size_t blockCount) {
 	std::vector<int> tmp;
 	std::vector<int>::const_iterator itSequence;
+	#ifdef DEBUG
+		std::cout << "--- Rebuilding sequence ---" << std::endl;
+	#endif
 	for (size_t i = 0; i < blockCount; ++i) {
 		itSequence = (mainChain.begin() + i)->second;
 		#ifdef DEBUG
@@ -320,12 +323,12 @@ void PmergeMe::insertPendElements(l_iter_pair_container& mainChain, l_iter_pair_
 	l_iter_pair_container::iterator lastInserted = mainChain.begin();
 
 	while (target < pendSize) {
-		findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
 		l_iter_pair_container::iterator toInsert = pend.begin();
 		std::advance(toInsert, target);
 		#ifdef DEBUG
-			std::cout << "Inserting " << toInsert->first << std::endl;
+			std::cout << "Inserting " << toInsert->first << " from pend" << std::endl;
 		#endif
+		findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
 		lastInserted = binarySearchInsert(mainChain, *toInsert, start, end);
 		toInsert->first = -1;
 		target = jacobsthalNumber(++i);
@@ -335,7 +338,7 @@ void PmergeMe::insertPendElements(l_iter_pair_container& mainChain, l_iter_pair_
 		std::advance(toInsert, target);
 		if (toInsert->first != -1) {
 			#ifdef DEBUG
-				std::cout << "Inserting " << toInsert->first << std::endl;
+				std::cout << "Inserting " << toInsert->first << " from pend" << std::endl;
 			#endif
 			findBinarySearchRange(mainChain, pend, start, end, lastInserted, target, blockSize);
 			lastInserted = binarySearchInsert(mainChain, *toInsert, start, end);
@@ -370,6 +373,9 @@ void PmergeMe::findBinarySearchRange
 void PmergeMe::rebuildSequence(std::list<int>& seq, l_iter_pair_container& mainChain, size_t blockSize, size_t blockCount) {
 	std::list<int> tmp;
 	std::list<int>::const_iterator itSequence;
+	#ifdef DEBUG
+		std::cout << "--- Rebuilding sequence ---" << std::endl;
+	#endif
 	for (size_t i = 0; i < blockCount; ++i) {
 		l_iter_pair_container::iterator itMainChain = mainChain.begin();
 		std::advance(itMainChain, i);
