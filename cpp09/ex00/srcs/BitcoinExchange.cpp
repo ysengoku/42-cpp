@@ -6,7 +6,7 @@
 /*   By: yusengok <yusengok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:31:58 by yusengok          #+#    #+#             */
-/*   Updated: 2024/09/16 11:45:40 by yusengok         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:13:53 by yusengok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,17 +188,34 @@ bool BitcoinExcange::checkAmount(std::string const& amount) {
 }
 
 float BitcoinExcange::findRate(std::string const& date) {
-	float rate;
-	std::map<std::string, float>::iterator it = _database.begin();
-	std::map<std::string, float>::iterator ite = _database.end();
-	rate = it->second;
-	while (it != ite) {
-		if (it->first >= date)
-			break ;
-		rate = it->second;
-		++it;
-	}
-	return (rate);
+	// ************* Improved solution *************
+	std::map<std::string, float>::iterator value = _database.upper_bound(date);
+	if (value == _database.begin())
+		return 0.0;
+	--value;
+	return (value->second);
+
+	// ************* My initial solution *************
+	// float rate;
+	// std::map<std::string, float>::iterator it = _database.begin();
+	// std::map<std::string, float>::iterator ite = _database.end();
+	// rate = it->second;
+	// while (it != ite) {
+	// 	if (it->first >= date)
+	// 		break ;
+	// 	rate = it->second;
+	// 	++it;
+	// }
+	// return (rate);
+
+	// ************* Other solution *************
+	// std::map<std::string, float>::iterator value = _database.lower_bound(date);
+	// if (value != _database.end() && value->first == date)
+	// 	return value->second;
+	// if (value == _database.begin())
+	// 	return 0.0;
+	// --value;
+	// return (value->second);
 }
 
 /*============================================================================*/
